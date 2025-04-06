@@ -3,118 +3,85 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>데이터 분석 보고서</title>
+  <title>Company Report Website</title>
   <style>
     body {
-      font-family: "Arial", sans-serif;
+      font-family: Arial, sans-serif;
       margin: 0;
       padding: 0;
-      background-color: #f5f7fa;
-      color: #333;
+      background-color: #f4f4f4;
     }
-
     header {
       background-color: #2c3e50;
       color: white;
-      padding: 2rem 1rem;
+      padding: 20px;
       text-align: center;
     }
-
-    .summary-section {
-      display: flex;
-      justify-content: center;
-      gap: 1.5rem;
-      padding: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .card {
-      background-color: white;
-      padding: 1.5rem;
-      border-radius: 10px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      width: 250px;
+    nav {
+      background-color: #34495e;
+      padding: 10px;
       text-align: center;
     }
-
-    .card h3 {
-      margin: 0;
-      font-size: 1.2rem;
-      color: #3498db;
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
     }
-
-    .card p {
-      font-size: 1.5rem;
-      font-weight: bold;
-      margin-top: 0.5rem;
-    }
-
-    .section {
-      padding: 2rem;
-      background-color: white;
-      margin: 1rem;
+    section {
+      padding: 20px;
+      margin: 10px auto;
+      max-width: 900px;
+      background: white;
       border-radius: 10px;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
     }
-
-    .section h2 {
-      color: #2c3e50;
-    }
-
-    .section img {
+    img {
       max-width: 100%;
-      border-radius: 8px;
+      border-radius: 10px;
     }
-
     footer {
       text-align: center;
-      padding: 1rem;
-      background-color: #ecf0f1;
-      font-size: 0.9rem;
-      margin-top: 2rem;
+      padding: 10px;
+      background: #bdc3c7;
+      margin-top: 20px;
     }
   </style>
 </head>
 <body>
-
   <header>
-    <h1>2025년 1분기 데이터 분석 보고서</h1>
-    <p>주요 지표 요약 및 트렌드 분석 결과</p>
+    <h1>기업 정보 리포트</h1>
   </header>
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">About</a>
+    <a href="#">Contact</a>
+  </nav>
 
-  <section class="summary-section">
-    <div class="card">
-      <h3>총 사용자 수</h3>
-      <p>15,240명</p>
-    </div>
-    <div class="card">
-      <h3>전환율</h3>
-      <p>4.8%</p>
-    </div>
-    <div class="card">
-      <h3>평균 이용 시간</h3>
-      <p>3분 42초</p>
-    </div>
+  <section>
+    <h2>기업 소개</h2>
+    <p>이 웹사이트는 특정 기업의 주요 정보와 통계를 한눈에 보여주는 리포트 형식으로 구성되어 있습니다.</p>
   </section>
 
-  <section class="section">
-    <h2>데이터 시각화</h2>
-    <p>아래는 사용자 트래픽 분석 결과를 시각화한 그래프입니다.</p>
-    <img src="chart-example.png" alt="트래픽 분석 그래프 (예시)">
+  <section>
+    <h2>주요 통계</h2>
+    <ul>
+      <li>매출: 1,200억 원</li>
+      <li>직원 수: 300명</li>
+      <li>설립 연도: 2008년</li>
+    </ul>
   </section>
 
-  <section class="section">
-    <h2>결론 및 제안</h2>
-    <p>
-      분석 결과, 모바일 사용자의 이탈률이 상대적으로 높으며,
-      특정 시간대에 접속률이 급증하는 경향이 나타났습니다. 이에 따라
-      푸시 알림 전략을 시간대에 맞춰 최적화하는 것이 효과적일 수 있습니다.
-    </p>
+  <section>
+    <h2>기업 성과 그래프</h2>
+    <img src="chart-example.png" alt="기업 성과 그래프 이미지">
+  </section>
+
+  <section>
+    <h2>결론</h2>
+    <p>본 리포트를 통해 기업의 전반적인 현황과 성과를 이해할 수 있습니다.</p>
   </section>
 
   <footer>
-    ⓒ 2025 데이터 분석팀 | 무단 복제 및 배포 금지
+    &copy; 2025 Company Report. All rights reserved.
   </footer>
-
 </body>
 </html>
