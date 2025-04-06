@@ -1,54 +1,120 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Company Report Dashboard</title>
+  <title>데이터 분석 보고서</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background-color: #f4f4f4;
+      font-family: "Arial", sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f7fa;
+      color: #333;
     }
+
     header {
-      background-color: #1e293b;
+      background-color: #2c3e50;
       color: white;
-      padding: 1em;
+      padding: 2rem 1rem;
       text-align: center;
     }
-    .container {
-      padding: 2em;
+
+    .summary-section {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      padding: 2rem;
+      flex-wrap: wrap;
     }
-    .report-card {
+
+    .card {
       background-color: white;
-      padding: 1.5em;
-      margin: 1em 0;
-      border-radius: 8px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      width: 250px;
+      text-align: center;
     }
-    .report-title {
-      font-size: 1.2em;
+
+    .card h3 {
+      margin: 0;
+      font-size: 1.2rem;
+      color: #3498db;
+    }
+
+    .card p {
+      font-size: 1.5rem;
       font-weight: bold;
+      margin-top: 0.5rem;
     }
-    .report-detail {
-      color: #555;
-      margin-top: 0.5em;
+
+    .section {
+      padding: 2rem;
+      background-color: white;
+      margin: 1rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+
+    .section h2 {
+      color: #2c3e50;
+    }
+
+    .section img {
+      max-width: 100%;
+      border-radius: 8px;
+    }
+
+    footer {
+      text-align: center;
+      padding: 1rem;
+      background-color: #ecf0f1;
+      font-size: 0.9rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
+
   <header>
-    <h1>중소기업 리포트 대시보드</h1>
+    <h1>2025년 1분기 데이터 분석 보고서</h1>
+    <p>주요 지표 요약 및 트렌드 분석 결과</p>
   </header>
-  <div class="container">
-    <div class="report-card">
-      <div class="report-title">[기업명] 스마트솔루션</div>
-      <div class="report-detail">산업: IT | 지역: 서울 | 설립: 2015년</div>
+
+  <section class="summary-section">
+    <div class="card">
+      <h3>총 사용자 수</h3>
+      <p>15,240명</p>
     </div>
-    <div class="report-card">
-      <div class="report-title">[기업명] 그린테크</div>
-      <div class="report-detail">산업: 에너지 | 지역: 대전 | 설립: 2012년</div>
+    <div class="card">
+      <h3>전환율</h3>
+      <p>4.8%</p>
     </div>
-  </div>
+    <div class="card">
+      <h3>평균 이용 시간</h3>
+      <p>3분 42초</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <h2>데이터 시각화</h2>
+    <p>아래는 사용자 트래픽 분석 결과를 시각화한 그래프입니다.</p>
+    <img src="chart-example.png" alt="트래픽 분석 그래프 (예시)">
+  </section>
+
+  <section class="section">
+    <h2>결론 및 제안</h2>
+    <p>
+      분석 결과, 모바일 사용자의 이탈률이 상대적으로 높으며,
+      특정 시간대에 접속률이 급증하는 경향이 나타났습니다. 이에 따라
+      푸시 알림 전략을 시간대에 맞춰 최적화하는 것이 효과적일 수 있습니다.
+    </p>
+  </section>
+
+  <footer>
+    ⓒ 2025 데이터 분석팀 | 무단 복제 및 배포 금지
+  </footer>
+
 </body>
 </html>
