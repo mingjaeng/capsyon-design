@@ -1,1 +1,1 @@
-# capsyon-design
+# capston-design
