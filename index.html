@@ -1,157 +1,767 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>웹 사이트 이름 - 중소기업 리포트 포털</title>
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Malgun Gothic', sans-serif;
-    }
-    body {
-      background-color: #f5f5f5;
-    }
-    .header {
-      background-color: #333;
-      color: white;
-      padding: 10px 0;
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .logo {
-      font-size: 28px;
-      font-weight: bold;
-    }
-    .logo span:first-child {
-      color: #e74c3c;
-    }
-    .search-bar {
-      display: flex;
-    }
-    .search-bar input {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 4px 0 0 4px;
-      width: 300px;
-    }
-    .search-bar button {
-      background-color: #555;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 0 4px 4px 0;
-      color: white;
-      cursor: pointer;
-    }
-    .main-nav {
-      background-color: #444;
-      border-bottom: 1px solid #555;
-    }
-    .nav-items {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      list-style-type: none;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .nav-items li {
-      padding: 15px 20px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .nav-items li:hover, .nav-items li.active {
-      background-color: #666;
-    }
-    #content-container {
-      padding: 20px;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    @media screen and (max-width: 768px) {
-      .search-bar input {
-        width: 100%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>웹 사이트 이름 - 중소기업 리포트 포털</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Malgun Gothic', sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+        }
+        .header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            border-top: 3px solid #e74c3c;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .logo span:first-child {
+            color: #e74c3c;
+        }
+        .search-bar {
+            display: flex;
+        }
+        .search-bar input {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px 0 0 4px;
+            width: 300px;
+        }
+        .search-bar button {
+            background-color: #555;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 4px 4px 0;
+            color: white;
+            cursor: pointer;
+        }
+        .main-nav {
+            background-color: #444;
+            border-bottom: 1px solid #555;
+        }
+        .nav-items {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style-type: none;
+        }
+        .nav-items li {
+            padding: 15px 20px;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .nav-items li:hover, .nav-items li.active {
+            background-color: #666;
+        }
+        .sub-nav {
+            background-color: #eee;
+            border-bottom: 1px solid #ddd;
+        }
+        .sub-nav-items {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style-type: none;
+            padding: 10px 15px;
+        }
+        .sub-nav-items li {
+            padding: 5px 15px;
+            color: #333;
+            cursor: pointer;
+            border-right: 1px solid #ccc;
+        }
+        .sub-nav-items li:last-child {
+            border-right: none;
+        }
+        .sub-nav-items li.active {
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .company-info {
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 20px;
+        }
+        .company-header {
+            display: flex;
+            justify-content: space-between;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 15px;
+            margin-bottom: 15px;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e74c3c;
+        }
+        .company-code {
+            color: #666;
+            margin-left: 10px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .stat-box {
+            text-align: center;
+            flex: 1;
+            padding: 10px;
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .chart {
+            flex: 1;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            height: 200px;
+            margin: 0 5px;
+            position: relative;
+        }
+        .chart-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            color: #666;
+        }
+        .chart-value {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .chart-content {
+            height: 80%;
+            margin-top: 40px;
+            background-image: linear-gradient(to right, #ffcccb, #ffebe6);
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: red;
+            top: 50%;
+            z-index: 2;
+        }
+        .chart-line.blue {
+            background-color: blue;
+            top: 30%;
+        }
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .detail-table th, .detail-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: center;
+        }
+        .detail-table th {
+            background-color: #f5f5f5;
+        }
+        .positive {
+            color: red;
+        }
+        .negative {
+            color: blue;
+        }
+        
+        /* 동적 계산을 위한 스타일 */
+        .calculated-value {
+            font-weight: bold;
+        }
+        
+        /* 탭 메뉴 스타일 */
+        .tab-menu {
+            display: flex;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-item.active {
+            border-bottom: 2px solid #e74c3c;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 재무제표 스타일 */
+        .financial-statement {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .financial-statement th, .financial-statement td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+        }
+        .financial-statement th {
+            background-color: #f5f5f5;
+            text-align: left;
+        }
+        .financial-statement thead th {
+            text-align: center;
+            font-weight: bold;
+        }
+        .financial-statement .category {
+            background-color: #eee;
+            font-weight: bold;
+        }
+        .financial-statement .subcategory {
+            padding-left: 20px;
+        }
+        .financial-statement .item {
+            padding-left: 35px;
+        }
+        .year-selector {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .year-selector select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .statement-type {
+            margin-bottom: 15px;
+        }
+        .statement-type select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .unit-info {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        /* 기업정보 페이지 스타일 */
+        .company-profile {
+            display: none;
+            padding: 20px;
+        }
+        .company-profile.active {
+            display: block;
+        }
+        .company-profile-header {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eee;
+        }
+        .company-profile-section {
+            margin-bottom: 30px;
+        }
+        .company-profile-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 18px;
+        }
+        .company-detail-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .company-detail-table th, .company-detail-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+        .company-detail-table th {
+            background-color: #f5f5f5;
+            width: 150px;
+            text-align: left;
+        }
+        
+        /* 페이지 컨테이너 */
+        .page-container {
+            display: none;
+        }
+        .page-container.active {
+            display: block;
+        }
+    </style>
+    <script>
+        // 페이지 로드 후 실행되는 함수
+        window.onload = function() {
+            setupPageNavigation();
+            setupCalculations();
+            setupTabs();
+        };
+        
+        // 페이지 네비게이션 기능 설정
+        function setupPageNavigation() {
+            const mainNavItems = document.querySelectorAll('.main-nav .nav-items li');
+            const pageContainers = document.querySelectorAll('.page-container');
+            
+            mainNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 현재 활성화된 메뉴 아이템 제거
+                    mainNavItems.forEach(navItem => navItem.classList.remove('active'));
+                    
+                    // 클릭한 메뉴 아이템 활성화
+                    this.classList.add('active');
+                    
+                    // 해당 페이지 표시
+                    const pageName = this.getAttribute('data-page');
+                    if (pageName) {
+                        pageContainers.forEach(container => {
+                            container.classList.remove('active');
+                        });
+                        document.getElementById(pageName).classList.add('active');
+                    }
+                });
+            });
+        }
+        
+        // 탭 메뉴 설정
+        function setupTabs() {
+            const tabItems = document.querySelectorAll('.tab-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 현재 활성화된 탭 제거
+                    tabItems.forEach(tab => tab.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 클릭한 탭 활성화
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        }
+        
+        // 계산 함수 설정
+        function setupCalculations() {
+            // 재무정보 페이지가 활성화되었을 때만 계산 함수 실행
+            if (document.getElementById('finance-page').classList.contains('active')) {
+                // 입력 필드 생성
+                const statsSection = document.querySelector('.stats');
+                if (statsSection) {
+                    const statBoxes = statsSection.querySelectorAll('.stat-box');
+                    
+                    statBoxes.forEach(box => {
+                        const label = box.querySelector('.stat-label').innerText;
+                        const valueElement = box.querySelector('.stat-value');
+                        
+                        // 값 대신 입력 필드 추가
+                        const inputField = document.createElement('input');
+                        inputField.type = 'text';
+                        inputField.placeholder = '값 입력';
+                        inputField.style.width = '80px';
+                        inputField.style.marginTop = '5px';
+                        inputField.style.textAlign = 'center';
+                        inputField.dataset.label = label;
+                        
+                        // 계산된 값을 표시할 요소 추가
+                        const calculatedDiv = document.createElement('div');
+                        calculatedDiv.className = 'calculated-value';
+                        calculatedDiv.innerText = '--';
+                        
+                        // 기존 값 제거 후 입력 필드와 계산된 값 추가
+                        valueElement.innerHTML = '';
+                        valueElement.appendChild(inputField);
+                        valueElement.appendChild(calculatedDiv);
+                        
+                        // 입력 변경 이벤트 리스너 추가
+                        inputField.addEventListener('input', calculateValues);
+                    });
+                }
+                
+                // 시세현황 테이블에도 적용
+                const detailTable = document.querySelector('.detail-table');
+                if (detailTable) {
+                    const cells = detailTable.querySelectorAll('td');
+                    
+                    cells.forEach(cell => {
+                        const originalText = cell.innerText;
+                        
+                        // 특정 데이터 셀에만 적용 (숫자가 포함된 셀)
+                        if (originalText.match(/[0-9]/) || originalText === '--') {
+                            // 기존 내용 저장
+                            const rowHeader = cell.closest('tr').querySelector('th').innerText;
+                            
+                            // 입력 필드 생성
+                            const inputField = document.createElement('input');
+                            inputField.type = 'text';
+                            inputField.placeholder = '값 입력';
+                            inputField.style.width = '80px';
+                            inputField.dataset.header = rowHeader;
+                            
+                            // 계산된 값을 표시할 요소 추가
+                            const calculatedDiv = document.createElement('div');
+                            calculatedDiv.className = 'calculated-value';
+                            calculatedDiv.innerText = '--';
+                            
+                            // 기존 값 제거 후 입력 필드와 계산된 값 추가
+                            cell.innerHTML = '';
+                            cell.appendChild(inputField);
+                            cell.appendChild(calculatedDiv);
+                            
+                            // 입력 변경 이벤트 리스너 추가
+                            inputField.addEventListener('input', calculateTableValues);
+                        }
+                    });
+                }
+            }
+        }
+        
+        // 통계 섹션 값 계산 함수
+        function calculateValues() {
+            const inputs = document.querySelectorAll('.stat-box input');
+            const values = {};
+            
+            // 입력된 값 수집
+            inputs.forEach(input => {
+                values[input.dataset.label] = parseFloat(input.value) || 0;
+            });
+            
+            // 각 입력 필드에 대한 계산
+            inputs.forEach(input => {
+                const calculatedDiv = input.nextElementSibling;
+                const label = input.dataset.label;
+                const value = parseFloat(input.value) || 0;
+                
+                if (isNaN(value) || value === 0) {
+                    calculatedDiv.innerText = '--';
+                    return;
+                }
+                
+                // 라벨에 따른 계산 로직
+                switch (label) {
+                    case 'PER':
+                        // 주가 / 주당순이익 (EPS)
+                        calculatedDiv.innerText = value.toFixed(2);
+                        break;
+                    case '12M PER':
+                        // 주가 / 12개월 예상 EPS
+                        calculatedDiv.innerText = value.toFixed(2);
+                        break;
+                    case '업종 PER':
+                        // 업종 평균 PER
+                        calculatedDiv.innerText = value.toFixed(2);
+                        break;
+                    case 'PBR':
+                        // 주가 / 주당순자산가치 (BPS)
+                        calculatedDiv.innerText = value.toFixed(2);
+                        break;
+                    case '배당수익률':
+                        // (주당배당금 / 주가) * 100
+                        calculatedDiv.innerText = value.toFixed(2) + '%';
+                        break;
+                    default:
+                        calculatedDiv.innerText = value.toFixed(2);
+                }
+            });
+        }
+        
+        // 테이블 값 계산 함수
+        function calculateTableValues() {
+            const inputs = document.querySelectorAll('.detail-table input');
+            const values = {};
+            
+            // 입력된 값 수집
+            inputs.forEach(input => {
+                values[input.dataset.header] = parseFloat(input.value) || 0;
+            });
+            
+            // 각 입력 필드에 대한 계산
+            inputs.forEach(input => {
+                const calculatedDiv = input.nextElementSibling;
+                const header = input.dataset.header;
+                const value = parseFloat(input.value) || 0;
+                
+                if (isNaN(value) || value === 0) {
+                    calculatedDiv.innerText = '--';
+                    return;
+                }
+                
+                // 헤더에 따른 계산 로직
+                switch (header) {
+                    case '종가/전일대비':
+                        // 전일대비 계산
+                        calculatedDiv.innerText = value.toLocaleString() + ' 원';
+                        break;
+                    case '52주 최고/최저가':
+                        // 최고가와 최저가 표시
+                        calculatedDiv.innerText = value.toLocaleString() + ' 원';
+                        break;
+                    case '수익률 (1M/3M/6M/1Y)':
+                        // 수익률 계산
+                        calculatedDiv.innerText = value.toFixed(2) + '%';
+                        break;
+                    case '시가총액':
+                        // 시가총액 표시
+                        calculatedDiv.innerText = value.toLocaleString() + ' 억원';
+                        break;
+                    case '발행주식수':
+                        // 발행주식수 표시
+                        calculatedDiv.innerText = value.toLocaleString() + ' 주';
+                        break;
+                    default:
+                        calculatedDiv.innerText = value.toLocaleString();
+                }
+            });
+        }
+    </script>
 </head>
 <body>
-  <div class="header">
-    <div class="header-content">
-      <div class="logo">
-        <span>웹 사이트</span> 이름
-      </div>
-      <div class="search-bar">
-        <input type="text" placeholder="종목명 또는 종목코드 입력">
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-        </button>
-      </div>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>웹 사이트</span> 이름
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="종목명 또는 종목코드 입력">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
     </div>
-  </div>
-
-  <nav class="main-nav">
-    <ul class="nav-items">
-      <li id="nav-company">기업정보</li>
-      <li id="nav-finance" class="active">재무정보</li>
-    </ul>
-  </nav>
-
-  <div id="content-container">
-    <!-- 여기에 페이지가 동적으로 로드됩니다 -->
-  </div>
-
-  <script>
-    const companyInfoHTML = `
-      <h2>기업 정보</h2>
-      <p>이 화면은 이전에 사용했던 간단한 중소기업 정보 요약 화면입니다.</p>
-      <div style="border:1px solid #ccc; padding:15px; border-radius:8px; background:#fff;">
-        <p><strong>기업명:</strong> 스마트솔루션</p>
-        <p><strong>산업:</strong> IT</p>
-        <p><strong>지역:</strong> 서울</p>
-        <p><strong>설립:</strong> 2015년</p>
-      </div>
-    `;
-
-    const financeHTML = `
-      <h2>재무정보 리포트</h2>
-      <p>지금 보고 있는 이 화면은 최신 코드 기반의 정리된 리포트 레이아웃입니다.</p>
-      <div style="border:1px solid #ccc; padding:15px; border-radius:8px; background:#fff;">
-        <ul>
-          <li>PER: 15.2</li>
-          <li>PBR: 1.8</li>
-          <li>배당수익률: 2.4%</li>
+    
+    <div class="main-nav">
+        <ul class="nav-items">
+            <li data-page="company-page">기업정보</li>
+            <li data-page="finance-page" class="active">재무정보</li>
+            <li>리포트</li>
+            <li>뉴스</li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
         </ul>
-      </div>
-    `;
-
-    const container = document.getElementById('content-container');
-
-    function loadView(view) {
-      container.innerHTML = view;
-    }
-
-    document.getElementById('nav-company').addEventListener('click', () => {
-      loadView(companyInfoHTML);
-    });
-
-    document.getElementById('nav-finance').addEventListener('click', () => {
-      loadView(financeHTML);
-    });
-
-    // 페이지 처음 로드 시 기본화면 설정
-    loadView(financeHTML);
-  </script>
-</body>
-</html>
+    </div>
+    
+    <!-- 기업정보 페이지 -->
+    <div id="company-page" class="page-container">
+        <div class="sub-nav">
+            <ul class="sub-nav-items">
+                <li class="active">기업개요</li>
+                <li>주주구성</li>
+                <li>계열사현황</li>
+                <li>임원현황</li>
+                <li>사업현황</li>
+            </ul>
+        </div>
+        
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">삼성전자</span>
+                    <span class="company-code">005930</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KSE 코스피 전기・전자 | FICS 반도체 및 관련장비
+                </div>
+            </div>
+            
+            <div class="company-profile active">
+                <div class="company-profile-section">
+                    <h3>기업 개요</h3>
+                    <table class="company-detail-table">
+                        <tr>
+                            <th>기업명</th>
+                            <td>삼성전자주식회사</td>
+                            <th>대표자</th>
+                            <td>한종희, 경계현</td>
+                        </tr>
+                        <tr>
+                            <th>설립일</th>
+                            <td>1969년 1월 13일</td>
+                            <th>상장일</th>
+                            <td>1975년 6월 11일</td>
+                        </tr>
+                        <tr>
+                            <th>주요 사업</th>
+                            <td colspan="3">반도체, 휴대폰, 가전제품 등의 IT기기 제조 및 판매</td>
+                        </tr>
+                        <tr>
+                            <th>본사 주소</th>
+                            <td colspan="3">경기도 수원시 영통구 삼성로 129</td>
+                        </tr>
+                        <tr>
+                            <th>홈페이지</th>
+                            <td colspan="3">www.samsung.com/sec</td>
+                        </tr>
+                    </table>
+                </div>
+                
+                <div class="company-profile-section">
+                    <h3>사업 소개</h3>
+                    <p>삼성전자는 글로벌 전자산업을 선도하는 기업으로 반도체, 디스플레이 패널, TV, 모바일 기기, 네트워크 시스템, 메모리, 시스템 LSI, 파운드리, LED 등의 사업을 영위하고 있습니다. 주요 사업 부문은 CE(Consumer Electronics)부문, IM(IT & Mobile Communications)부문, DS(Device Solutions)부문으로 구성되어 있으며, 각 부문은 독립적으로 운영되고 있습니다.</p>
+                    <br>
+                    <p>2020년에는 코로나19로 인한 어려운 경영환경에도 불구하고 메모리 수요 증가 및 스마트폰, TV 등 세트 제품의 판매 호조로 전년 대비 매출과 영업이익이 증가했습니다. 특히 5G, AI, IoT, 자동차용 반도체 등 미래 성장 동력을 위한 R&D와 생산시설 투자를 지속하고 있습니다.</p>
+                </div>
+                
+                <div class="company-profile-section">
+                    <h3>경영 현황</h3>
+                    <table class="company-detail-table">
+                        <tr>
+                            <th>임직원 수</th>
+                            <td>267,937명 (2022년 12월 기준)</td>
+                        </tr>
+                        <tr>
+                            <th>해외 진출 현황</th>
+                            <td>전 세계 74개국에 생산, 판매, 연구 시설 보유</td>
+                        </tr>
+                        <tr>
+                            <th>주요 제품</th>
+                            <td>DRAM, NAND Flash, 모바일 AP, TV, 스마트폰, 냉장고, 세탁기 등</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 재무정보 페이지 -->
+    <div id="finance-page" class="page-container active">
+        <div class="sub-nav">
+            <ul class="sub-nav-items">
+                <li>기업개요</li>
+                <li class="active">재무제표</li>
+                <li>재무비율</li>
+                <li>투자지표</li>
+                <li>업종분석</li>
+            </ul>
+        </div>
+        
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">삼성전자</span>
+                    <span class="company-code">005930</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KSE 코스피 전기・전자 | FICS 반도체 및 관련장비
+                </div>
+            </div>
+            
+            <div class="tab-menu">
+                <div class="tab-item active" data-target="tab-balancesheet">재무상태표</div>
+                <div class="tab-item" data-target="tab-incomestatement">손익계산서</div>
+                <div class="tab-item" data-target="tab-cashflow">현금흐름표</div>
+            </div>
+            
+            <div class="statement-type">
+                <select>
+                    <option value="consolidated" selected>연결재무제표</option>
+                    <option value="separate">별도재무제표</option>
+                </select>
+            </div>
+            
+            <div class="year-selector">
+                <select>
+                    <option value="2024">2024년</option>
+                    <option value="2023" selected>2023년</option> 
+                    <option value="2022">2022년</option>
+                    <option value="2021">2021년</option>
+                    <option value="2020">2020년</option>
+                </select>
+            </div>
+            
+            <div class="unit-info">단위: 백만원</div>
+            
+            <!-- 재무상태표 탭 -->
+            <div id="tab-balancesheet" class="tab-content active">
+                <table class="financial-statement">
+                    <thead>
+                        <tr>
+                            <th>계정</th>
+                            <th>2023/12</th>
+                            <th>2022/12</th>
+                            <th>2021/12</th>
+                            <th>2020/12</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- 자산 섹션 -->
+                        <tr class="category">
+                            <th colspan="5">자산</th>
+                        </tr>
+                        <tr class="subcategory">
+                            <th>유동자산</th>
+                            <td>231,514,320</td>
+                            <td>217,176,702</td>
+                            <td>228,502,954</td>
+                            <td>198,215,579</td>
+                        </tr>
+                        <tr class="item">
+                            <th>현금및현금성자산</th>
+                            <td>47,982,245</td>
+                            <td>39,860,611</td>
+                            <td>39,031,415</td>
+                            <td>29,382,578</td>
+                        </tr>
+                        <tr class="item">
+                            <th>단기금융상품</th>
+                            <td>88,142,857</td>
+                            <td>68,450,844</td>
+                            <td>81,708,986</td>
+                            <td>92,441,703</td>
+                        </tr>
+                        <tr class="item">
+                            <th>매출채권</th>
+                            <td>40,399,087</td>
+                            <td>40,714,582</td>
+                            <td>40,713,415</td>
+                            <td>30,965,058</td>
+                        </tr>
+                        <tr class="item">
+                            <th>재고자산</th>
+                            <td>41,393,347</td>
+                            <td>52,952,025</td>
+                            <td>41,384,404
