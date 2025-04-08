@@ -18,7 +18,6 @@
       background-color: #333;
       color: white;
       padding: 10px 0;
-      /* border-top: 3px solid #e74c3c; */
     }
     .header-content {
       display: flex;
@@ -73,142 +72,10 @@
     .nav-items li:hover, .nav-items li.active {
       background-color: #666;
     }
-    .sub-nav {
-      background-color: #eee;
-      border-bottom: 1px solid #ddd;
-    }
-    .sub-nav-items {
-      display: flex;
+    #content-container {
+      padding: 20px;
       max-width: 1200px;
       margin: 0 auto;
-      list-style-type: none;
-      padding: 10px 15px;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .sub-nav-items li {
-      padding: 5px 15px;
-      color: #333;
-      cursor: pointer;
-      border-right: 1px solid #ccc;
-    }
-    .sub-nav-items li:last-child {
-      border-right: none;
-    }
-    .company-info {
-      max-width: 1200px;
-      margin: 20px auto;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
-      padding: 20px;
-    }
-    .company-header {
-      display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid #eee;
-      padding-bottom: 15px;
-      margin-bottom: 15px;
-    }
-    .company-name {
-      font-size: 24px;
-      font-weight: bold;
-      color: #e74c3c;
-    }
-    .company-code {
-      color: #666;
-      margin-left: 10px;
-    }
-    .stats {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .stat-box {
-      text-align: center;
-      flex: 1;
-      padding: 10px;
-      min-width: 120px;
-    }
-    .stat-label {
-      font-size: 14px;
-      color: #666;
-    }
-    .stat-value {
-      font-size: 22px;
-      font-weight: bold;
-      margin-top: 5px;
-    }
-    .charts {
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 20px;
-      flex-wrap: wrap;
-    }
-    .chart {
-      flex: 1;
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
-      height: 200px;
-      margin: 5px;
-      position: relative;
-      min-width: 280px;
-    }
-    .chart-title {
-      position: absolute;
-      top: 10px;
-      left: 10px;
-      font-size: 14px;
-      color: #666;
-    }
-    .chart-value {
-      position: absolute;
-      top: 10px;
-      right: 10px;
-      font-size: 16px;
-      font-weight: bold;
-    }
-    .chart-content {
-      height: 80%;
-      margin-top: 40px;
-      background-image: linear-gradient(to right, #ffcccb, #ffebe6);
-      position: relative;
-      overflow: hidden;
-    }
-    .chart-line {
-      position: absolute;
-      width: 100%;
-      height: 2px;
-      background-color: red;
-      top: 50%;
-      z-index: 2;
-    }
-    .chart-line.blue {
-      background-color: blue;
-      top: 30%;
-    }
-    .detail-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 20px;
-    }
-    .detail-table th, .detail-table td {
-      border: 1px solid #ddd;
-      padding: 10px;
-      text-align: center;
-    }
-    .detail-table th {
-      background-color: #f5f5f5;
-    }
-    .positive {
-      color: red;
-    }
-    .negative {
-      color: blue;
-    }
-    .calculated-value {
-      font-weight: bold;
     }
     @media screen and (max-width: 768px) {
       .search-bar input {
@@ -218,16 +85,73 @@
   </style>
 </head>
 <body>
-  <!-- body 내용은 위 구조에 맞게 동일하게 유지하면 됨 -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <span>웹 사이트</span> 이름
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="종목명 또는 종목코드 입력">
+        <button>
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav">
+    <ul class="nav-items">
+      <li id="nav-company">기업정보</li>
+      <li id="nav-finance" class="active">재무정보</li>
+    </ul>
+  </nav>
+
+  <div id="content-container">
+    <!-- 여기에 페이지가 동적으로 로드됩니다 -->
+  </div>
+
   <script>
-    window.onload = function () {
-      if (document.querySelector('.stats') && document.querySelector('.detail-table')) {
-        setupCalculations();
-      } else {
-        console.warn('필요한 요소(.stats 또는 .detail-table)가 없습니다.');
-      }
-    };
-    // 기존 setupCalculations(), calculateValues(), calculateTableValues() 함수는 유지
+    const companyInfoHTML = `
+      <h2>기업 정보</h2>
+      <p>이 화면은 이전에 사용했던 간단한 중소기업 정보 요약 화면입니다.</p>
+      <div style="border:1px solid #ccc; padding:15px; border-radius:8px; background:#fff;">
+        <p><strong>기업명:</strong> 스마트솔루션</p>
+        <p><strong>산업:</strong> IT</p>
+        <p><strong>지역:</strong> 서울</p>
+        <p><strong>설립:</strong> 2015년</p>
+      </div>
+    `;
+
+    const financeHTML = `
+      <h2>재무정보 리포트</h2>
+      <p>지금 보고 있는 이 화면은 최신 코드 기반의 정리된 리포트 레이아웃입니다.</p>
+      <div style="border:1px solid #ccc; padding:15px; border-radius:8px; background:#fff;">
+        <ul>
+          <li>PER: 15.2</li>
+          <li>PBR: 1.8</li>
+          <li>배당수익률: 2.4%</li>
+        </ul>
+      </div>
+    `;
+
+    const container = document.getElementById('content-container');
+
+    function loadView(view) {
+      container.innerHTML = view;
+    }
+
+    document.getElementById('nav-company').addEventListener('click', () => {
+      loadView(companyInfoHTML);
+    });
+
+    document.getElementById('nav-finance').addEventListener('click', () => {
+      loadView(financeHTML);
+    });
+
+    // 페이지 처음 로드 시 기본화면 설정
+    loadView(financeHTML);
   </script>
 </body>
 </html>
