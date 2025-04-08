@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>중소기업 리포트 포털</title>
+    <title>웹 사이트 이름 - 중소기업 리포트 포털</title>
     <style>
         * {
             margin: 0;
@@ -18,7 +18,7 @@
             background-color: #333;
             color: white;
             padding: 10px 0;
-            /*border-top: 3px solid #e74c3c;*/
+            border-top: 3px solid #e74c3c;
         }
         .header-content {
             display: flex;
@@ -90,6 +90,10 @@
         }
         .sub-nav-items li:last-child {
             border-right: none;
+        }
+        .sub-nav-items li.active {
+            font-weight: bold;
+            color: #e74c3c;
         }
         .company-info {
             max-width: 1200px;
@@ -204,12 +208,107 @@
         .calculated-value {
             font-weight: bold;
         }
+        
+        /* 탭 메뉴 스타일 */
+        .tab-menu {
+            display: flex;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+        .tab-item {
+            padding: 12px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+        }
+        .tab-item.active {
+            border-bottom: 2px solid #e74c3c;
+            font-weight: bold;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        
+        /* 재무제표 스타일 */
+        .financial-statement {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        .financial-statement th, .financial-statement td {
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+        }
+        .financial-statement th {
+            background-color: #f5f5f5;
+            text-align: left;
+        }
+        .financial-statement thead th {
+            text-align: center;
+            font-weight: bold;
+        }
+        .financial-statement .category {
+            background-color: #eee;
+            font-weight: bold;
+        }
+        .financial-statement .subcategory {
+            padding-left: 20px;
+        }
+        .financial-statement .item {
+            padding-left: 35px;
+        }
+        .year-selector {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .year-selector select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .statement-type {
+            margin-bottom: 15px;
+        }
+        .statement-type select {
+            padding: 5px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .unit-info {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
     </style>
     <script>
         // 페이지 로드 후 계산 함수 실행
         window.onload = function() {
             setupCalculations();
+            setupTabs();
         };
+        
+        // 탭 메뉴 설정
+        function setupTabs() {
+            const tabItems = document.querySelectorAll('.tab-item');
+            const tabContents = document.querySelectorAll('.tab-content');
+            
+            tabItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // 현재 활성화된 탭 제거
+                    tabItems.forEach(tab => tab.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // 클릭한 탭 활성화
+                    item.classList.add('active');
+                    const targetId = item.getAttribute('data-target');
+                    document.getElementById(targetId).classList.add('active');
+                });
+            });
+        }
         
         // 계산 함수 설정
         function setupCalculations() {
@@ -252,7 +351,7 @@
                 const originalText = cell.innerText;
                 
                 // 특정 데이터 셀에만 적용 (숫자가 포함된 셀)
-                if (originalText.match(/[0-9]/)) {
+                if (originalText.match(/[0-9]/) || originalText === '--') {
                     // 기존 내용 저장
                     const rowHeader = cell.closest('tr').querySelector('th').innerText;
                     
@@ -397,8 +496,8 @@
     
     <div class="main-nav">
         <ul class="nav-items">
-            <li class="active">기업정보</li>
-            <li>재무정보</li>
+            <li>기업정보</li>
+            <li class="active">재무정보</li>
             <li>리포트</li>
             <li>뉴스</li>
             <li></li>
@@ -411,7 +510,7 @@
     <div class="sub-nav">
         <ul class="sub-nav-items">
             <li>기업개요</li>
-            <li>재무제표</li>
+            <li class="active">재무제표</li>
             <li>재무비율</li>
             <li>투자지표</li>
             <li>업종분석</li>
@@ -421,98 +520,276 @@
     <div class="company-info">
         <div class="company-header">
             <div>
-                <span class="company-name">종목이름</span>
-                <span class="company-code">종목코드</span>
+                <span class="company-name">삼성전자</span>
+                <span class="company-code">005930</span>
                 <span>12월 결산</span>
             </div>
             <div>
-                코스피/코스닥 분야 | 세부분야
+                KSE 코스피 전기・전자 | FICS 반도체 및 관련장비
             </div>
         </div>
         
-        <div class="stats">
-            <div class="stat-box">
-                <div class="stat-label">PER</div>
-                <div class="stat-value">--</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">12M PER</div>
-                <div class="stat-value">--</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">업종 PER</div>
-                <div class="stat-value">--</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">PBR</div>
-                <div class="stat-value">--</div>
-            </div>
-            <div class="stat-box">
-                <div class="stat-label">배당수익률</div>
-                <div class="stat-value">--</div>
-            </div>
+        <div class="tab-menu">
+            <div class="tab-item active" data-target="tab-balancesheet">재무상태표</div>
+            <div class="tab-item" data-target="tab-incomestatement">손익계산서</div>
+            <div class="tab-item" data-target="tab-cashflow">현금흐름표</div>
         </div>
         
-        <div class="charts">
-            <div class="chart">
-                <div class="chart-title">주가추이, 내부지지대</div>
-                <div class="chart-value">56,100</div>
-                <div class="chart-content">
-                    <div class="chart-line"></div>
-                    <div class="chart-line blue"></div>
-                </div>
-            </div>
-            <div class="chart">
-                <div class="chart-title">외국인 보유비중, 시가총액</div>
-                <div class="chart-value">50.51</div>
-                <div class="chart-content">
-                    <div class="chart-line"></div>
-                </div>
-            </div>
-            <div class="chart">
-                <div class="chart-title">상대수익률</div>
-                <div class="chart-value negative">-34.23</div>
-                <div class="chart-content">
-                    <div class="chart-line"></div>
-                </div>
-            </div>
+        <div class="statement-type">
+            <select>
+                <option value="consolidated" selected>연결재무제표</option>
+                <option value="separate">별도재무제표</option>
+            </select>
         </div>
         
-        <div class="market-data">
-            <h3>시세현황 [2025/04/04]</h3>
-            <table class="detail-table">
-                <tr>
-                    <th>종가/전일대비</th>
-                    <td>--</td>
-                    <th>거래량</th>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <th>52주 최고/최저가</th>
-                    <td>--</td>
-                    <th>거래대금</th>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <th>수익률 (1M/3M/6M/1Y)</th>
-                    <td>--</td>
-                    <th>외국인 보유비중</th>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <th>시가총액</th>
-                    <td>--</td>
-                    <th>베타</th>
-                    <td>--</td>
-                </tr>
-                <tr>
-                    <th>발행주식수</th>
-                    <td>--</td>
-                    <th>종가(NXT)</th>
-                    <td>--</td>
-                </tr>
+        <div class="year-selector">
+            <select>
+                <option value="2024">2024년</option>
+                <option value="2023" selected>2023년</option> 
+                <option value="2022">2022년</option>
+                <option value="2021">2021년</option>
+                <option value="2020">2020년</option>
+            </select>
+        </div>
+        
+        <div class="unit-info">단위: 백만원</div>
+        
+        <!-- 재무상태표 탭 -->
+        <div id="tab-balancesheet" class="tab-content active">
+            <table class="financial-statement">
+                <thead>
+                    <tr>
+                        <th>계정</th>
+                        <th>2023/12</th>
+                        <th>2022/12</th>
+                        <th>2021/12</th>
+                        <th>2020/12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- 자산 섹션 -->
+                    <tr class="category">
+                        <th colspan="5">자산</th>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>유동자산</th>
+                        <td>231,514,320</td>
+                        <td>217,176,702</td>
+                        <td>228,502,954</td>
+                        <td>198,215,579</td>
+                    </tr>
+                    <tr class="item">
+                        <th>현금및현금성자산</th>
+                        <td>47,982,245</td>
+                        <td>39,860,611</td>
+                        <td>39,031,415</td>
+                        <td>29,382,578</td>
+                    </tr>
+                    <tr class="item">
+                        <th>단기금융상품</th>
+                        <td>88,142,857</td>
+                        <td>68,450,844</td>
+                        <td>81,708,986</td>
+                        <td>92,441,703</td>
+                    </tr>
+                    <tr class="item">
+                        <th>매출채권</th>
+                        <td>40,399,087</td>
+                        <td>40,714,582</td>
+                        <td>40,713,415</td>
+                        <td>30,965,058</td>
+                    </tr>
+                    <tr class="item">
+                        <th>재고자산</th>
+                        <td>41,393,347</td>
+                        <td>52,952,025</td>
+                        <td>41,384,404</td>
+                        <td>32,043,145</td>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>비유동자산</th>
+                        <td>188,726,928</td>
+                        <td>191,366,098</td>
+                        <td>175,655,050</td>
+                        <td>170,818,075</td>
+                    </tr>
+                    <tr class="item">
+                        <th>유형자산</th>
+                        <td>148,279,258</td>
+                        <td>156,605,242</td>
+                        <td>149,928,539</td>
+                        <td>145,160,161</td>
+                    </tr>
+                    <tr class="item">
+                        <th>무형자산</th>
+                        <td>18,737,906</td>
+                        <td>20,339,640</td>
+                        <td>18,176,358</td>
+                        <td>18,468,502</td>
+                    </tr>
+                    <tr class="category">
+                        <th>자산총계</th>
+                        <td>420,241,248</td>
+                        <td>408,542,800</td>
+                        <td>404,158,004</td>
+                        <td>369,033,654</td>
+                    </tr>
+                    
+                    <!-- 부채 섹션 -->
+                    <tr class="category">
+                        <th colspan="5">부채</th>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>유동부채</th>
+                        <td>74,803,000</td>
+                        <td>82,905,631</td>
+                        <td>75,604,351</td>
+                        <td>75,154,865</td>
+                    </tr>
+                    <tr class="item">
+                        <th>매입채무</th>
+                        <td>10,915,172</td>
+                        <td>11,982,531</td>
+                        <td>13,453,351</td>
+                        <td>9,739,222</td>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>비유동부채</th>
+                        <td>24,325,419</td>
+                        <td>27,237,042</td>
+                        <td>27,412,563</td>
+                        <td>26,675,826</td>
+                    </tr>
+                    <tr class="category">
+                        <th>부채총계</th>
+                        <td>99,128,419</td>
+                        <td>110,142,673</td>
+                        <td>103,016,914</td>
+                        <td>101,830,691</td>
+                    </tr>
+                    
+                    <!-- 자본 섹션 -->
+                    <tr class="category">
+                        <th colspan="5">자본</th>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>지배기업주주지분</th>
+                        <td>310,892,658</td>
+                        <td>288,326,756</td>
+                        <td>291,261,716</td>
+                        <td>257,732,924</td>
+                    </tr>
+                    <tr class="item">
+                        <th>자본금</th>
+                        <td>778,047</td>
+                        <td>778,047</td>
+                        <td>778,047</td>
+                        <td>778,047</td>
+                    </tr>
+                    <tr class="item">
+                        <th>이익잉여금</th>
+                        <td>269,163,383</td>
+                        <td>254,376,957</td>
+                        <td>246,618,340</td>
+                        <td>214,300,368</td>
+                    </tr>
+                    <tr class="subcategory">
+                        <th>비지배지분</th>
+                        <td>10,220,171</td>
+                        <td>10,073,371</td>
+                        <td>9,879,374</td>
+                        <td>9,470,039</td>
+                    </tr>
+                    <tr class="category">
+                        <th>자본총계</th>
+                        <td>321,112,829</td>
+                        <td>298,400,127</td>
+                        <td>301,141,090</td>
+                        <td>267,202,963</td>
+                    </tr>
+                </tbody>
             </table>
         </div>
-    </div>
-</body>
-</html>
+        
+        <!-- 손익계산서 탭 -->
+        <div id="tab-incomestatement" class="tab-content">
+            <table class="financial-statement">
+                <thead>
+                    <tr>
+                        <th>계정</th>
+                        <th>2023/12</th>
+                        <th>2022/12</th>
+                        <th>2021/12</th>
+                        <th>2020/12</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="category">
+                        <th>매출액</th>
+                        <td>258,934,886</td>
+                        <td>302,231,360</td>
+                        <td>279,604,799</td>
+                        <td>236,806,988</td>
+                    </tr>
+                    <tr class="category">
+                        <th>매출원가</th>
+                        <td>175,778,470</td>
+                        <td>191,222,793</td>
+                        <td>157,144,553</td>
+                        <td>144,488,296</td>
+                    </tr>
+                    <tr class="category">
+                        <th>매출총이익</th>
+                        <td>83,156,416</td>
+                        <td>111,008,567</td>
+                        <td>122,460,246</td>
+                        <td>92,318,692</td>
+                    </tr>
+                    <tr class="category">
+                        <th>영업이익</th>
+                        <td>23,404,908</td>
+                        <td>43,376,870</td>
+                        <td>51,633,086</td>
+                        <td>35,993,876</td>
+                    </tr>
+                    <tr class="category">
+                        <th>법인세비용차감전순이익</th>
+                        <td>28,397,276</td>
+                        <td>48,820,012</td>
+                        <td>53,698,652</td>
+                        <td>36,344,973</td>
+                    </tr>
+                    <tr class="category">
+                        <th>당기순이익</th>
+                        <td>21,499,458</td>
+                        <td>39,787,161</td>
+                        <td>39,907,450</td>
+                        <td>26,407,832</td>
+                    </tr>
+                    <tr class="category">
+                        <th>지배기업소유주지분</th>
+                        <td>20,804,220</td>
+                        <td>39,244,315</td>
+                        <td>39,243,791</td>
+                        <td>26,090,846</td>
+                    </tr>
+                    <tr class="category">
+                        <th>비지배지분</th>
+                        <td>695,238</td>
+                        <td>542,846</td>
+                        <td>663,659</td>
+                        <td>316,986</td>
+                    </tr>
+                    <tr class="category">
+                        <th>기본주당이익(원)</th>
+                        <td>307</td>
+                        <td>578</td>
+                        <td>578</td>
+                        <td>384</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <!-- 현금흐름표 탭 -->
+        <div
