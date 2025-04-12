@@ -799,8 +799,7 @@
         KOSDAQ 코스닥 금속 | FICS 금속 및 광물
       </div>
     </div>
-    <div class="economic-table-wrapper">
-        
+
     <!-- 재무제표 섹션 -->
     <div class="section-box">
       <h3 class="section-title">재무제표</h3>
@@ -896,66 +895,53 @@
 </style>
 
 
-<!-- 경제지표 페이지 -->
-<div id="financial-ratios-page" class="sub-page active">
-    <div class="company-header">
-        <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-        </div>
-        <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-        </div>
-        </div>
-
-    <div class="economic-table-wrapper">
-            <div class="economic-table-wrapper">
-                <table class="economic-table">
-                    <thead>
-                        <tr>
-                            <th>항목</th>
-                            <th>현재</th>
-                            <th>변화율</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>환율 (USD/KRW)</td>
-                            <td id="usd-krw">1,320.50</td>
-                            <td id="usd-krw-change">+0.45%</td>
-                        </tr>
-                        <tr>
-                            <td>금시세 (1g)</td>
-                            <td id="gold-price">95,200</td>
-                            <td id="gold-price-change">-0.15%</td>
-                        </tr>
-                        <tr>
-                            <td>코스피</td>
-                            <td id="kospi">2,615.30</td>
-                            <td id="kospi-change">+1.20%</td>
-                        </tr>
-                        <tr>
-                            <td>코스닥</td>
-                            <td id="kosdaq">870.45</td>
-                            <td id="kosdaq-change">-0.35%</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-
-    
-<!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
+<!-- 경제지표 테이블 -->
+<div class="economic-table-wrapper">
+  <table class="economic-table">
+    <thead>
+      <tr>
+        <th>항목</th>
+        <th>현재</th>
+        <th>변화율</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>환율 (USD/KRW)</td>
+        <td id="usd-krw">1,320.50</td>
+        <td id="usd-krw-change">+0.45%</td>
+      </tr>
+      <tr>
+        <td>금시세 (1g)</td>
+        <td id="gold-price">95,200</td>
+        <td id="gold-price-change">-0.15%</td>
+      </tr>
+      <tr>
+        <td>코스피</td>
+        <td id="kospi">2,615.30</td>
+        <td id="kospi-change">+1.20%</td>
+      </tr>
+      <tr>
+        <td>코스닥</td>
+        <td id="kosdaq">870.45</td>
+        <td id="kosdaq-change">-0.35%</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+        
+<!-- 스타일 추가 -->
 <style>
-  .section-box {
+  .economic-indicators-info {
     margin-top: 30px;
+  }
+
+  .section-box {
     padding: 25px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
   }
 
   .section-title {
