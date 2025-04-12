@@ -1,219 +1,129 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>웹 사이트 이름 - 중소기업 리포트 포털</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>웹 사이트 이름</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Malgun Gothic', sans-serif;
-    }
     body {
-      background-color: #f5f5f5;
+      font-family: Arial, sans-serif;
     }
-    .header {
+
+    .nav {
       background-color: #333;
+      padding: 10px;
       color: white;
-      padding: 10px 0;
     }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 15px;
-    }
-    .logo {
-      font-size: 28px;
+
+    .nav a {
+      color: white;
+      margin-right: 15px;
+      text-decoration: none;
       font-weight: bold;
     }
-    .logo span:first-child {
-      color: #e74c3c;
+
+    .nav a.active {
+      color: red;
     }
-    .search-bar {
-      display: flex;
-    }
-    .search-bar input {
-      padding: 8px 12px;
-      border: none;
-      border-radius: 4px 0 0 4px;
-      width: 300px;
-    }
-    .search-bar button {
-      background-color: #555;
-      border: none;
-      padding: 8px 15px;
-      border-radius: 0 4px 4px 0;
-      color: white;
-      cursor: pointer;
-    }
-    .main-nav {
-      background-color: #444;
-      border-bottom: 1px solid #555;
-    }
-    .nav-items {
-      display: flex;
-      max-width: 1200px;
-      margin: 0 auto;
-      list-style-type: none;
-      flex-wrap: wrap;
-      justify-content: center;
-    }
-    .nav-items li {
-      padding: 15px 20px;
-      color: white;
-      cursor: pointer;
-      font-weight: bold;
-    }
-    .nav-items li:hover, .nav-items li.active {
-      background-color: #666;
-    }
-    .company-info {
-      max-width: 1200px;
-      margin: 20px auto;
-      background-color: white;
-      border: 1px solid #ddd;
-      border-radius: 4px;
+
+    .content-section {
+      display: none;
       padding: 20px;
     }
-    #company-content, #finance-content {
-      display: none;
-    }
-    #company-content.active, #finance-content.active {
+
+    .content-section.active {
       display: block;
     }
-    .stock-summary {
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      margin-top: 20px;
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
     }
-    .stock-box {
-      flex: 1;
-      min-width: 180px;
-      padding: 15px;
-      margin: 10px;
-      border: 1px solid #ddd;
-      border-radius: 6px;
-      background-color: #fefefe;
+
+    td, th {
+      border: 1px solid #ccc;
+      padding: 8px;
     }
-    .stock-box h4 {
-      margin-bottom: 10px;
-      font-size: 16px;
-      color: #333;
-    }
-    .stock-box p {
-      font-size: 14px;
-      color: #555;
-    }
-    @media screen and (max-width: 768px) {
-      .search-bar input {
-        width: 100%;
-      }
+
+    iframe {
+      width: 100%;
+      height: 800px;
+      border: none;
     }
   </style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-content">
-      <div class="logo">
-        <span>웹 사이트</span> 이름
-      </div>
-      <div class="search-bar">
-        <input type="text" placeholder="종목명 또는 종목코드 입력">
-        <button>🔍</button>
-      </div>
-    </div>
+
+  <div class="nav">
+    <a href="#" class="tab-button active" data-target="기업정보">기업정보</a>
+    <a href="#" class="tab-button" data-target="재무정보">재무정보</a>
+    <a href="#" class="tab-button" data-target="재무비율">재무비율</a>
+    <a href="#" class="tab-button" data-target="투자지표">투자지표</a>
+    <a href="#" class="tab-button" data-target="리포트">리포트</a>
+    <a href="#" class="tab-button" data-target="뉴스">뉴스</a>
   </div>
 
-  <nav class="main-nav">
-    <ul class="nav-items">
-      <li id="nav-company" class="active">기업정보</li>
-      <li id="nav-finance">재무정보</li>
-    </ul>
-  </nav>
+  <!-- 기업정보 -->
+  <div id="기업정보" class="content-section active">
+    <h2 style="color: red;">삼성전자</h2>
+    <p><strong>기업 개요</strong></p>
+    <table>
+      <tr><th>기업명</th><td>삼성전자주식회사</td><th>대표자</th><td>한종희, 경계현</td></tr>
+      <tr><th>설립일</th><td>1969년 1월 13일</td><th>상장일</th><td>1975년 6월 11일</td></tr>
+      <tr><th>주요 사업</th><td colspan="3">반도체, 휴대폰, 가전제품 등의 IT기기 제조 및 판매</td></tr>
+      <tr><th>본사 주소</th><td colspan="3">경기도 수원시 영통구 삼성로 129</td></tr>
+      <tr><th>홈페이지</th><td colspan="3"><a href="https://www.samsung.com/sec" target="_blank">www.samsung.com/sec</a></td></tr>
+    </table>
 
-  <div class="company-info">
-    <!-- 기존 기업 정보 내용 유지 -->
-    <div id="company-content" class="active">
-      <div class="company-header">
-        <div>
-          <span class="company-name">삼성전자</span>
-          <span class="company-code">005930</span>
-          <span>12월 결산</span>
-        </div>
-        <div>
-          KSE 코스피 전기・전자 | FICS 반도체 및 관련장비
-        </div>
-      </div>
+    <p><strong>사업 소개</strong></p>
+    <p>
+      삼성전자는 글로벌 전자산업을 선도하는 기업으로 반도체, 디스플레이 패널, TV, 모바일 기기, 네트워크 시스템, 메모리, 시스템 LSI, 파운드리, LED 등의 사업을 영위하고 있습니다. 
+      주요 사업 부문은 CE(Consumer Electronics)부문, IM(IT & Mobile Communications)부문, DS(Device Solutions)부문으로 구성되어 있으며, 각 부문은 독립적으로 운영되고 있습니다.
+    </p>
+    <p>
+      2020년에는 코로나19로 인한 어려운 경영환경에도 불구하고 메모리 수요 증가 및 스마트폰, TV 등 세트 제품의 판매 호조로 전년 대비 매출과 영업이익이 증가했습니다. 특히 5G, AI, IoT, 자동차용 반도체 등 미래 성장 동력을 위한 R&D와 생산시설 투자를 지속하고 있습니다.
+    </p>
 
-      <div class="stats">
-        <div class="stat-box">
-          <div class="stat-label">PER</div>
-          <div class="stat-value">15.2</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">PBR</div>
-          <div class="stat-value">1.8</div>
-        </div>
-        <div class="stat-box">
-          <div class="stat-label">배당수익률</div>
-          <div class="stat-value">2.4%</div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 추가된 재무 정보 섹션 -->
-    <div id="finance-content">
-      <h2>재무 정보</h2>
-      <div class="stock-summary">
-        <div class="stock-box">
-          <h4>현재가</h4>
-          <p>56,100원</p>
-        </div>
-        <div class="stock-box">
-          <h4>전일대비</h4>
-          <p>+1.26%</p>
-        </div>
-        <div class="stock-box">
-          <h4>시가총액</h4>
-          <p>450조 원</p>
-        </div>
-        <div class="stock-box">
-          <h4>외국인 보유비중</h4>
-          <p>51.2%</p>
-        </div>
-        <div class="stock-box">
-          <h4>52주 최고/최저</h4>
-          <p>75,000 / 58,300</p>
-        </div>
-      </div>
-    </div>
+    <p><strong>경영 현황</strong></p>
+    <table>
+      <tr><th>임직원 수</th><td>267,937명 (2022년 12월 기준)</td></tr>
+    </table>
   </div>
+
+  <!-- 재무정보 (크롤링된 iframe 삽입) -->
+  <div id="재무정보" class="content-section">
+    <h2 style="color: red;">재무정보</h2>
+    <p>네이버 금융에서 제공하는 삼성전자 재무정보입니다.</p>
+    <iframe src="https://finance.naver.com/item/main.naver?code=005930"></iframe>
+  </div>
+
+  <!-- 나머지 탭 비워두기 -->
+  <div id="재무비율" class="content-section"><p>재무비율 데이터 준비중</p></div>
+  <div id="투자지표" class="content-section"><p>투자지표 데이터 준비중</p></div>
+  <div id="리포트" class="content-section"><p>리포트 데이터 준비중</p></div>
+  <div id="뉴스" class="content-section"><p>뉴스 데이터 준비중</p></div>
 
   <script>
-    const companyTab = document.getElementById('nav-company');
-    const financeTab = document.getElementById('nav-finance');
-    const companyContent = document.getElementById('company-content');
-    const financeContent = document.getElementById('finance-content');
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const contentSections = document.querySelectorAll('.content-section');
 
-    companyTab.addEventListener('click', () => {
-      companyTab.classList.add('active');
-      financeTab.classList.remove('active');
-      companyContent.classList.add('active');
-      financeContent.classList.remove('active');
-    });
+    tabButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        const targetId = button.getAttribute('data-target');
 
-    financeTab.addEventListener('click', () => {
-      financeTab.classList.add('active');
-      companyTab.classList.remove('active');
-      financeContent.classList.add('active');
-      companyContent.classList.remove('active');
+        tabButtons.forEach(btn => btn.classList.remove('active'));
+        button.classList.add('active');
+
+        contentSections.forEach(section => {
+          if (section.id === targetId) {
+            section.classList.add('active');
+          } else {
+            section.classList.remove('active');
+          }
+        });
+      });
     });
   </script>
+
 </body>
 </html>
