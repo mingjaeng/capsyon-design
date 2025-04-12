@@ -892,5 +892,216 @@
     background-color: #f1f1f1;
   }
 </style>
+
+        <!-- 경제지표 페이지 추가 -->
+<div id="economic-indicators-page" class="sub-page">
+  <div class="economic-indicators-info">
+    <div class="section-box">
+      <h3 class="section-title">경제지표</h3>
+
+      <!-- 경제지표 테이블 -->
+      <div class="economic-table-wrapper">
+        <table class="economic-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>현재</th>
+              <th>변화율</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>환율 (USD/KRW)</td>
+              <td id="usd-krw">값 입력</td>
+              <td id="usd-krw-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>금시세 (1g)</td>
+              <td id="gold-price">값 입력</td>
+              <td id="gold-price-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>코스피</td>
+              <td id="kospi">값 입력</td>
+              <td id="kospi-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>코스닥</td>
+              <td id="kosdaq">값 입력</td>
+              <td id="kosdaq-change">값 입력</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 스타일 추가 -->
+<style>
+  .economic-indicators-info {
+    margin-top: 30px;
+  }
+
+  .section-box {
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
+
+  .economic-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .economic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .economic-table th,
+  .economic-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .economic-table thead {
+    background-color: #f8f8f8;
+  }
+
+  .economic-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  .economic-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+<!-- 투자지표 페이지 추가 -->
+<div id="investment-indicators-page" class="sub-page">
+  <div class="investment-indicators-info">
+    <div class="section-box">
+      <h3 class="section-title">투자지표</h3>
+
+      <!-- 투자지표 테이블 -->
+      <div class="investment-table-wrapper">
+        <table class="investment-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>현재</th>
+              <th>변화율</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>PER (주가수익비율)</td>
+              <td id="per">값 입력</td>
+              <td id="per-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>PBR (주가순자산비율)</td>
+              <td id="pbr">값 입력</td>
+              <td id="pbr-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>ROE (자기자본이익률)</td>
+              <td id="roe">값 입력</td>
+              <td id="roe-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>EPS (주당순이익)</td>
+              <td id="eps">값 입력</td>
+              <td id="eps-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>BPS (주당순자산)</td>
+              <td id="bps">값 입력</td>
+              <td id="bps-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>배당수익률</td>
+              <td id="dividend-yield">값 입력</td>
+              <td id="dividend-yield-change">값 입력</td>
+            </tr>
+            <tr>
+              <td>상장주식수</td>
+              <td id="listed-shares">값 입력</td>
+              <td id="listed-shares-change">값 입력</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 스타일 추가 -->
+<style>
+  .investment-indicators-info {
+    margin-top: 30px;
+  }
+
+  .section-box {
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
+
+  .investment-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .investment-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .investment-table th,
+  .investment-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .investment-table thead {
+    background-color: #f8f8f8;
+  }
+
+  .investment-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  .investment-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+
 </body>
 </html>
