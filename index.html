@@ -799,11 +799,25 @@
             </div>
         </div>
 
-        <!-- 재무제표 정보 -->
-        <div class="financial-statements-info">
-            <h3>재무제표</h3>
+<!-- 재무제표 페이지 추가 -->
+<div id="financial-statements-page" class="sub-page">
+    <div class="company-info">
+        <div class="company-header">
+            <div>
+                <span class="company-name">신스틸</span>
+                <span class="company-code">162300</span>
+                <span>12월 결산</span>
+            </div>
+            <div>
+                KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+            </div>
+        </div>
 
-            <!-- 상단 정보 -->
+        <!-- 재무제표 정보 -->
+        <div class="financial-statements-info section-box">
+            <h3 class="section-title">재무제표</h3>
+
+            <!-- 상단 정보 박스 -->
             <div class="financial-info">
                 <p><strong>기업명:</strong> 신스틸 (162300)</p>
                 <p><strong>결산월:</strong> 12월</p>
@@ -813,56 +827,113 @@
             </div>
 
             <!-- 재무제표 표 -->
-            <table class="financial-table">
-                <thead>
-                    <tr>
-                        <th>항목</th>
-                        <th>2024</th>
-                        <th>2023</th>
-                        <th>2022</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>매출액</td>
-                        <td>1,200,000,000</td>
-                        <td>1,150,000,000</td>
-                        <td>1,100,000,000</td>
-                    </tr>
-                    <tr>
-                        <td>영업이익</td>
-                        <td>200,000,000</td>
-                        <td>180,000,000</td>
-                        <td>150,000,000</td>
-                    </tr>
-                    <tr>
-                        <td>당기순이익</td>
-                        <td>100,000,000</td>
-                        <td>95,000,000</td>
-                        <td>90,000,000</td>
-                    </tr>
-                    <tr>
-                        <td>자산총계</td>
-                        <td>1,500,000,000</td>
-                        <td>1,450,000,000</td>
-                        <td>1,400,000,000</td>
-                    </tr>
-                    <tr>
-                        <td>부채총계</td>
-                        <td>800,000,000</td>
-                        <td>780,000,000</td>
-                        <td>750,000,000</td>
-                    </tr>
-                    <tr>
-                        <td>자본총계</td>
-                        <td>700,000,000</td>
-                        <td>670,000,000</td>
-                        <td>650,000,000</td>
-                    </tr>
-                </tbody>
-            </table>
+            <div class="financial-table-wrapper">
+                <table class="financial-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>매출액</td>
+                            <td>1,200,000,000</td>
+                            <td>1,150,000,000</td>
+                            <td>1,100,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>영업이익</td>
+                            <td>200,000,000</td>
+                            <td>180,000,000</td>
+                            <td>150,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>당기순이익</td>
+                            <td>100,000,000</td>
+                            <td>95,000,000</td>
+                            <td>90,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>자산총계</td>
+                            <td>1,500,000,000</td>
+                            <td>1,450,000,000</td>
+                            <td>1,400,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>부채총계</td>
+                            <td>800,000,000</td>
+                            <td>780,000,000</td>
+                            <td>750,000,000</td>
+                        </tr>
+                        <tr>
+                            <td>자본총계</td>
+                            <td>700,000,000</td>
+                            <td>670,000,000</td>
+                            <td>650,000,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 </div>
+
+<style>
+    /* 박스 형태 디자인 */
+    .section-box {
+        padding: 25px;
+        background-color: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        margin-top: 30px;
+    }
+
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+        border-bottom: 2px solid #f1f1f1;
+        padding-bottom: 8px;
+    }
+
+    .financial-info p {
+        margin: 4px 0;
+        font-size: 14px;
+    }
+
+    .financial-table-wrapper {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+
+    .financial-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+    }
+
+    .financial-table thead {
+        background-color: #f8f8f8;
+    }
+
+    .financial-table th, .financial-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+
+    .financial-table tbody tr:nth-child(even) {
+        background-color: #fcfcfc;
+    }
+
+    .financial-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+</style>
 </body>
 </html>
