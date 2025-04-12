@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>웹 사이트 이름 - 중소기업 리포트 포털</title>
+    <link rel="stylesheet" href="style.css">
     <style>
         * {
             margin: 0;
@@ -699,6 +700,98 @@
             <li data-page="company-info-page" class="active">기업정보</li>
         </ul>
     </div>
+
+        <!-- 헤더 -->
+    <header>
+        <h1>Capsyon Design</h1>
+        <nav>
+            <ul>
+                <li><a href="#company-info">기업정보</a></li>
+                <li><a href="#financial-statements">재무제표</a></li>
+                <li><a href="#investor-indicators">투자지표</a></li>
+                <li><a href="#reports">리포트</a></li>
+                <li><a href="#news">뉴스</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 기업 정보 섹션 -->
+    <section id="company-info">
+        <h2>기업정보</h2>
+        <div class="section-content">
+            <div class="company-overview">
+                <h3>기업개요</h3>
+                <p>여기에는 기업개요 내용이 들어갑니다. 기존 내용 유지.</p>
+            </div>
+
+            <!-- 재무제표 섹션 추가 -->
+            <div class="financial-statements" id="financial-statements">
+                <h3>재무제표</h3>
+                <!-- 상단 정보 추가 부분 -->
+                <div class="financial-info">
+                    <p><strong>기업명:</strong> 신스틸 (162300)</p>
+                    <p><strong>결산월:</strong> 12월</p>
+                    <p><strong>상장지수:</strong> KOSDAQ</p>
+                    <p><strong>산업분류:</strong> 금속</p>
+                    <p><strong>세부 산업:</strong> 금속 및 광물</p>
+                </div>
+
+                <!-- 재무제표 데이터 추가 (표 형식) -->
+                <table class="financial-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>2024</th>
+                            <th>2023</th>
+                            <th>2022</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>매출액</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                        </tr>
+                        <tr>
+                            <td>영업이익</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                        </tr>
+                        <tr>
+                            <td>당기순이익</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                            <td>XX,XXX</td>
+                        </tr>
+                        <!-- 추가적인 재무제표 항목들 -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- 나머지 섹션들 -->
+    <section id="investor-indicators">
+        <h3>투자지표</h3>
+        <p>여기에는 투자지표 내용이 들어갑니다.</p>
+    </section>
+
+    <section id="reports">
+        <h3>리포트</h3>
+        <p>여기에는 리포트 내용이 들어갑니다.</p>
+    </section>
+
+    <section id="news">
+        <h3>뉴스</h3>
+        <p>여기에는 뉴스 내용이 들어갑니다.</p>
+    </section>
+
+    <!-- 푸터 -->
+    <footer>
+        <p>&copy; 2025 Capsyon Design</p>
+    </footer>
     
     <!-- 기업정보 페이지 컨테이너 -->
     <div id="company-info-page" class="page-container active">
