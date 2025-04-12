@@ -700,105 +700,13 @@
             <li data-page="company-info-page" class="active">기업정보</li>
         </ul>
     </div>
-
-        <!-- 헤더 -->
-    <header>
-        <h1>Capsyon Design</h1>
-        <nav>
-            <ul>
-                <li><a href="#company-info">기업정보</a></li>
-                <li><a href="#financial-statements">재무제표</a></li>
-                <li><a href="#investor-indicators">투자지표</a></li>
-                <li><a href="#reports">리포트</a></li>
-                <li><a href="#news">뉴스</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- 기업 정보 섹션 -->
-    <section id="company-info">
-        <h2>기업정보</h2>
-        <div class="section-content">
-            <div class="company-overview">
-                <h3>기업개요</h3>
-                <p>여기에는 기업개요 내용이 들어갑니다. 기존 내용 유지.</p>
-            </div>
-
-            <!-- 재무제표 섹션 추가 -->
-            <div class="financial-statements" id="financial-statements">
-                <h3>재무제표</h3>
-                <!-- 상단 정보 추가 부분 -->
-                <div class="financial-info">
-                    <p><strong>기업명:</strong> 신스틸 (162300)</p>
-                    <p><strong>결산월:</strong> 12월</p>
-                    <p><strong>상장지수:</strong> KOSDAQ</p>
-                    <p><strong>산업분류:</strong> 금속</p>
-                    <p><strong>세부 산업:</strong> 금속 및 광물</p>
-                </div>
-
-                <!-- 재무제표 데이터 추가 (표 형식) -->
-                <table class="financial-table">
-                    <thead>
-                        <tr>
-                            <th>항목</th>
-                            <th>2024</th>
-                            <th>2023</th>
-                            <th>2022</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>매출액</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                        </tr>
-                        <tr>
-                            <td>영업이익</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                        </tr>
-                        <tr>
-                            <td>당기순이익</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                            <td>XX,XXX</td>
-                        </tr>
-                        <!-- 추가적인 재무제표 항목들 -->
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </section>
-
-    <!-- 나머지 섹션들 -->
-    <section id="investor-indicators">
-        <h3>투자지표</h3>
-        <p>여기에는 투자지표 내용이 들어갑니다.</p>
-    </section>
-
-    <section id="reports">
-        <h3>리포트</h3>
-        <p>여기에는 리포트 내용이 들어갑니다.</p>
-    </section>
-
-    <section id="news">
-        <h3>뉴스</h3>
-        <p>여기에는 뉴스 내용이 들어갑니다.</p>
-    </section>
-
-    <!-- 푸터 -->
-    <footer>
-        <p>&copy; 2025 Capsyon Design</p>
-    </footer>
     
     <!-- 기업정보 페이지 컨테이너 -->
     <div id="company-info-page" class="page-container active">
         <div class="sub-nav">
             <ul class="sub-nav-items">
                 <li data-subpage="company-overview-page" class="active">기업개요</li>
-                <li data-subpage="financial-statements-page">재무제표</li>
+                <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
                 <li data-subpage="financial-ratios-page">재무비율</li>
                 <li data-subpage="investment-indicators-page">투자지표</li>
                 <li data-subpage="reports-page">리포트</li>
@@ -807,72 +715,139 @@
         </div>
         
         <!-- 기업개요 페이지 -->
-<div id="company-overview-page" class="sub-page active">
-    <div class="company-info">
-        <div class="company-header">
-            <div>
-                <span class="company-name">신스틸</span>
-                <span class="company-code">162300</span>
-                <span>12월 결산</span>
-            </div>
-            <div>
-                KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+        <div id="company-overview-page" class="sub-page active">
+            <div class="company-info">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">신스틸</span>
+                        <span class="company-code">162300</span>
+                        <span>12월 결산</span>
+                    </div>
+                    <div>
+                        KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+                    </div>
+                </div>
+
+                <div class="company-profile active">
+                    <div class="company-profile-section">
+                        <h3>기업 개요</h3>
+                        <table class="company-detail-table">
+                            <tr>
+                                <th>기업명</th>
+                                <td>신스틸</td>
+                                <th>대표자</th>
+                                <td>신승곤</td>
+                            </tr>
+                            <tr>
+                                <th>설립일</th>
+                                <td>2008년 9월 8일</td>
+                                <th>상장일</th>
+                                <td>2022년 12월 23일</td>
+                            </tr>
+                            <tr>
+                                <th>주요 사업</th>
+                                <td colspan="3">아연도금강판, 컬러강판, 냉연강판 등 철강 제조 및 유통</td>
+                            </tr>
+                            <tr>
+                                <th>본사 주소</th>
+                                <td colspan="3">부산광역시 강서구 미음산단4로 174</td>
+                            </tr>
+                            <tr>
+                                <th>홈페이지</th>
+                                <td colspan="3"><a href="http://www.shin-steel.com" target="_blank">http://www.shin-steel.com</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="company-profile-section">
+                        <h3>사업 소개</h3>
+                        <p>신스틸은 철강 제조 전문 기업으로, 아연도금강판과 컬러강판 등을 생산하며 주로 건축 자재, 가전제품, 산업용 부품 등에 활용됩니다. 내수와 수출 시장 모두에서 활발히 활동 중이며, 멕시코를 포함한 해외 진출도 진행 중입니다.</p>
+                    </div>
+
+                    <div class="company-profile-section">
+                        <h3>경영 현황</h3>
+                        <table class="company-detail-table">
+                            <tr>
+                                <th>직원 수</th>
+                                <td>약 250명</td>
+                            </tr>
+                            <tr>
+                                <th>해외 진출</th>
+                                <td>멕시코 현지 법인 설립 및 투자 (2023년)</td>
+                            </tr>
+                            <tr>
+                                <th>주요 제품</th>
+                                <td>컬러강판, 아연도금강판, 냉간압연강판</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="company-profile active">
-            <div class="company-profile-section">
-                <h3>기업 개요</h3>
-                <table class="company-detail-table">
-                    <tr>
-                        <th>기업명</th>
-                        <td>신스틸</td>
-                        <th>대표자</th>
-                        <td>신승곤</td>
-                    </tr>
-                    <tr>
-                        <th>설립일</th>
-                        <td>2008년 9월 8일</td>
-                        <th>상장일</th>
-                        <td>2022년 12월 23일</td>
-                    </tr>
-                    <tr>
-                        <th>주요 사업</th>
-                        <td colspan="3">아연도금강판, 컬러강판, 냉연강판 등 철강 제조 및 유통</td>
-                    </tr>
-                    <tr>
-                        <th>본사 주소</th>
-                        <td colspan="3">부산광역시 강서구 미음산단4로 174</td>
-                    </tr>
-                    <tr>
-                        <th>홈페이지</th>
-                        <td colspan="3"><a href="http://www.shin-steel.com" target="_blank">http://www.shin-steel.com</a></td>
-                    </tr>
-                </table>
-            </div>
+        <!-- 재무제표 페이지 추가 -->
+        <div id="financial-statements-page" class="sub-page">
+            <div class="company-info">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">신스틸</span>
+                        <span class="company-code">162300</span>
+                        <span>12월 결산</span>
+                    </div>
+                    <div>
+                        KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+                    </div>
+                </div>
 
-            <div class="company-profile-section">
-                <h3>사업 소개</h3>
-                <p>신스틸은 철강 제조 전문 기업으로, 아연도금강판과 컬러강판 등을 생산하며 주로 건축 자재, 가전제품, 산업용 부품 등에 활용됩니다. 내수와 수출 시장 모두에서 활발히 활동 중이며, 멕시코를 포함한 해외 진출도 진행 중입니다.</p>
-            </div>
+                <!-- 재무제표 정보 -->
+                <div class="financial-statements-info">
+                    <h3>재무제표</h3>
 
-            <div class="company-profile-section">
-                <h3>경영 현황</h3>
-                <table class="company-detail-table">
-                    <tr>
-                        <th>직원 수</th>
-                        <td>약 250명</td>
-                    </tr>
-                    <tr>
-                        <th>해외 진출</th>
-                        <td>멕시코 현지 법인 설립 및 투자 (2023년)</td>
-                    </tr>
-                    <tr>
-                        <th>주요 제품</th>
-                        <td>컬러강판, 아연도금강판, 냉간압연강판</td>
-                    </tr>
-                </table>
+                    <!-- 상단 정보 -->
+                    <div class="financial-info">
+                        <p><strong>기업명:</strong> 신스틸 (162300)</p>
+                        <p><strong>결산월:</strong> 12월</p>
+                        <p><strong>상장지수:</strong> KOSDAQ</p>
+                        <p><strong>산업분류:</strong> 금속</p>
+                        <p><strong>세부 산업:</strong> 금속 및 광물</p>
+                    </div>
+
+                    <!-- 재무제표 표 -->
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>2024</th>
+                                <th>2023</th>
+                                <th>2022</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>매출액</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                            </tr>
+                            <tr>
+                                <td>영업이익</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                            </tr>
+                            <tr>
+                                <td>당기순이익</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                                <td>XX,XXX</td>
+                            </tr>
+                            <!-- 추가 항목들 -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
+
     </div>
-</div>
+</body>
+</html>
