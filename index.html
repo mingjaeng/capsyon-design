@@ -679,167 +679,394 @@
     </script>
 </head>
 <body>
-  <div class="header">
-    <div class="header-content">
-      <div class="logo">
-        <span>웹 사이트</span> 이름
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <span>웹 사이트</span> 이름
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="종목명 또는 종목코드 입력">
+                <button>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="main-nav">
+        <ul class="nav-items">
+            <li data-page="company-info-page" class="active">기업정보</li>
+        </ul>
+    </div>
+    
+    <!-- 기업정보 페이지 컨테이너 -->
+    <div id="company-info-page" class="page-container active">
+        <div class="sub-nav">
+            <ul class="sub-nav-items">
+                <li data-subpage="company-overview-page" class="active">기업개요</li>
+                <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
+                <li data-subpage="financial-ratios-page">경제지표</li>
+                <li data-subpage="investment-indicators-page">투자지표</li>
+                <li data-subpage="reports-page">리포트</li>
+                <li data-subpage="news-page">뉴스</li>
+            </ul>
+        </div>
+        
+        <!-- 기업개요 페이지 -->
+        <div id="company-overview-page" class="sub-page active">
+            <div class="company-info">
+                <div class="company-header">
+                    <div>
+                        <span class="company-name">신스틸</span>
+                        <span class="company-code">162300</span>
+                        <span>12월 결산</span>
+                    </div>
+                    <div>
+                        KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+                    </div>
+                </div>
+
+                <div class="company-profile active">
+                    <div class="company-profile-section">
+                        <h3>기업 개요</h3>
+                        <table class="company-detail-table">
+                            <tr>
+                                <th>기업명</th>
+                                <td>신스틸</td>
+                                <th>대표자</th>
+                                <td>신승곤</td>
+                            </tr>
+                            <tr>
+                                <th>설립일</th>
+                                <td>2008년 9월 8일</td>
+                                <th>상장일</th>
+                                <td>2022년 12월 23일</td>
+                            </tr>
+                            <tr>
+                                <th>주요 사업</th>
+                                <td colspan="3">아연도금강판, 컬러강판, 냉연강판 등 철강 제조 및 유통</td>
+                            </tr>
+                            <tr>
+                                <th>본사 주소</th>
+                                <td colspan="3">부산광역시 강서구 미음산단4로 174</td>
+                            </tr>
+                            <tr>
+                                <th>홈페이지</th>
+                                <td colspan="3"><a href="http://www.shin-steel.com" target="_blank">http://www.shin-steel.com</a></td>
+                            </tr>
+                        </table>
+                    </div>
+
+                    <div class="company-profile-section">
+                        <h3>사업 소개</h3>
+                        <p>신스틸은 철강 제조 전문 기업으로, 아연도금강판과 컬러강판 등을 생산하며 주로 건축 자재, 가전제품, 산업용 부품 등에 활용됩니다. 내수와 수출 시장 모두에서 활발히 활동 중이며, 멕시코를 포함한 해외 진출도 진행 중입니다.</p>
+                    </div>
+
+                    <div class="company-profile-section">
+                        <h3>경영 현황</h3>
+                        <table class="company-detail-table">
+                            <tr>
+                                <th>직원 수</th>
+                                <td>약 250명</td>
+                            </tr>
+                            <tr>
+                                <th>해외 진출</th>
+                                <td>멕시코 현지 법인 설립 및 투자 (2023년)</td>
+                            </tr>
+                            <tr>
+                                <th>주요 제품</th>
+                                <td>컬러강판, 아연도금강판, 냉간압연강판</td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    
+<!-- 재무제표 페이지 -->
+<div id="financial-statements-page" class="sub-page">   
+  <div class="company-info">
+    <div class="company-header">
+      <div>
+        <span class="company-name">신스틸</span>
+        <span class="company-code">162300</span>
+        <span>12월 결산</span>
       </div>
-      <div class="search-bar">
-        <input type="text" placeholder="종목명 또는 종목코드 입력">
-        <button>
-          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-          </svg>
-        </button>
+      <div>
+        KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+      </div>
+    </div>
+    <div class="economic-table-wrapper">
+        
+    <!-- 재무제표 섹션 -->
+    <div class="section-box">
+      <h3 class="section-title">재무제표</h3>
+
+      <div class="financial-info">
+        <p><strong>기업명:</strong> 신스틸 (162300)</p>
+        <p><strong>결산월:</strong> 12월</p>
+        <p><strong>상장지수:</strong> KOSDAQ</p>
+        <p><strong>산업분류:</strong> 금속</p>
+        <p><strong>세부 산업:</strong> 금속 및 광물</p>
+      </div>
+
+      <div class="financial-table-wrapper">
+        <table class="financial-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>2024</th>
+              <th>2023</th>
+              <th>2022</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>매출액</td><td>1,200,000,000</td><td>1,150,000,000</td><td>1,100,000,000</td></tr>
+            <tr><td>매출원가</td><td>900,000,000</td><td>870,000,000</td><td>850,000,000</td></tr>
+            <tr><td>영업이익</td><td>200,000,000</td><td>180,000,000</td><td>150,000,000</td></tr>
+            <tr><td>영업이익률</td><td>16.67%</td><td>15.65%</td><td>13.64%</td></tr>
+            <tr><td>당기순이익</td><td>100,000,000</td><td>95,000,000</td><td>90,000,000</td></tr>
+            <tr><td>자산총계</td><td>1,500,000,000</td><td>1,450,000,000</td><td>1,400,000,000</td></tr>
+            <tr><td>부채총계</td><td>800,000,000</td><td>780,000,000</td><td>750,000,000</td></tr>
+            <tr><td>자본총계</td><td>700,000,000</td><td>670,000,000</td><td>650,000,000</td></tr>
+          </tbody>
+        </table>
       </div>
     </div>
   </div>
+</div>
 
-  <div class="main-nav">
-    <ul class="nav-items">
-      <li data-page="company-info-page" class="active">기업정보</li>
-    </ul>
-  </div>
+<!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
+<style>
+  .section-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
 
-  <!-- 기업정보 페이지 컨테이너 -->
-  <div id="company-info-page" class="page-container active">
-    <div class="sub-nav">
-      <ul class="sub-nav-items">
-        <li data-subpage="company-overview-page" class="active">기업개요</li>
-        <li data-subpage="financial-statements-page">재무제표</li>
-        <li data-subpage="economic-indicators-page">경제지표</li>
-        <li data-subpage="investment-indicators-page">투자지표</li>
-        <li data-subpage="reports-page">리포트</li>
-        <li data-subpage="news-page">뉴스</li>
-      </ul>
-    </div>
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
 
-    <!-- 기업개요 페이지 -->
-    <div id="company-overview-page" class="sub-page active">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
+  .financial-info p {
+    font-size: 14px;
+    margin: 5px 0;
+  }
+
+  .financial-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .financial-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .financial-table th,
+  .financial-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .financial-table thead {
+    background-color: #f8f8f8;
+  }
+
+  .financial-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  .financial-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+
+
+<!-- 경제지표 페이지 -->
+<div id="financial-ratios-page" class="sub-page active">
+    <div class="company-header">
+        <div>
             <span class="company-name">신스틸</span>
             <span class="company-code">162300</span>
             <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
         </div>
-        <!-- 기업개요 내용 -->
+        <div>
+            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
+        </div>
+        </div>
+
+    <div class="economic-table-wrapper">
+            <div class="economic-table-wrapper">
+                <table class="economic-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>현재</th>
+                            <th>변화율</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>환율 (USD/KRW)</td>
+                            <td id="usd-krw">1,320.50</td>
+                            <td id="usd-krw-change">+0.45%</td>
+                        </tr>
+                        <tr>
+                            <td>금시세 (1g)</td>
+                            <td id="gold-price">95,200</td>
+                            <td id="gold-price-change">-0.15%</td>
+                        </tr>
+                        <tr>
+                            <td>코스피</td>
+                            <td id="kospi">2,615.30</td>
+                            <td id="kospi-change">+1.20%</td>
+                        </tr>
+                        <tr>
+                            <td>코스닥</td>
+                            <td id="kosdaq">870.45</td>
+                            <td id="kosdaq-change">-0.35%</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    
+<!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
+<style>
+  .section-box {
+    margin-top: 30px;
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+  }
+
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
+
+  .economic-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+
+  .economic-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .economic-table th,
+  .economic-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
+
+  .economic-table thead {
+    background-color: #f8f8f8;
+  }
+
+  .economic-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
+
+  .economic-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
+        
+
+<!-- 투자지표 페이지 -->
+<div id="investment-indicators-page" class="sub-page">
+  <div class="investment-indicators-info">    
+    <div class="section-box">
+      <h3 class="section-title">투자지표</h3>
+    <div class="company-header">
+      <div>
+        <span class="company-name">신스틸</span>
+        <span class="company-code">162300</span>
+        <span>12월 결산</span>
+      </div>
+      <div>
+        KOSDAQ 코스닥 금속 | FICS 금속 및 광물
       </div>
     </div>
 
-    <!-- 재무제표 페이지 -->
-    <div id="financial-statements-page" class="sub-page">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
-        </div>
-        <!-- 재무제표 내용 -->
-      </div>
-    </div>
+<!-- 스타일 추가 -->
+<style>
+  .investment-indicators-info {
+    margin-top: 30px;
+  }
 
-    <!-- 경제지표 페이지 -->
-    <div id="economic-indicators-page" class="sub-page">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
-        </div>
-        <!-- 경제지표 내용 -->
-      </div>
-    </div>
+  .section-box {
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+  }
 
-    <!-- 투자지표 페이지 -->
-    <div id="investment-indicators-page" class="sub-page">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
-        </div>
-        <!-- 투자지표 내용 -->
-      </div>
-    </div>
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
 
-    <!-- 리포트 페이지 -->
-    <div id="reports-page" class="sub-page">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
-        </div>
-        <!-- 리포트 내용 -->
-      </div>
-    </div>
+  .investment-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
 
-    <!-- 뉴스 페이지 -->
-    <div id="news-page" class="sub-page">
-      <div class="company-info">
-        <div class="company-header">
-          <div>
-            <span class="company-name">신스틸</span>
-            <span class="company-code">162300</span>
-            <span>12월 결산</span>
-          </div>
-          <div>
-            KOSDAQ 코스닥 금속 | FICS 금속 및 광물
-          </div>
-        </div>
-        <!-- 뉴스 내용 -->
-      </div>
-    </div>
-  </div>
+  .investment-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
 
-  <!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
-  <style>
-    .company-info {
-      margin-top: 20px;
-    }
+  .investment-table th,
+  .investment-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+  }
 
-    .company-header {
-      font-size: 16px;
-      font-weight: bold;
-      margin-bottom: 10px;
-    }
+  .investment-table thead {
+    background-color: #f8f8f8;
+  }
 
-    .company-name {
-      color: #007bff;
-    }
+  .investment-table tbody tr:nth-child(even) {
+    background-color: #fafafa;
+  }
 
-    .company-code {
-      color: #28a745;
-    }
-
-    .company-header div {
-      margin-bottom: 5px;
-    }
-  </style>
+  .investment-table tbody tr:hover {
+    background-color: #f1f1f1;
+  }
+</style>
 </body>
 </html>
