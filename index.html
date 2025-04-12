@@ -125,9 +125,7 @@
       </div>
       <div class="search-bar">
         <input type="text" placeholder="종목명 또는 종목코드 입력">
-        <button>
-          🔍
-        </button>
+        <button>🔍</button>
       </div>
     </div>
   </div>
@@ -140,14 +138,36 @@
   </nav>
 
   <div class="company-info">
+    <!-- 기존 기업 정보 내용 유지 -->
     <div id="company-content" class="active">
-      <h2>기업 정보</h2>
-      <p><strong>기업명:</strong> 삼성전자</p>
-      <p><strong>업종:</strong> 전자기기</p>
-      <p><strong>지역:</strong> 수원</p>
-      <p><strong>설립년도:</strong> 1969년</p>
+      <div class="company-header">
+        <div>
+          <span class="company-name">삼성전자</span>
+          <span class="company-code">005930</span>
+          <span>12월 결산</span>
+        </div>
+        <div>
+          KSE 코스피 전기・전자 | FICS 반도체 및 관련장비
+        </div>
+      </div>
+
+      <div class="stats">
+        <div class="stat-box">
+          <div class="stat-label">PER</div>
+          <div class="stat-value">15.2</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">PBR</div>
+          <div class="stat-value">1.8</div>
+        </div>
+        <div class="stat-box">
+          <div class="stat-label">배당수익률</div>
+          <div class="stat-value">2.4%</div>
+        </div>
+      </div>
     </div>
 
+    <!-- 추가된 재무 정보 섹션 -->
     <div id="finance-content">
       <h2>재무 정보</h2>
       <div class="stock-summary">
@@ -164,16 +184,12 @@
           <p>450조 원</p>
         </div>
         <div class="stock-box">
-          <h4>PER</h4>
-          <p>15.2</p>
+          <h4>외국인 보유비중</h4>
+          <p>51.2%</p>
         </div>
         <div class="stock-box">
-          <h4>PBR</h4>
-          <p>1.8</p>
-        </div>
-        <div class="stock-box">
-          <h4>배당수익률</h4>
-          <p>2.4%</p>
+          <h4>52주 최고/최저</h4>
+          <p>75,000 / 58,300</p>
         </div>
       </div>
     </div>
