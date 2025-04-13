@@ -1115,25 +1115,83 @@
     </div>
 
     <div class="section-box">
-      <h3 class="section-title">리포트</h3>
-      <div class="report-list">
-        <!-- 리포트 예시 목록 -->
-        <ul>
-          <li>
-            <strong>[하나증권]</strong> 2024년 4월 실적 전망 - 수익성 반등 기대 (2024.04.10)
-          </li>
-          <li>
-            <strong>[삼성증권]</strong> 산업 수요 회복, 원자재 가격 주목 (2024.04.08)
-          </li>
-          <li>
-            <strong>[미래에셋]</strong> 실적 안정성과 성장성의 균형 (2024.04.04)
-          </li>
-        </ul>
+  <h3 class="section-title">리포트</h3>
+
+  <!-- 상단 요약 -->
+  <div class="report-summary">
+    <div class="report-consensus">
+      <h4>투자의견 컨센서스 <span>(2025/04/11)</span></h4>
+      <div class="consensus-bar">
+        <span class="buy">Buy</span>
+        <div class="bar"><div class="filled" style="width: 80%; background-color: #FFA500;"></div></div>
+        <span class="score">4.0</span>
       </div>
+    </div>
+
+    <div class="report-metrics">
+      <table>
+        <tr><th>투자의견</th><td>4.0</td></tr>
+        <tr><th>목표주가</th><td>75,160</td></tr>
+        <tr><th>EPS</th><td>4,788</td></tr>
+        <tr><th>PER</th><td>11.5</td></tr>
+        <tr><th>추정기관수</th><td>25</td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 중단 차트 -->
+  <div class="report-charts">
+    <div class="chart-box">
+      <h4>투자의견 & 목표주가</h4>
+      <img src="투자의견_목표주가_차트.png" alt="투자의견 및 목표주가 차트" />
+    </div>
+    <div class="chart-box">
+      <h4>투자의견 분포</h4>
+      <img src="투자의견분포_차트.png" alt="투자의견 분포 차트" />
+    </div>
+  </div>
+
+  <!-- 비즈니스 요약 -->
+  <div class="report-business-summary">
+    <h4>Business Summary <span>(2025/04/09)</span></h4>
+    <div class="summary-headline"><strong>갤럭시 부문으로 반도체 턴어라운드 지수</strong></div>
+    <p>
+      한국의 DX부문은 특히 9개 주요 자회사와 DS부품제조, SDC, Harman 등 229개의 종속회사로 구성되어 있으며, 
+      주요 사업은 DRAM, NAND Flash, 모바일AP 등 반도체를 생산하고 있음. OLED 사업도 병행함.
+      최근엔 TV, 냉장고, 스마트폰 중심으로 성장 중이며, AI 반도체 수요 증가로 인해 수익성 개선 중.
+    </p>
+  </div>
+
+  <!-- 밸류에이션 비교 -->
+  <div class="report-valuation">
+    <h4>업종 비교</h4>
+    <table>
+      <thead>
+        <tr>
+          <th>구분</th>
+          <th>신스틸</th>
+          <th>코스닥 대형주</th>
+          <th>KOSPI</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>시가총액</td><td>3,267,640</td><td>6,853,125</td><td>19,944,980</td></tr>
+        <tr><td>매출액</td><td>3,008,709</td><td>6,133,514</td><td>36,544,936</td></tr>
+        <tr><td>영업이익</td><td>327,260</td><td>1,234,560</td><td>2,499,985</td></tr>
+        <tr><td>EPS</td><td>4,950</td><td>22,659.45</td><td>7,007.27</td></tr>
+        <tr><td>PER</td><td>10.75</td><td>11.92</td><td>11.29</td></tr>
+        <tr><td>EV/EBITDA</td><td>4.84</td><td>5.72</td><td>6.44</td></tr>
+        <tr><td>ROE</td><td>2.12</td><td>3.44</td><td>4.65</td></tr>
+        <tr><td>배당수익률</td><td>1.23</td><td>1.75</td><td>2.29</td></tr>
+      </tbody>
+    </table>
+    <div class="valuation-chart">
+      <img src="valuation_chart.png" alt="EPS, PER, ROE 비교 차트" />
     </div>
   </div>
 </div>
 
+      
 <!-- 뉴스 페이지 -->
 <div id="news-page" class="sub-page">
   <div class="company-info">
