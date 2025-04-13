@@ -1001,9 +1001,7 @@
 
 <!-- 투자지표 페이지 -->
 <div id="investment-indicators-page" class="sub-page">
-  <div class="investment-indicators-info">    
-    <div class="section-box">
-      <h3 class="section-title">투자지표</h3>
+  <div class="company-info">
     <div class="company-header">
       <div>
         <span class="company-name">신스틸</span>
@@ -1014,6 +1012,39 @@
         KOSDAQ 코스닥 금속 | FICS 금속 및 광물
       </div>
     </div>
+
+    <div class="section-box">
+      <h3 class="section-title">투자지표</h3>
+      <!-- 실제 투자지표 데이터는 여기에 추가 -->
+      <table class="investment-table">
+        <thead>
+          <tr>
+            <th>항목</th>
+            <th>값</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>EPS (주당순이익)</td>
+            <td id="eps">1,320</td>
+          </tr>
+          <tr>
+            <td>BPS (주당순자산)</td>
+            <td id="bps">8,520</td>
+          </tr>
+          <tr>
+            <td>ROE</td>
+            <td id="roe">11.5%</td>
+          </tr>
+          <tr>
+            <td>부채비율</td>
+            <td id="debt-ratio">76.2%</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
             
 <!-- 스타일 추가 -->
 <style>
