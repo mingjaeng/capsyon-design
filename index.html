@@ -813,7 +813,36 @@
         <p><strong>세부 산업:</strong> 금속 및 광물</p>
       </div>
 
-      <div class="financial-table-wrapper">
+      <!-- 탭 메뉴 -->
+      <ul class="tab-menu">
+        <li class="active" data-tab="balance-sheet">연결재무상태표</li>
+        <li data-tab="income-statement">연결포괄손익계산서</li>
+        <li data-tab="cash-flow">연결현금흐름표</li>
+      </ul>
+
+      <!-- 연결재무상태표 -->
+      <div class="tab-content active" id="balance-sheet">
+        <table class="financial-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>2024</th>
+              <th>2023</th>
+              <th>2022</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>자산총계</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>유동자산</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>비유동자산</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>부채총계</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>자본총계</td><td>--</td><td>--</td><td>--</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 연결포괄손익계산서 -->
+      <div class="tab-content" id="income-statement">
         <table class="financial-table">
           <thead>
             <tr>
@@ -825,29 +854,104 @@
           </thead>
           <tbody>
             <tr><td>매출액</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>매출원가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>매출총이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>판매비와관리비</td><td>--%</td><td>--%</td><td>--%</td></tr>
-            <tr><td>대손상각비(환입)</td><td>--</td><td>--</td><td>--</td></tr>
             <tr><td>영업이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>기타수익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>기타비용</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>금융수익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>금융비용</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>지분법손실</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>법인세비용차감전순이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>법인시비용</td><td>--</td><td>--</td><td>--</td></tr>
             <tr><td>당기순이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>기타포괄손익</td><td>--</td><td>--</td><td>--</td></tr>
             <tr><td>총포괄이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td>주당이익</td><td>--</td><td>--</td><td>--</td></tr>
-              
+            <tr><td>주당순이익</td><td>--</td><td>--</td><td>--</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- 연결현금흐름표 -->
+      <div class="tab-content" id="cash-flow">
+        <table class="financial-table">
+          <thead>
+            <tr>
+              <th>항목</th>
+              <th>2024</th>
+              <th>2023</th>
+              <th>2022</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>영업활동 현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>투자활동 현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>재무활동 현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
+            <tr><td>현금및현금성자산</td><td>--</td><td>--</td><td>--</td></tr>
           </tbody>
         </table>
       </div>
     </div>
   </div>
 </div>
+
+<!-- 탭 동작용 스크립트 -->
+<script>
+  document.querySelectorAll('.tab-menu li').forEach(tab => {
+    tab.addEventListener('click', function () {
+      document.querySelectorAll('.tab-menu li').forEach(li => li.classList.remove('active'));
+      this.classList.add('active');
+
+      const target = this.getAttribute('data-tab');
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+      document.getElementById(target).classList.add('active');
+    });
+  });
+</script>
+
+<!-- 기본 스타일 -->
+<style>
+  .tab-menu {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .tab-menu li {
+    padding: 8px 16px;
+    background: #f1f1f1;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+  }
+
+  .tab-menu li.active {
+    background: #007bff;
+    color: #fff;
+  }
+
+  .tab-content {
+    display: none;
+    margin-top: 10px;
+  }
+
+  .tab-content.active {
+    display: block;
+  }
+
+  .financial-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+  }
+
+  .financial-table th,
+  .financial-table td {
+    border: 1px solid #ddd;
+    padding: 8px 12px;
+    text-align: center;
+  }
+
+  .financial-table thead {
+    background-color: #f5f5f5;
+  }
+
+  .financial-info p {
+    margin: 2px 0;
+  }
+</style>
 
 <!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
 <style>
