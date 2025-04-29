@@ -50,20 +50,22 @@
 </head>
 <body>
 
-  <h1>기업 검색</h1>
-  <form id="searchForm" class="search-bar">
-    <input type="text" id="searchInput" placeholder="예: 신스틸" />
-    <button type="submit">검색</button>
-  </form>
-
-  <script>
+ <script>
     document.getElementById("searchForm").addEventListener("submit", function (e) {
       e.preventDefault();
       const keyword = document.getElementById("searchInput").value.trim();
+      
+      // 기업명에 맞춰서 상세 페이지로 이동
       if (keyword === "신스틸") {
-        window.location.href = "sinstill.html";
+        window.location.href = "sinstill.html";  // 신스틸 상세페이지로 이동
+      } else if (keyword === "성우하이텍") {
+        window.location.href = "seongwoo.html";  // 성우하이텍 상세페이지로 이동
+      } else if (keyword === "금강공업") {
+        window.location.href = "geumgang.html";  // 금강공업 상세페이지로 이동
+      } else if (keyword === "태광") {
+        window.location.href = "taekwang.html";  // 태광 상세페이지로 이동
       } else {
-        alert("검색 결과가 없습니다.");
+        alert("검색 결과가 없습니다.");  // 결과 없을 경우 경고
       }
     });
   </script>
