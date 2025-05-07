@@ -4,7 +4,27 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
+        <script>
+        // 검색 기능 구현
+        function searchCompany() {
+            var input = document.getElementById("searchInput").value.trim().toLowerCase(); // 입력된 기업명
+            var companies = {
+                "성우하이텍": "sungwoo.html",
+                "금강철강": "kumkang.html",
+                "신일철강": "shinsteel.html"
+            };
+
+            // 입력값이 기업명에 해당하는지 확인
+            if (companies[input]) {
+                // 해당 기업의 상세 페이지로 이동
+                window.location.href = companies[input];
+            } else {
+                alert("해당 기업을 찾을 수 없습니다.");
+            }
+        }
+    </script>
     <link rel="stylesheet" href="style.css">
+    
     <style>
         * {
             margin: 0;
@@ -698,6 +718,10 @@
     <div class="main-nav">
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>
+            <li><a href="index.html">홈</a></li>
+            <li><a href="kumkang.html">금강철강</a></li>
+            <li><a href="shinsteel.html">신일철강</a></li>
+            <li><a href="sungwoo.html">성우하이텍</a></li>
         </ul>
     </div>
     
@@ -713,6 +737,22 @@
                 <li data-subpage="news-page">뉴스</li>
             </ul>
         </div>
+        
+    <script>
+        function searchCompany() {
+            const input = document.getElementById('searchInput').value.trim().toLowerCase();
+            
+            if (input === '금강' || input === 'kumkang') {
+                window.location.href = 'kumkang.html'; // 금강 상세페이지로 이동
+            } else if (input === '신일철강' || input === 'shinsteel') {
+                window.location.href = 'shinsteel.html'; // 신일철강 상세페이지로 이동
+            } else if (input === '성우하이텍' || input === 'sungwoo') {
+                window.location.href = 'sungwoo.html'; // 성우하이텍 상세페이지로 이동
+            } else {
+                alert('해당 기업을 찾을 수 없습니다.');
+            }
+        }
+    </script>
 
         
 <!-- 기업개요 페이지 -->
