@@ -719,11 +719,30 @@
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>
             <li><a href="index.html">홈</a></li>
-            <li><a href="kumkang.html">금강철강</a></li>
-            <li><a href="shinsteel.html">신일철강</a></li>
+            <li><a href="kumkang.html">금강공업</a></li>
+            <li><a href="shinsteel.html">신스틸</a></li>
             <li><a href="sungwoo.html">성우하이텍</a></li>
         </ul>
     </div>
+
+    <script>
+    function goToCompanyPage() {
+        const input = document.getElementById("searchInput").value.trim().toLowerCase();
+
+        // 검색어에 따라 해당 페이지로 이동
+        if (input === "kumkang" || input === "금강공업") {
+            window.location.href = "kumkang.html";
+        } else if (input === "shinsteel" || input === "신스틸") {
+            window.location.href = "shinsteel.html";
+        } else if (input === "sungwoo" || input === "성우하이텍") {
+            window.location.href = "sungwoo.html";
+        } else {
+            alert("해당 기업 정보를 찾을 수 없습니다.");
+        }
+
+        return false; // 폼 제출 방지
+    }
+</script>
     
     <!-- 기업정보 페이지 컨테이너 -->
     <div id="company-info-page" class="page-container active">
@@ -737,24 +756,7 @@
                 <li data-subpage="news-page">뉴스</li>
             </ul>
         </div>
-        
-    <script>
-        function searchCompany() {
-            const input = document.getElementById('searchInput').value.trim().toLowerCase();
-            
-            if (input === '금강공업' || input === 'kumkang') {
-                window.location.href = 'kumkang.html'; // 금강공업 상세페이지로 이동
-            } else if (input === '신스틸' || input === 'shinsteel') {
-                window.location.href = 'shinsteel.html'; // 신스틸 상세페이지로 이동
-            } else if (input === '성우하이텍' || input === 'sungwoo') {
-                window.location.href = 'sungwoo.html'; // 성우하이텍 상세페이지로 이동
-            } else {
-                alert('해당 기업을 찾을 수 없습니다.');
-            }
-        }
-    </script>
-
-        
+                
 <!-- 기업개요 페이지 -->
 <div id="company-overview-page" class="sub-page active">
     <div class="company-info">
