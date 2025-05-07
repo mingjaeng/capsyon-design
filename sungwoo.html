@@ -4,25 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
-        <script>
-        // 검색 기능 구현
-        function searchCompany() {
-            var input = document.getElementById("searchInput").value.trim().toLowerCase(); // 입력된 기업명
-            var companies = {
-                "성우하이텍": "sungwoo.html",
-                "금강철강": "kumkang.html",
-                "신스틸": "shinsteel.html"
-            };
+    <script>
+        // 기업 이름 또는 코드로 이동할 수 있게 설정
+        const companyMap = {
+            "sungwoo": "sungwoo.html",
+            "성우하이텍": "sungwoo.html",
+            "kumkang": "kumkang.html",
+            "금강철강": "kumkang.html",
+            "shinsteel": "shinsteel.html",
+            "신스틸": "shinsteel.html"
+            // 앞으로 여기에 기업 47개 더 추가하면 됨
+        };
 
-            // 입력값이 기업명에 해당하는지 확인
-            if (companies[input]) {
-                // 해당 기업의 상세 페이지로 이동
-                window.location.href = companies[input];
+        function searchCompany() {
+            const input = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            if (companyMap[input]) {
+                window.location.href = companyMap[input];
             } else {
                 alert("해당 기업을 찾을 수 없습니다.");
-            }
         }
-    </script>
+    }
+</script>
     <link rel="stylesheet" href="style.css">
     
     <style>
@@ -721,30 +724,36 @@
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>
             <li><a href="index.html">홈</a></li>
-            <li><a href="kumkang.html">금강공업</a></li>
             <li><a href="shinsteel.html">신스틸</a></li>
             <li><a href="sungwoo.html">성우하이텍</a></li>
+            <li><a href="kumkang.html">금강공업</a></li>
+           
         </ul>
     </div>
 
     <script>
-    function goToCompanyPage() {
-        const input = document.getElementById("searchInput").value.trim().toLowerCase();
+        const companyMap = {
+            "kumkang": "kumkang.html",
+            "금강공업": "kumkang.html",
+            "shinsteel": "shinsteel.html",
+            "신스틸": "shinsteel.html",
+            "sungwoo": "sungwoo.html",
+            "성우하이텍": "sungwoo.html"
+            // 여기에 기업 47개 더 추가 가능
+        };
 
-        // 검색어에 따라 해당 페이지로 이동
-        if (input === "kumkang" || input === "금강공업") {
-            window.location.href = "kumkang.html";
-        } else if (input === "shinsteel" || input === "신스틸") {
-            window.location.href = "shinsteel.html";
-        } else if (input === "sungwoo" || input === "성우하이텍") {
-            window.location.href = "sungwoo.html";
-        } else {
-            alert("해당 기업 정보를 찾을 수 없습니다.");
+        function goToCompanyPage() {
+            const input = document.getElementById("searchInput").value.trim().toLowerCase();
+
+            if (companyMap[input]) {
+                window.location.href = companyMap[input];
+            } else {
+                alert("해당 기업 정보를 찾을 수 없습니다.");
+            }
+
+            return false;
         }
-
-        return false; // 폼 제출 방지
-    }
-    </script>
+</script>
 </body>
     
     <!-- 기업정보 페이지 컨테이너 -->
@@ -1214,7 +1223,7 @@
   </div>
 </div>
 
-<!-- 스타일 (기존 style.css에 넣거나 head에 추가) -->
+<!-- 스타일 -->
 <style>
   .section-box {
     margin-top: 30px;
@@ -1477,17 +1486,17 @@
         <ul>
           <li>
             <a href="#" target="_blank">
-              [이데일리] 신스틸, 철강 가격 반등 수혜주로 부각 (2024.04.10)
+              [이데일리] 뉴스1
             </a>
           </li>
           <li>
             <a href="#" target="_blank">
-              [연합뉴스] 중소형 철강사 실적 기대감 상승 (2024.04.09)
+              [연합뉴스] 뉴스2
             </a>
           </li>
           <li>
             <a href="#" target="_blank">
-              [매일경제] 신스틸, 실적 모멘텀 회복 여부 주목 (2024.04.07)
+              [매일경제] 뉴스3
             </a>
           </li>
         </ul>
