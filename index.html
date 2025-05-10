@@ -55,24 +55,22 @@
     <button type="submit">검색</button>
   </form>
 
-  <script>
-    document.getElementById("searchForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const keyword = document.getElementById("searchInput").value.trim();
+<script>
+  const companyMap = {
+ 
+  };
 
-      if (keyword === "신스틸") {
-        window.location.href = "shinsteel.html";
-      } else if (keyword === "성우하이텍") {
-        window.location.href = "sungwoo.html";
-      } else if (keyword === "금강공업") {
-        window.location.href = "kumkang.html";
-      } else if (keyword === "태광") {
-        window.location.href = "taekwang.html";
-      } else {
-        alert("검색 결과가 없습니다.");
-      }
-    });
-  </script>
+  document.getElementById("searchForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const keyword = document.getElementById("searchInput").value.trim();
+
+    if (companyMap[keyword]) {
+      window.location.href = companyMap[keyword];
+    } else {
+      alert("검색 결과가 없습니다.");
+    }
+  });
+</script>
 
 </body>
 </html>
