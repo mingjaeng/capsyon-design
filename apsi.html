@@ -1,1 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2더하기8은 12조 - 성우하이텍</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 기존 style.css 보완 또는 오버라이드 */
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Malgun Gothic', sans-serif;
+    }
+    .header { background-color: #333; color: white; padding: 10px 0; border-top: 3px solid #e74c3c; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+    .logo { font-size: 28px; font-weight: bold; }
+    .logo span:first-child { color: #e74c3c; }
+    .search-bar { display: flex; }
+    .search-bar input { padding: 8px 12px; border: none; border-radius: 4px 0 0 4px; width: 300px; }
+    .search-bar button { background-color: #555; border: none; padding: 8px 15px; border-radius: 0 4px 4px 0; color: white; cursor: pointer; }
+    .main-nav { background-color: #444; border-bottom: 1px solid #555; }
+    .nav-items { display: flex; max-width: 1200px; margin: 0 auto; list-style-type: none; }
+    .nav-items li { padding: 15px 20px; color: white; cursor: pointer; font-weight: bold; }
+    .nav-items li:hover, .nav-items li.active { background-color: #666; }
+    .sub-nav { background-color: #eee; border-bottom: 1px solid #ddd; }
+    .sub-nav-items { display: flex; max-width: 1200px; margin: 0 auto; list-style-type: none; padding: 10px 15px; }
+    .sub-nav-items li { padding: 5px 15px; color: #333; cursor: pointer; border-right: 1px solid #ccc; }
+    .sub-nav-items li:last-child { border-right: none; }
+    .sub-nav-items li.active { font-weight: bold; color: #e74c3c; }
+    .page-container { display: none; }
+    .page-container.active { display: block; }
+    .sub-page { display: none; }
+    .sub-page.active { display: block; }
+  </style>
+</head>
+<body>
+  <!-- ✅ 공통 헤더 -->
+  <header class="header">
+    <div class="header-content">
+      <div class="logo"><span>웹 사이트</span> 이름</div>
+      <div class="search-bar">
+        <form id="searchForm" style="display: flex; align-items: center;">
+          <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
+          <button type="submit">🔍</button>
+        </form>
+      </div>
+    </div>
+  </header>
 
+  <!-- ✅ 메인 내비게이션 -->
+  <nav class="main-nav">
+    <ul class="nav-items">
+      <li class="active" data-page="company-info-page">기업정보</li>
+      <li><a href="index.html">홈</a></li>
+      <li><a href="shinsteel.html">신스틸</a></li>
+      <li><a href="sungwoo.html">성우하이텍</a></li>
+      <li><a href="kumkang.html">금강공업</a></li>
+    </ul>
+  </nav>
+
+  <!-- ✅ 기업 상세 페이지 컨테이너 -->
+  <main id="company-info-page" class="page-container active">
+    <div class="sub-nav">
+      <ul class="sub-nav-items">
+        <li data-subpage="company-overview-page" class="active">기업개요</li>
+        <li data-subpage="financial-statements-page">재무제표</li>
+        <li data-subpage="financial-ratios-page">경제지표</li>
+        <li data-subpage="investment-indicators-page">투자지표</li>
+        <li data-subpage="reports-page">리포트</li>
+        <li data-subpage="news-page">뉴스</li>
+      </ul>
+    </div>
+    <!-- ✅ 상세 페이지 컨텐츠는 이후 추가 -->
+  </main>
+
+  <!-- ✅ 공통 스크립트 -->
+  <script>
+    const companyMap = {
+      "AP위성": "apsi.html",
+      "BNK금융지주": "bnkfg.html",
+      "캠시스": "cammsys.html",
+      "셀바이오휴먼텍": "cellbiohumantech.html",
+      "CBI": "cheongbo.html",
+      "쿠콘": "coocon.html",
+      "코츠테크놀로지": "cotstech.html",
+      "cs": "cs.html",
+      "대원": "daewon.html",
+      "데브시스터즈": "devsisters.html",
+      "동원개발": "dongwonapt.html",
+      "동성화인텍": "dsfinetec.html",
+      "한선엔지니어링": "ehansun.html",
+      "파수": "fasoo.html",
+      "파인디앤씨": "finednc.html",
+      "포시에스": "forcs.html",
+      "지어소프트": "gaeasoft.html",
+      "가온칩스": "gaonchips.html",
+      "하나금융지주": "hanafn.html",
+      "하이로닉": "hironic.html",
+      "화승코퍼레이션": "hscorp.html",
+      "진영": "jyp21.html",
+      "한국주철관": "kcip.html",
+      "고려제강": "kiswire.html",
+      "코칩": "korchip.html",
+      "코스텍시스": "kostec.html",
+      "코이즈": "koyj.html",
+      "금강공업": "kumkang.html",
+      "레이저옵텍": "laseroptek.html",
+      "리노공업": "leeno.html",
+      "메카로": "mecaro.html",
+      "미래에셋증권": "miraeasset.html",
+      "넥센타이어": "nexentire.html",
+      "팸텍": "pamtek.html",
+      "파루": "paru.html",
+      "폴라리스AI": "polarisai.html",
+      "레뷰코퍼레이션": "revu.html",
+      "로보로보": "roborobo.html",
+      "티로보틱스": "robotics.html",
+      "셀바스헬스케어": "selvashealthcare.html",
+      "신스틸": "shinsteel.html",
+      "피노": "skymoonstech.html",
+      "성우하이텍": "sungwoo.html",
+      "티에프이": "tfe.html",
+      "태광": "tkbend.html",
+      "트루엔": "truen.html",
+      "트윔": "twim21.html",
+      "유아이디": "uidkorea.html"
+    };
+
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const input = document.getElementById("searchInput").value.trim();
+      if (companyMap[input]) {
+        window.location.href = companyMap[input];
+      } else {
+        alert("해당 기업을 찾을 수 없습니다.");
+      }
+    });
+
+    window.onload = function () {
+      setupSubNavigation();
+      setupTabs();
+    };
+
+    function setupSubNavigation() {
+      document.querySelectorAll('.sub-nav-items li').forEach(item => {
+        item.addEventListener('click', function () {
+          document.querySelectorAll('.sub-nav-items li').forEach(nav => nav.classList.remove('active'));
+          this.classList.add('active');
+          const subPageName = this.dataset.subpage;
+          document.querySelectorAll('.sub-page').forEach(p => p.classList.remove('active'));
+          const targetPage = document.getElementById(subPageName);
+          if (targetPage) targetPage.classList.add('active');
+        });
+      });
+    }
+
+    function setupTabs() {
+      document.querySelectorAll('.tab-menu .tab-item').forEach(tab => {
+        tab.addEventListener('click', function () {
+          const parent = this.closest('.tab-menu');
+          parent.querySelectorAll('.tab-item').forEach(t => t.classList.remove('active'));
+          this.classList.add('active');
+          const target = this.dataset.target;
+          const section = this.closest('.section-box');
+          if (section) {
+            section.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+          }
+          const targetContent = document.getElementById(target);
+          if (targetContent) targetContent.classList.add('active');
+        });
+      });
+    }
+  </script>
+</body>
+</html>
