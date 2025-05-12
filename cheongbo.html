@@ -748,19 +748,28 @@
   
 </head>
 <body>
-    <div class="header">
-      <div class="header-content">
-        <div class="logo">
-          <a href="index.html" style="text-decoration: none; color: inherit;">
-            <span>2더하기8은</span> 12조
-          </a>
-        </div>
+<div class="header" style="background-color: #333; padding: 10px 0;">
+  <div class="header-content" style="display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0 15px;">
+    <!-- 로고 -->
+    <div class="logo" style="font-size: 28px; font-weight: bold;">
+      <a href="index.html" style="text-decoration: none; color: inherit;">
+        <span style="color: #e74c3c;">2더하기8은</span> 12조
+      </a>
+    </div>
+
+    <!-- 검색창 -->
     <div class="search-bar">
-      <form onsubmit="return goToCompanyPage()">
-        <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
-        <button type="submit">검색</button>
+      <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
+        <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력" style="padding: 5px; font-size: 14px;">
+        <button type="submit" style="margin-left: 5px; padding: 5px 10px;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+          </svg>
+        </button>
       </form>
     </div>
+  </div>
+</div>
     <div class="main-nav">
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>          
@@ -1329,7 +1338,6 @@
   }
 </style>
         
-
 <!-- 투자지표 페이지 -->
 <div id="investment-indicators-page" class="sub-page">
   <div class="company-info">
@@ -1343,7 +1351,6 @@
         KSE 코스피 금융 | FICS 상업은행
       </div>
     </div>
-
     <div class="section-box">
       <h3 class="section-title">투자지표</h3>
       <table class="investment-table">
@@ -1462,7 +1469,6 @@
   }
 </style>
 
-
 <!-- 리포트 페이지 -->
 <div id="reports-page" class="sub-page">
   <div class="company-info">
@@ -1493,7 +1499,6 @@
         KSE 코스피 금융 | FICS 상업은행
       </div>
     </div>
-
     <div class="section-box">
       <h3 class="section-title">관련 뉴스</h3>
       <div class="news-list">
