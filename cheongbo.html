@@ -1354,7 +1354,8 @@
         KSE 코스피 금융 | FICS 상업은행
       </div>
     </div>
-
+      
+    <!--투자지표 섹션-->
     <div class="section-box">
       <h3 class="section-title">투자지표</h3>
       <div class="year-tabs">
@@ -1413,58 +1414,118 @@
           </tbody>
         </table>
       </div>
-    <!-- 연결 투자지표 꺾은선 그래프 -->
-    <div class="section-box">
-      <h3 class="section-title">EPS 추이 (2022 ~ 2024)</h3>
-      <canvas id="epsLineChart" height="300"></canvas>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      const ctx = document.getElementById('epsLineChart').getContext('2d');
-      const epsChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [{
-            label: 'EPS (주당순이익)',
-            data: [6500, 7000, 8200],  // 여기에 다른 항목도 추가 가능
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            tension: 0.3,  // 곡선 부드럽게
-            fill: true,
-            pointRadius: 5,
-            pointHoverRadius: 7
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'EPS 연도별 변화 추이'
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    </script>    
-    </div>
+        
+<!-- 그래프 섹션 -->
+<div class="section-box">
+  <h3 class="section-title">투자지표 추이</h3>
+
+  <!-- 지표 선택 버튼 -->
+  <div class="indicator-tabs">
+    <button onclick="drawChart('EPS', event)" class="active">EPS</button>
+    <button onclick="drawChart('ROE', event)">ROE</button>
+    <button onclick="drawChart('PER', event)">PER</button>
+    <button onclick="drawChart('PBR', event)">PBR</button>
+    <!-- 필요 시 지표 추가 가능 -->
   </div>
+
+  <!-- 차트 영역 -->
+  <canvas id="indicatorChart" height="300"></canvas>
 </div>
 
-<script>
-  function showIndicators(event, year) {
-    document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
-    document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
+<!-- Chart.js 라이브러리 -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    document.getElementById(`indicators-${year}`).classList.add("active");
-    event.target.classList.add("active");
+<!-- 그래프 스크립트 -->
+<script>
+  let chartInstance = null;
+
+  function drawChart(indicatorName, event) {
+    // 버튼 active 클래스 관리
+    document.querySelectorAll('.indicator-tabs button').forEach(btn => btn.classList.remove('active'));
+    if (event) event.target.classList.add('active');
+
+    const years = ['2022', '2023', '2024'];
+    const values = [];
+
+    years.forEach(year => {
+      const container = document.getElementById(`indicators-${year}`);
+      const rows = container.querySelectorAll('tr');
+
+      let value = '--';
+      rows.forEach(row => {
+        const label = row.children[0].innerText.replace(/\s/g, '').toUpperCase();
+        if (label.includes(indicatorName)) {
+          value = row.children[1].innerText.replace(/[^0-9.\-]/g, '');
+        }
+      });
+
+      values.push(isNaN(Number(value)) ? null : Number(value));
+    });
+
+    // 이전 차트 제거
+    if (chartInstance) {
+      chartInstance.destroy();
+    }
+
+    // 새 차트 생성
+    const ctx = document.getElementById('indicatorChart').getContext('2d');
+    chartInstance = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: years,
+        datasets: [{
+          label: `${indicatorName} 추이`,
+          data: values,
+          borderColor: 'rgba(75, 192, 192, 1)',
+          backgroundColor: 'transparent', // 내부 채움 없음
+          tension: 0.3,
+          fill: false,  // ✅ 선만 표시
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }]
+      },
+      options: {
+        responsive: true,
+        plugins: {
+          title: {
+            display: true,
+            text: `${indicatorName} 연도별 추이`
+          }
+        },
+        scales: {
+          y: {
+            beginAtZero: true
+          }
+        }
+      }
+    });
   }
+
+  // 페이지 로딩 시 EPS 기본 그래프
+  window.onload = () => drawChart('EPS');
 </script>
+
+<!-- 스타일 -->
+<style>
+  .indicator-tabs {
+    margin-bottom: 15px;
+  }
+
+  .indicator-tabs button {
+    margin-right: 8px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+
+  .indicator-tabs button.active {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
+  }
+</style>
     
 <!-- 투자지표 페이지 스타일 -->
 <style>
