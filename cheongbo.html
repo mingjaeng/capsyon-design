@@ -1357,7 +1357,6 @@
 
     <div class="section-box">
       <h3 class="section-title">투자지표</h3>
-
       <div class="year-tabs">
         <button onclick="showIndicators(event, '2024')" class="active">2024</button>
         <button onclick="showIndicators(event, '2023')">2023</button>
@@ -1414,6 +1413,45 @@
           </tbody>
         </table>
       </div>
+    <!-- 연결 투자지표 꺾은선 그래프 -->
+    <div class="section-box">
+      <h3 class="section-title">EPS 추이 (2022 ~ 2024)</h3>
+      <canvas id="epsLineChart" height="300"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('epsLineChart').getContext('2d');
+      const epsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2022', '2023', '2024'],
+          datasets: [{
+            label: 'EPS (주당순이익)',
+            data: [6500, 7000, 8200],  // 여기에 다른 항목도 추가 가능
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.3,  // 곡선 부드럽게
+            fill: true,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'EPS 연도별 변화 추이'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>    
     </div>
   </div>
 </div>
