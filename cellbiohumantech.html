@@ -1344,15 +1344,32 @@
       </div>
     </div>
       
-    <!--투자지표 섹션-->
+<!-- 투자지표 페이지 -->
+<div id="investment-indicators-page" class="sub-page">
+  <div class="company-info">
+    <div class="company-header">
+      <div>
+        <span class="company-name">BNK금융지주</span>
+        <span class="company-code">138930</span>
+        <span>12월 결산</span>
+      </div>
+      <div>
+        KSE 코스피 금융 | FICS 상업은행
+      </div>
+    </div>
+
+    <!-- ✅ 연결 투자지표 섹션만 표시 -->
     <div class="section-box">
-      <h3 class="section-title">투자지표</h3>
+      <h3 class="section-title">연결 투자지표</h3>
+
+      <!-- 연도 선택 탭 -->
       <div class="year-tabs">
         <button onclick="showIndicators(event, '2024')" class="active">2024</button>
         <button onclick="showIndicators(event, '2023')">2023</button>
         <button onclick="showIndicators(event, '2022')">2022</button>
       </div>
 
+      <!-- 연도별 투자지표 테이블 -->
       <div id="indicators-2024" class="year-indicators active">
         <table class="investment-table">
           <tbody>
@@ -1403,52 +1420,21 @@
           </tbody>
         </table>
       </div>
-    
-    <!-- 그래프 섹션 -->
-    <div class="section-box">
-      <h3 class="section-title">EPS 추이 (2022 ~ 2024)</h3>
-      <canvas id="epsLineChart" height="300"></canvas>
-    </div>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script>
-      const ctx = document.getElementById('epsLineChart').getContext('2d');
-      const epsChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-          labels: ['2022', '2023', '2024'],
-          datasets: [{
-            label: 'EPS (주당순이익)',
-            data: [6500, 7000, 8200],  // 여기에 다른 항목도 추가 가능
-            borderColor: 'rgba(75, 192, 192, 1)',
-            backgroundColor: 'rgba(75, 192, 192, 0.2)',
-            tension: 0.3,  // 곡선 부드럽게
-            fill: true,
-            pointRadius: 5,
-            pointHoverRadius: 7
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            title: {
-              display: true,
-              text: 'EPS 연도별 변화 추이'
-            }
-          },
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-    </script>    
     </div>
   </div>
 </div>
-    
-            
-<!-- 투자지표 페이지 스타일 -->
+      
+<script>
+  function showIndicators(event, year) {
+    document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
+
+    document.getElementById(`indicators-${year}`).classList.add("active");
+    event.target.classList.add("active");
+  }
+</script>
+      
+<!-- 투자지표 페이지 스타일-->
 <style>
   .section-box {
     padding: 25px;
@@ -1457,7 +1443,6 @@
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
     margin-top: 30px;         
-  }
   .section-title {
     font-size: 22px;
     font-weight: 700;
@@ -1484,7 +1469,7 @@
   }
   .year-indicators { display: none; }
   .year-indicators.active { display: block; }
-  .investment-table-wrapper {        
+  .investment-table-wrapper {         
     margin-top: 20px;
     overflow-x: auto;
   }
