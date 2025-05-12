@@ -1358,68 +1358,81 @@
       </div>
     </div>
 
+<!-- 투자지표 페이지 -->
+<div id="investment-indicators-page" class="sub-page">
+  <div class="company-info">
+    <div class="company-header">
+      <div>
+        <span class="company-name">BNK금융지주</span>
+        <span class="company-code">138930</span>
+        <span>12월 결산</span>
+      </div>
+      <div>
+        KSE 코스피 금융 | FICS 상업은행
+      </div>
+    </div>
+
     <!-- ✅ 연결 투자지표 섹션만 표시 -->
     <div class="section-box">
-      <h3 class="section-title">연결 투자지표</h3>
+        <h3 class="section-title">연결 투자지표</h3>
+        <!-- 연도 선택 탭 -->
+        <div class="year-tabs">
+            <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+            <button onclick="showIndicators(event, '2023')">2023</button>
+            <button onclick="showIndicators(event, '2022')">2022</button>
+        </div>
 
-      <!-- 연도 선택 탭 -->
-      <div class="year-tabs">
-        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-        <button onclick="showIndicators(event, '2023')">2023</button>
-        <button onclick="showIndicators(event, '2022')">2022</button>
-      </div>
-
-      <!-- 연도별 투자지표 테이블 -->
-      <div id="indicators-2024" class="year-indicators active">
-        <table class="investment-table">
-          <tbody>
-            <tr><td>EPS</td><td>--</td></tr>
-            <tr><td>BPS</td><td>--</td></tr>
-            <tr><td>ROE</td><td>--%</td></tr>
-            <tr><td>ROA</td><td>--%</td></tr>
-            <tr><td>PER</td><td>--배</td></tr>
-            <tr><td>PBR</td><td>--배</td></tr>
-            <tr><td>부채비율</td><td>--%</td></tr>
-            <tr><td>유동비율</td><td>--%</td></tr>
-            <tr><td>영업이익률</td><td>--%</td></tr>
-            <tr><td>순이익률</td><td>--%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div id="indicators-2023" class="year-indicators">
-        <table class="investment-table">
-          <tbody>
-            <tr><td>EPS</td><td>--</td></tr>
-            <tr><td>BPS</td><td>--</td></tr>
-            <tr><td>ROE</td><td>--%</td></tr>
-            <tr><td>ROA</td><td>--%</td></tr>
-            <tr><td>PER</td><td>--배</td></tr>
-            <tr><td>PBR</td><td>--배</td></tr>
-            <tr><td>부채비율</td><td>--%</td></tr>
-            <tr><td>유동비율</td><td>--%</td></tr>
-            <tr><td>영업이익률</td><td>--%</td></tr>
-            <tr><td>순이익률</td><td>--%</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <div id="indicators-2022" class="year-indicators">
-        <table class="investment-table">
-          <tbody>
-            <tr><td>EPS</td><td>--</td></tr>
-            <tr><td>BPS</td><td>--</td></tr>
-            <tr><td>ROE</td><td>--%</td></tr>
-            <tr><td>ROA</td><td>--%</td></tr>
-            <tr><td>PER</td><td>--배</td></tr>
-            <tr><td>PBR</td><td>--배</td></tr>
-            <tr><td>부채비율</td><td>--%</td></tr>
-            <tr><td>유동비율</td><td>--%</td></tr>
-            <tr><td>영업이익률</td><td>--%</td></tr>
-            <tr><td>순이익률</td><td>--%</td></tr>
-          </tbody>
-        </table>
-      </div>
+        <!-- 연도별 투자지표 테이블 -->
+        <div id="indicators-2024" class="year-indicators active">
+            <table class="investment-table">
+                <tbody>
+                    <tr><td>EPS</td><td>--</td></tr>
+                    <tr><td>BPS</td><td>--</td></tr>
+                    <tr><td>ROE</td><td>--%</td></tr>
+                    <tr><td>ROA</td><td>--%</td></tr>
+                    <tr><td>PER</td><td>--배</td></tr>
+                    <tr><td>PBR</td><td>--배</td></tr>
+                    <tr><td>부채비율</td><td>--%</td></tr>
+                    <tr><td>유동비율</td><td>--%</td></tr>
+                    <tr><td>영업이익률</td><td>--%</td></tr>
+                    <tr><td>순이익률</td><td>--%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="indicators-2023" class="year-indicators">
+            <table class="investment-table">
+                <tbody>
+                    <tr><td>EPS</td><td>--</td></tr>
+                    <tr><td>BPS</td><td>--</td></tr>
+                    <tr><td>ROE</td><td>--%</td></tr>
+                    <tr><td>ROA</td><td>--%</td></tr>
+                    <tr><td>PER</td><td>--배</td></tr>
+                    <tr><td>PBR</td><td>--배</td></tr>
+                    <tr><td>부채비율</td><td>--%</td></tr>
+                    <tr><td>유동비율</td><td>--%</td></tr>
+                    <tr><td>영업이익률</td><td>--%</td></tr>
+                    <tr><td>순이익률</td><td>--%</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div id="indicators-2022" class="year-indicators">
+            <table class="investment-table">
+                <tbody>
+                    <tr><td>EPS</td><td>--</td></tr>
+                    <tr><td>BPS</td><td>--</td></tr>
+                    <tr><td>ROE</td><td>--%</td></tr>
+                    <tr><td>ROA</td><td>--%</td></tr>
+                    <tr><td>PER</td><td>--배</td></tr>
+                    <tr><td>PBR</td><td>--배</td></tr>
+                    <tr><td>부채비율</td><td>--%</td></tr>
+                    <tr><td>유동비율</td><td>--%</td></tr>
+                    <tr><td>영업이익률</td><td>--%</td></tr>
+                    <tr><td>순이익률</td><td>--%</td></tr>
+                </tbody>
+            </table>
+        </div>
     </div>
   </div>
 </div>
@@ -1429,7 +1442,6 @@
   function showIndicators(event, year) {
     document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
     document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
-
     document.getElementById(`indicators-${year}`).classList.add("active");
     event.target.classList.add("active");
   }
