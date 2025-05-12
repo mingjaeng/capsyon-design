@@ -1343,61 +1343,110 @@
         KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
       </div>
     </div>
+      
+       <!--투자지표 섹션-->
     <div class="section-box">
       <h3 class="section-title">투자지표</h3>
-      <table class="investment-table">
-        <thead>
-          <tr>
-            <th>항목</th>
-            <th>값</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>EPS (주당순이익)</td>
-            <td id="eps">--</td>
-          </tr>
-          <tr>
-            <td>BPS (주당순자산)</td>
-            <td id="bps">--</td>
-          </tr>
-          <tr>
-            <td>ROE (자기자본이익률)</td>
-            <td id="roe">--%</td>
-          </tr>
-          <tr>
-            <td>ROA (총자산이익률)</td>
-            <td id="roa">--%</td>
-          </tr>
-          <tr>
-            <td>PER (주가수익비율)</td>
-            <td id="per">--배</td>
-          </tr>
-          <tr>
-            <td>PBR (주가순자산비율)</td>
-            <td id="pbr">--배</td>
-          </tr>
-          <tr>
-            <td>부채비율</td>
-            <td id="debt-ratio">--%</td>
-          </tr>
-          <tr>
-            <td>유동비율</td>
-            <td id="current-ratio">--%</td>
-          </tr>
-          <tr>
-            <td>영업이익률</td>
-            <td id="operating-margin">--%</td>
-          </tr>
-          <tr>
-            <td>순이익률</td>
-            <td id="net-margin">--%</td>
-          </tr>
-        </tbody>
-      </table>
+      <div class="year-tabs">
+        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+        <button onclick="showIndicators(event, '2023')">2023</button>
+        <button onclick="showIndicators(event, '2022')">2022</button>
+      </div>
+
+      <div id="indicators-2024" class="year-indicators active">
+        <table class="investment-table">
+          <tbody>
+            <tr><td>EPS</td><td>--</td></tr>
+            <tr><td>BPS</td><td>--</td></tr>
+            <tr><td>ROE</td><td>--%</td></tr>
+            <tr><td>ROA</td><td>--%</td></tr>
+            <tr><td>PER</td><td>--배</td></tr>
+            <tr><td>PBR</td><td>--배</td></tr>
+            <tr><td>부채비율</td><td>--%</td></tr>
+            <tr><td>유동비율</td><td>--%</td></tr>
+            <tr><td>영업이익률</td><td>--%</td></tr>
+            <tr><td>순이익률</td><td>--%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div id="indicators-2023" class="year-indicators">
+        <table class="investment-table">
+          <tbody>
+            <tr><td>EPS</td><td>--</td></tr>
+            <tr><td>BPS</td><td>--</td></tr>
+            <tr><td>ROE</td><td>--%</td></tr>
+            <tr><td>ROA</td><td>--%</td></tr>
+            <tr><td>PER</td><td>--배</td></tr>
+            <tr><td>PBR</td><td>--배</td></tr>
+            <tr><td>부채비율</td><td>--%</td></tr>
+            <tr><td>유동비율</td><td>--%</td></tr>
+            <tr><td>영업이익률</td><td>--%</td></tr>
+            <tr><td>순이익률</td><td>--%</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+     <div id="indicators-2022" class="year-indicators">
+        <table class="investment-table">
+          <tbody>
+            <tr><td>EPS</td><td>--</td></tr>
+            <tr><td>BPS</td><td>--</td></tr>
+            <tr><td>ROE</td><td>--%</td></tr>
+            <tr><td>ROA</td><td>--%</td></tr>
+            <tr><td>PER</td><td>--배</td></tr>
+            <tr><td>PBR</td><td>--배</td></tr>
+            <tr><td>부채비율</td><td>--%</td></tr>
+            <tr><td>유동비율</td><td>--%</td></tr>
+            <tr><td>영업이익률</td><td>--%</td></tr>
+            <tr><td>순이익률</td><td>--%</td></tr>
+          </tbody>
+        </table>
+      </div>
+    
+    <!-- 그래프 섹션 -->
+    <div class="section-box">
+      <h3 class="section-title">EPS 추이 (2022 ~ 2024)</h3>
+      <canvas id="epsLineChart" height="300"></canvas>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+      const ctx = document.getElementById('epsLineChart').getContext('2d');
+      const epsChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: ['2022', '2023', '2024'],
+          datasets: [{
+            label: 'EPS (주당순이익)',
+            data: [6500, 7000, 8200],  // 여기에 다른 항목도 추가 가능
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            tension: 0.3,  // 곡선 부드럽게
+            fill: true,
+            pointRadius: 5,
+            pointHoverRadius: 7
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            title: {
+              display: true,
+              text: 'EPS 연도별 변화 추이'
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    </script>    
     </div>
   </div>
 </div>
+    
             
 <!-- 투자지표 페이지 스타일-->
 <style>
