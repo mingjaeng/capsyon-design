@@ -1423,7 +1423,8 @@
     </div>
   </div>
 </div>
-      
+
+<!-- 스크립트 -->
 <script>
   function showIndicators(event, year) {
     document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
@@ -1434,15 +1435,18 @@
   }
 </script>
       
-<!-- 투자지표 페이지 스타일-->
+<!-- 투자지표 페이지 스타일 (통합본) -->
 <style>
+  /* ▽ 공통 섹션 박스 & 타이틀 */
   .section-box {
     padding: 25px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;         
+    margin-top: 30px;          /* investment-indicators-info 대체 */
+  }
+
   .section-title {
     font-size: 22px;
     font-weight: 700;
@@ -1451,6 +1455,8 @@
     border-bottom: 2px solid #eee;
     padding-bottom: 6px;
   }
+
+  /* ▽ 연도 선택 탭 */
   .year-tabs {
     margin-bottom: 15px;
   }
@@ -1467,9 +1473,13 @@
     color: #fff;
     border-color: #007bff;
   }
+
+  /* ▽ 연도별 지표 영역 토글 */
   .year-indicators { display: none; }
   .year-indicators.active { display: block; }
-  .investment-table-wrapper {         
+
+  /* ▽ 투자지표 테이블 */
+  .investment-table-wrapper {         /* (추후 사용 대비) */
     margin-top: 20px;
     overflow-x: auto;
   }
@@ -1477,7 +1487,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    table-layout: fixed;              
+    table-layout: fixed;              /* 1·2열 50% 균등 유지 */
   }
   .investment-table th,
   .investment-table td {
@@ -1494,6 +1504,8 @@
   .investment-table tbody tr:hover {
     background-color: #f1f1f1;
   }
+
+  /* 1열(항목)·2열(값) 동일 너비 50% */
   .investment-table th:nth-child(1),
   .investment-table td:nth-child(1),
   .investment-table th:nth-child(2),
