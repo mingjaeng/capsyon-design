@@ -1525,6 +1525,15 @@
     color: white;
     border-color: #28a745;
   }
+    #indicatorChart {
+        position: relative;
+        z-index: 1; /* 차트의 z-index를 1로 설정, 기본보다 낮은 값 */
+    }
+
+    .section-box {
+        position: relative;
+        z-index: 2; /* .section-box의 z-index를 2로 설정하여 차트보다 위로 오게 함 */
+    }
 </style>
     
 <!-- 투자지표 페이지 스타일 -->
