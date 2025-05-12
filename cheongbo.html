@@ -1355,18 +1355,15 @@
       </div>
     </div>
 
-    <!-- ✅ 연결 투자지표 섹션만 표시 -->
     <div class="section-box">
-      <h3 class="section-title">연결 투자지표</h3>
+      <h3 class="section-title">투자지표</h3>
 
-      <!-- 연도 선택 탭 -->
       <div class="year-tabs">
         <button onclick="showIndicators(event, '2024')" class="active">2024</button>
         <button onclick="showIndicators(event, '2023')">2023</button>
         <button onclick="showIndicators(event, '2022')">2022</button>
       </div>
 
-      <!-- 연도별 투자지표 테이블 -->
       <div id="indicators-2024" class="year-indicators active">
         <table class="investment-table">
           <tbody>
@@ -1421,8 +1418,34 @@
   </div>
 </div>
 
-<!-- 스타일 -->
+<script>
+  function showIndicators(event, year) {
+    document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
+    document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
+
+    document.getElementById(`indicators-${year}`).classList.add("active");
+    event.target.classList.add("active");
+  }
+</script>
+    
+<!-- 투자지표 페이지 스타일 -->
 <style>
+  .section-box {
+    padding: 25px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;         
+  }
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    color: #333;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 6px;
+  }
   .year-tabs {
     margin-bottom: 15px;
   }
@@ -1436,82 +1459,36 @@
   }
   .year-tabs button.active {
     background-color: #007bff;
-    color: white;
+    color: #fff;
     border-color: #007bff;
   }
-  .year-indicators {
-    display: none;
-  }
-  .year-indicators.active {
-    display: block;
-  }
-</style>
-
-<!-- 스크립트 -->
-<script>
-  function showIndicators(event, year) {
-    document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
-    document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
-
-    document.getElementById(`indicators-${year}`).classList.add("active");
-    event.target.classList.add("active");
-  }
-</script>
-            
-<!-- 투자지표 페이지 스타일-->
-<style>
-  .investment-indicators-info {
-    margin-top: 30px;
-  }
-
-  .section-box {
-    padding: 25px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-  }
-
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #333;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 6px;
-  }
-
-  .investment-table-wrapper {
+  .year-indicators { display: none; }
+  .year-indicators.active { display: block; }
+  .investment-table-wrapper {        
     margin-top: 20px;
     overflow-x: auto;
   }
-
   .investment-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    table-layout: fixed;
+    table-layout: fixed;              
   }
-
   .investment-table th,
   .investment-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
   }
-
   .investment-table thead {
     background-color: #f8f8f8;
   }
-
   .investment-table tbody tr:nth-child(even) {
     background-color: #fafafa;
   }
-
   .investment-table tbody tr:hover {
     background-color: #f1f1f1;
   }
-  
   .investment-table th:nth-child(1),
   .investment-table td:nth-child(1),
   .investment-table th:nth-child(2),
