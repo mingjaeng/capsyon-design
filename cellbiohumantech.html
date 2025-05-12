@@ -1448,18 +1448,15 @@
 </div>
     
             
-<!-- 투자지표 페이지 스타일-->
+<!-- 투자지표 페이지 스타일 -->
 <style>
-  .investment-indicators-info {
-    margin-top: 30px;
-  }
-
   .section-box {
     padding: 25px;
     background: #fff;
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+    margin-top: 30px;         
   }
 
   .section-title {
@@ -1471,38 +1468,50 @@
     padding-bottom: 6px;
   }
 
-  .investment-table-wrapper {
+  .year-tabs {
+    margin-bottom: 15px;
+  }
+  .year-tabs button {
+    margin-right: 8px;
+    padding: 6px 12px;
+    border: 1px solid #ccc;
+    background: #f2f2f2;
+    cursor: pointer;
+    border-radius: 5px;
+  }
+  .year-tabs button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+  }
+  .year-indicators { display: none; }
+  .year-indicators.active { display: block; }
+    
+  .investment-table-wrapper {        
     margin-top: 20px;
     overflow-x: auto;
   }
-
   .investment-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    table-layout: fixed;
+    table-layout: fixed;     
   }
-
   .investment-table th,
   .investment-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
   }
-
   .investment-table thead {
     background-color: #f8f8f8;
   }
-
   .investment-table tbody tr:nth-child(even) {
     background-color: #fafafa;
   }
-
   .investment-table tbody tr:hover {
     background-color: #f1f1f1;
   }
-
-  /* 항목열과 값열 너비 균등 분배 */
   .investment-table th:nth-child(1),
   .investment-table td:nth-child(1),
   .investment-table th:nth-child(2),
@@ -1510,7 +1519,7 @@
     width: 50%;
   }
 </style>
-
+    
 <!-- 리포트 페이지 -->
 <div id="reports-page" class="sub-page">
   <div class="company-info">
