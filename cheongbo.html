@@ -1525,25 +1525,12 @@
     color: white;
     border-color: #28a745;
   }
-<style>
-  .indicator-tabs {
-    margin-bottom: 15px;
-  }
 
-  .indicator-tabs button {
-    margin-right: 8px;
-    padding: 6px 12px;
-    border: 1px solid #ccc;
-    background: #f2f2f2;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-
-   /* 차트 영역에 pointer-events 설정 */
+  /* 차트 영역 클릭 가능하도록 수정 */
   #indicatorChart {
     position: relative; /* 차트 영역이 다른 요소들보다 아래에 있도록 */
     z-index: 1;
-    pointer-events: none; /* 차트 영역 클릭 방지 */
+    pointer-events: auto; /* 클릭 가능하도록 설정 */
   }
 
   /* 섹션 박스가 차트보다 위에 오도록 */
