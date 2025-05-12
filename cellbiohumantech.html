@@ -747,19 +747,23 @@
 </head>
 <body>
     <div class="header">
-        <div class="header-content">
-            <div class="logo">
-                <span>2더하기8은</span> 12조
-            </div>
-    <div class="search-bar">
-        <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
+      <div class="header-content">
+        <div class="logo">
+          <a href="index.html" style="text-decoration: none; color: inherit;">
+            <span>2더하기8은</span> 12조
+          </a>
+        </div>
+        <div class="search-bar">
+          <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
             <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
             <button type="submit">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+              </svg>
             </button>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
     <div class="main-nav">
         <ul class="nav-items">
@@ -1110,131 +1114,114 @@
   });
 </script>
 
-<!-- 통합된 기본 스타일 -->
+<!-- 재무제표 페이지 스타일 -->
 <style>
-  /* ▶ 탭 메뉴 스타일 */
-  .tab-menu {
-    display: flex;
-    gap: 12px;
-    margin: 16px 0;
-    padding: 0;
-    list-style: none;
-  }
+/* ▶ 탭 메뉴 스타일 */
+.tab-menu {
+  display: flex;
+  gap: 12px;
+  margin: 16px 0;
+  padding: 0;
+  list-style: none;
+}
 
-  .tab-menu li {
-    padding: 8px 16px;
-    background: #f1f1f1;
-    border-radius: 6px;
-    cursor: pointer;
-    font-weight: 500;
-  }
+.tab-menu li {
+  padding: 8px 16px;
+  background: #f1f1f1;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+}
 
-  .tab-menu li.active {
-    background: #007bff;
-    color: #fff;
-  }
+.tab-menu li.active {
+  background: #007bff;
+  color: #fff;
+}
 
-  .tab-content {
-    display: none;
-    margin-top: 10px;
-  }
+/* ▶ 탭 콘텐츠 */
+.tab-content {
+  display: none;
+  margin-top: 10px;
+}
+.tab-content.active {
+  display: block;
+}
 
-  .tab-content.active {
-    display: block;
-  }
+/* ▶ 섹션 박스 레이아웃 */
+.section-box {
+  margin-top: 30px;
+  padding: 25px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #333;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
 
-  /* ▶ 재무제표 박스 레이아웃 */
-  .section-box {
-    margin-top: 30px;
-    padding: 25px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
+/* ▶ 재무 정보 설명 (비활성 중이지만 보존) */
+.financial-info p {
+  font-size: 14px;
+  margin: 5px 0;
+}
 
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #333;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 6px;
-  }
+/* ▶ 재무표 영역 스타일 */
+.financial-table-wrapper {
+  margin-top: 20px;
+  overflow-x: auto;
+}
 
-  /* ▶ 재무 정보 설명 (현재는 삭제했지만 혹시 다시 쓰일 경우 대비) */
-  .financial-info p {
-    font-size: 14px;
-    margin: 5px 0;
-  }
+.financial-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+  margin-top: 10px;
+}
+.financial-table th,
+.financial-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+}
+.financial-table thead {
+  background-color: #f8f8f8;
+}
+.financial-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+.financial-table tbody tr:hover {
+  background-color: #f1f1f1;
+}
 
-  /* ▶ 재무표 전체 영역 스타일 */
-  .financial-table-wrapper {
-    margin-top: 20px;
-    overflow-x: auto;
-  }
+/* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
+.financial-table th:first-child,
+.financial-table td:first-child {
+  width: 25%;
+  text-align: left;
+  padding-left: 16px;
+}
 
-  .financial-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 10px;
-    font-size: 14px;
-  }
+/* ▶ 연도 열: 동일 폭 */
+.financial-table th:nth-child(n+2):nth-child(-n+4),
+.financial-table td:nth-child(n+2):nth-child(-n+4) {
+  width: 25%;
+}
 
-  .financial-table th,
-  .financial-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-
-  .financial-table thead {
-    background-color: #f8f8f8;
-  }
-
-  .financial-table tbody tr:nth-child(even) {
-    background-color: #fafafa;
-  }
-
-  .financial-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
-
-/* ✅ 항목(첫 번째 열)만 왼쪽 정렬 */
-  .financial-table td:first-child {
-    text-align: left;
-    padding-left: 16px;
-  }
-
-/* 항목(첫 번째 열)은 왼쪽 정렬 + 좁은 폭 */
-  .financial-table th:nth-child(1),
-  .financial-table td:nth-child(1) {
-    width: 25%;
-    text-align: left;
-    padding-left: 16px;
-  }    
-    
-/* 연도 칸들은 균등한 폭 설정 */
-  .financial-table th:nth-child(2),
-  .financial-table th:nth-child(3),
-  .financial-table th:nth-child(4),
-  .financial-table td:nth-child(2),
-  .financial-table td:nth-child(3),
-  .financial-table td:nth-child(4) {
-    width: 25%;
-  }  
-
-/* ▶ 계층 구조(depth)에 따른 들여쓰기 및 스타일링 */
+/* ▶ 계층 구조 들여쓰기 및 강조 */
 .financial-table td.depth-0 {
   font-weight: bold;
   background-color: #f8f8f8;
 }
-
 .financial-table td.depth-1 {
   padding-left: 32px;
   font-weight: 500;
 }
-
 .financial-table td.depth-2 {
   padding-left: 48px;
   color: #555;
