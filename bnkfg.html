@@ -1406,7 +1406,7 @@
   </div>
 </div>
             
-<!-- 스타일 추가 -->
+<!-- 투자지표 페이지 스타일-->
 <style>
   .investment-indicators-info {
     margin-top: 30px;
@@ -1438,6 +1438,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
+    table-layout: fixed; /* 열 너비 균등 분배를 위해 추가 */
   }
 
   .investment-table th,
@@ -1458,7 +1459,16 @@
   .investment-table tbody tr:hover {
     background-color: #f1f1f1;
   }
+
+  /* 항목열과 값열 너비 균등 분배 */
+  .investment-table th:nth-child(1),
+  .investment-table td:nth-child(1),
+  .investment-table th:nth-child(2),
+  .investment-table td:nth-child(2) {
+    width: 50%;
+  }
 </style>
+
 
 <!-- 리포트 페이지 -->
 <div id="reports-page" class="sub-page">
