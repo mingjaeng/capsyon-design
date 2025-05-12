@@ -1526,22 +1526,42 @@
     border-color: #28a745;
   }
 
-  /* 차트 영역 클릭 가능하도록 수정 */
+ <!-- 스타일 -->
+<style>
+  /* 상세 목차에 대한 클릭 가능 설정 */
+  body {
+    pointer-events: auto; /* 페이지 전체 클릭 가능하도록 설정 */
+  }
+
+  /* indicatorChart 클릭 가능 설정 */
   #indicatorChart {
-    position: relative; /* 차트 영역이 다른 요소들보다 아래에 있도록 */
-    z-index: 1;
-    pointer-events: auto; /* 클릭 가능하도록 설정 */
+    position: relative;
+    z-index: 1; /* 다른 요소보다 아래로 위치시킴 */
+    pointer-events: auto; /* 차트 클릭 가능 */
   }
 
   /* 섹션 박스가 차트보다 위에 오도록 */
   .section-box {
-    position: relative; /* 섹션을 relative로 설정 */
-    z-index: 2; /* 섹션이 차트보다 위에 오도록 설정 */
+    position: relative;
+    z-index: 2; /* 차트보다 위에 오도록 */
   }
 
-  /* 투명한 배경을 추가해서 클릭이 가능하게 */
+  /* 모든 섹션의 투명한 배경을 유지 */
   .section-box, #indicatorChart {
     background: transparent;
+  }
+
+  /* 추가적으로 클릭을 방해할 수 있는 요소들에 대한 수정 */
+  .section-box, .indicator-tabs, .investment-table, .year-tabs, .year-indicators {
+    position: relative;
+    z-index: 10; /* 해당 요소들이 다른 것들보다 우선적으로 클릭되도록 */
+  }
+
+  /* 버튼 클릭 효과 */
+  .indicator-tabs button.active {
+    background-color: #28a745;
+    color: white;
+    border-color: #28a745;
   }
 </style>
     
