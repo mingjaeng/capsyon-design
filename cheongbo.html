@@ -277,7 +277,7 @@
             font-weight: bold;
         }
         
-        /* 탭 메뉴 스타일 */
+        /* 상세목차 메뉴 스타일 */
         .tab-menu {
             display: flex;
             background-color: #f8f8f8;
@@ -300,7 +300,7 @@
             display: block;
         }
         
-        /* 재무제표 스타일 */
+        /* 재무제표 상세목차 */
         .financial-statement {
             width: 100%;
             border-collapse: collapse;
@@ -352,7 +352,7 @@
             margin-bottom: 5px;
         }
 
-        /* 기업정보 페이지 스타일 */
+        /* 기업정보 상세목차 */
         .company-profile {
             display: none;
             padding: 20px;
@@ -387,7 +387,7 @@
             text-align: left;
         }
         
-        /* 페이지 컨테이너 */
+        /* 페이지 상세목차 */
         .page-container {
             display: none;
         }
@@ -395,7 +395,7 @@
             display: block;
         }
         
-        /* 경제지표 페이지 스타일 */
+        /* 경제지표 상세목차 */
         .ratio-table {
             width: 100%;
             border-collapse: collapse;
@@ -415,7 +415,7 @@
             text-align: left;
         }
         
-        /* 투자지표 페이지 스타일 */
+        /* 투자지표 상세목차 */
         .investment-indicators {
             margin-top: 20px;
         }
@@ -441,7 +441,7 @@
             color: #999;
         }
         
-        /* 리포트 페이지 스타일 */
+        /* 리포트 상세목차 */
         .report-list {
             margin-top: 20px;
         }
@@ -469,7 +469,7 @@
             line-height: 1.5;
         }
         
-        /* 뉴스 페이지 스타일 */
+        /* 뉴스 상세목차 */
         .news-list {
             margin-top: 20px;
         }
@@ -748,11 +748,11 @@
   
 </head>
 <body>
-    <div class="header">
-        <div class="header-content">
-            <div class="logo">
-                <span>웹 사이트</span> 이름
-            </div>
+    <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+            <span>2더하기8은 12조</span>
+        </a>
+    </div>
     <div class="search-bar">
         <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
             <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
@@ -763,9 +763,6 @@
             </button>
         </form>
     </div>
-        </div>
-    </div>
-    
     <div class="main-nav">
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>
@@ -774,7 +771,6 @@
     </div>
 
     <script>
-        const companyMap = {
         const companyMap = {
             "AP위성": "apsi.html",
             "BNK금융지주": "bnkfg.html",
@@ -825,22 +821,18 @@
             "트윔": "twim21.html",
             "유아이디": "uidkorea.html",
         };
-        };
-
         function goToCompanyPage() {
             const input = document.getElementById("searchInput").value.trim().toLowerCase();
-
             if (companyMap[input]) {
                 window.location.href = companyMap[input];
             } else {
                 alert("해당 기업 정보를 찾을 수 없습니다.");
             }
-
             return false;
         }
 </script>
+
 </body>
-    
     <!-- 기업정보 페이지-->
     <div id="company-info-page" class="page-container active">
         <div class="sub-nav">
@@ -859,7 +851,7 @@
     <div class="company-info">
         <div class="company-header">
             <div>
-                <span class="company-name">BNK금융지주</span>
+                <span class="company-name">CBI</span>
                 <span class="company-code">138930</span>
                 <span>12월 결산</span>
             </div>
@@ -1489,8 +1481,8 @@
         KSE 코스피 금융 | FICS 상업은행
       </div>
     </div>
-  </div> <!-- company-info 끝 -->
-</div> <!-- reports-page 끝 -->
+  </div>
+</div>
 
   
 <!-- 뉴스 페이지 -->
