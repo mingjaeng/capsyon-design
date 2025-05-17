@@ -1,1 +1,113 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title id="page-title">기업 상세정보</title>
+  <link rel="stylesheet" href="style.css" />
+  <script src="companyData.js"></script>
+</head>
+<body>
+  <!-- 상단 헤더 영역 -->
+  <div class="header">
+    <div class="header-content">
+      <div class="logo">
+        <a href="index.html" style="text-decoration: none; color: inherit;">
+          <span>2더하기8은</span> 12조
+        </a>
+      </div>
+      <div class="search-bar">
+        <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
+          <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
+          <button type="submit">검색</button>
+        </form>
+      </div>
+    </div>
+  </div>
 
+  <!-- 내비게이션 탭 -->
+  <div class="main-nav">
+    <ul class="nav-items">
+      <li class="active">기업정보</li>
+    </ul>
+  </div>
+
+  <!-- 기업 정보 본문 -->
+  <div class="company-info">
+    <div class="company-header">
+      <div>
+        <span class="company-name" id="company-name">기업명</span>
+        <span class="company-code" id="company-code">--</span>
+        <span id="fiscal-month">--</span>
+      </div>
+      <div id="industry">--</div>
+    </div>
+
+    <!-- 기업 개요 -->
+    <div class="company-profile-section">
+      <h3>기업 개요</h3>
+      <table class="company-detail-table">
+        <tr><th>기업명</th><td id="detail-name">--</td><th>대표자</th><td id="ceo">--</td></tr>
+        <tr><th>설립일</th><td id="found-date">--</td><th>상장일</th><td id="list-date">--</td></tr>
+        <tr><th>업종명</th><td colspan="3" id="category">--</td></tr>
+        <tr><th>주소</th><td colspan="3" id="address">--</td></tr>
+        <tr><th>홈페이지</th><td colspan="3" id="homepage">--</td></tr>
+      </table>
+      <div class="company-profile-section">
+        <p id="description">(해당 기업 개요는 직접 입력합니다)</p>
+      </div>
+    </div>
+
+    <!-- 재무제표 영역 -->
+    <div class="company-profile-section">
+      <h3>재무제표</h3>
+      <table class="company-detail-table">
+        <tr><th>년도</th><th>매출액</th><th>영업이익</th><th>당기순이익</th></tr>
+        <tr>
+          <td id="finance-year">--</td>
+          <td id="revenue">--</td>
+          <td id="operating-income">--</td>
+          <td id="net-income">--</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 기업 데이터 동적 삽입 JS -->
+  <script>
+    function goToCompanyPage() {
+      const keyword = document.getElementById("searchInput").value.trim();
+      if (keyword) {
+        window.location.href = `detail.html?company=${encodeURIComponent(keyword)}`;
+      }
+      return false;
+    }
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const companyName = urlParams.get("company");
+
+    if (!companyData[companyName]) {
+      document.body.innerHTML = `<h2>해당 기업 데이터를 찾을 수 없습니다: ${companyName}</h2>`;
+    } else {
+      const data = companyData[companyName];
+      document.title = `${data.name} - 상세정보`;
+      document.getElementById("company-name").textContent = data.name;
+      document.getElementById("detail-name").textContent = data.name;
+      document.getElementById("company-code").textContent = data.code;
+      document.getElementById("ceo").textContent = data.ceo;
+      document.getElementById("found-date").textContent = data.foundDate;
+      document.getElementById("list-date").textContent = data.listDate;
+      document.getElementById("category").textContent = data.category;
+      document.getElementById("address").textContent = data.address;
+      document.getElementById("homepage").innerHTML = `<a href="${data.homepage}" target="_blank">${data.homepage}</a>`;
+      document.getElementById("description").textContent = data.description;
+      document.getElementById("industry").textContent = data.industry;
+      document.getElementById("fiscal-month").textContent = data.fiscal;
+      document.getElementById("finance-year").textContent = data.financeYear;
+      document.getElementById("revenue").textContent = data.revenue;
+      document.getElementById("operating-income").textContent = data.operatingIncome;
+      document.getElementById("net-income").textContent = data.netIncome;
+    }
+  </script>
+</body>
+</html>
