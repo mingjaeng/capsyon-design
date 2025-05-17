@@ -1,36 +1,34 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>2더하기8은 12조</title>
-
+   <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>2더하기8은 12조</title>
 <script>
-const companyMap = {
-"AP위성": "apsi.html",
-"데브시스터즈": "devsisters.html",
-"한선엔지니어링": "ehansun.html",
-"고려제강": "kiswire.html",
-"메카로": "mecaro.html",
-"미래에셋증권": "miraeasset.html",
-"폴라리스AI": "polarisai.html",
-"로보로보": "roborobo.html",
-"셀바스헬스케어": "selvashealthcare.html",
-"성우하이텍": "sungwoo.html",
-};
-
-function goToCompanyPage() {
-const input = document.getElementById("searchInput").value.trim();
-if (companyMap[input]) {
-window.location.href = companyMap[input];
-} else {
-alert("해당 기업 정보를 찾을 수 없습니다.");
-}
-return false;
-}
-
+   const companyMap = {
+      "AP위성": "apsi.html",
+      "데브시스터즈": "devsisters.html",
+      "한선엔지니어링": "ehansun.html",
+      "고려제강": "kiswire.html",
+      "메카로": "mecaro.html",
+      "미래에셋증권": "miraeasset.html",
+      "폴라리스AI": "polarisai.html",
+      "로보로보": "roborobo.html",
+      "셀바스헬스케어": "selvashealthcare.html",
+      "성우하이텍": "sungwoo.html",
+   };
+   function goToCompanyPage() {
+      const input = document.getElementById("searchInput").value.trim();
+      if (companyMap[input]) {
+         window.location.href = companyMap[input];
+      } else {
+         alert("해당 기업 정보를 찾을 수 없습니다.");
+      }
+      return false;
+   }
 </script>
-<link rel="stylesheet" href="style.css">
+      <link rel="stylesheet" href="style.css">
+      
 <style>
     * {
         margin: 0;
@@ -707,31 +705,30 @@ return false;
 
 </head>
 <body>
-<div class="header">
-<div class="header-content">
-<div class="logo">
-<a href="index.html" style="text-decoration: none; color: inherit;">
-<span>2더하기8은</span> 12조
-</a>
-</div>
-<div class="search-bar">
-<form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
-<input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
-<button type="submit">
-<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-</svg>
-</button>
-</form>
-</div>
-</div>
-</div>
-<div class="main-nav">
-<ul class="nav-items">
-<li data-page="company-info-page" class="active">기업정보</li>
-
-</ul>
-</div>
+   <div class="header">
+      <div class="header-content">
+         <div class="logo">
+            <a href="index.html" style="text-decoration: none; color: inherit;">
+               <span>2더하기8은</span> 12조
+            </a>
+         </div>
+         <div class="search-bar">
+            <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
+               <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
+               <button type="submit">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                     <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+               </button>
+            </form>
+         </div>
+      </div>
+   </div>
+   <div class="main-nav">
+      <ul class="nav-items">
+         <li data-page="company-info-page" class="active">기업정보</li>
+      </ul>
+   </div>
 <script>
      const companyMap = {
         "AP위성": "apsi.html",
@@ -772,77 +769,75 @@ return false;
 
 <!-- 기업개요 페이지 -->
 <div id="company-overview-page" class="sub-page active">
-<div class="company-info">
-<div class="company-header">
-<div>
-<span class="company-name">셀바이오휴먼텍</span>
-<span class="company-code">318160</span>
-<span>12월 결산</span>
-</div>
-<div>
-KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
-</div>
-</div>
-<div class="company-profile active">
-<div class="company-profile-section">
-<h3>기업 개요</h3>
-<table class="company-detail-table">
-<tr>
-<th>기업명</th>
-<td>셀바이오휴먼텍</td>
-<th>대표자</th>
-<td>이권선</td>
-</tr>
-<tr>
-<th>설립일</th>
-<td>2015년 07월 07일</td>
-<th>상장일</th>
-<td>2023년 04월 20일</td>
-</tr>
-<tr>
-<th>업종명</th>
-<td colspan="3">섬유제품 제조업</td>
-</tr>
-<tr>
-<th>주소</th>
-<td colspan="3">경기도 안양시 동안구 시민대로 401 대륭테크노타운15차 제2001호,제2101호</td>
-</tr>
-<tr>
-<th>홈페이지</th>
-<td colspan="3"><a href="[http://cellbiohumantech.co.kr](http://cellbiohumantech.co.kr/)" target="_blank">[http://cellbiohumantech.co.kr](http://cellbiohumantech.co.kr/)</a></td>
-</tr>
-</table>
-</div>
-<div class="company-profile-section">
-<h3>기업개요</h3>
-<p>동사는 2015년 화장품용 섬유 제조·판매 목적으로 설립되어 2023년 코스닥 상장함.</p>
-<p>국내법인 이루람과 베트남 법인 CELLBIO HUMANTECH VINA를 자회사로 보유하며, 셀룰로스 분자 제어 기술이 적용된 PT CELL, SEMI GEL 등을 개발해 화장품 마스크팩 시장에 공급.</p>
-<p>베트남 다낭에 15,000평 규모 부직포 공장을 운영하면서 화성 바이오밸리에 600평 메디컬 센터 구축하여 사업 다각화 추진 중.</p>
-</div>
-</table>
-</div>
-</div>
-</div>
+   <div class="company-info">
+      <div class="company-header">
+         <div>
+            <span class="company-name">셀바이오휴먼텍</span>
+            <span class="company-code">318160</span>
+            <span>12월 결산</span>
+         </div>
+         <div>
+            KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+         </div>
+      </div>
+      <div class="company-profile active">
+         <div class="company-profile-section">
+            <h3>기업 개요</h3>
+            <table class="company-detail-table">
+               <tr>
+                  <th>기업명</th>
+                  <td>셀바이오휴먼텍</td>
+                  <th>대표자</th>
+                  <td>이권선</td>
+               </tr>
+               <tr>
+                  <th>설립일</th>
+                  <td>2015년 07월 07일</td>
+                  <th>상장일</th>
+                  <td>2023년 04월 20일</td>
+               </tr>
+               <tr>
+                  <th>업종명</th>
+                  <td colspan="3">섬유제품 제조업</td>
+               </tr>
+               <tr>
+                  <th>주소</th>
+                  <td colspan="3">경기도 안양시 동안구 시민대로 401 대륭테크노타운15차 제2001호,제2101호</td>
+               </tr>
+               <tr>
+                  <th>홈페이지</th>
+                  <td colspan="3"><a href="[http://cellbiohumantech.co.kr](http://cellbiohumantech.co.kr/)" target="_blank">[http://cellbiohumantech.co.kr](http://cellbiohumantech.co.kr/)</a></td>
+               </tr>
+            </table>
+         </div>
+         <div class="company-profile-section">
+            <h3>기업개요</h3>
+            <p>동사는 2015년 화장품용 섬유 제조·판매 목적으로 설립되어 2023년 코스닥 상장함.</p>
+            <p>국내법인 이루람과 베트남 법인 CELLBIO HUMANTECH VINA를 자회사로 보유하며, 셀룰로스 분자 제어 기술이 적용된 PT CELL, SEMI GEL 등을 개발해 화장품 마스크팩 시장에 공급.</p>
+            <p>베트남 다낭에 15,000평 규모 부직포 공장을 운영하면서 화성 바이오밸리에 600평 메디컬 센터 구축하여 사업 다각화 추진 중.</p>
+         </div>
+      </table>
+      </div>
+   </div>
 </div>
 
 <!-- 재무제표 페이지 -->
 <div id="financial-statements-page" class="sub-page">
-
-<div class="company-info">
-<div class="company-header">
-<div>
-<span class="company-name">셀바이오휴먼텍</span>
-<span class="company-code">318160</span>
-<span>12월 결산</span>
-</div>
-<div>
-KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
-</div>
-</div>
+   <div class="company-info">
+      <div class="company-header">
+         <div>
+            <span class="company-name">셀바이오휴먼텍</span>
+            <span class="company-code">318160</span>
+            <span>12월 결산</span>
+         </div>
+         <div>
+            KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+         </div>
+      </div>
 
 <!-- 재무제표 섹션 -->
 <div class="section-box">
-  <h3 class="section-title">재무제표</h3>
+   <h3 class="section-title">재무제표</h3>
   <ul class="tab-menu">
     <li class="active" data-tab="balance-sheet">연결재무상태표</li>
     <li data-tab="income-statement">연결포괄손익계산서</li>
@@ -1037,166 +1032,165 @@ this.classList.add('active');
 
 <!-- 재무제표 페이지 스타일 -->
 <style>
-/* ▶ 탭 메뉴 스타일 */
-.tab-menu {
-display: flex;
-gap: 12px;
-margin: 16px 0;
-padding: 0;
-list-style: none;
-}
+   /* ▶ 탭 메뉴 스타일 */
+   .tab-menu {
+      display: flex;
+      gap: 12px;
+      margin: 16px 0;
+      padding: 0;
+      list-style: none;
+   }
 
-.tab-menu li {
-padding: 8px 16px;
-background: #f1f1f1;
-border-radius: 6px;
-cursor: pointer;
-font-weight: 500;
-}
+   .tab-menu li {
+      padding: 8px 16px;
+      background: #f1f1f1;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 500;
+   }
 
-.tab-menu li.active {
-background: #007bff;
-color: #fff;
-}
+   .tab-menu li.active {
+      background: #007bff;
+      color: #fff;
+   }
 
 /* ▶ 탭 콘텐츠 */
-.tab-content {
-display: none;
-margin-top: 10px;
-}
-.tab-content.active {
-display: block;
-}
+   .tab-content {
+      display: none;
+      margin-top: 10px;
+   }
+   .tab-content.active {
+      display: block;
+   }
 
 /* ▶ 섹션 박스 레이아웃 */
-.section-box {
-margin-top: 30px;
-padding: 25px;
-background: #fff;
-border: 1px solid #ddd;
-border-radius: 10px;
-box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-.section-title {
-font-size: 22px;
-font-weight: 700;
-margin-bottom: 20px;
-color: #333;
-border-bottom: 2px solid #eee;
-padding-bottom: 6px;
-}
+   .section-box {
+      margin-top: 30px;
+      padding: 25px;
+      background: #fff;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+   }
+   .section-title {
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #333;
+      border-bottom: 2px solid #eee;
+      padding-bottom: 6px;
+   }
 
 /* ▶ 재무 정보 설명 (비활성 중이지만 보존) */
-.financial-info p {
-font-size: 14px;
-margin: 5px 0;
-}
+   .financial-info p {
+      font-size: 14px;
+      margin: 5px 0;
+   }
 
 /* ▶ 재무표 영역 스타일 */
-.financial-table-wrapper {
-margin-top: 20px;
-overflow-x: auto;
-}
+   .financial-table-wrapper {
+      margin-top: 20px;
+      overflow-x: auto;
+   }
 
-.financial-table {
-width: 100%;
-border-collapse: collapse;
-font-size: 14px;
-margin-top: 10px;
-}
-.financial-table th,
-.financial-table td {
-border: 1px solid #ddd;
-padding: 10px;
-text-align: center;
-}
-.financial-table thead {
-background-color: #f8f8f8;
-}
-.financial-table tbody tr:nth-child(even) {
-background-color: #fafafa;
-}
-.financial-table tbody tr:hover {
-background-color: #f1f1f1;
-}
+   .financial-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      margin-top: 10px;
+   }
+   .financial-table th,
+   .financial-table td {
+      border: 1px solid #ddd;
+      padding: 10px;
+      text-align: center;
+   }
+   .financial-table thead {
+      background-color: #f8f8f8;
+   }
+   .financial-table tbody tr:nth-child(even) {
+      background-color: #fafafa;
+   }
+   .financial-table tbody tr:hover {
+      background-color: #f1f1f1;
+   }
 
 /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
-.financial-table th:first-child,
-.financial-table td:first-child {
-width: 25%;
-text-align: left;
-padding-left: 16px;
-}
+   .financial-table th:first-child,
+   .financial-table td:first-child {
+      width: 25%;
+      text-align: left;
+      padding-left: 16px;
+   }
 
 /* ▶ 연도 열: 동일 폭 */
-.financial-table th:nth-child(n+2):nth-child(-n+4),
-.financial-table td:nth-child(n+2):nth-child(-n+4) {
-width: 25%;
-}
+   .financial-table th:nth-child(n+2):nth-child(-n+4),
+   .financial-table td:nth-child(n+2):nth-child(-n+4) {
+      width: 25%;
+   }
 
 /* ▶ 계층 구조 들여쓰기 및 강조 */
-.financial-table td.depth-0 {
-font-weight: bold;
-background-color: #f8f8f8;
-}
-.financial-table td.depth-1 {
-padding-left: 32px;
-font-weight: 500;
-}
-.financial-table td.depth-2 {
-padding-left: 48px;
-color: #555;
-}
+   .financial-table td.depth-0 {
+      font-weight: bold;
+      background-color: #f8f8f8;
+   }
+   .financial-table td.depth-1 {
+      padding-left: 32px;
+      font-weight: 500;
+   }
+   .financial-table td.depth-2 {
+      padding-left: 48px;
+      color: #555;
+   }
 </style>
 
 <!-- 경제지표 페이지 -->
 <div id="financial-ratios-page" class="sub-page">
-<div class="company-info">
-<div class="company-header">
-<div>
-<span class="company-name">셀바이오휴먼텍</span>
-<span class="company-code">318160</span>
-<span>12월 결산</span>
-</div>
-<div>
-KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
-</div>
-</div>
-<div class="section-box">
-  <h3 class="section-title">경제지표</h3>
-  <table class="economic-table">
-    <thead>
-      <tr>
-        <th>항목</th>
-        <th>현재</th>
-        <th>변화율</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>환율 (USD/KRW)</td>
-        <td id="usd-krw">--</td>
-        <td id="usd-krw-change">--%</td>
-      </tr>
-      <tr>
-        <td>금시세 (1g)</td>
-        <td id="gold-price">--</td>
-        <td id="gold-price-change">--%</td>
-      </tr>
-      <tr>
-        <td>KOSPI</td>
-        <td id="kospi">--</td>
-        <td id="kospi-change">--%</td>
-      </tr>
-      <tr>
-        <td>KOSDAQ</td>
-        <td id="kosdaq">--</td>
-        <td id="kosdaq-change">--%</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-</div>
+   <div class="company-info">
+      <div class="company-header">
+         <div>
+            <span class="company-name">셀바이오휴먼텍</span>
+            <span class="company-code">318160</span>
+            <span>12월 결산</span>
+         </div>
+         <div>
+            KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+         </div>
+      </div>
+      <div class="section-box">
+         <h3 class="section-title">경제지표</h3>
+         <table class="economic-table">
+            <thead>
+               <tr>
+                  <th>항목</th>
+                  <th>현재</th>
+                  <th>변화율</th>
+               </tr>
+            </thead>
+            <tbody>
+               <tr>
+                  <td>환율 (USD/KRW)</td>
+                  <td id="usd-krw">--</td>
+                  <td id="usd-krw-change">--%</td>
+               </tr>
+               <tr>
+                  <td>금시세 (1g)</td>
+                  <td id="gold-price">--</td>
+                  <td id="gold-price-change">--%</td>
+               </tr>
+               <tr>
+                  <td>KOSPI</td>
+                  <td id="kospi">--</td>
+                  <td id="kospi-change">--%</td>
+               <tr>
+                  <td>KOSDAQ</td>
+                  <td id="kosdaq">--</td>
+                  <td id="kosdaq-change">--%</td>
+               </tr>
+            </tbody>
+         </table>
+      </div>
+   </div>
 </div>
 
 <!-- 경제지표 페이지 스타일 -->
