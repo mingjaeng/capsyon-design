@@ -4,8 +4,93 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title id="page-title">기업 상세정보</title>
-  <link rel="stylesheet" href="style.css" />
   <script src="companyData.js"></script>
+  <style>
+    body {
+      background-color: #f5f5f5;
+      font-family: 'Malgun Gothic', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .header {
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      padding: 20px;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo span {
+      color: #e74c3c;
+      font-weight: bold;
+    }
+    .search-bar input {
+      padding: 8px;
+      font-size: 14px;
+      width: 200px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+    }
+    .search-bar button {
+      padding: 8px 12px;
+      font-size: 14px;
+      border: none;
+      background-color: #e74c3c;
+      color: white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+    .main-nav {
+      background-color: #e74c3c;
+      color: white;
+    }
+    .nav-items {
+      display: flex;
+      list-style: none;
+      margin: 0;
+      padding: 10px 20px;
+    }
+    .nav-items li {
+      margin-right: 20px;
+    }
+    .company-info {
+      max-width: 1000px;
+      margin: 40px auto;
+      background-color: #fff;
+      padding: 30px;
+      box-shadow: 0 0 8px rgba(0,0,0,0.1);
+    }
+    .company-header span {
+      display: inline-block;
+      margin-right: 10px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .company-profile-section h3 {
+      margin-top: 40px;
+      margin-bottom: 15px;
+      border-bottom: 2px solid #e74c3c;
+      padding-bottom: 5px;
+      color: #e74c3c;
+    }
+    .company-detail-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+    .company-detail-table th, .company-detail-table td {
+      border: 1px solid #ccc;
+      padding: 10px;
+      text-align: left;
+    }
+    .company-detail-table th {
+      background-color: #f9f9f9;
+    }
+  </style>
 </head>
 <body>
   <!-- 상단 헤더 영역 -->
