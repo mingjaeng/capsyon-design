@@ -71,6 +71,31 @@
         </tr>
       </table>
     </div>
+
+    <!-- 경제지표 영역 -->
+    <div class="company-profile-section">
+      <h3>경제지표</h3>
+      <table class="company-detail-table">
+        <tr>
+          <th>현재가</th>
+          <td id="stock-price">--</td>
+          <th>전일비</th>
+          <td id="price-change">--</td>
+        </tr>
+        <tr>
+          <th>USD/KRW</th>
+          <td id="usd-krw">--</td>
+          <th>국내 금(원/g)</th>
+          <td id="gold-price">--</td>
+        </tr>
+        <tr>
+          <th>KOSPI</th>
+          <td id="kospi">--</td>
+          <th>KOSDAQ</th>
+          <td id="kosdaq">--</td>
+        </tr>
+      </table>
+    </div>
   </div>
 
   <!-- 기업 데이터 동적 삽입 JS -->
@@ -107,6 +132,12 @@
       document.getElementById("revenue").textContent = data.revenue;
       document.getElementById("operating-income").textContent = data.operatingIncome;
       document.getElementById("net-income").textContent = data.netIncome;
+      document.getElementById("stock-price").textContent = data.stockPrice;
+      document.getElementById("price-change").textContent = data.priceChange;
+      document.getElementById("usd-krw").textContent = data.usdKrw;
+      document.getElementById("gold-price").textContent = data.gold;
+      document.getElementById("kospi").textContent = data.kospi;
+      document.getElementById("kosdaq").textContent = data.kosdaq;
     }
   </script>
 </body>
