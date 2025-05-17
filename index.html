@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>기업 검색 - 메인 페이지</title>
   <style>
     * {
@@ -51,30 +51,31 @@
 
   <h1>기업 검색</h1>
   <form id="searchForm" class="search-bar">
-    <input type="text" id="searchInput" placeholder="기업명 입력 " />
+    <input type="text" id="searchInput" placeholder="기업명 입력" />
     <button type="submit">검색</button>
   </form>
 
 <script>
-  const companyMap = {
-    "AP위성": "apsi.html",
-    "한선엔지니어링": "ehansun.html",
-    "폴라리스AI": "polarisai.html",
-    "셀바스헬스케어": "selvashealthcare.html",
-    "성우하이텍": "sungwoo.html",
-    "미래에셋증권": "miraeasset.html",
-    "메카로": "mecaro.html",
-    "로보로보": "roborobo.html",
-    "데브시스터즈": "devsisters.html",
-    "고려제강": "kiswire.html"
-  };
+  const companyList = [
+    "AP위성",
+    "한선엔지니어링",
+    "폴라리스AI",
+    "셀바스헬스케어",
+    "성우하이텍",
+    "미래에셋증권",
+    "메카로",
+    "로보로보",
+    "데브시스터즈",
+    "고려제강"
+  ];
 
   document.getElementById("searchForm").addEventListener("submit", function (e) {
     e.preventDefault();
     const keyword = document.getElementById("searchInput").value.trim();
 
-    if (companyMap[keyword]) {
-      window.location.href = companyMap[keyword];
+    if (companyList.includes(keyword)) {
+      // ✅ detail.html로 이동 + 회사명 파라미터로 전달
+      window.location.href = `detail.html?company=${encodeURIComponent(keyword)}`;
     } else {
       alert("검색 결과가 없습니다.");
     }
