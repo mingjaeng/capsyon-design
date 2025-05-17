@@ -1,98 +1,163 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title id="page-title">기업 상세정보</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>2더하기8은 12조</title>
+  <link rel="stylesheet" href="style.css">
   <script src="companyData.js"></script>
-  <style>
-    body {
-      background-color: #f9f9f9;
-      font-family: 'Malgun Gothic', sans-serif;
-      margin: 0;
-      padding: 0;
+  <script>
+    const companyMap = {
+      "AP위성": "apsi.html",
+      "데브시스터즈": "devsisters.html",
+      "한선엔지니어링": "ehansun.html",
+      "고려제강": "kiswire.html",
+      "메카로": "mecaro.html",
+      "미래에셋증권": "miraeasset.html",
+      "폴라리스AI": "polarisai.html",
+      "로보로보": "roborobo.html",
+      "셀바스헬스케어": "selvashealthcare.html",
+      "성우하이텍": "sungwoo.html"
+    };
+
+    function goToCompanyPage() {
+      const input = document.getElementById("searchInput").value.trim();
+      if (companyMap[input]) {
+        window.location.href = companyMap[input];
+      } else {
+        alert("해당 기업 정보를 찾을 수 없습니다.");
+      }
+      return false;
     }
-    .header {
-      background-color: #2c3e50;
-      color: #fff;
-      padding: 20px;
-    }
-    .header-content {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      max-width: 1200px;
-      margin: 0 auto;
-    }
-    .logo span {
-      color: #f39c12;
-      font-weight: bold;
-    }
-    .search-bar input {
-      padding: 8px;
-      font-size: 14px;
-      width: 200px;
-      border: none;
-      border-radius: 4px 0 0 4px;
-    }
-    .search-bar button {
-      padding: 8px 12px;
-      font-size: 14px;
-      border: none;
-      background-color: #f39c12;
-      color: white;
-      border-radius: 0 4px 4px 0;
-      cursor: pointer;
-    }
-    .main-nav {
-      background-color: #34495e;
-      color: white;
-    }
-    .nav-items {
-      display: flex;
-      list-style: none;
-      margin: 0;
-      padding: 10px 20px;
-    }
-    .nav-items li {
-      margin-right: 20px;
-    }
-    .company-info {
-      max-width: 1000px;
-      margin: 40px auto;
-      background-color: #fff;
-      padding: 30px;
-      box-shadow: 0 0 8px rgba(0,0,0,0.1);
-    }
-    .company-header span {
-      display: inline-block;
-      margin-right: 10px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .company-profile-section h3 {
-      margin-top: 40px;
-      margin-bottom: 15px;
-      border-bottom: 2px solid #34495e;
-      padding-bottom: 5px;
-      color: #34495e;
-    }
-    .company-detail-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-bottom: 20px;
-    }
-    .company-detail-table th, .company-detail-table td {
-      border: 1px solid #ccc;
-      padding: 10px;
-      text-align: left;
-    }
-    .company-detail-table th {
-      background-color: #ecf0f1;
-    }
-  </style>
+  </script>
+<style>
+/* 여기엔 너가 준 style 코드 전체를 넣을 수 있음 */
+/* 지금은 따로 style.css로 연결되어 있어서 생략함 */
+</style>
+
+<script>
+// 페이지 로드 후 실행되는 함수
+window.onload = function() {
+    setupSubNavigation();
+    setupTabs();
+    setupCalculations();
+};
+
+// 서브 네비게이션 기능 설정
+function setupSubNavigation() {
+    const subNavItems = document.querySelectorAll('.sub-nav-items li');
+
+    subNavItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const parentSubNav = this.closest('.sub-nav-items');
+            parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+            this.classList.add('active');
+
+            const subPageName = this.getAttribute('data-subpage');
+            if (subPageName) {
+                const subPages = document.querySelectorAll('.sub-page');
+                subPages.forEach(subPage => {
+                    subPage.classList.remove('active');
+                });
+                const targetSubPage = document.getElementById(subPageName);
+                if (targetSubPage) {
+                    targetSubPage.classList.add('active');
+                }
+            }
+        });
+    });
+}
+
+// 탭 메뉴 설정
+function setupTabs() {
+    const tabItems = document.querySelectorAll('.tab-item');
+
+    tabItems.forEach(item => {
+        item.addEventListener('click', function() {
+            const parentTabMenu = this.closest('.tab-menu');
+            parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+            this.classList.add('active');
+
+            const targetId = this.getAttribute('data-target');
+            if (targetId) {
+                const parentPage = this.closest('.sub-page');
+                parentPage.querySelectorAll('.tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                const targetContent = document.getElementById(targetId);
+                if (targetContent) {
+                    targetContent.classList.add('active');
+                }
+            }
+        });
+    });
+}
+
+// 계산 함수 설정
+function setupCalculations() {
+    const statBoxes = document.querySelectorAll('.stat-box');
+
+    statBoxes.forEach(box => {
+        const label = box.querySelector('.stat-label').innerText;
+        const valueElement = box.querySelector('.stat-value');
+
+        const inputField = document.createElement('input');
+        inputField.type = 'text';
+        inputField.placeholder = '값 입력';
+        inputField.style.width = '80px';
+        inputField.style.marginTop = '5px';
+        inputField.style.textAlign = 'center';
+        inputField.dataset.label = label;
+
+        const calculatedDiv = document.createElement('div');
+        calculatedDiv.className = 'calculated-value';
+        calculatedDiv.innerText = '--';
+
+        valueElement.innerHTML = '';
+        valueElement.appendChild(inputField);
+        valueElement.appendChild(calculatedDiv);
+
+        inputField.addEventListener('input', calculateValues);
+    });
+}
+
+function calculateValues() {
+    const inputs = document.querySelectorAll('.stat-box input');
+    const values = {};
+
+    inputs.forEach(input => {
+        values[input.dataset.label] = parseFloat(input.value) || 0;
+    });
+
+    inputs.forEach(input => {
+        const calculatedDiv = input.nextElementSibling;
+        const label = input.dataset.label;
+        const value = parseFloat(input.value) || 0;
+
+        if (isNaN(value) || value === 0) {
+            calculatedDiv.innerText = '--';
+            return;
+        }
+
+        switch (label) {
+            case 'PER':
+            case '12M PER':
+            case '업종 PER':
+            case 'PBR':
+                calculatedDiv.innerText = value.toFixed(2);
+                break;
+            case '배당수익률':
+                calculatedDiv.innerText = value.toFixed(2) + '%';
+                break;
+            default:
+                calculatedDiv.innerText = value.toFixed(2);
+        }
+    });
+}
+</script>
 </head>
 <body>
+  <!-- 본문 시작 -->
   <div class="header">
     <div class="header-content">
       <div class="logo">
@@ -101,8 +166,8 @@
         </a>
       </div>
       <div class="search-bar">
-        <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
-          <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
+        <form onsubmit="return goToCompanyPage()">
+          <input type="text" id="searchInput" placeholder="기업명을 입력하세요">
           <button type="submit">검색</button>
         </form>
       </div>
@@ -111,112 +176,100 @@
 
   <div class="main-nav">
     <ul class="nav-items">
-      <li class="active">기업정보</li>
+      <li class="active"><a href="#overview">기업 개요</a></li>
+      <li><a href="#finance">재무제표</a></li>
+      <li><a href="#investment">투자지표</a></li>
+      <li><a href="#economy">경제지표</a></li>
+      <li><a href="#report">리포트</a></li>
+      <li><a href="#news">뉴스</a></li>
     </ul>
   </div>
 
-  <div class="company-info">
-    <div class="company-header">
-      <div>
-        <span class="company-name" id="company-name">기업명</span>
-        <span class="company-code" id="company-code">--</span>
-        <span id="fiscal-month">--</span>
-      </div>
-      <div id="industry">--</div>
-    </div>
-
-    <div class="company-profile-section">
-      <h3>기업 개요</h3>
-      <table class="company-detail-table">
-        <tr><th>기업명</th><td id="detail-name">--</td><th>대표자</th><td id="ceo">--</td></tr>
-        <tr><th>설립일</th><td id="found-date">--</td><th>상장일</th><td id="list-date">--</td></tr>
-        <tr><th>업종명</th><td colspan="3" id="category">--</td></tr>
-        <tr><th>주소</th><td colspan="3" id="address">--</td></tr>
-        <tr><th>홈페이지</th><td colspan="3" id="homepage">--</td></tr>
-      </table>
-      <div class="company-profile-section">
-        <p id="description">(해당 기업 개요는 직접 입력합니다)</p>
-      </div>
-    </div>
-
-    <div class="company-profile-section">
-      <h3>재무제표</h3>
-      <table class="company-detail-table">
-        <tr><th>년도</th><th>매출액</th><th>영업이익</th><th>당기순이익</th></tr>
-        <tr>
-          <td id="finance-year">--</td>
-          <td id="revenue">--</td>
-          <td id="operating-income">--</td>
-          <td id="net-income">--</td>
-        </tr>
-      </table>
-    </div>
-
-    <div class="company-profile-section">
-      <h3>경제지표</h3>
-      <table class="company-detail-table">
-        <tr>
-          <th>현재가</th>
-          <td id="stock-price">--</td>
-          <th>전일비</th>
-          <td id="price-change">--</td>
-        </tr>
-        <tr>
-          <th>USD/KRW</th>
-          <td id="usd-krw">--</td>
-          <th>국내 금(원/g)</th>
-          <td id="gold-price">--</td>
-        </tr>
-        <tr>
-          <th>KOSPI</th>
-          <td id="kospi">--</td>
-          <th>KOSDAQ</th>
-          <td id="kosdaq">--</td>
-        </tr>
-      </table>
-    </div>
+  <div class="sub-nav">
+    <ul class="sub-nav-items">
+      <li class="active" data-subpage="overview-section">기업 개요</li>
+      <li data-subpage="finance-section">재무제표</li>
+      <li data-subpage="investment-section">투자지표</li>
+      <li data-subpage="economy-section">경제지표</li>
+      <li data-subpage="report-section">리포트</li>
+      <li data-subpage="news-section">뉴스</li>
+    </ul>
   </div>
 
-  <script>
-    function goToCompanyPage() {
-      const keyword = document.getElementById("searchInput").value.trim();
-      if (keyword) {
-        window.location.href = `detail.html?company=${encodeURIComponent(keyword)}`;
-      }
-      return false;
-    }
+  <div class="page-container">
+    <div class="sub-page active" id="overview-section">
+      <div class="company-info">
+        <div class="company-header">
+          <div>
+            <span class="company-name" id="company-name">기업명</span>
+            <span class="company-code" id="company-code">--</span>
+          </div>
+          <div id="industry">--</div>
+        </div>
 
-    const urlParams = new URLSearchParams(window.location.search);
-    const companyName = urlParams.get("company");
+        <div class="company-profile-section">
+          <h3>기업 개요</h3>
+          <table class="company-detail-table">
+            <tr><th>기업명</th><td id="detail-name">--</td><th>대표자</th><td id="ceo">--</td></tr>
+            <tr><th>설립일</th><td id="found-date">--</td><th>상장일</th><td id="list-date">--</td></tr>
+            <tr><th>업종명</th><td colspan="3" id="category">--</td></tr>
+            <tr><th>주소</th><td colspan="3" id="address">--</td></tr>
+            <tr><th>홈페이지</th><td colspan="3" id="homepage">--</td></tr>
+          </table>
+          <p id="description">(해당 기업 개요는 직접 입력합니다)</p>
+        </div>
+      </div>
+    </div>
 
-    if (!companyData[companyName]) {
-      document.body.innerHTML = `<h2>해당 기업 데이터를 찾을 수 없습니다: ${companyName}</h2>`;
-    } else {
-      const data = companyData[companyName];
-      document.title = `${data.name} - 상세정보`;
-      document.getElementById("company-name").textContent = data.name;
-      document.getElementById("detail-name").textContent = data.name;
-      document.getElementById("company-code").textContent = data.code;
-      document.getElementById("ceo").textContent = data.ceo;
-      document.getElementById("found-date").textContent = data.foundDate;
-      document.getElementById("list-date").textContent = data.listDate;
-      document.getElementById("category").textContent = data.category;
-      document.getElementById("address").textContent = data.address;
-      document.getElementById("homepage").innerHTML = `<a href="${data.homepage}" target="_blank">${data.homepage}</a>`;
-      document.getElementById("description").textContent = data.description;
-      document.getElementById("industry").textContent = data.industry;
-      document.getElementById("fiscal-month").textContent = data.fiscal;
-      document.getElementById("finance-year").textContent = data.financeYear;
-      document.getElementById("revenue").textContent = data.revenue;
-      document.getElementById("operating-income").textContent = data.operatingIncome;
-      document.getElementById("net-income").textContent = data.netIncome;
-      document.getElementById("stock-price").textContent = data.stockPrice;
-      document.getElementById("price-change").textContent = data.priceChange;
-      document.getElementById("usd-krw").textContent = data.usdKrw;
-      document.getElementById("gold-price").textContent = data.gold;
-      document.getElementById("kospi").textContent = data.kospi;
-      document.getElementById("kosdaq").textContent = data.kosdaq;
-    }
-  </script>
-</body>
-</html>
+    <div class="sub-page" id="finance-section">
+      <div class="company-info">
+        <h3>재무제표</h3>
+        <table class="detail-table">
+          <tr><th>년도</th><th>매출액</th><th>영업이익</th><th>당기순이익</th></tr>
+          <tr>
+            <td id="finance-year">--</td>
+            <td id="revenue">--</td>
+            <td id="operating-income">--</td>
+            <td id="net-income">--</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub-page" id="investment-section">
+      <div class="company-info">
+        <h3>투자지표</h3>
+        <table class="detail-table">
+          <tr><th>PER</th><td id="per">--</td><th>PBR</th><td id="pbr">--</td></tr>
+          <tr><th>ROE</th><td id="roe">--</td><th>EPS</th><td id="eps">--</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub-page" id="economy-section">
+      <div class="company-info">
+        <h3>경제지표</h3>
+        <table class="detail-table">
+          <tr><th>현재가</th><td id="stock-price">--</td><th>전일비</th><td id="price-change">--</td></tr>
+          <tr><th>USD/KRW</th><td id="usd-krw">--</td><th>국내 금(원/g)</th><td id="gold-price">--</td></tr>
+          <tr><th>KOSPI</th><td id="kospi">--</td><th>KOSDAQ</th><td id="kosdaq">--</td></tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="sub-page" id="report-section">
+      <div class="company-info">
+        <h3>리포트</h3>
+        <p>(해당 기업의 리포트는 추후 제공될 예정입니다.)</p>
+      </div>
+    </div>
+
+    <div class="sub-page" id="news-section">
+      <div class="company-info">
+        <h3>뉴스</h3>
+        <ul class="news-list" id="news-list">
+          <li>뉴스 데이터가 없습니다.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
