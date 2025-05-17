@@ -355,29 +355,6 @@ body {
   </div>
 </body>
 
-   <body>
-  <div class="header">
-    <div class="header-content">
-      <div class="logo">
-        <a href="index.html" style="text-decoration: none; color: inherit;">
-          <span>2더하기8은</span> 12조
-        </a>
-      </div>
-      <div class="search-bar">
-        <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
-          <input type="text" id="searchInput" placeholder="기업명 입력">
-          <button type="submit">검색</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <div class="main-nav">
-    <ul class="nav-items">
-      <li data-page="company-info-page" class="active">기업정보</li>
-    </ul>
-  </div>
-
   <!-- 기업정보 페이지 -->
   <div id="company-info-page" class="page-container active">
     <div class="sub-nav">
@@ -446,12 +423,10 @@ body {
       </div>
     </div>
   </div>
-</body>
-
-   <!-- 재무제표 섹션 -->
-<div class="section-box">
-   <h3 class="section-title">재무제표</h3>
-  <ul class="tab-menu">
+  <!-- 재무제표 섹션 -->
+  <div class="section-box">
+    <h3 class="section-title">재무제표</h3>
+    <ul class="tab-menu">
     <li class="active" data-tab="balance-sheet">연결재무상태표</li>
     <li data-tab="income-statement">연결포괄손익계산서</li>
     <li data-tab="cash-flow">연결현금흐름표</li>
@@ -758,17 +733,17 @@ this.classList.add('active');
 </style>
 
    <!-- 경제지표 페이지 -->
-<div id="financial-ratios-page" class="sub-page">
-   <div class="company-info">
+  <div id="financial-ratios-page" class="sub-page">
+    <div class="company-info">
       <div class="company-header">
-         <div>
+        <div>
             <span class="company-name">셀바이오휴먼텍</span>
             <span class="company-code">318160</span>
             <span>12월 결산</span>
-         </div>
-         <div>
+        </div>
+        <div>
             KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
-         </div>
+        </div>
       </div>
       <div class="section-box">
          <h3 class="section-title">경제지표</h3>
@@ -803,7 +778,7 @@ this.classList.add('active');
             </tbody>
          </table>
       </div>
-   </div>
+    </div>
 </div>
 
 <!-- 경제지표 페이지 스타일 -->
