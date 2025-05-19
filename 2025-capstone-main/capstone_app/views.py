@@ -1,3 +1,14 @@
+from django.shortcuts import redirect
+from django.http import JsonResponse
+import requests
+from bs4 import BeautifulSoup
+
+def home_redirect(request):
+    return redirect('https://mingjaeng.github.io/capsyon-design/')
+
+# 아래는 기존에 작성한 stock_info_api 함수와 관련 함수들
+
+# 기업명 → 종목코드 검색
 def get_stock_code(company_name):
     search_url = f"https://finance.naver.com/search/searchList.naver?query={company_name}"
     res = requests.get(search_url, headers={'User-Agent': 'Mozilla/5.0'})
