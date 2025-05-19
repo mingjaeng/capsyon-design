@@ -1,0 +1,6 @@
+from django.urls import path
+from . import views
+
+urlpatterns = [
+    path('stock-info/', views.stock_info_api, name='stock_info'),  # /stock-info/?name=삼성전자
+]
