@@ -1429,30 +1429,69 @@ KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
 
 <!-- 뉴스 페이지 -->
 <div id="news-page" class="sub-page">
-<div class="company-info">
-<div class="company-header">
-<div>
-<span class="company-name">셀바이오휴먼텍</span>
-<span class="company-code">318160</span>
-<span>12월 결산</span>
-</div>
-<div>
-KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
-</div>
-</div>
-<div class="section-box">
-<h3 class="section-title">관련 뉴스</h3>
-<div class="news-list">
-<ul>
-<li><a href="#" target="_blank">[이데일리] 뉴스1</a></li>
-<li><a href="#" target="_blank">[연합뉴스] 뉴스2</a></li>
-<li><a href="#" target="_blank">[매일경제] 뉴스3</a></li>
-</ul>
-</div>
-</div>
-</div>
+   <div class="company-info">
+      <div class="company-header">
+         <div>
+            <span class="company-name">셀바이오휴먼텍</span>
+            <span class="company-code">318160</span>
+            <span>12월 결산</span>
+         </div>
+         <div>
+            KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+         </div>
+      </div>
+      <div class="section-box">
+         <h3 class="section-title">관련 뉴스</h3>
+         <div class="news-list">
+            <ul>
+               <li><a href="#" target="_blank">[이데일리] 뉴스1</a></li>
+               <li><a href="#" target="_blank">[연합뉴스] 뉴스2</a></li>
+               <li><a href="#" target="_blank">[매일경제] 뉴스3</a></li>
+            </ul>
+         </div>
+      </div>
+   </div>
 </div>
 
+<script>
+async function fetchEconomicData(companyName) {
+    try {
+        const response = await fetch(`/api/stock-info/?name=${encodeURIComponent(companyName)}`);
+        const data = await response.json();
+
+        if (data.error) {
+            alert("데이터를 가져올 수 없습니다: " + data.error);
+            return;
+        }
+
+        // 경제지표 채우기
+        document.getElementById("usd-krw").innerText = data["USD/KRW"] || "--";
+        document.getElementById("gold-price").innerText = data["국내 금"] || "--";
+        document.getElementById("kospi").innerText = data["KOSPI"] || "--";
+        document.getElementById("kosdaq").innerText = data["KOSDAQ"] || "--";
+    } catch (err) {
+        alert("오류가 발생했습니다: " + err);
+    }
+}
+
+// 기존 검색 함수 수정
+function goToCompanyPage() {
+    const input = document.getElementById("searchInput").value.trim();
+    if (!input) {
+        alert("기업명을 입력해주세요.");
+        return false;
+    }
+
+    fetchEconomicData(input);  // 🔥 API 호출 추가
+
+    if (companyMap[input]) {
+        window.location.href = companyMap[input]; // 기존 상세페이지 이동
+    }
+
+    return false;
+}
+</script>
+   
 </body>
 </html>
 
