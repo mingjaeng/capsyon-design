@@ -1,8 +1,3 @@
-from django.http import JsonResponse
-import requests
-from bs4 import BeautifulSoup
-
-# 기업명 → 종목코드 검색
 def get_stock_code(company_name):
     search_url = f"https://finance.naver.com/search/searchList.naver?query={company_name}"
     res = requests.get(search_url, headers={'User-Agent': 'Mozilla/5.0'})
