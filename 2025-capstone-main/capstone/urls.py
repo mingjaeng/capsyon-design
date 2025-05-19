@@ -19,5 +19,5 @@ from django.urls import path, include  # include 추가
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('capstone.urls')),  # 이 줄 추가: capstone의 urls.py 사용
+    path('', include('capstone-app.urls')),  # 이 줄 추가: capstone의 urls.py 사용
 ]
