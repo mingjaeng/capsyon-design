@@ -729,6 +729,30 @@
          <li data-page="company-info-page" class="active">기업정보</li>
       </ul>
    </div>
+   
+   <div class="content">
+   <h2>기업 개요</h2>
+   <table border="1">
+     <tr>
+       <th>설립일</th>
+       <td>{{ company_info.설립일 }}</td>
+     </tr>
+     <tr>
+       <th>대표이사</th>
+       <td>{{ company_info.대표이사 }}</td>
+     </tr>
+     <tr>
+       <th>본사 주소</th>
+       <td>{{ company_info.본사주소 }}</td>
+     </tr>
+     <tr>
+       <th>홈페이지</th>
+       <td><a href="{{ company_info.홈페이지 }}" target="_blank">{{ company_info.홈페이지 }}</a></td>
+     </tr>
+   </table>
+</div>
+<!-- 이 아래로 다른 정보(재무정보 등) 이어붙이기 가능 -->
+   
 <script>
      const companyMap = {
         "AP위성": "apsi.html",
@@ -759,7 +783,7 @@
     <div class="sub-nav">
         <ul class="sub-nav-items">
             <li data-subpage="company-overview-page" class="active">기업개요</li>
-            <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
+            <li data-subpage="financial-statements-page">재무제표 </li> <!-- 재무제표 메뉴 추가 -->
             <li data-subpage="financial-ratios-page">경제지표</li>
             <li data-subpage="investment-indicators-page">투자지표</li>
             <li data-subpage="reports-page">리포트</li>
