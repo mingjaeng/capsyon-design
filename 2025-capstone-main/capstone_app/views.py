@@ -1,12 +1,19 @@
-from django.shortcuts import redirect
+from django.shortcuts import render, redirect
 from django.http import JsonResponse
 import requests
 from bs4 import BeautifulSoup
+import time
+from selenium import webdriver
+from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+from webdriver_manager.chrome import ChromeDriverManager
 
+
+# 홈 리디렉션
 def home_redirect(request):
     return redirect('https://mingjaeng.github.io/capsyon-design/')
 
-# 아래는 기존에 작성한 stock_info_api 함수와 관련 함수들
 
 # 기업명 → 종목코드 검색
 def get_stock_code(company_name):
@@ -20,6 +27,7 @@ def get_stock_code(company_name):
             return href.split('code=')[-1]
     return None
 
+
 # 종목코드로 주가 정보 가져오기
 def get_stock_info(code):
     url = f"https://finance.naver.com/item/main.naver?code={code}"
@@ -32,6 +40,7 @@ def get_stock_info(code):
         return price, change, rate
     except:
         return None, None, None
+
 
 # 경제지표 정보 가져오기
 def get_economic_indicators():
@@ -71,6 +80,7 @@ def get_economic_indicators():
 
     return indicators
 
+
 # API 응답: 종목 + 경제지표 종합
 def stock_info_api(request):
     company_name = request.GET.get('name')
@@ -97,3 +107,39 @@ def stock_info_api(request):
     }
 
     return JsonResponse(result)
+
+
+# 기업 개요 정보 크롤링
+def crawl_company_info():
+    options = Options()
+    options.add_argument("--headless")
+    driver = webdriver.Chrome(service=Service(ChromeDriverManager().install()), options=options)
+
+    url = "https://navercomp.wisereport.co.kr/v2/company/c1020001.aspx?cmp_cd=318160&cn="
+    driver.get(url)
+    time.sleep(2)
+
+    try:
+        address = driver.find_element(By.XPATH, '//*[@id="cTB201"]/tbody/tr[1]/td').text.strip()
+        homepage = driver.find_element(By.XPATH, '//*[@id="cTB201"]/tbody/tr[2]/td[1]/a').get_attribute("href").strip()
+        ceo = driver.find_element(By.XPATH, '//*[@id="cTB201"]/tbody/tr[3]/td[2]').text.strip()
+        establishment_date = driver.find_element(By.XPATH, '//*[@id="cTB201"]/tbody/tr[3]/td[1]').text.strip()
+
+        company_info = {
+            "본사주소": address,
+            "홈페이지": homepage,
+            "대표이사": ceo,
+            "설립일": establishment_date
+        }
+    except Exception as e:
+        print(f"❌ 크롤링 오류: {e}")
+        company_info = {}
+
+    driver.quit()
+    return company_info
+
+
+# 기업 개요 detail.html 렌더링
+def company_detail(request):
+    company_info = crawl_company_info()
+    return render(request, 'detail.html', {'company_info': company_info})
