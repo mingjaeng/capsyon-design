@@ -1,1 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>기업 검색 - 메인 페이지</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Malgun Gothic', sans-serif;
+    }
+    body {
+      background-color: #f5f5f5;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    h1 {
+      font-size: 36px;
+      margin-bottom: 30px;
+      color: #e74c3c;
+    }
+    .search-bar {
+      display: flex;
+      justify-content: center;
+    }
+    .search-bar input {
+      padding: 10px 15px;
+      font-size: 16px;
+      width: 300px;
+      border: 1px solid #ccc;
+      border-radius: 4px 0 0 4px;
+    }
+    .search-bar button {
+      padding: 10px 15px;
+      font-size: 16px;
+      border: none;
+      background-color: #e74c3c;
+      color: white;
+      border-radius: 0 4px 4px 0;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
 
+  <h1>기업 검색</h1>
+  <form id="searchForm" class="search-bar">
+    <input type="text" id="searchInput" placeholder="기업명 입력" />
+    <button type="submit">검색</button>
+  </form>
+
+<script>
+  const companyList = [
+    "AP위성",
+    "한선엔지니어링",
+    "폴라리스AI",
+    "셀바스헬스케어",
+    "성우하이텍",
+    "미래에셋증권",
+    "메카로",
+    "로보로보",
+    "데브시스터즈",
+    "고려제강"
+  ];
+
+  document.getElementById("searchForm").addEventListener("submit", function (e) {
+    e.preventDefault();
+    const keyword = document.getElementById("searchInput").value.trim();
+
+    if (companyList.includes(keyword)) {
+      // ✅ detail.html로 이동 + 회사명 파라미터로 전달
+      window.location.href = `detail.html?company=${encodeURIComponent(keyword)}`;
+    } else {
+      alert("검색 결과가 없습니다.");
+    }
+  });
+</script>
+
+</body>
+</html>
