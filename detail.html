@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>2더하기8은 12조</title>
+  
   <script>
    const companyMap = {
       "AP위성": "apsi.html",
@@ -17,62 +18,48 @@
       "셀바스헬스케어": "selvashealthcare.html",
       "성우하이텍": "sungwoo.html",
    };
-   function goToCompanyPage() {
-      const input = document.getElementById("searchInput").value.trim();
+   function searchCompany() {
+      const input = document.getElementById("searchInput").value.trim().toLowerCase();
       if (companyMap[input]) {
          window.location.href = companyMap[input];
       } else {
          alert("해당 기업 정보를 찾을 수 없습니다.");
       }
-      return false;
    }
 </script>
-      <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css">
 
 <style> 
-body {
-  background-color: #f5f5f5;
-  font-family: 'Malgun Gothic', sans-serif;
-  margin: 0;
-  padding: 0;
-}
-
-.header {
-  background-color: #333;
-  color: white;
-  padding: 10px 0;
-  border-top: 3px solid #e74c3c;
-}
-
-.header-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 15px;
-}
-
-.logo {
-  font-size: 28px;
-  font-weight: bold;
-}
-
-.logo span:first-child {
-  color: #e74c3c;
-}
-
-.search-bar {
-  display: flex;
-}
-
-.search-bar input {
-  padding: 8px 12px;
-  border: none;
-  border-radius: 4px 0 0 4px;
-  width: 300px;
-}
-
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Malgun Gothic', sans-serif;
+  }
+  body {
+    background-color: #f5f5f5;
+  }
+  .header {
+    background-color: #333;
+    color: white
+    padding: 10px 0;
+    border-top: 3px solid #e74c3c;
+  }
+  .header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+  }
+  .logo {
+    font-size: 28px;
+    font-weight: bold;
+  }
+  .logo span: first-child {
+    color: #e74c3c;
+  }
 .search-bar button {
   background-color: #555;
   border: none;
@@ -81,36 +68,29 @@ body {
   color: white;
   cursor: pointer;
 }
-
 .main-nav {
   background-color: #444;
   border-bottom: 1px solid #555;
 }
-
 .nav-items {
   display: flex;
   max-width: 1200px;
   margin: 0 auto;
   list-style-type: none;
 }
-
 .nav-items li {
   padding: 15px 20px;
   color: white;
   cursor: pointer;
   font-weight: bold;
 }
-
-.nav-items li:hover,
-.nav-items li.active {
+.nav-items li:hover, .nav-items li.active {
   background-color: #666;
 }
-
 .sub-nav {
   background-color: #eee;
   border-bottom: 1px solid #ddd;
 }
-
 .sub-nav-items {
   display: flex;
   max-width: 1200px;
@@ -118,23 +98,46 @@ body {
   list-style-type: none;
   padding: 10px 15px;
 }
-
 .sub-nav-items li {
   padding: 5px 15px;
   color: #333;
   cursor: pointer;
   border-right: 1px solid #ccc;
 }
-
 .sub-nav-items li:last-child {
   border-right: none;
 }
-
 .sub-nav-items li.active {
   font-weight: bold;
   color: #e74c3c;
 }
-
+.company-info {
+  max-width: 1200px;
+  margin: 20px auto;
+  background-color: white;
+  border: 1px solid #ddd;
+  border-radius: 40px;
+  padding: 20px;
+}
+.company-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+}
+.company-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #e74c3c;
+}
+.company-code {
+  color: #666;
+  margin-left: 10px;
+}
+.stat-box {
+  
+  
 .sub-page {
   display: none;
   padding: 20px;
@@ -149,6 +152,7 @@ body {
   display: block;
 }
 </style>
+  
   <script src="companyData.js"></script>
   <script>
     const companyMap = {
@@ -174,23 +178,6 @@ body {
       return false;
     }
 
-    window.onload = function () {
-      const params = new URLSearchParams(window.location.search);
-      const companyName = params.get("company");
-      if (!companyName || !companyData[companyName]) return;
-
-      const data = companyData[companyName];
-      document.getElementById("company-name").textContent = data.name || "기업명";
-      document.getElementById("company-code").textContent = data.code || "--";
-      document.getElementById("industry").textContent = data.category || "--";
-      document.getElementById("overview-container").innerHTML = data.overview || "";
-      document.getElementById("finance-container").innerHTML = data.finance || "";
-      document.getElementById("investment-container").innerHTML = data.investment || "";
-      document.getElementById("economy-container").innerHTML = data.economy || "";
-      document.getElementById("report-container").innerHTML = data.report || "";
-      document.getElementById("news-container").innerHTML = data.news || "";
-    }
-  
 // ✅ 페이지 로드 시 메뉴 전환 및 계산 기능 실행
     window.onload = function () {
       const params = new URLSearchParams(window.location.search);
