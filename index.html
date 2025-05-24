@@ -57,28 +57,29 @@
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
-    const companyList = [
-      "AP위성",
-      "한선엔지니어링", 
-      "폴라리스AI",
-      "셀바스헬스케어",
-      "미래에셋증권",
-      "메카로",
-      "로보로보",
+    const companyMap = {
+      "AP위성": "ap.html",
+      "한선엔지니어링": "hanseon.html",
+      "폴라리스AI": "polaris.html",
+      "셀바스헬스케어": "selvas.html",
+      "미래에셋증권": "mirae.html",
+      "메카로": "mekaro.html",
+      "로보로보": "robo.html",
       "성우하이텍": "sungwoo.html",
       "고려제강": "kiswire.html",
       "데브시스터즈": "devsisters.html"
-      ];
+    };
 
-  document.getElementById("searchForm").addEventListener("submit", function (e) {
-    e.preventDefault();
-    const keyword = document.getElementById("searchInput").value.trim();
+    document.getElementById("searchForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      const keyword = document.getElementById("searchInput").value.trim();
 
-    if (companyMap[keyword]) {
-      window.location.href = companyMap[keyword];
-    } else {
-      alert("검색 결과가 없습니다.");
-    }
+      if (companyMap[keyword]) {
+        window.location.href = companyMap[keyword];
+      } else {
+        alert("검색 결과가 없습니다.");
+      }
+    });
   });
 </script>
 
