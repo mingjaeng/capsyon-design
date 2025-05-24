@@ -1400,44 +1400,27 @@
   </div>
 </div>
 
-<!-- 탭 전환 스크립트 (뉴스 탭 포함) -->
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    setupSubNavigation();
-
-    function setupSubNavigation() {
-      const subNavItems = document.querySelectorAll('.sub-nav-items li');
-      const subPages = document.querySelectorAll('.sub-page');
-
-      subNavItems.forEach(item => {
-        item.addEventListener('click', function () {
-          // 메뉴 active 처리
-          subNavItems.forEach(i => i.classList.remove('active'));
-          this.classList.add('active');
-
-          // 페이지 표시 전환
-          const targetId = this.getAttribute('data-subpage');
-          subPages.forEach(page => {
-            if (page.id === targetId) {
-              page.classList.add('active');
-            } else {
-              page.classList.remove('active');
-            }
-          });
-        });
-      });
-    }
-  });
-</script>
-
-<!-- 필수 스타일 (이미 있다면 생략 가능) -->
 <style>
-  .sub-page { display: none; }
-  .sub-page.active { display: block; }
-  .sub-nav-items li.active {
-    font-weight: bold;
-    color: #e74c3c;
+  .news-list ul {
+    list-style-type: disc;
+    padding-left: 20px;
+    color: #333;
+  }
+
+  .news-list li {
+    margin-bottom: 10px;
+  }
+
+  .news-list a {
+    text-decoration: none;
+    color: #007bff;
+  }
+
+  .news-list a:hover {
+    text-decoration: underline;
   }
 </style>
+
+
 </body>
 </html>
