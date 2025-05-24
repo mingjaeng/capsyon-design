@@ -677,7 +677,6 @@
             });
         }
     </script>
-</head>
 <body>
     <div class="header">
         <div class="header-content">
@@ -685,8 +684,8 @@
                 <span>웹 사이트</span> 이름
             </div>
             <div class="search-bar">
-                <input type="text" placeholder="종목명 또는 종목코드 입력">
-                <button>
+                <input type="text" placeholder="종목명 또는 종목코드 입력" id="search-input">
+                <button id="search-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
                     </svg>
@@ -694,6 +693,46 @@
             </div>
         </div>
     </div>
+
+<script>
+    // 기업명과 HTML 파일명 매핑
+    const companyMap = {
+      "AP위성": "ap.html",
+      "한선엔지니어링": "hanseon.html",
+      "폴라리스AI": "polaris.html",
+      "셀바스헬스케어": "selvas.html",
+      "미래에셋증권": "mirae.html",
+      "메카로": "mekaro.html",
+      "로보로보": "robo.html",
+      "성우하이텍": "sungwoo.html",
+      "고려제강": "kiswire.html",
+      "데브시스터즈": "devsisters.html"
+    };
+
+    function searchCompany() {
+        const input = document.getElementById('search-input');
+        const keyword = input.value.trim();
+        if (!keyword) {
+            alert('검색어를 입력하세요.');
+            return;
+        }
+        // 대소문자 구분 없이 검색
+        const matchedKey = Object.keys(companyMap).find(key => key.toLowerCase() === keyword.toLowerCase());
+        if (matchedKey) {
+            window.location.href = companyMap[matchedKey];
+        } else {
+            alert('검색 결과가 없습니다.');
+        }
+    }
+
+    document.getElementById('search-btn').addEventListener('click', searchCompany);
+
+    document.getElementById('search-input').addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            searchCompany();
+        }
+    });
+</script>
     
     <div class="main-nav">
         <ul class="nav-items">
