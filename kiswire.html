@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
-  
+
 <script>
   const companyMap = {
     "AP위성": "apsi.html",
@@ -18,7 +18,6 @@
     "셀바스헬스케어": "selvashealthcare.html",
     "성우하이텍": "sungwoo.html",
   };
-
   function goToCompanyPage() {
     const input = document.getElementById("searchInput").value.trim();
     if (companyMap[input]) {
@@ -28,7 +27,6 @@
     }
     return false;
   }
-  
 </script>
     <link rel="stylesheet" href="style.css">
     
@@ -473,20 +471,16 @@
             setupTabs();
             setupCalculations();
         };
-        
         // 서브 네비게이션 기능 설정
         function setupSubNavigation() {
             const subNavItems = document.querySelectorAll('.sub-nav-items li');
-            
             subNavItems.forEach(item => {
                 item.addEventListener('click', function() {
                     // 현재 활성화된 메뉴 아이템 제거
                     const parentSubNav = this.closest('.sub-nav-items');
                     parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    
                     // 클릭한 메뉴 아이템 활성화
                     this.classList.add('active');
-                    
                     // 해당 서브페이지 표시
                     const subPageName = this.getAttribute('data-subpage');
                     if (subPageName) {
@@ -495,7 +489,6 @@
                         subPages.forEach(subPage => {
                             subPage.classList.remove('active');
                         });
-                        
                         // 선택한 서브페이지 표시
                         const targetSubPage = document.getElementById(subPageName);
                         if (targetSubPage) {
@@ -505,20 +498,16 @@
                 });
             });
         }
-        
         // 탭 메뉴 설정
         function setupTabs() {
             const tabItems = document.querySelectorAll('.tab-item');
-            
             tabItems.forEach(item => {
                 item.addEventListener('click', function() {
                     // 현재 탭 메뉴에서 활성화된 탭 찾기
                     const parentTabMenu = this.closest('.tab-menu');
                     parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-                    
                     // 클릭한 탭 활성화
                     this.classList.add('active');
-                    
                     // 해당 탭 콘텐츠 표시
                     const targetId = this.getAttribute('data-target');
                     if (targetId) {
@@ -527,7 +516,6 @@
                         parentPage.querySelectorAll('.tab-content').forEach(content => {
                             content.classList.remove('active');
                         });
-                        
                         // 선택한 탭 콘텐츠 표시
                         const targetContent = document.getElementById(targetId);
                         if (targetContent) {
@@ -537,16 +525,13 @@
                 });
             });
         }
-        
         // 계산 함수 설정
         function setupCalculations() {
             // 재무정보 페이지의 입력 필드 생성
             const statBoxes = document.querySelectorAll('.stat-box');
-            
             statBoxes.forEach(box => {
                 const label = box.querySelector('.stat-label').innerText;
                 const valueElement = box.querySelector('.stat-value');
-                
                 // 값 대신 입력 필드 추가
                 const inputField = document.createElement('input');
                 inputField.type = 'text';
@@ -555,79 +540,63 @@
                 inputField.style.marginTop = '5px';
                 inputField.style.textAlign = 'center';
                 inputField.dataset.label = label;
-                
                 // 계산된 값을 표시할 요소 추가
                 const calculatedDiv = document.createElement('div');
                 calculatedDiv.className = 'calculated-value';
                 calculatedDiv.innerText = '--';
-                
                 // 기존 값 제거 후 입력 필드와 계산된 값 추가
                 valueElement.innerHTML = '';
                 valueElement.appendChild(inputField);
                 valueElement.appendChild(calculatedDiv);
-                
                 // 입력 변경 이벤트 리스너 추가
                 inputField.addEventListener('input', calculateValues);
             });
-            
             // 투자지표 페이지의 테이블에도 적용
             const detailTables = document.querySelectorAll('.detail-table');
-            
             detailTables.forEach(table => {
                 const cells = table.querySelectorAll('td');
-                
                 cells.forEach(cell => {
                     const originalText = cell.innerText;
-                    
                     // 특정 데이터 셀에만 적용 (숫자가 포함된 셀)
                     if (originalText.match(/[0-9]/) || originalText === '--') {
                         const rowHeader = cell.closest('tr').querySelector('th').innerText;
-                        
                         // 입력 필드 생성
                         const inputField = document.createElement('input');
                         inputField.type = 'text';
                         inputField.placeholder = '값 입력';
                         inputField.style.width = '80px';
                         inputField.dataset.header = rowHeader;
-                        
                         // 계산된 값을 표시할 요소 추가
                         const calculatedDiv = document.createElement('div');
                         calculatedDiv.className = 'calculated-value';
                         calculatedDiv.innerText = '--';
-                        
                         // 기존 값 제거 후 입력 필드와 계산된 값 추가
                         cell.innerHTML = '';
                         cell.appendChild(inputField);
                         cell.appendChild(calculatedDiv);
-                        
                         // 입력 변경 이벤트 리스너 추가
                         inputField.addEventListener('input', calculateTableValues);
                     }
                 });
             });
         }
-        
         // 통계 섹션 값 계산 함수
         function calculateValues() {
             const inputs = document.querySelectorAll('.stat-box input');
             const values = {};
-            
             // 입력된 값 수집
             inputs.forEach(input => {
                 values[input.dataset.label] = parseFloat(input.value) || 0;
             });
-            
             // 각 입력 필드에 대한 계산
             inputs.forEach(input => {
                 const calculatedDiv = input.nextElementSibling;
                 const label = input.dataset.label;
                 const value = parseFloat(input.value) || 0;
-                
                 if (isNaN(value) || value === 0) {
                     calculatedDiv.innerText = '--';
                     return;
                 }
-                
                 // 라벨에 따른 계산 로직
                 switch (label) {
                     case 'PER':
@@ -655,28 +624,23 @@
                 }
             });
         }
-        
         // 테이블 값 계산 함수
         function calculateTableValues() {
             const inputs = document.querySelectorAll('.detail-table input');
             const values = {};
-            
             // 입력된 값 수집
             inputs.forEach(input => {
                 values[input.dataset.header] = parseFloat(input.value) || 0;
             });
-            
             // 각 입력 필드에 대한 계산
             inputs.forEach(input => {
                 const calculatedDiv = input.nextElementSibling;
                 const header = input.dataset.header;
                 const value = parseFloat(input.value) || 0;
-                
                 if (isNaN(value) || value === 0) {
                     calculatedDiv.innerText = '--';
                     return;
                 }
-                
                 // 헤더에 따른 계산 로직
                 switch (header) {
                     case '종가/전일대비':
@@ -705,8 +669,8 @@
             });
         }
     </script>
-  
 </head>
+
 <body>
     <div class="header">
       <div class="header-content">
@@ -717,7 +681,7 @@
         </div>
         <div class="search-bar">
           <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
-            <input type="text" id="searchInput" placeholder="종목명 또는 종목코드 입력">
+            <input type="text" id="searchInput" placeholder="기업명 또는 기업코드 입력">
             <button type="submit">
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
                 <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
@@ -755,34 +719,33 @@
             }
             return false;
         }
-</script>
-          
+</script>        
 </body>
     
-    <!-- 기업정보 페이지-->
-    <div id="company-info-page" class="page-container active">
-        <div class="sub-nav">
-            <ul class="sub-nav-items">
-                <li data-subpage="company-overview-page" class="active">기업개요</li>
-                <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
-                <li data-subpage="financial-ratios-page">경제지표</li>
-                <li data-subpage="investment-indicators-page">투자지표</li>
-                <li data-subpage="reports-page">리포트</li>
-                <li data-subpage="news-page">뉴스</li>
-            </ul>
-        </div>
-                
+<!-- 기업정보 페이지-->
+<div id="company-info-page" class="page-container active">
+    <div class="sub-nav">
+        <ul class="sub-nav-items">
+            <li data-subpage="company-overview-page" class="active">기업개요</li>
+            <li data-subpage="financial-statements-page">재무제표</li>
+            <li data-subpage="financial-ratios-page">경제지표</li>
+            <li data-subpage="investment-indicators-page">투자지표</li>
+            <li data-subpage="reports-page">리포트</li>
+            <li data-subpage="news-page">뉴스</li>
+        </ul>
+    </div>
+
 <!-- 기업개요 페이지 -->
 <div id="company-overview-page" class="sub-page active">
     <div class="company-info">
         <div class="company-header">
             <div>
-                <span class="company-name">셀바이오휴먼텍</span>
-                <span class="company-code">318160</span>
+                <span class="company-name">고려제강</span>
+                <span class="company-code">002240</span>
                 <span>12월 결산</span>
             </div>
             <div>
-               KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+               KSE 코스피 금속 | FICS 금속 및 광물
             </div>
         </div>
         <div class="company-profile active">
@@ -791,27 +754,27 @@
                 <table class="company-detail-table">
                     <tr>
                         <th>기업명</th>
-                        <td>셀바이오휴먼텍</td>
+                        <td>고려제강</td>
                         <th>대표자</th>
-                        <td>이권선</td>
+                        <td>주종대</td>
                     </tr>
                     <tr>
                         <th>설립일</th>
-                        <td>2015년 07월 07일</td>
+                        <td>1945/09/21</td>
                         <th>상장일</th>
-                        <td>2023년 04월 20일</td>
+                        <td>1976/05/25</td>
                     </tr>
                     <tr>
                         <th>업종명</th>
-                        <td colspan="3">섬유제품 제조업</td>
+                        <td colspan="3">철강선 제조업</td>
                     </tr>
                     <tr>
                         <th>주소</th>
-                        <td colspan="3">경기도 안양시 동안구 시민대로 401 대륭테크노타운15차 제2001호,제2101호</td>
+                        <td colspan="3">부산 수영구 구락로141번길 37</td>
                     </tr>
                     <tr>
                         <th>홈페이지</th>
-                        <td colspan="3"><a href="http://cellbiohumantech.co.kr" target="_blank">http://cellbiohumantech.co.kr</a></td>
+                        <td colspan="3"><a href="http://www.kiswire.com" target="_blank">http://www.kiswire.com</a></td>
                     </tr>
                 </table>
             </div>
@@ -833,12 +796,12 @@
   <div class="company-info">
     <div class="company-header">
       <div>
-        <span class="company-name">셀바이오휴먼텍</span>
-        <span class="company-code">318160</span>
+        <span class="company-name">고려제강</span>
+        <span class="company-code">002240</span>
         <span>12월 결산</span>
       </div>
       <div>
-       KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+       KSE 코스피 금속 | FICS 금속 및 광물
       </div>
     </div>
 
@@ -1048,7 +1011,6 @@
   padding: 0;
   list-style: none;
 }
-
 .tab-menu li {
   padding: 8px 16px;
   background: #f1f1f1;
@@ -1056,12 +1018,10 @@
   cursor: pointer;
   font-weight: 500;
 }
-
 .tab-menu li.active {
   background: #007bff;
   color: #fff;
 }
-
 /* ▶ 탭 콘텐츠 */
 .tab-content {
   display: none;
@@ -1070,7 +1030,6 @@
 .tab-content.active {
   display: block;
 }
-
 /* ▶ 섹션 박스 레이아웃 */
 .section-box {
   margin-top: 30px;
@@ -1088,19 +1047,16 @@
   border-bottom: 2px solid #eee;
   padding-bottom: 6px;
 }
-
 /* ▶ 재무 정보 설명 (비활성 중이지만 보존) */
 .financial-info p {
   font-size: 14px;
   margin: 5px 0;
 }
-
 /* ▶ 재무표 영역 스타일 */
 .financial-table-wrapper {
   margin-top: 20px;
   overflow-x: auto;
 }
-
 .financial-table {
   width: 100%;
   border-collapse: collapse;
@@ -1130,13 +1086,11 @@
   text-align: left;
   padding-left: 16px;
 }
-
 /* ▶ 연도 열: 동일 폭 */
 .financial-table th:nth-child(n+2):nth-child(-n+4),
 .financial-table td:nth-child(n+2):nth-child(-n+4) {
   width: 25%;
 }
-
 /* ▶ 계층 구조 들여쓰기 및 강조 */
 .financial-table td.depth-0 {
   font-weight: bold;
@@ -1157,15 +1111,14 @@
   <div class="company-info">
     <div class="company-header">
       <div>
-        <span class="company-name">셀바이오휴먼텍</span>
-        <span class="company-code">318160</span>
+        <span class="company-name">고려제강</span>
+        <span class="company-code">002240</span>
         <span>12월 결산</span>
       </div>
       <div>
-        KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+        KSE 코스피 금속 | FICS 금속 및 광물
       </div>
     </div>
-
     <div class="section-box">
       <h3 class="section-title">경제지표</h3>
       <table class="economic-table">
@@ -1213,7 +1166,6 @@
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
   }
-
   .section-title {
     font-size: 22px;
     font-weight: 700;
@@ -1222,33 +1174,27 @@
     border-bottom: 2px solid #eee;
     padding-bottom: 6px;
   }
-
   .economic-table-wrapper {
     margin-top: 20px;
     overflow-x: auto;
   }
-
   .economic-table {
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
   }
-
   .economic-table th,
   .economic-table td {
     border: 1px solid #ddd;
     padding: 10px;
     text-align: center;
   }
-
   .economic-table thead {
     background-color: #f8f8f8;
   }
-
   .economic-table tbody tr:nth-child(even) {
     background-color: #fafafa;
   }
-
   .economic-table tbody tr:hover {
     background-color: #f1f1f1;
   }
@@ -1259,78 +1205,74 @@
   <div class="company-info">
     <div class="company-header">
       <div>
-        <span class="company-name">BNK금융지주</span>
-        <span class="company-code">138930</span>
+        <span class="company-name">고려제강</span>
+        <span class="company-code">002240</span>
         <span>12월 결산</span>
       </div>
       <div>
-        KSE 코스피 금융 | FICS 상업은행
+        KSE 코스피 금속 | FICS 금속 및 광물
       </div>
     </div>
 
-    <!--투자지표 섹션-->
-    <div class="section-box">
-        <h3 class="section-title">연결 투자지표</h3>
-        <!-- 연도 선택 탭 -->
-        <div class="year-tabs">
-            <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-            <button onclick="showIndicators(event, '2023')">2023</button>
-            <button onclick="showIndicators(event, '2022')">2022</button>
-        </div>
-
-        <!-- 연도별 투자지표 테이블 -->
-        <div id="indicators-2024" class="year-indicators active">
-            <table class="investment-table">
-                <tbody>
-                    <tr><td>EPS</td><td>--</td></tr>
-                    <tr><td>BPS</td><td>--</td></tr>
-                    <tr><td>ROE</td><td>--%</td></tr>
-                    <tr><td>ROA</td><td>--%</td></tr>
-                    <tr><td>PER</td><td>--배</td></tr>
-                    <tr><td>PBR</td><td>--배</td></tr>
-                    <tr><td>부채비율</td><td>--%</td></tr>
-                    <tr><td>유동비율</td><td>--%</td></tr>
-                    <tr><td>영업이익률</td><td>--%</td></tr>
-                    <tr><td>순이익률</td><td>--%</td></tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="indicators-2023" class="year-indicators">
-            <table class="investment-table">
-                <tbody>
-                    <tr><td>EPS</td><td>--</td></tr>
-                    <tr><td>BPS</td><td>--</td></tr>
-                    <tr><td>ROE</td><td>--%</td></tr>
-                    <tr><td>ROA</td><td>--%</td></tr>
-                    <tr><td>PER</td><td>--배</td></tr>
-                    <tr><td>PBR</td><td>--배</td></tr>
-                    <tr><td>부채비율</td><td>--%</td></tr>
-                    <tr><td>유동비율</td><td>--%</td></tr>
-                    <tr><td>영업이익률</td><td>--%</td></tr>
-                    <tr><td>순이익률</td><td>--%</td></tr>
-                </tbody>
-            </table>
-        </div>
-        
-        <div id="indicators-2022" class="year-indicators">
-            <table class="investment-table">
-                <tbody>
-                    <tr><td>EPS</td><td>--</td></tr>
-                    <tr><td>BPS</td><td>--</td></tr>
-                    <tr><td>ROE</td><td>--%</td></tr>
-                    <tr><td>ROA</td><td>--%</td></tr>
-                    <tr><td>PER</td><td>--배</td></tr>
-                    <tr><td>PBR</td><td>--배</td></tr>
-                    <tr><td>부채비율</td><td>--%</td></tr>
-                    <tr><td>유동비율</td><td>--%</td></tr>
-                    <tr><td>영업이익률</td><td>--%</td></tr>
-                    <tr><td>순이익률</td><td>--%</td></tr>
-                </tbody>
-            </table>
-        </div>
+<!--투자지표 섹션-->
+<div class="section-box">
+    <h3 class="section-title">연결 투자지표</h3>
+    <!-- 연도 선택 탭 -->
+    <div class="year-tabs">
+        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+        <button onclick="showIndicators(event, '2023')">2023</button>
+        <button onclick="showIndicators(event, '2022')">2022</button>
     </div>
-  </div>
+
+    <!-- 연도별 투자지표 테이블 -->
+    <div id="indicators-2024" class="year-indicators active">
+        <table class="investment-table">
+            <tbody>
+                <tr><td>EPS</td><td>--</td></tr>
+                <tr><td>BPS</td><td>--</td></tr>
+                 <tr><td>ROE</td><td>--%</td></tr>
+                <tr><td>ROA</td><td>--%</td></tr>
+                <tr><td>PER</td><td>--배</td></tr>
+                <tr><td>PBR</td><td>--배</td></tr>
+                <tr><td>부채비율</td><td>--%</td></tr>
+                <tr><td>유동비율</td><td>--%</td></tr>
+                <tr><td>영업이익률</td><td>--%</td></tr>
+                <tr><td>순이익률</td><td>--%</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="indicators-2023" class="year-indicators">
+        <table class="investment-table">
+            <tbody>
+                <tr><td>EPS</td><td>--</td></tr>
+                <tr><td>BPS</td><td>--</td></tr>
+                <tr><td>ROE</td><td>--%</td></tr>
+                <tr><td>ROA</td><td>--%</td></tr>
+                <tr><td>PER</td><td>--배</td></tr>
+                <tr><td>PBR</td><td>--배</td></tr>
+                <tr><td>부채비율</td><td>--%</td></tr>
+                <tr><td>유동비율</td><td>--%</td></tr>
+                <tr><td>영업이익률</td><td>--%</td></tr>
+                <tr><td>순이익률</td><td>--%</td></tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="indicators-2022" class="year-indicators">
+        <table class="investment-table">
+            <tbody>
+                <tr><td>EPS</td><td>--</td></tr>
+                <tr><td>BPS</td><td>--</td></tr>
+                <tr><td>ROE</td><td>--%</td></tr>
+                <tr><td>ROA</td><td>--%</td></tr>
+                <tr><td>PER</td><td>--배</td></tr>
+                <tr><td>PBR</td><td>--배</td></tr>
+                <tr><td>부채비율</td><td>--%</td></tr>
+                <tr><td>유동비율</td><td>--%</td></tr>
+                <tr><td>영업이익률</td><td>--%</td></tr>
+                <tr><td>순이익률</td><td>--%</td></tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <!-- 스크립트 -->
@@ -1352,9 +1294,8 @@
     border: 1px solid #ddd;
     border-radius: 10px;
     box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
-    margin-top: 30px;          /* investment-indicators-info 대체 */
+    margin-top: 30px;          
   }
-
   .section-title {
     font-size: 22px;
     font-weight: 700;
@@ -1363,7 +1304,6 @@
     border-bottom: 2px solid #eee;
     padding-bottom: 6px;
   }
-
   /* ▽ 연도 선택 탭 */
   .year-tabs {
     margin-bottom: 15px;
@@ -1381,13 +1321,12 @@
     color: #fff;
     border-color: #007bff;
   }
-
   /* ▽ 연도별 지표 영역 토글 */
   .year-indicators { display: none; }
   .year-indicators.active { display: block; }
 
   /* ▽ 투자지표 테이블 */
-  .investment-table-wrapper {         /* (추후 사용 대비) */
+  .investment-table-wrapper {     
     margin-top: 20px;
     overflow-x: auto;
   }
@@ -1395,7 +1334,7 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    table-layout: fixed;              /* 1·2열 50% 균등 유지 */
+    table-layout: fixed;         
   }
   .investment-table th,
   .investment-table td {
@@ -1412,8 +1351,6 @@
   .investment-table tbody tr:hover {
     background-color: #f1f1f1;
   }
-
-  /* 1열(항목)·2열(값) 동일 너비 50% */
   .investment-table th:nth-child(1),
   .investment-table td:nth-child(1),
   .investment-table th:nth-child(2),
@@ -1427,28 +1364,28 @@
   <div class="company-info">
     <div class="company-header">
       <div>
-        <span class="company-name">셀바이오휴먼텍</span>
-        <span class="company-code">318160</span>
+        <span class="company-name">고려제강</span>
+        <span class="company-code">002240</span>
         <span>12월 결산</span>
       </div>
       <div>
-        KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+        KSE 코스피 금속 | FICS 금속 및 광물
       </div>
     </div>
   </div>
 </div>
 
 <!-- 뉴스 페이지 -->
-<div id="news-page" class="sub-page">
+<div id="reports-page" class="sub-page">
   <div class="company-info">
     <div class="company-header">
       <div>
-        <span class="company-name">셀바이오휴먼텍</span>
-        <span class="company-code">318160</span>
+        <span class="company-name">고려제강</span>
+        <span class="company-code">002240</span>
         <span>12월 결산</span>
       </div>
       <div>
-        KOSDAQ 코스닥 섬유·의류 | FICS 개인생활용품
+        KSE 코스피 금속 | FICS 금속 및 광물
       </div>
     </div>
     <div class="section-box">
@@ -1463,6 +1400,5 @@
     </div>
   </div>
 </div>
-        
 </body>
 </html>
