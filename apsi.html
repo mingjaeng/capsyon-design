@@ -1391,13 +1391,53 @@
       <h3 class="section-title">관련 뉴스</h3>
       <div class="news-list">
         <ul>
-          <li><a href="#" target="_blank">[이데일리] 뉴스1</a></li>
-          <li><a href="#" target="_blank">[연합뉴스] 뉴스2</a></li>
-          <li><a href="#" target="_blank">[매일경제] 뉴스3</a></li>
+          <li><a href="#" target="_blank">[이데일리] AP위성, 위성통신 수출 기대감에 상승</a></li>
+          <li><a href="#" target="_blank">[연합뉴스] AP위성, 두바이 계약 성사…해외 매출 주목</a></li>
+          <li><a href="#" target="_blank">[매일경제] AP위성, 국내 최초 국산 위성 안테나 개발</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
+
+<!-- 탭 전환 스크립트 (뉴스 탭 포함) -->
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    setupSubNavigation();
+
+    function setupSubNavigation() {
+      const subNavItems = document.querySelectorAll('.sub-nav-items li');
+      const subPages = document.querySelectorAll('.sub-page');
+
+      subNavItems.forEach(item => {
+        item.addEventListener('click', function () {
+          // 메뉴 active 처리
+          subNavItems.forEach(i => i.classList.remove('active'));
+          this.classList.add('active');
+
+          // 페이지 표시 전환
+          const targetId = this.getAttribute('data-subpage');
+          subPages.forEach(page => {
+            if (page.id === targetId) {
+              page.classList.add('active');
+            } else {
+              page.classList.remove('active');
+            }
+          });
+        });
+      });
+    }
+  });
+</script>
+
+<!-- 필수 스타일 (이미 있다면 생략 가능) -->
+<style>
+  .sub-page { display: none; }
+  .sub-page.active { display: block; }
+  .sub-nav-items li.active {
+    font-weight: bold;
+    color: #e74c3c;
+  }
+</style>
 </body>
 </html>
