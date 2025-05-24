@@ -73,9 +73,8 @@
     e.preventDefault();
     const keyword = document.getElementById("searchInput").value.trim();
 
-    if (companyList.includes(keyword)) {
-      // ✅ detail.html로 이동 + 회사명 파라미터로 전달
-      window.location.href = `detail.html?company=${encodeURIComponent(keyword)}`;
+    if (companyMap[keyword]) {
+      window.location.href = companyMap[keyword];
     } else {
       alert("검색 결과가 없습니다.");
     }
