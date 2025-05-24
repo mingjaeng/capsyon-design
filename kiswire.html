@@ -677,6 +677,7 @@
             });
         }
     </script>
+    
 <body>
     <div class="logo">
         <a href="index.html" style="text-decoration: none; color: inherit;">
@@ -734,26 +735,27 @@
     });
 </script>
     
-    <div class="main-nav">
-        <ul class="nav-items">
-            <li data-page="company-info-page" class="active">기업정보</li>
+<div class="main-nav">
+    <ul class="nav-items">
+        <li data-page="company-info-page" class="active">기업정보</li>
+    </ul>
+</div>
+    
+<!-- 기업정보 페이지 컨테이너 -->
+<div id="company-info-page" class="page-container active">
+    <div class="sub-nav">
+        <ul class="sub-nav-items">
+            <li data-subpage="company-overview-page" class="active">기업개요</li>
+            <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
+            <li data-subpage="financial-ratios-page">경제지표</li>
+            <li data-subpage="investment-indicators-page">투자지표</li>
+            <li data-subpage="reports-page">리포트</li>
+            <li data-subpage="news-page">뉴스</li>
         </ul>
     </div>
-    
-    <!-- 기업정보 페이지 컨테이너 -->
-    <div id="company-info-page" class="page-container active">
-        <div class="sub-nav">
-            <ul class="sub-nav-items">
-                <li data-subpage="company-overview-page" class="active">기업개요</li>
-                <li data-subpage="financial-statements-page">재무제표</li> <!-- 재무제표 메뉴 추가 -->
-                <li data-subpage="financial-ratios-page">경제지표</li>
-                <li data-subpage="investment-indicators-page">투자지표</li>
-                <li data-subpage="reports-page">리포트</li>
-                <li data-subpage="news-page">뉴스</li>
-            </ul>
-        </div>
+</div>
 
-        
+
 <!-- 기업개요 페이지 -->
 <div id="company-overview-page" class="sub-page active">
     <div class="company-info">
