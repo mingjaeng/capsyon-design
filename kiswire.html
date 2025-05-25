@@ -1333,7 +1333,29 @@
     width: 50%;
   }
 </style>
-    
+
+<script>
+  fetch('economic_index.json')
+    .then(res => res.json())
+    .then(data => {
+      // 값 넣기
+      document.getElementById('usd-krw').textContent = data["USD/KRW"];
+      document.getElementById('usd-krw-change').textContent = data["USD/KRW_change"] + '%';
+
+      document.getElementById('gold-price').textContent = data["금시세(1g)"];
+      document.getElementById('gold-price-change').textContent = data["금시세(1g)_change"] + '%';
+
+      document.getElementById('kospi').textContent = data["KOSPI"];
+      document.getElementById('kospi-change').textContent = data["KOSPI_change"] + '%';
+
+      document.getElementById('kosdaq').textContent = data["KOSDAQ"];
+      document.getElementById('kosdaq-change').textContent = data["KOSDAQ_change"] + '%';
+    })
+    .catch(e => {
+      console.error('경제지표 JSON 읽기 실패', e);
+    });
+</script>
+      
 <!-- 리포트 페이지 -->
 <div id="reports-page" class="sub-page">
   <div class="company-info">
