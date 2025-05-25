@@ -695,31 +695,7 @@
         <ul class="nav-items">
             <li data-page="company-info-page" class="active">기업정보</li>          
         </ul>
-    </div>
-
-    <script>
-         const companyMap = {
-            "AP위성": "apsi.html",
-            "데브시스터즈": "devsisters.html",
-            "한선엔지니어링": "ehansun.html",
-            "고려제강": "kiswire.html",
-            "메카로": "mecaro.html",
-            "미래에셋증권": "miraeasset.html",
-            "폴라리스AI": "polarisai.html",
-            "로보로보": "roborobo.html",
-            "셀바스헬스케어": "selvashealthcare.html",
-            "성우하이텍": "sungwoo.html",
-          };
-        function goToCompanyPage() {
-            const input = document.getElementById("searchInput").value.trim().toLowerCase();
-            if (companyMap[input]) {
-                window.location.href = companyMap[input];
-            } else {
-                alert("해당 기업 정보를 찾을 수 없습니다.");
-            }
-            return false;
-        }
-</script>        
+    </div>     
 </body>
     
 <!-- 기업정보 페이지-->
