@@ -471,33 +471,6 @@
             setupTabs();
             setupCalculations();
         };
-        // 서브 네비게이션 기능 설정
-        function setupSubNavigation() {
-            const subNavItems = document.querySelectorAll('.sub-nav-items li');
-            subNavItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 활성화된 메뉴 아이템 제거
-                    const parentSubNav = this.closest('.sub-nav-items');
-                    parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    // 클릭한 메뉴 아이템 활성화
-                    this.classList.add('active');
-                    // 해당 서브페이지 표시
-                    const subPageName = this.getAttribute('data-subpage');
-                    if (subPageName) {
-                        // 모든 서브페이지 숨기기
-                        const subPages = document.querySelectorAll('.sub-page');
-                        subPages.forEach(subPage => {
-                            subPage.classList.remove('active');
-                        });
-                        // 선택한 서브페이지 표시
-                        const targetSubPage = document.getElementById(subPageName);
-                        if (targetSubPage) {
-                            targetSubPage.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
         // 탭 메뉴 설정
         function setupTabs() {
             const tabItems = document.querySelectorAll('.tab-item');
@@ -1399,5 +1372,34 @@
     text-decoration: underline;
   }
 </style>
+<script>
+       // 서브 네비게이션 기능 설정
+        function setupSubNavigation() {
+            const subNavItems = document.querySelectorAll('.sub-nav-items li');
+            subNavItems.forEach(item => {
+                item.addEventListener('click', function() {
+                    // 현재 활성화된 메뉴 아이템 제거
+                    const parentSubNav = this.closest('.sub-nav-items');
+                    parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                    // 클릭한 메뉴 아이템 활성화
+                    this.classList.add('active');
+                    // 해당 서브페이지 표시
+                    const subPageName = this.getAttribute('data-subpage');
+                    if (subPageName) {
+                        // 모든 서브페이지 숨기기
+                        const subPages = document.querySelectorAll('.sub-page');
+                        subPages.forEach(subPage => {
+                            subPage.classList.remove('active');
+                        });
+                        // 선택한 서브페이지 표시
+                        const targetSubPage = document.getElementById(subPageName);
+                        if (targetSubPage) {
+                            targetSubPage.classList.add('active');
+                        }
+                    }
+                });
+            });
+        }
+</script>
 </body>
 </html>
