@@ -1000,15 +1000,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="depth-0">자산총계</td><td>--</td><td>--</td><td id="assets-total-2022">--</td></tr>
-                            <tr><td class="depth-0">자본총계</td><td>--</td><td>--</td><td id="equity-total-2022">--</td></tr>
-                            <tr><td class="depth-0">자본금</td><td>--</td><td>--</td><td id="capital-stock-2022">--</td></tr>
-                            <tr><td class="depth-0">이익잉여금</td><td>--</td><td>--</td><td id="retained-earnings-2022">--</td></tr>
-                            <tr><td class="depth-0">유동자산</td><td>--</td><td>--</td><td id="current-assets-2022">--</td></tr>
-                            <tr><td class="depth-0">유동부채</td><td>--</td><td>--</td><td id="current-liabilities-2022">--</td></tr>
-                            <tr><td class="depth-0">비유동자산</td><td>--</td><td>--</td><td id="non-current-assets-2022">--</td></tr>
-                            <tr><td class="depth-0">비유동부채</td><td>--</td><td>--</td><td id="non-current-liabilities-2022">--</td></tr>
-                            <tr><td class="depth-0">부채총계</td><td>--</td><td>--</td><td id="liabilities-total-2022">--</td></tr>
+                            <tr><td class="depth-0">자산총계</td><td id="assets-total-2024">--</td><td id="assets-total-2023">--</td><td id="assets-total-2022">--</td></tr>
+                            <tr><td class="depth-0">자본총계</td><td id="equity-total-2024">--</td><td id="equity-total-2023">--</td><td id="equity-total-2022">--</td></tr>
+                            <tr><td class="depth-0">자본금</td><td id="capital-stock-2024">--</td><td id="capital-stock-2023">--</td><td id="capital-stock-2022">--</td></tr>
+                            <tr><td class="depth-0">이익잉여금</td><td id="retained-earnings-2024">--</td><td id="retained-earnings-2023">--</td><td id="retained-earnings-2022">--</td></tr>
+                            <tr><td class="depth-0">유동자산</td><td id="current-assets-2024">--</td><td id="current-assets-2023">--</td><td id="current-assets-2022">--</td></tr>
+                            <tr><td class="depth-0">유동부채</td><td id="current-liabilities-2024">--</td><td id="current-liabilities-2023">--</td><td id="current-liabilities-2022">--</td></tr>
+                            <tr><td class="depth-0">비유동자산</td><td id="non-current-assets-2024">--</td><td id="non-current-assets-2023">--</td><td id="non-current-assets-2022">--</td></tr>
+                            <tr><td class="depth-0">비유동부채</td><td id="non-current-liabilities-2024">--</td><td id="non-current-liabilities-2023">--</td><td id="non-current-liabilities-2022">--</td></tr>
+                            <tr><td class="depth-0">부채총계</td><td id="liabilities-total-2024">--</td><td id="liabilities-total-2023">--</td><td id="liabilities-total-2022">--</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1024,12 +1024,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="depth-0">매출액</td><td>--</td><td>--</td><td id="revenue-2022">--</td></tr>
-                            <tr><td class="depth-0">당기순이익</td><td>--</td><td>--</td><td id="net-income-2022">--</td></tr>
-                            <tr><td class="depth-0">당기순이익(손실)</td><td>--</td><td>--</td><td id="net-income-loss-2022">--</td></tr>
-                            <tr><td class="depth-0">영업이익</td><td>--</td><td>--</td><td id="operating-income-2022">--</td></tr>
+                            <tr><td class="depth-0">매출액</td><td id="revenue-2024">--</td><td id="revenue-2023">--</td><td id="revenue-2022">--</td></tr>
+                            <tr><td class="depth-0">당기순이익</td><td id="net-income-2024">--</td><td id="net-income-2023">--</td><td id="net-income-2022">--</td></tr>
+                            <tr><td class="depth-0">당기순이익(손실)</td><td id="net-income-loss-2024">--</td><td id="net-income-loss-2023">--</td><td id="net-income-loss-2022">--</td></tr>
+                            <tr><td class="depth-0">영업이익</td><td id="operating-income-2024">--</td><td id="operating-income-2023">--</td><td id="operating-income-2022">--</td></tr>
                             <tr><td class="depth-0">총포괄손익</td><td>--</td><td>--</td><td>--</td></tr>
-                            <tr><td class="depth-0">법인세차감전 순이익</td><td>--</td><td>--</td><td id="income-before-tax-2022">--</td></tr>
+                            <tr><td class="depth-0">법인세차감전 순이익</td><td id="income-before-tax-2024">--</td><td id="income-before-tax-2023">--</td><td id="income-before-tax-2022">--</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -1048,80 +1048,65 @@
             });
         });
         // 재무제표 데이터 (JSON 데이터를 JavaScript 객체로 변환)
-        const balanceSheetData = [
-            {
-                "account_nm": "유동자산",
-                "thstrm_amount": "1,153,075,088,455",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "비유동자산",
-                "thstrm_amount": "1,379,693,309,800",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "자산총계",
-                "thstrm_amount": "2,532,768,398,255",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "유동부채",
-                "thstrm_amount": "561,483,968,404",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "비유동부채",
-                "thstrm_amount": "243,762,271,162",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "부채총계",
-                "thstrm_amount": "805,246,239,566",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "자본금",
-                "thstrm_amount": "23,000,000,000",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "이익잉여금",
-                "thstrm_amount": "1,566,861,244,579",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "자본총계",
-                "thstrm_amount": "1,727,522,158,689",
-                "fs_div": "CFS"
-            }
-        ];
-        const incomeStatementData = [
-            {
-                "account_nm": "매출액",
-                "thstrm_amount": "2,072,550,223,138",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "영업이익",
-                "thstrm_amount": "133,503,465,388",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "법인세차감전 순이익",
-                "thstrm_amount": "112,085,847,739",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "당기순이익",
-                "thstrm_amount": "92,322,769,549",
-                "fs_div": "CFS"
-            },
-            {
-                "account_nm": "당기순이익(손실)",
-                "thstrm_amount": "92,322,769,549",
-                "fs_div": "CFS"
-            }
-        ];
+        <script>
+            const balanceSheetDataByYear = {
+            2022: [
+                { account_nm: "유동자산", thstrm_amount: "1,153,075,088,455", fs_div: "CFS" },
+                { account_nm: "비유동자산", thstrm_amount: "1,379,693,309,800", fs_div: "CFS" },
+                { account_nm: "자산총계", thstrm_amount: "2,532,768,398,255", fs_div: "CFS" },
+                { account_nm: "유동부채", thstrm_amount: "561,483,968,404", fs_div: "CFS" },
+                { account_nm: "비유동부채", thstrm_amount: "243,762,271,162", fs_div: "CFS" },
+                { account_nm: "부채총계", thstrm_amount: "805,246,239,566", fs_div: "CFS" },
+                { account_nm: "자본금", thstrm_amount: "23,000,000,000", fs_div: "CFS" },
+                { account_nm: "이익잉여금", thstrm_amount: "1,566,861,244,579", fs_div: "CFS" },
+                { account_nm: "자본총계", thstrm_amount: "1,727,522,158,689", fs_div: "CFS" }
+            ],
+            2023: [
+                { account_nm: "유동자산", thstrm_amount: "1,200,000,000,000", fs_div: "CFS" },
+                { account_nm: "비유동자산", thstrm_amount: "1,300,000,000,000", fs_div: "CFS" },
+                { account_nm: "자산총계", thstrm_amount: "2,500,000,000,000", fs_div: "CFS" },
+                { account_nm: "유동부채", thstrm_amount: "500,000,000,000", fs_div: "CFS" },
+                { account_nm: "비유동부채", thstrm_amount: "250,000,000,000", fs_div: "CFS" },
+                { account_nm: "부채총계", thstrm_amount: "750,000,000,000", fs_div: "CFS" },
+                { account_nm: "자본금", thstrm_amount: "23,000,000,000", fs_div: "CFS" },
+                { account_nm: "이익잉여금", thstrm_amount: "1,550,000,000,000", fs_div: "CFS" },
+                { account_nm: "자본총계", thstrm_amount: "1,750,000,000,000", fs_div: "CFS" }
+            ],
+            2024: [
+                { account_nm: "유동자산", thstrm_amount: "1,300,000,000,000", fs_div: "CFS" },
+                { account_nm: "비유동자산", thstrm_amount: "1,400,000,000,000", fs_div: "CFS" },
+                { account_nm: "자산총계", thstrm_amount: "2,700,000,000,000", fs_div: "CFS" },
+                { account_nm: "유동부채", thstrm_amount: "520,000,000,000", fs_div: "CFS" },
+                { account_nm: "비유동부채", thstrm_amount: "280,000,000,000", fs_div: "CFS" },
+                { account_nm: "부채총계", thstrm_amount: "800,000,000,000", fs_div: "CFS" },
+                { account_nm: "자본금", thstrm_amount: "23,000,000,000", fs_div: "CFS" },
+                { account_nm: "이익잉여금", thstrm_amount: "1,580,000,000,000", fs_div: "CFS" },
+                { account_nm: "자본총계", thstrm_amount: "1,800,000,000,000", fs_div: "CFS" }
+            ]
+        };
+        const incomeStatementDataByYear = {
+            2022: [
+                { account_nm: "매출액", thstrm_amount: "2,072,550,223,138", fs_div: "CFS" },
+                { account_nm: "영업이익", thstrm_amount: "133,503,465,388", fs_div: "CFS" },
+                { account_nm: "법인세차감전 순이익", thstrm_amount: "112,085,847,739", fs_div: "CFS" },
+                { account_nm: "당기순이익", thstrm_amount: "92,322,769,549", fs_div: "CFS" },
+                { account_nm: "당기순이익(손실)", thstrm_amount: "92,322,769,549", fs_div: "CFS" }
+            ],
+            2023: [
+                { account_nm: "매출액", thstrm_amount: "2,100,000,000,000", fs_div: "CFS" },
+                { account_nm: "영업이익", thstrm_amount: "150,000,000,000", fs_div: "CFS" },
+                { account_nm: "법인세차감전 순이익", thstrm_amount: "120,000,000,000", fs_div: "CFS" },
+                { account_nm: "당기순이익", thstrm_amount: "95,000,000,000", fs_div: "CFS" },
+                { account_nm: "당기순이익(손실)", thstrm_amount: "95,000,000,000", fs_div: "CFS" }
+            ],
+            2024: [
+                { account_nm: "매출액", thstrm_amount: "2,200,000,000,000", fs_div: "CFS" },
+                { account_nm: "영업이익", thstrm_amount: "160,000,000,000", fs_div: "CFS" },
+                { account_nm: "법인세차감전 순이익", thstrm_amount: "130,000,000,000", fs_div: "CFS" },
+                { account_nm: "당기순이익", thstrm_amount: "100,000,000,000", fs_div: "CFS" },
+                { account_nm: "당기순이익(손실)", thstrm_amount: "100,000,000,000", fs_div: "CFS" }
+            ]
+        };
         // 숫자 포맷팅 함수 (천 단위 콤마 추가)
         function formatNumber(amount) {
             const num = parseInt(amount.replace(/,/g, ''));
@@ -1136,52 +1121,52 @@
         // 재무상태표 데이터 채우기
         function fillBalanceSheetData() {
             const accountMapping = {
-                '자산총계': 'assets-total-2022',
-                '자본총계': 'equity-total-2022',
-                '자본금': 'capital-stock-2022',
-                '이익잉여금': 'retained-earnings-2022',
-                '유동자산': 'current-assets-2022',
-                '유동부채': 'current-liabilities-2022',
-                '비유동자산': 'non-current-assets-2022',
-                '비유동부채': 'non-current-liabilities-2022',
-                '부채총계': 'liabilities-total-2022'
+                '자산총계': 'assets-total',
+                '자본총계': 'equity-total',
+                '자본금': 'capital-stock',
+                '이익잉여금': 'retained-earnings',
+                '유동자산': 'current-assets',
+                '유동부채': 'current-liabilities',
+                '비유동자산': 'non-current-assets',
+                '비유동부채': 'non-current-liabilities',
+                '부채총계': 'liabilities-total'
             };
-            balanceSheetData.forEach(item => {
-                if (item.fs_div === 'CFS') { // 연결재무제표 데이터 사용
-                    const elementId = accountMapping[item.account_nm];
-                    if (elementId) {
-                        const element = document.getElementById(elementId);
+            for (const year in balanceSheetDataByYear) {
+                balanceSheetDataByYear[year].forEach(item => {
+                    const idBase = accountMap[item.account_nm];
+                    if (idBase) {
+                        const element = document.getElementById(`${idBase}-${year}`);
                         if (element) {
                             element.textContent = formatToEok(item.thstrm_amount);
                             element.style.color = '#007bff';
                             element.style.fontWeight = 'bold';
                         }
                     }
-                }
-            });
+                });
+            }
         }
         // 손익계산서 데이터 채우기
         function fillIncomeStatementData() {
             const accountMapping = {
-                '매출액': 'revenue-2022',
-                '당기순이익': 'net-income-2022',
-                '당기순이익(손실)': 'net-income-loss-2022',
-                '영업이익': 'operating-income-2022',
-                '법인세차감전 순이익': 'income-before-tax-2022'
+                '매출액': 'revenue',
+                '당기순이익': 'net-income',
+                '당기순이익(손실)': 'net-income-loss',
+                '영업이익': 'operating-income',
+                '법인세차감전 순이익': 'income-before-tax'
             };
-            incomeStatementData.forEach(item => {
-                if (item.fs_div === 'CFS') { // 연결재무제표 데이터 사용
-                    const elementId = accountMapping[item.account_nm];
-                    if (elementId) {
-                        const element = document.getElementById(elementId);
+            for (const year in incomeStatementDataByYear) {
+                incomeStatementDataByYear[year].forEach(item => {
+                    const idBase = accountMap[item.account_nm];
+                    if (idBase) {
+                        const element = document.getElementById(`${idBase}-${year}`);
                         if (element) {
                             element.textContent = formatToEok(item.thstrm_amount);
                             element.style.color = '#007bff';
                             element.style.fontWeight = 'bold';
                         }
                     }
-                }
-            });
+                });
+            }
         }
         // 페이지 로드 시 데이터 채우기
         document.addEventListener('DOMContentLoaded', function() {
