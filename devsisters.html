@@ -1175,29 +1175,24 @@
           <tr>
             <th>항목</th>
             <th>현재</th>
-            <th>변화율</th>
           </tr>
         </thead>
         <tbody>
           <tr>
             <td>환율 (USD/KRW)</td>
             <td id="usd-krw">--</td>
-            <td id="usd-krw-change">--%</td>
           </tr>
           <tr>
             <td>금시세 (1g)</td>
             <td id="gold-price">--</td>
-            <td id="gold-price-change">--%</td>
           </tr>
           <tr>
             <td>KOSPI</td>
             <td id="kospi">--</td>
-            <td id="kospi-change">--%</td>
           </tr>
           <tr>
             <td>KOSDAQ</td>
             <td id="kosdaq">--</td>
-            <td id="kosdaq-change">--%</td>
           </tr>
         </tbody>
       </table>
@@ -1205,49 +1200,202 @@
   </div>
 </div>
 
-<!-- 경제지표 페이지 스타일 -->
 <style>
-  .section-box {
-    margin-top: 30px;
-    padding: 25px;
-    background: #fff;
-    border: 1px solid #ddd;
-    border-radius: 10px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-  }
-  .section-title {
-    font-size: 22px;
-    font-weight: 700;
-    margin-bottom: 20px;
-    color: #333;
-    border-bottom: 2px solid #eee;
-    padding-bottom: 6px;
-  }
-  .economic-table-wrapper {
-    margin-top: 20px;
-    overflow-x: auto;
-  }
-  .economic-table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: 14px;
-  }
-  .economic-table th,
-  .economic-table td {
-    border: 1px solid #ddd;
-    padding: 10px;
-    text-align: center;
-  }
-  .economic-table thead {
-    background-color: #f8f8f8;
-  }
-  .economic-table tbody tr:nth-child(even) {
-    background-color: #fafafa;
-  }
-  .economic-table tbody tr:hover {
-    background-color: #f1f1f1;
-  }
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+    .company-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .company-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+    .company-code {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin-right: 15px;
+    }
+    /* ▶ 탭 메뉴 스타일 */
+    .tab-menu {
+        display: flex;
+        gap: 12px;
+        margin: 16px 0;
+        padding: 0;
+        list-style: none;
+    }
+    .tab-menu li {
+        padding: 12px 20px;
+        background: #f1f1f1;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .tab-menu li:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+    }
+    .tab-menu li.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    /* ▶ 탭 콘텐츠 */
+    .tab-content {
+        display: none;
+        margin-top: 10px;
+        animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    /* ▶ 섹션 박스 레이아웃 */
+    .section-box {
+        margin-top: 30px;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #333;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    /* ▶ 경제지표 테이블 스타일 */
+    .economic-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    .economic-table th,
+    .economic-table td {
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        text-align: center;
+    }
+    .economic-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .economic-table thead th {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .economic-table tbody tr:nth-child(even) {
+        background-color: #f8f9ff;
+    }
+    .economic-table tbody tr:hover {
+        background-color: #e8f0fe;
+        transform: scale(1.01);
+        transition: all 0.2s ease;
+    }
+    /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
+    .economic-table th:first-child,
+    .economic-table td:first-child {
+        width: 40%;
+        text-align: left;
+        padding-left: 20px;
+        font-weight: 500;
+    }
+    /* ▶ 나머지 열: 동일 폭 */
+    .economic-table th:nth-child(2),
+    .economic-table td:nth-child(2) {
+        width: 60%;
+        font-weight: 600;
+    }
+    /* ▶ 변화율 색상 */
+    .positive {
+        color: #d32f2f;
+        font-weight: 600;
+    }
+    .negative {
+        color: #1976d2;
+        font-weight: 600;
+    }
+    .neutral {
+        color: #666;
+    }
+    /* ▶ 로딩 상태 */
+    .loading {
+        color: #999;
+        font-style: italic;
+    }
 </style>
+    <script>
+        // 경제지표 JSON 데이터
+        const economicData = {
+            "KOSPI": "2,697.67",
+            "KOSDAQ": "734.35",
+            "USD/KRW": "1,380.40",
+            "금시세(1g)": "144.4100"
+        };
+
+        // 데이터 로드 및 표시 함수
+        function loadEconomicData() {
+            try {
+                // USD/KRW 데이터 설정
+                const usdKrwElement = document.getElementById('usd-krw');
+                usdKrwElement.textContent = economicData['USD/KRW'];
+                usdKrwElement.classList.remove('loading');
+
+                // 금시세 데이터 설정
+                const goldPriceElement = document.getElementById('gold-price');
+                goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
+                goldPriceElement.classList.remove('loading');
+
+                // KOSPI 데이터 설정
+                const kospiElement = document.getElementById('kospi');
+                kospiElement.textContent = economicData['KOSPI'];
+                kospiElement.classList.remove('loading');
+
+                // KOSDAQ 데이터 설정
+                const kosdaqElement = document.getElementById('kosdaq');
+                kosdaqElement.textContent = economicData['KOSDAQ'];
+                kosdaqElement.classList.remove('loading');
+
+            } catch (error) {
+                console.error('경제지표 데이터 로드 중 오류 발생:', error);
+                
+                // 오류 발생 시 기본값 표시
+                document.querySelectorAll('.loading').forEach(element => {
+                    element.textContent = '데이터 없음';
+                    element.classList.remove('loading');
+                });
+            }
+        }
+
+        // 페이지 로드 완료 후 데이터 로드
+        document.addEventListener('DOMContentLoaded', function() {
+            // 로딩 효과를 위해 약간의 지연 후 데이터 표시
+            setTimeout(loadEconomicData, 500);
+        });
+    </script>
       
 <!-- 투자지표 페이지 -->
 <div id="investment-indicators-page" class="sub-page">
