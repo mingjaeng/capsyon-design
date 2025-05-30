@@ -1133,7 +1133,7 @@
             };
             for (const year in balanceSheetDataByYear) {
                 balanceSheetDataByYear[year].forEach(item => {
-                    const idBase = accountMap[item.account_nm];
+                    const idBase = accountMapping[item.account_nm];
                     if (idBase) {
                         const element = document.getElementById(`${idBase}-${year}`);
                         if (element) {
@@ -1156,7 +1156,7 @@
             };
             for (const year in incomeStatementDataByYear) {
                 incomeStatementDataByYear[year].forEach(item => {
-                    const idBase = accountMap[item.account_nm];
+                    const idBase = accountMapping[item.account_nm];
                     if (idBase) {
                         const element = document.getElementById(`${idBase}-${year}`);
                         if (element) {
