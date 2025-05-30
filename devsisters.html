@@ -32,16 +32,19 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Malgun Gothic', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         body {
             background-color: #f5f5f5;
+            padding: 20px;
         }
         .header {
-            background-color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 10px 0;
-            border-top: 3px solid #e74c3c;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         .header-content {
             display: flex;
@@ -56,7 +59,7 @@
             font-weight: bold;
         }
         .logo span:first-child {
-            color: #e74c3c;
+            color: #fff;
         }
         .search-bar {
             display: flex;
@@ -64,20 +67,27 @@
         .search-bar input {
             padding: 8px 12px;
             border: none;
-            border-radius: 4px 0 0 4px;
+            border-radius: 8px 0 0 8px;
             width: 300px;
+            font-size: 14px;
         }
         .search-bar button {
-            background-color: #555;
+            background: rgba(255,255,255,0.2);
             border: none;
             padding: 8px 15px;
-            border-radius: 0 4px 4px 0;
+            border-radius: 0 8px 8px 0;
             color: white;
             cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .search-bar button:hover {
+            background: rgba(255,255,255,0.3);
         }
         .main-nav {
-            background-color: #444;
-            border-bottom: 1px solid #555;
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .nav-items {
             display: flex;
@@ -87,16 +97,24 @@
         }
         .nav-items li {
             padding: 15px 20px;
-            color: white;
+            color: #333;
             cursor: pointer;
-            font-weight: bold;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 5px;
         }
         .nav-items li:hover, .nav-items li.active {
-            background-color: #666;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         .sub-nav {
-            background-color: #eee;
-            border-bottom: 1px solid #ddd;
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .sub-nav-items {
             display: flex;
@@ -104,75 +122,101 @@
             margin: 0 auto;
             list-style-type: none;
             padding: 10px 15px;
+            gap: 12px;
         }
         .sub-nav-items li {
-            padding: 5px 15px;
+            padding: 8px 15px;
             color: #333;
             cursor: pointer;
-            border-right: 1px solid #ccc;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
         }
-        .sub-nav-items li:last-child {
-            border-right: none;
+        .sub-nav-items li:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
         }
         .sub-nav-items li.active {
-            font-weight: bold;
-            color: #e74c3c;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
         }
         .company-info {
             max-width: 1200px;
             margin: 20px auto;
-            background-color: white;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-            padding: 20px;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
         .company-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
             display: flex;
             justify-content: space-between;
-            border-bottom: 1px solid #eee;
-            padding-bottom: 15px;
-            margin-bottom: 15px;
+            border-bottom: none;
         }
         .company-name {
             font-size: 24px;
             font-weight: bold;
-            color: #e74c3c;
+            margin-right: 15px;
         }
         .company-code {
-            color: #666;
-            margin-left: 10px;
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 15px;
         }
         .stats {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 15px;
         }
         .stat-box {
             text-align: center;
             flex: 1;
-            padding: 10px;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        .stat-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         .stat-label {
             font-size: 14px;
             color: #666;
+            font-weight: 500;
         }
         .stat-value {
             font-size: 22px;
             font-weight: bold;
             margin-top: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .charts {
             display: flex;
             justify-content: space-between;
             margin-bottom: 20px;
+            gap: 15px;
         }
         .chart {
             flex: 1;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
+            background: #f8f9ff;
+            border: 1px solid #e0e0e0;
             height: 200px;
-            margin: 0 5px;
             position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .chart-title {
             position: absolute;
@@ -180,6 +224,7 @@
             left: 10px;
             font-size: 14px;
             color: #666;
+            font-weight: 500;
         }
         .chart-value {
             position: absolute;
@@ -187,11 +232,14 @@
             right: 10px;
             font-size: 16px;
             font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .chart-content {
             height: 80%;
             margin-top: 40px;
-            background-image: linear-gradient(to right, #ffcccb, #ffebe6);
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
             position: relative;
             overflow: hidden;
         }
@@ -199,82 +247,150 @@
             position: absolute;
             width: 100%;
             height: 2px;
-            background-color: red;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             top: 50%;
             z-index: 2;
         }
         .chart-line.blue {
-            background-color: blue;
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
             top: 30%;
         }
         .detail-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .detail-table th, .detail-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
             text-align: center;
         }
         .detail-table th {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .detail-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .detail-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
         }
         .positive {
-            color: red;
+            color: #d32f2f;
+            font-weight: 600;
         }
         .negative {
-            color: blue;
+            color: #1976d2;
+            font-weight: 600;
         }
-        
+        .neutral {
+            color: #666;
+        }
         /* 동적 계산을 위한 스타일 */
         .calculated-value {
             font-weight: bold;
         }
-        
-        /* 상세목차 메뉴 스타일 */
+        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
-            background-color: #f8f8f8;
-            border-bottom: 1px solid #ddd;
-            margin-bottom: 20px;
+            gap: 12px;
+            margin: 16px 0;
+            padding: 0;
+            list-style: none;
+            background: none;
+            border-bottom: none;
         }
         .tab-item {
             padding: 12px 20px;
+            background: #f1f1f1;
+            border-radius: 8px;
             cursor: pointer;
-            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: none;
+        }
+        .tab-item:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
         }
         .tab-item.active {
-            border-bottom: 2px solid #e74c3c;
-            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            border-bottom: none;
         }
         .tab-content {
             display: none;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease;
         }
         .tab-content.active {
             display: block;
         }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
         
+        /* 섹션 박스 레이아웃 */
+        .section-box {
+            margin-top: 30px;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
         /* 재무제표 상세목차 */
         .financial-statement {
             width: 100%;
             border-collapse: collapse;
             margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .financial-statement th, .financial-statement td {
-            border: 1px solid #ddd;
-            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
         }
         .financial-statement th {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             text-align: left;
+            font-weight: 600;
         }
         .financial-statement thead th {
             text-align: center;
             font-weight: bold;
         }
+        .financial-statement tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .financial-statement tbody tr:hover {
+            background-color: #e8f0fe;
+            transition: all 0.2s ease;
+        }
         .financial-statement .category {
-            background-color: #eee;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
             font-weight: bold;
         }
         .financial-statement .subcategory {
@@ -288,17 +404,19 @@
             text-align: right;
         }
         .year-selector select {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .statement-type {
             margin-bottom: 15px;
         }
         .statement-type select {
-            padding: 5px 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         .unit-info {
             text-align: right;
@@ -318,7 +436,7 @@
         .company-profile-header {
             margin-bottom: 20px;
             padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 3px solid #667eea;
         }
         .company-profile-section {
             margin-bottom: 30px;
@@ -327,19 +445,30 @@
             margin-bottom: 15px;
             color: #333;
             font-size: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .company-detail-table {
             width: 100%;
             border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .company-detail-table th, .company-detail-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
         }
         .company-detail-table th {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
             width: 150px;
             text-align: left;
+            font-weight: 600;
+        }
+        .company-detail-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
         }
         
         /* 페이지 상세목차 */
@@ -349,23 +478,77 @@
         .page-container.active {
             display: block;
         }
-        
         /* 경제지표 상세목차 */
+        .economic-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .economic-table th,
+        .economic-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: center;
+        }
+        .economic-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .economic-table thead th {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .economic-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .economic-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        .economic-table th:first-child,
+        .economic-table td:first-child {
+            width: 40%;
+            text-align: left;
+            padding-left: 20px;
+            font-weight: 500;
+        }
+        .economic-table th:nth-child(2),
+        .economic-table td:nth-child(2) {
+            width: 60%;
+            font-weight: 600;
+        }
         .ratio-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .ratio-table th, .ratio-table td {
-            border: 1px solid #ddd;
-            padding: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 15px;
             text-align: center;
         }
         .ratio-table th {
-            background-color: #f5f5f5;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        .ratio-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .ratio-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transition: all 0.2s ease;
         }
         .ratio-table .ratio-category {
-            background-color: #eee;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
             font-weight: bold;
             text-align: left;
         }
@@ -377,16 +560,20 @@
         .indicator-chart {
             width: 100%;
             height: 300px;
-            background-color: #f9f9f9;
-            border: 1px solid #eee;
+            background: #f8f9ff;
+            border: 1px solid #e0e0e0;
             margin-bottom: 30px;
             position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
         }
         .indicator-chart-title {
-            padding: 10px;
+            padding: 15px;
             font-weight: bold;
-            background-color: #f5f5f5;
-            border-bottom: 1px solid #eee;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: 1px solid #e0e0e0;
         }
         .indicator-chart-content {
             height: 250px;
@@ -401,13 +588,24 @@
             margin-top: 20px;
         }
         .report-item {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px;
+            background: #f8f9ff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .report-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         .report-title {
             font-size: 16px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .report-metadata {
             display: flex;
@@ -429,13 +627,24 @@
             margin-top: 20px;
         }
         .news-item {
-            border-bottom: 1px solid #eee;
-            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px;
+            background: #f8f9ff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .news-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
         }
         .news-title {
             font-size: 16px;
             font-weight: bold;
-            margin-bottom: 5px;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
         .news-metadata {
             display: flex;
@@ -458,6 +667,12 @@
         }
         .sub-page.active {
             display: block;
+        }
+        
+        /* 로딩 상태 */
+        .loading {
+            color: #999;
+            font-style: italic;
         }
     </style>
   
