@@ -4,32 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
-
-<script>
-  const companyMap = {
-    "AP위성": "apsi.html",
-    "데브시스터즈": "devsisters.html",
-    "한선엔지니어링": "ehansun.html",
-    "고려제강": "kiswire.html",
-    "메카로": "mecaro.html",
-    "미래에셋증권": "miraeasset.html",
-    "폴라리스AI": "polarisai.html",
-    "로보로보": "roborobo.html",
-    "셀바스헬스케어": "selvashealthcare.html",
-    "성우하이텍": "sungwoo.html",
-  };
-  function goToCompanyPage() {
-    const input = document.getElementById("searchInput").value.trim();
-    if (companyMap[input]) {
-      window.location.href = companyMap[input];
-    } else {
-      alert("해당 기업 정보를 찾을 수 없습니다.");
-    }
-    return false;
-  }
-</script>
-    <link rel="stylesheet" href="style.css">
-    
+    <script>
+        const companyMap = {
+            "AP위성": "apsi.html",
+            "데브시스터즈": "devsisters.html",
+            "한선엔지니어링": "ehansun.html",
+            "고려제강": "kiswire.html",
+            "메카로": "mecaro.html",
+            "미래에셋증권": "miraeasset.html",
+            "폴라리스AI": "polarisai.html",
+            "로보로보": "roborobo.html",
+            "셀바스헬스케어": "selvashealthcare.html",
+            "성우하이텍": "sungwoo.html",
+        };
+        function goToCompanyPage() {
+            const input = document.getElementById("searchInput").value.trim();
+            if (companyMap[input]) {
+                window.location.href = companyMap[input];
+            } else {
+                alert("해당 기업 정보를 찾을 수 없습니다.");
+            }
+            return false;
+        }
+    </script>
     <style>
         * {
             margin: 0;
@@ -779,17 +776,14 @@
        KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
       </div>
     </div>
-
     <!-- 재무제표 섹션 -->
     <div class="section-box">
       <h3 class="section-title">재무제표</h3>
       <ul class="tab-menu">
-        <li class="active" data-tab="balance-sheet">연결재무상태표</li>
-        <li data-tab="income-statement">연결포괄손익계산서</li>
-        <li data-tab="cash-flow">연결현금흐름표</li>
+        <li class="active" data-tab="balance-sheet">재무상태표</li>
+        <li data-tab="income-statement">포괄손익계산서</li>
       </ul>
-      
-      <!-- 연결재무상태표 -->
+      <!-- 재무상태표 -->
       <div class="tab-content active" id="balance-sheet">
         <table class="financial-table">
           <thead>
@@ -801,56 +795,19 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="depth-0">자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">유동자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">현금및현금성자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">매출채권 및 기타유동채권</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타유동금융자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">재고자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타유동자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">당기법인세자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">비유동자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타비유동채권</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타비유동금융자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">공동기업투자주식</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">유형자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">무형자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">투자부동산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">순확정급여자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타비유동자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">이연법인세자산</td><td>--</td><td>--</td><td>--</td></tr>              
-            <tr><td class="depth-1">자산총계</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">유동부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">매입채무 및 기타유동채무</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타유동금융부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">단기차입금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">사채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">전환사채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">당기법인세부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">충당부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타 유동부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">비유동부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타비유동채무</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타비유동금융부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">장기차입금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">사채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">순확정급여부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">기타 비유동 부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">이연법인세부채</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">부채총계</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">자본</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">자본금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">자본잉여금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">기타자본구성요소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">이익잉여금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">자본총계</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">자본과부채총계</td><td>--</td><td>--</td><td>--</td></tr>             
+              <tr><td class="depth-0">자산총계</td><td>--</td><td>--</td><td id="assets-total-2022">--</td></tr>
+              <tr><td class="depth-0">자본총계</td><td>--</td><td>--</td><td id="equity-total-2022">--</td></tr>
+              <tr><td class="depth-0">자본금</td><td>--</td><td>--</td><td id="capital-stock-2022">--</td></tr>
+              <tr><td class="depth-0">이익잉여금</td><td>--</td><td>--</td><td id="retained-earnings-2022">--</td></tr>
+              <tr><td class="depth-0">유동자산</td><td>--</td><td>--</td><td id="current-assets-2022">--</td></tr>
+              <tr><td class="depth-0">유동부채</td><td>--</td><td>--</td><td id="current-liabilities-2022">--</td></tr>
+              <tr><td class="depth-0">비유동자산</td><td>--</td><td>--</td><td id="non-current-assets-2022">--</td></tr>
+              <tr><td class="depth-0">비유동부채</td><td>--</td><td>--</td><td id="non-current-liabilities-2022">--</td></tr>
+              <tr><td class="depth-0">부채총계</td><td>--</td><td>--</td><td id="liabilities-total-2022">--</td></tr>
           </tbody>
         </table>
       </div>
-
-      <!-- 연결포괄손익계산서 -->
+      <!-- 포괄손익계산서 -->
       <div class="tab-content" id="income-statement">
         <table class="financial-table">
           <thead>
@@ -862,99 +819,12 @@
             </tr>
           </thead>
           <tbody>
-            <tr><td class="depth-0">매출액</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">매출원가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">매출총이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">판매비와관리비</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">대손상각비</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">영업이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">기타수익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">기타비용</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">금융수익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">금융비용</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">지분법손실</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">법인세비용차감전순이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">법인세비용(수익)</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">당기순이익(손실)</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">지배기업의 소유주지분</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">기타포괄손익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">당기손익으로 재분류되지 않는 항목</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">순확정급여부채의재측정요소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">토지재평가잉여금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">당기손익으로 재분류 될 수 있는 항목</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">지분법과자본변동</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-2">해외사업 외화환산차이</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">총포괄이익</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">지배기업 소유주지분</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">주당이익(손실)</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">기본주당이익 (단위 : 원)</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">희석주당이익 (단위 : 원)</td><td>--</td><td>--</td><td>--</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- 연결현금흐름표 -->
-      <div class="tab-content" id="cash-flow">
-        <table class="financial-table">
-          <thead>
-            <tr>
-              <th>항목</th>
-              <th>2024</th>
-              <th>2023</th>
-              <th>2022</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td class="depth-0">영업활동으로 인한 현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">영업활동에서 창출된 현금</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">법인세납부</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">이자의 수취</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">이자의 지급</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">투자활동현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기금융상품의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기투자자산의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기대여금의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기금융상품의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">공기구비품의 처분</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기대여금의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">차량운반구의 처분</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기금융상품의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기투자자산의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">매도가능증권의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기대여금 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기금융상품의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기대여금증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">지분법투자주식 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">투자부동산의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">토지의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">기계장치의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">차량운반구의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">공기구비품의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">건설중인자산의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">회원권의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">소프트웨어의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">기타무형자산의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">보증금의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">재무활동현금흐름</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기차입금의 차입</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">사채의 발행</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">전환사채의 발행</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기차입금의 증가</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">유상증자</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">합병으로 인한 자금유입</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">단기차입금의 상환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">사채의 상환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">유동성장기부채의 상환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">리스부채의상환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">장기차입금의 상환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">예수보증금의 감소</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">전환사채의 전환</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">배당금지급</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-1">자기주식의 취득</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">현금및현금성자산의 순증감</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">환율변동효과</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">기초현금및현금성자산</td><td>--</td><td>--</td><td>--</td></tr>
-            <tr><td class="depth-0">기말현금및현금성자산</td><td>--</td><td>--</td><td>--</td></tr>
+              <tr><td class="depth-0">매출액</td><td>--</td><td>--</td><td id="revenue-2022">--</td></tr>
+              <tr><td class="depth-0">당기순이익</td><td>--</td><td>--</td><td id="net-income-2022">--</td></tr>
+              <tr><td class="depth-0">당기순이익(손실)</td><td>--</td><td>--</td><td id="net-income-loss-2022">--</td></tr>
+              <tr><td class="depth-0">영업이익</td><td>--</td><td>--</td><td id="operating-income-2022">--</td></tr>
+              <tr><td class="depth-0">총포괄손익</td><td>--</td><td>--</td><td>--</td></tr>
+              <tr><td class="depth-0">법인세차감전 순이익</td><td>--</td><td>--</td><td id="income-before-tax-2022">--</td></tr>
           </tbody>
         </table>
       </div>
@@ -962,124 +832,328 @@
   </div>
 </div>
 
-<!-- 탭 동작용 스크립트 -->
-<script>
+  <script>
+  // 탭 메뉴 기능
   document.querySelectorAll('.tab-menu li').forEach(tab => {
     tab.addEventListener('click', function () {
       document.querySelectorAll('.tab-menu li').forEach(li => li.classList.remove('active'));
       this.classList.add('active');
-
       const target = this.getAttribute('data-tab');
       document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
       document.getElementById(target).classList.add('active');
     });
   });
-</script>
+  // 재무제표 데이터 (JSON 데이터를 JavaScript 객체로 변환)
+  const balanceSheetData = [
+    {
+        "account_nm": "유동자산",
+        "thstrm_amount": "1,153,075,088,455",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "비유동자산",
+        "thstrm_amount": "1,379,693,309,800",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "자산총계",
+        "thstrm_amount": "2,532,768,398,255",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "유동부채",
+        "thstrm_amount": "561,483,968,404",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "비유동부채",
+        "thstrm_amount": "243,762,271,162",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "부채총계",
+        "thstrm_amount": "805,246,239,566",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "자본금",
+        "thstrm_amount": "23,000,000,000",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "이익잉여금",
+        "thstrm_amount": "1,566,861,244,579",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "자본총계",
+        "thstrm_amount": "1,727,522,158,689",
+        "fs_div": "CFS"
+    }
+  ];
+  const incomeStatementData = [
+    {
+        "account_nm": "매출액",
+        "thstrm_amount": "2,072,550,223,138",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "영업이익",
+        "thstrm_amount": "133,503,465,388",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "법인세차감전 순이익",
+        "thstrm_amount": "112,085,847,739",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "당기순이익",
+        "thstrm_amount": "92,322,769,549",
+        "fs_div": "CFS"
+    },
+    {
+        "account_nm": "당기순이익(손실)",
+        "thstrm_amount": "92,322,769,549",
+        "fs_div": "CFS"
+    }
+  ];
+  // 숫자 포맷팅 함수 (천 단위 콤마 추가)
+  function formatNumber(amount) {
+    const num = parseInt(amount.replace(/,/g, ''));
+    return num.toLocaleString('ko-KR');
+  }
+  // 억 단위로 변환하는 함수
+  function formatToEok(amount) {
+    const num = parseInt(amount.replace(/,/g, ''));
+    const eok = Math.round(num / 100000000);
+    return eok.toLocaleString('ko-KR') + '억';
+  }
+  // 재무상태표 데이터 채우기
+  function fillBalanceSheetData() {
+    const accountMapping = {
+      '자산총계': 'assets-total-2022',
+      '자본총계': 'equity-total-2022',
+      '자본금': 'capital-stock-2022',
+      '이익잉여금': 'retained-earnings-2022',
+      '유동자산': 'current-assets-2022',
+      '유동부채': 'current-liabilities-2022',
+      '비유동자산': 'non-current-assets-2022',
+      '비유동부채': 'non-current-liabilities-2022',
+      '부채총계': 'liabilities-total-2022'
+    };
+    balanceSheetData.forEach(item => {
+      if (item.fs_div === 'CFS') { // 연결재무제표 데이터 사용
+        const elementId = accountMapping[item.account_nm];
+        if (elementId) {
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.textContent = formatToEok(item.thstrm_amount);
+            element.style.color = '#007bff';
+            element.style.fontWeight = 'bold';
+          }
+        }
+      }
+    });
+  }
+  // 손익계산서 데이터 채우기
+  function fillIncomeStatementData() {
+    const accountMapping = {
+      '매출액': 'revenue-2022',
+      '당기순이익': 'net-income-2022',
+      '당기순이익(손실)': 'net-income-loss-2022',
+      '영업이익': 'operating-income-2022',
+      '법인세차감전 순이익': 'income-before-tax-2022'
+    };
+    incomeStatementData.forEach(item => {
+      if (item.fs_div === 'CFS') { // 연결재무제표 데이터 사용
+        const elementId = accountMapping[item.account_nm];
+        if (elementId) {
+          const element = document.getElementById(elementId);
+          if (element) {
+            element.textContent = formatToEok(item.thstrm_amount);
+            element.style.color = '#007bff';
+            element.style.fontWeight = 'bold';
+          }
+        }
+      }
+    });
+  }
+  // 페이지 로드 시 데이터 채우기
+  document.addEventListener('DOMContentLoaded', function() {
+    fillBalanceSheetData();
+    fillIncomeStatementData();
+    // 데이터 로딩 완료 알림
+    console.log('재무제표 데이터가 성공적으로 로드되었습니다.');
+    // 시각적 효과를 위한 애니메이션
+    setTimeout(() => {
+      const filledCells = document.querySelectorAll('#balance-sheet td[style*="color: rgb(0, 123, 255)"], #income-statement td[style*="color: rgb(0, 123, 255)"]');
+      filledCells.forEach((cell, index) => {
+        setTimeout(() => {
+          cell.style.transition = 'all 0.3s ease';
+          cell.style.transform = 'scale(1.05)';
+          setTimeout(() => {
+            cell.style.transform = 'scale(1)';
+          }, 300);
+        }, index * 100);
+      });
+    }, 500);
+  });
+  </script>
 
-<!-- 재무제표 페이지 스타일 -->
-<style>
-/* ▶ 탭 메뉴 스타일 */
-.tab-menu {
-  display: flex;
-  gap: 12px;
-  margin: 16px 0;
-  padding: 0;
-  list-style: none;
-}
-.tab-menu li {
-  padding: 8px 16px;
-  background: #f1f1f1;
-  border-radius: 6px;
-  cursor: pointer;
-  font-weight: 500;
-}
-.tab-menu li.active {
-  background: #007bff;
-  color: #fff;
-}
-/* ▶ 탭 콘텐츠 */
-.tab-content {
-  display: none;
-  margin-top: 10px;
-}
-.tab-content.active {
-  display: block;
-}
-/* ▶ 섹션 박스 레이아웃 */
-.section-box {
-  margin-top: 30px;
-  padding: 25px;
-  background: #fff;
-  border: 1px solid #ddd;
-  border-radius: 10px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-}
-.section-title {
-  font-size: 22px;
-  font-weight: 700;
-  margin-bottom: 20px;
-  color: #333;
-  border-bottom: 2px solid #eee;
-  padding-bottom: 6px;
-}
-/* ▶ 재무 정보 설명 (비활성 중이지만 보존) */
-.financial-info p {
-  font-size: 14px;
-  margin: 5px 0;
-}
-/* ▶ 재무표 영역 스타일 */
-.financial-table-wrapper {
-  margin-top: 20px;
-  overflow-x: auto;
-}
-.financial-table {
-  width: 100%;
-  border-collapse: collapse;
-  font-size: 14px;
-  margin-top: 10px;
-}
-.financial-table th,
-.financial-table td {
-  border: 1px solid #ddd;
-  padding: 10px;
-  text-align: center;
-}
-.financial-table thead {
-  background-color: #f8f8f8;
-}
-.financial-table tbody tr:nth-child(even) {
-  background-color: #fafafa;
-}
-.financial-table tbody tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
-.financial-table th:first-child,
-.financial-table td:first-child {
-  width: 25%;
-  text-align: left;
-  padding-left: 16px;
-}
-/* ▶ 연도 열: 동일 폭 */
-.financial-table th:nth-child(n+2):nth-child(-n+4),
-.financial-table td:nth-child(n+2):nth-child(-n+4) {
-  width: 25%;
-}
-/* ▶ 계층 구조 들여쓰기 및 강조 */
-.financial-table td.depth-0 {
-  font-weight: bold;
-  background-color: #f8f8f8;
-}
-.financial-table td.depth-1 {
-  padding-left: 32px;
-  font-weight: 500;
-}
-.financial-table td.depth-2 {
-  padding-left: 48px;
-  color: #555;
-}
-</style>
+  <!-- 재무제표 페이지 스타일 -->
+   <style>
+   body {
+     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+     margin: 0;
+     padding: 20px;
+     background-color: #f5f5f5;
+   }
+   
+   .company-header {
+     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+     color: white;
+     padding: 20px;
+     border-radius: 10px;
+     margin-bottom: 20px;
+   }
+   
+   .company-name {
+     font-size: 24px;
+     font-weight: bold;
+     margin-right: 15px;
+   }
+   
+   .company-code {
+     background: rgba(255,255,255,0.2);
+     padding: 4px 8px;
+     border-radius: 4px;
+     margin-right: 15px;
+   }
+   
+   /* ▶ 탭 메뉴 스타일 */
+   .tab-menu {
+    display: flex;
+    gap: 12px;
+    margin: 16px 0;
+    padding: 0;
+    list-style: none;
+  }
+  .tab-menu li {
+    padding: 12px 20px;
+    background: #f1f1f1;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+  .tab-menu li:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+  }
+  .tab-menu li.active {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: #fff;
+    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+  }
+  /* ▶ 탭 콘텐츠 */
+  .tab-content {
+    display: none;
+    margin-top: 10px;
+    animation: fadeIn 0.3s ease;
+  }
+  .tab-content.active {
+    display: block;
+  }
+  
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  
+  /* ▶ 섹션 박스 레이아웃 */
+  .section-box {
+    margin-top: 30px;
+    padding: 30px;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  .section-title {
+    font-size: 26px;
+    font-weight: 700;
+    margin-bottom: 25px;
+    color: #333;
+    border-bottom: 3px solid linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    padding-bottom: 10px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  
+  /* ▶ 재무표 영역 스타일 */
+  .financial-table-wrapper {
+    margin-top: 20px;
+    overflow-x: auto;
+  }
+  .financial-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-top: 10px;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+  }
+  .financial-table th,
+  .financial-table td {
+    border: 1px solid #e0e0e0;
+    padding: 15px;
+    text-align: center;
+  }
+  .financial-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+  }
+  .financial-table thead th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  .financial-table tbody tr:nth-child(even) {
+    background-color: #f8f9ff;
+  }
+  .financial-table tbody tr:hover {
+    background-color: #e8f0fe;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+  }
+  /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
+  .financial-table th:first-child,
+  .financial-table td:first-child {
+    width: 25%;
+    text-align: left;
+    padding-left: 20px;
+  }
+  /* ▶ 연도 열: 동일 폭 */
+  .financial-table th:nth-child(n+2):nth-child(-n+4),
+  .financial-table td:nth-child(n+2):nth-child(-n+4) {
+    width: 25%; 
+  }
+  /* ▶ 계층 구조 들여쓰기 및 강조 */
+  .financial-table td.depth-0 {
+    font-weight: bold;
+    background-color: #f0f4ff;
+  }
+  .financial-table td.depth-1 {
+    padding-left: 35px;
+    font-weight: 500;
+  }
+  .financial-table td.depth-2 {
+    padding-left: 50px;
+    color: #555;
+  }
+  </style>
 
 <!-- 경제지표 페이지 -->
 <div id="financial-ratios-page" class="sub-page">
