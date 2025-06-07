@@ -2130,17 +2130,6 @@
             </div>
         </div>
     </div>
-    <script>
-    function showIndicators(event, year) {
-        const allSections = document.querySelectorAll('.year-indicators');
-        allSections.forEach(section => section.classList.remove('active'));
-        const selectedSection = document.getElementById('indicators-' + year);
-        if (selectedSection) selectedSection.classList.add('active');
-        const allButtons = document.querySelectorAll('.year-tabs button');
-        allButtons.forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        }
-    </script>
     <style>
     /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
@@ -2159,7 +2148,6 @@
         border-bottom: 2px solid #eee;
         padding-bottom: 6px;
     }
-    /* ▽ 연도 선택 탭 */
     .year-tabs {
         margin-bottom: 15px;
     }
@@ -2176,10 +2164,12 @@
         color: #fff;
         border-color: #007bff;
     }
-    /* ▽ 연도별 지표 영역 토글 */
-    .year-indicators { display: none; }
-    .year-indicators.active { display: block; }
-    /* ▽ 투자지표 테이블 */
+    .year-indicators { 
+        display: none; 
+    }
+    .year-indicators.active { 
+        display: block; 
+    }
     .investment-table-wrapper {     
         margin-top: 20px;
         overflow-x: auto;
@@ -2212,10 +2202,20 @@
         width: 50%;
     }
     .investment-table {
-        margin-bottom: 30px; /* 아래쪽 여백 추가 */
+        margin-bottom: 30px;
     }
     </style>
-
+    <script>
+    function showIndicators(event, year) {
+        const allSections = document.querySelectorAll('.year-indicators');
+        allSections.forEach(section => section.classList.remove('active'));
+        const selectedSection = document.getElementById('indicators-' + year);
+        if (selectedSection) selectedSection.classList.add('active');
+        const allButtons = document.querySelectorAll('.year-tabs button');
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        }
+    </script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
