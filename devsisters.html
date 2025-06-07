@@ -635,45 +635,6 @@
             color: #333;
             line-height: 1.5;
         }
-        /* 뉴스 상세목차 */
-        .news-list {
-            margin-top: 20px;
-        }
-        .news-item {
-            border-bottom: 1px solid #e0e0e0;
-            padding: 20px;
-            background: #f8f9ff;
-            margin-bottom: 10px;
-            border-radius: 10px;
-            transition: all 0.3s ease;
-        }
-        .news-item:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-        }
-        .news-title {
-            font-size: 16px;
-            font-weight: bold;
-            margin-bottom: 8px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-        .news-metadata {
-            display: flex;
-            font-size: 13px;
-            color: #666;
-        }
-        .news-metadata span {
-            margin-right: 15px;
-        }
-        .news-summary {
-            margin-top: 10px;
-            font-size: 14px;
-            color: #333;
-            line-height: 1.5;
-        }
         /* 서브 페이지 스타일 */
         .sub-page {
             display: none;
@@ -746,149 +707,6 @@
                         }
                     }
                 });
-            });
-        }
-        // 계산 함수 설정
-        function setupCalculations() {
-            // 재무정보 페이지의 입력 필드 생성
-            const statBoxes = document.querySelectorAll('.stat-box');
-            statBoxes.forEach(box => {
-                const label = box.querySelector('.stat-label').innerText;
-                const valueElement = box.querySelector('.stat-value');
-                // 값 대신 입력 필드 추가
-                const inputField = document.createElement('input');
-                inputField.type = 'text';
-                inputField.placeholder = '값 입력';
-                inputField.style.width = '80px';
-                inputField.style.marginTop = '5px';
-                inputField.style.textAlign = 'center';
-                inputField.dataset.label = label;
-                // 계산된 값을 표시할 요소 추가
-                const calculatedDiv = document.createElement('div');
-                calculatedDiv.className = 'calculated-value';
-                calculatedDiv.innerText = '--';
-                // 기존 값 제거 후 입력 필드와 계산된 값 추가
-                valueElement.innerHTML = '';
-                valueElement.appendChild(inputField);
-                valueElement.appendChild(calculatedDiv);
-                // 입력 변경 이벤트 리스너 추가
-                inputField.addEventListener('input', calculateValues);
-            });
-            // 투자지표 페이지의 테이블에도 적용
-            const detailTables = document.querySelectorAll('.detail-table');
-            detailTables.forEach(table => {
-                const cells = table.querySelectorAll('td');
-                cells.forEach(cell => {
-                    const originalText = cell.innerText;
-                    // 특정 데이터 셀에만 적용 (숫자가 포함된 셀)
-                    if (originalText.match(/[0-9]/) || originalText === '--') {
-                        const rowHeader = cell.closest('tr').querySelector('th').innerText;
-                        // 입력 필드 생성
-                        const inputField = document.createElement('input');
-                        inputField.type = 'text';
-                        inputField.placeholder = '값 입력';
-                        inputField.style.width = '80px';
-                        inputField.dataset.header = rowHeader;
-                        // 계산된 값을 표시할 요소 추가
-                        const calculatedDiv = document.createElement('div');
-                        calculatedDiv.className = 'calculated-value';
-                        calculatedDiv.innerText = '--';
-                        // 기존 값 제거 후 입력 필드와 계산된 값 추가
-                        cell.innerHTML = '';
-                        cell.appendChild(inputField);
-                        cell.appendChild(calculatedDiv);
-                        // 입력 변경 이벤트 리스너 추가
-                        inputField.addEventListener('input', calculateTableValues);
-                    }
-                });
-            });
-        }
-        // 통계 섹션 값 계산 함수
-        function calculateValues() {
-            const inputs = document.querySelectorAll('.stat-box input');
-            const values = {};
-            // 입력된 값 수집
-            inputs.forEach(input => {
-                values[input.dataset.label] = parseFloat(input.value) || 0;
-            });
-            // 각 입력 필드에 대한 계산
-            inputs.forEach(input => {
-                const calculatedDiv = input.nextElementSibling;
-                const label = input.dataset.label;
-                const value = parseFloat(input.value) || 0;
-                if (isNaN(value) || value === 0) {
-                    calculatedDiv.innerText = '--';
-                    return;
-                }
-                // 라벨에 따른 계산 로직
-                switch (label) {
-                    case 'PER':
-                        // 주가 / 주당순이익 (EPS)
-                        calculatedDiv.innerText = value.toFixed(2);
-                        break;
-                    case '12M PER':
-                        // 주가 / 12개월 예상 EPS
-                        calculatedDiv.innerText = value.toFixed(2);
-                        break;
-                    case '업종 PER':
-                        // 업종 평균 PER
-                        calculatedDiv.innerText = value.toFixed(2);
-                        break;
-                    case 'PBR':
-                        // 주가 / 주당순자산가치 (BPS)
-                        calculatedDiv.innerText = value.toFixed(2);
-                        break;
-                    case '배당수익률':
-                        // (주당배당금 / 주가) * 100
-                        calculatedDiv.innerText = value.toFixed(2) + '%';
-                        break;
-                    default:
-                        calculatedDiv.innerText = value.toFixed(2);
-                }
-            });
-        }
-        // 테이블 값 계산 함수
-        function calculateTableValues() {
-            const inputs = document.querySelectorAll('.detail-table input');
-            const values = {};
-            // 입력된 값 수집
-            inputs.forEach(input => {
-                values[input.dataset.header] = parseFloat(input.value) || 0;
-            });
-            // 각 입력 필드에 대한 계산
-            inputs.forEach(input => {
-                const calculatedDiv = input.nextElementSibling;
-                const header = input.dataset.header;
-                const value = parseFloat(input.value) || 0;
-                if (isNaN(value) || value === 0) {
-                    calculatedDiv.innerText = '--';
-                    return;
-                }
-                // 헤더에 따른 계산 로직
-                switch (header) {
-                    case '종가/전일대비':
-                        // 전일대비 계산
-                        calculatedDiv.innerText = value.toLocaleString() + ' 원';
-                        break;
-                    case '52주 최고/최저가':
-                        // 최고가와 최저가 표시
-                        calculatedDiv.innerText = value.toLocaleString() + ' 원';
-                        break;
-                    case '수익률 (1M/3M/6M/1Y)':
-                        // 수익률 계산
-                        calculatedDiv.innerText = value.toFixed(2) + '%';
-                        break;
-                    case '시가총액':
-                        // 시가총액 표시
-                        calculatedDiv.innerText = value.toLocaleString() + ' 억원';
-                        break;
-                    case '발행주식수':
-                        // 발행주식수 표시
-                        calculatedDiv.innerText = value.toLocaleString() + ' 주';
-                        break;
-                    default:
-                        calculatedDiv.innerText = value.toLocaleString();
-                }
             });
         }
     </script>
@@ -2280,9 +2098,26 @@
          document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
          document.getElementById(`indicators-${year}`).classList.add("active");
          event.target.classList.add("active");
-          }
+          }  
+
+    fetch('economic_index.json')
+    .then(res => res.json())
+    .then(data => {
+        // 값 넣기
+        document.getElementById('usd-krw').textContent = data["USD/KRW"];
+        document.getElementById('usd-krw-change').textContent = data["USD/KRW_change"] + '%';
+        document.getElementById('gold-price').textContent = data["금시세(1g)"];
+        document.getElementById('gold-price-change').textContent = data["금시세(1g)_change"] + '%';
+        document.getElementById('kospi').textContent = data["KOSPI"];
+        document.getElementById('kospi-change').textContent = data["KOSPI_change"] + '%';
+        document.getElementById('kosdaq').textContent = data["KOSDAQ"];
+        document.getElementById('kosdaq-change').textContent = data["KOSDAQ_change"] + '%';
+    })
+    .catch(e => {
+        console.error('경제지표 JSON 읽기 실패', e);
+        });
     </script>
-    <style>
+        <style>
     /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
@@ -2353,24 +2188,6 @@
         width: 50%;
     }
     </style>
-    <script>
-    fetch('economic_index.json')
-    .then(res => res.json())
-    .then(data => {
-        // 값 넣기
-        document.getElementById('usd-krw').textContent = data["USD/KRW"];
-        document.getElementById('usd-krw-change').textContent = data["USD/KRW_change"] + '%';
-        document.getElementById('gold-price').textContent = data["금시세(1g)"];
-        document.getElementById('gold-price-change').textContent = data["금시세(1g)_change"] + '%';
-        document.getElementById('kospi').textContent = data["KOSPI"];
-        document.getElementById('kospi-change').textContent = data["KOSPI_change"] + '%';
-        document.getElementById('kosdaq').textContent = data["KOSDAQ"];
-        document.getElementById('kosdaq-change').textContent = data["KOSDAQ_change"] + '%';
-    })
-    .catch(e => {
-        console.error('경제지표 JSON 읽기 실패', e);
-        });
-    </script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
