@@ -2030,94 +2030,107 @@
                     KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
-            <!--투자지표 섹션-->
+            <!-- 투자지표 섹션 -->
             <div class="section-box">
-                <h3 class="section-title">연결 투자지표</h3>
+                <h3 class="section-title">투자지표</h3>
                 <!-- 연도 선택 탭 -->
-                <div class="year-tabs">
+                 <div class="year-tabs">
                     <button onclick="showIndicators(event, '2024')" class="active">2024</button>
                     <button onclick="showIndicators(event, '2023')">2023</button>
                     <button onclick="showIndicators(event, '2022')">2022</button>
                 </div>
-                <!-- 연도별 투자지표 테이블 -->
+                <!-- 연도별 투자지표 섹션 -->
                 <div id="indicators-2024" class="year-indicators active">
-                    <table class="investment-table">
-                        <tbody>
-                            <tr><td>EPS</td><td>--</td></tr>
-                            <tr><td>BPS</td><td>--</td></tr>
-                            <tr><td>ROE</td><td>--%</td></tr>
-                            <tr><td>ROA</td><td>--%</td></tr>
-                            <tr><td>PER</td><td>--배</td></tr>
-                            <tr><td>PBR</td><td>--배</td></tr>
-                            <tr><td>부채비율</td><td>--%</td></tr>
-                            <tr><td>유동비율</td><td>--%</td></tr>
-                            <tr><td>영업이익률</td><td>--%</td></tr>
-                            <tr><td>순이익률</td><td>--%</td></tr>
-                        </tbody>
-                    </table>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>EPS</td><td>--</td></tr>
+                                <tr><td>ROE</td><td>--%</td></tr>
+                                <tr><td>ROA</td><td>--%</td></tr>
+                                <tr><td>영업이익률</td><td>--%</td></tr>
+                                <tr><td>순이익률</td><td>--%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>부채비율</td><td>--%</td></tr>
+                                <tr><td>유동비율</td><td>--%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>BPS</td><td>--</td></tr>
+                                <tr><td>PER</td><td>--배</td></tr>
+                                <tr><td>PBR</td><td>--배</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div id="indicators-2023" class="year-indicators">
-                    <table class="investment-table">
-                        <tbody>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table"><tbody>
                             <tr><td>EPS</td><td>--</td></tr>
-                            <tr><td>BPS</td><td>--</td></tr>
                             <tr><td>ROE</td><td>--%</td></tr>
                             <tr><td>ROA</td><td>--%</td></tr>
-                            <tr><td>PER</td><td>--배</td></tr>
-                            <tr><td>PBR</td><td>--배</td></tr>
-                            <tr><td>부채비율</td><td>--%</td></tr>
-                            <tr><td>유동비율</td><td>--%</td></tr>
                             <tr><td>영업이익률</td><td>--%</td></tr>
                             <tr><td>순이익률</td><td>--%</td></tr>
-                        </tbody>
-                    </table>
+                        </tbody></table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table"><tbody>
+                            <tr><td>부채비율</td><td>--%</td></tr>
+                            <tr><td>유동비율</td><td>--%</td></tr>
+                        </tbody></table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table"><tbody>
+                            <tr><td>BPS</td><td>--</td></tr>
+                            <tr><td>PER</td><td>--배</td></tr>
+                            <tr><td>PBR</td><td>--배</td></tr>
+                        </tbody></table>
+                    </div>
                 </div>
                 <div id="indicators-2022" class="year-indicators">
-                    <table class="investment-table">
-                        <tbody>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table"><tbody>
                             <tr><td>EPS</td><td>--</td></tr>
-                            <tr><td>BPS</td><td>--</td></tr>
                             <tr><td>ROE</td><td>--%</td></tr>
                             <tr><td>ROA</td><td>--%</td></tr>
-                            <tr><td>PER</td><td>--배</td></tr>
-                            <tr><td>PBR</td><td>--배</td></tr>
-                            <tr><td>부채비율</td><td>--%</td></tr>
-                            <tr><td>유동비율</td><td>--%</td></tr>
                             <tr><td>영업이익률</td><td>--%</td></tr>
                             <tr><td>순이익률</td><td>--%</td></tr>
-                        </tbody>
-                    </table>
+                        </tbody></table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table"><tbody>
+                            <tr><td>부채비율</td><td>--%</td></tr>
+                            <tr><td>유동비율</td><td>--%</td></tr>
+                        </tbody></table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table"><tbody>
+                            <tr><td>BPS</td><td>--</td></tr>
+                            <tr><td>PER</td><td>--배</td></tr>
+                            <tr><td>PBR</td><td>--배</td></tr>
+                        </tbody></table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 스크립트 -->
-    <script>
-    function showIndicators(event, year) {
-        document.querySelectorAll(".year-indicators").forEach(el => el.classList.remove("active"));
-         document.querySelectorAll(".year-tabs button").forEach(btn => btn.classList.remove("active"));
-         document.getElementById(`indicators-${year}`).classList.add("active");
-         event.target.classList.add("active");
-          }  
-
-    fetch('economic_index.json')
-    .then(res => res.json())
-    .then(data => {
-        // 값 넣기
-        document.getElementById('usd-krw').textContent = data["USD/KRW"];
-        document.getElementById('usd-krw-change').textContent = data["USD/KRW_change"] + '%';
-        document.getElementById('gold-price').textContent = data["금시세(1g)"];
-        document.getElementById('gold-price-change').textContent = data["금시세(1g)_change"] + '%';
-        document.getElementById('kospi').textContent = data["KOSPI"];
-        document.getElementById('kospi-change').textContent = data["KOSPI_change"] + '%';
-        document.getElementById('kosdaq').textContent = data["KOSDAQ"];
-        document.getElementById('kosdaq-change').textContent = data["KOSDAQ_change"] + '%';
-    })
-    .catch(e => {
-        console.error('경제지표 JSON 읽기 실패', e);
-        });
-    </script>
-        <style>
+    <style>
     /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
