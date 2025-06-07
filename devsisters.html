@@ -2130,6 +2130,17 @@
             </div>
         </div>
     </div>
+    <script>
+    function showIndicators(event, year) {
+        const allSections = document.querySelectorAll('.year-indicators');
+        allSections.forEach(section => section.classList.remove('active'));
+        const selectedSection = document.getElementById('indicators-' + year);
+        if (selectedSection) selectedSection.classList.add('active');
+        const allButtons = document.querySelectorAll('.year-tabs button');
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        }
+    </script>
     <style>
     /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
@@ -2201,6 +2212,7 @@
         width: 50%;
     }
     </style>
+
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
