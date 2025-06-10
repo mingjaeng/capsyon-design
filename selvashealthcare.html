@@ -125,6 +125,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+    
         .sub-nav-items {
             display: flex;
             max-width: 1200px;
@@ -307,9 +308,11 @@
         .neutral {
             color: #666;
         }
+        /* 동적 계산을 위한 스타일 */
         .calculated-value {
             font-weight: bold;
         }
+        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
             gap: 12px;
@@ -350,6 +353,8 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* 섹션 박스 레이아웃 */
         .section-box {
             margin-top: 30px;
             padding: 30px;
@@ -481,6 +486,7 @@
         .company-detail-table tbody tr:nth-child(even) {
             background-color: #f8f9ff;
         }
+        /* 페이지 상세목차 */
         .page-container {
             display: none;
         }
@@ -643,23 +649,30 @@
         }
     </style>
     <script>
+        // 페이지 로드 후 실행되는 함수
         window.onload = function() {
             setupSubNavigation();
             setupTabs();
         };
+        // 서브 네비게이션 기능 설정
         function setupSubNavigation() {
             const subNavItems = document.querySelectorAll('.sub-nav-items li');
             subNavItems.forEach(item => {
                 item.addEventListener('click', function() {
+                    // 현재 활성화된 메뉴 아이템 제거
                     const parentSubNav = this.closest('.sub-nav-items');
                     parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                    // 클릭한 메뉴 아이템 활성화
                     this.classList.add('active');
+                    // 해당 서브페이지 표시
                     const subPageName = this.getAttribute('data-subpage');
                     if (subPageName) {
+                        // 모든 서브페이지 숨기기
                         const subPages = document.querySelectorAll('.sub-page');
                         subPages.forEach(subPage => {
                             subPage.classList.remove('active');
                         });
+                        // 선택한 서브페이지 표시
                         const targetSubPage = document.getElementById(subPageName);
                         if (targetSubPage) {
                             targetSubPage.classList.add('active');
@@ -668,19 +681,25 @@
                 });
             });
         }
+        // 탭 메뉴 설정
         function setupTabs() {
             const tabItems = document.querySelectorAll('.tab-item');
             tabItems.forEach(item => {
                 item.addEventListener('click', function() {
+                    // 현재 탭 메뉴에서 활성화된 탭 찾기
                     const parentTabMenu = this.closest('.tab-menu');
                     parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+                    // 클릭한 탭 활성화
                     this.classList.add('active');
+                    // 해당 탭 콘텐츠 표시
                     const targetId = this.getAttribute('data-target');
                     if (targetId) {
+                        // 같은 페이지 내의 모든 탭 콘텐츠 숨기기
                         const parentPage = this.closest('.sub-page');
                         parentPage.querySelectorAll('.tab-content').forEach(content => {
                             content.classList.remove('active');
                         });
+                        // 선택한 탭 콘텐츠 표시
                         const targetContent = document.getElementById(targetId);
                         if (targetContent) {
                             targetContent.classList.add('active');
@@ -733,12 +752,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">셀바스헬스케어</span>
-                    <span class="company-code">208370</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <div class="section-box">
@@ -748,35 +767,36 @@
                         <table class="company-detail-table">
                             <tr>
                                 <th>기업명</th>
-                                <td>셀바스헬스케어</td>
+                                <td>데브시스터즈</td>
                                 <th>대표자</th>
-                                <td>유병탁</td>
+                                <td>조길현</td>
                             </tr>
                             <tr>
                                 <th>설립일</th>
-                                <td>2014/10/02</td>
+                                <td>2007/05/30</td>
                                 <th>상장일</th>
-                                <td>2014/12/17</td>
+                                <td>2014/10/06</td>
                             </tr>
                             <tr>
                                 <th>업종명</th>
-                                <td colspan="3">그 외 기타 의료용 기기 제조업</td>
+                                <td colspan="3">모바일 게임 소프트웨어 개발 및 공급업</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td colspan="3">대전시 유성구 신성로 155 (신성동, 셀바스헬스케어)</td>
+                                <td colspan="3">서울시 강남구 도산대로 327 데브시스터즈(주)</td>
                             </tr>
                             <tr>
                                 <th>홈페이지</th>
-                                <td colspan="3"><a href="http://www.selvashealthcare.com" target="_blank">http://www.selvashealthcare.com</a></td>
+                                <td colspan="3"><a href="http://www.devsisters.com" target="_blank">http://www.devsisters.com</a></td>
                             </tr>
                         </table>
                     </div>
                     <div class="company-profile-section">
                         <h3>기업개요</h3>
-                        <p>* 동사는 1999년 의료진단기기와 시각보조공학기기 제품 개발 및 판매를 위해 설립됨.</p>
-                        <p>* 체성분분석기와 전자동혈압계 등 의료진단기기 사업부문 '아큐닉(ACCUNIQ)'과 점자정보단말기, 전자독서확대기 등 시각장애인 보조공학기기 사업부문 '힘스(HIMS)'로 구성됨.</p>
-                        <p>* 30년간의 기술력을 기반으로 국내외 유통망 확보와 미국·중국 법인 설립 등을 통해 글로벌 디지털 헬스케어 기업으로 성장 중.</p>
+                        <p>* 동사는 2007년 설립되어 2014년 코스닥 상장한 모바일게임 개발 및 운영 전문 기업임.</p>
+                        <p>* '쿠키런' IP 관련 사업과 벤처캐피탈 사업을 영위하며, 대표작으로 '쿠키런: 오븐브레이크', '쿠키런: 킹덤', '쿠키런: 마녀의 성', '쿠키런: 모험의 탑' 등을 보유함.</p>
+                        <p>* PC/콘솔 플랫폼으로의 확장과 '쿠키런' IP를 활용한 다양한 사업을 통해 글로벌 영향력 확대 계획.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -793,12 +813,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">셀바스헬스케어</span>
-                    <span class="company-code">208370</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <!-- 재무제표 섹션 -->
@@ -1611,6 +1631,7 @@
             </div>
         </div>
     </div>
+    <!-- 탭 동작용 스크립트 -->
     <script>
     document.querySelectorAll('.tab-menu li').forEach(tab => {
         tab.addEventListener('click', function () {
@@ -1620,8 +1641,9 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(target).classList.add('active');
         });
-    });
+        });
     </script>
+    <!-- 재무제표 페이지 스타일 -->
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1647,6 +1669,7 @@
         border-radius: 4px;
         margin-right: 15px;
     }
+    /* ▶ 탭 메뉴 스타일 */
     .tab-menu {
         display: flex;
         gap: 12px;
@@ -1671,6 +1694,7 @@
         color: #fff;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
+    /* ▶ 탭 콘텐츠 */
     .tab-content {
         display: none;
         margin-top: 10px;
@@ -1683,6 +1707,7 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
+    /* ▶ 섹션 박스 레이아웃 */
     .section-box {
         margin-top: 30px;
         padding: 30px;
@@ -1703,6 +1728,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    /* ▶ 재무표 영역 스타일 */
     .inancial-table-wrapper {
         margin-top: 20px;
         overflow-x: auto;
@@ -1738,16 +1764,19 @@
         transform: scale(1.01);
         transition: all 0.2s ease;
     }
+    /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
     .financial-table th:first-child,
     .financial-table td:first-child {
         width: 25%;
         text-align: left;
         padding-left: 20px;
     }
+    /* ▶ 연도 열: 동일 폭 */
     .financial-table th:nth-child(n+2):nth-child(-n+4),
     .financial-table td:nth-child(n+2):nth-child(-n+4) {
         width: 25%; 
     }
+    /* ▶ 계층 구조 들여쓰기 및 강조 */
     .financial-table td.depth-0 {
         font-weight: bold;
         background-color: #f0f4ff;
@@ -1763,18 +1792,19 @@
     .financial-table thead th:first-child {
         text-align: center;
     }
+
     </style>
     <!-- 경제지표 페이지 -->
     <div id="financial-ratios-page" class="sub-page">
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">셀바스헬스케어</span>
-                    <span class="company-code">208370</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <div class="section-box">
@@ -1788,11 +1818,11 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td>환율 (USD/KRW)</td>
+                            <td>환율(USD/KRW)</td>
                             <td id="usd-krw">--</td>
                         </tr>
                         <tr>
-                            <td>금시세 (1g)</td>
+                            <td>금시세(1g)</td>
                             <td id="gold-price">--</td>
                         </tr>
                         <tr>
@@ -1945,39 +1975,6 @@
         font-style: italic;
     }
     </style>
-    <script>
-    const economicData = {
-        "KOSPI": "2,697.67",
-        "KOSDAQ": "734.35",
-        "USD/KRW": "1,380.40",
-        "금시세(1g)": "144.4100"
-    };
-    function loadEconomicData() {
-        try {
-            const usdKrwElement = document.getElementById('usd-krw');
-            usdKrwElement.textContent = economicData['USD/KRW'];
-            usdKrwElement.classList.remove('loading');
-            const goldPriceElement = document.getElementById('gold-price');
-            goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
-            goldPriceElement.classList.remove('loading');
-            const kospiElement = document.getElementById('kospi');
-            kospiElement.textContent = economicData['KOSPI'];
-             kospiElement.classList.remove('loading');
-            const kosdaqElement = document.getElementById('kosdaq');
-            kosdaqElement.textContent = economicData['KOSDAQ'];
-            kosdaqElement.classList.remove('loading');
-        } catch (error) {
-            console.error('경제지표 데이터 로드 중 오류 발생:', error);
-            document.querySelectorAll('.loading').forEach(element => {
-                element.textContent = '데이터 없음';
-                element.classList.remove('loading');
-            });
-        }
-    }
-    document.addEventListener('DOMContentLoaded', function() {
-        setTimeout(loadEconomicData, 500);
-    });
-    </script>
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
         <div class="company-info">
@@ -1994,11 +1991,17 @@
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
-                 <div class="year-tabs">
-                    <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-                    <button onclick="showIndicators(event, '2023')">2023</button>
-                    <button onclick="showIndicators(event, '2022')">2022</button>
-                </div>
+                    <!-- ⬇️ 주가 정보 표시 영역 -->
+                    <div id="stock-price" style="margin-bottom: 10px; font-weight: bold; color: #333;">
+                        주가: 불러오는 중...
+                    </div>
+                    <!-- 연도 선택 탭 -->
+                    <div class="year-tabs">
+                        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+                        <button onclick="showIndicators(event, '2023')">2023</button>
+                        <button onclick="showIndicators(event, '2022')">2022</button>
+                    </div>
+
                 <!-- 연도별 투자지표 섹션 -->
                 <div id="indicators-2024" class="year-indicators active">
                     <div class="indicator-category">
@@ -2129,12 +2132,12 @@
                     <div class="indicator-category">
                         <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
                         <table class="investment-table">
-                            <tbody>
-                                <tr><td>EPS</td><td>-566</td></tr>
-                                <tr><td>BPS</td><td>16,951</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
-                            </tbody>
+                                <tbody>
+                                    <tr><td>EPS</td><td id="eps">-566</td></tr>
+                                    <tr><td>BPS</td><td id="bps">16,951</td></tr>
+                                    <tr><td>PER</td><td id="per">--배</td></tr>
+                                    <tr><td>PBR</td><td id="pbr">--배</td></tr>
+                                </tbody>
                         </table>
                     </div>
                 </div>
@@ -2142,6 +2145,7 @@
         </div>
     </div>
     <style>
+    /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
         background: #fff;
@@ -2215,17 +2219,17 @@
         margin-bottom: 30px;
     }
     </style>
-    <script>
-    function showIndicators(event, year) {
-        const allSections = document.querySelectorAll('.year-indicators');
-        allSections.forEach(section => section.classList.remove('active'));
-        const selectedSection = document.getElementById('indicators-' + year);
-        if (selectedSection) selectedSection.classList.add('active');
-        const allButtons = document.querySelectorAll('.year-tabs button');
-        allButtons.forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        }
-    </script>
+<script>
+function showIndicators(event, year) {
+    const allSections = document.querySelectorAll('.year-indicators');
+    allSections.forEach(section => section.classList.remove('active'));
+    const selectedSection = document.getElementById('indicators-' + year);
+    if (selectedSection) selectedSection.classList.add('active');
+    const allButtons = document.querySelectorAll('.year-tabs button');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+</script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
@@ -2236,24 +2240,18 @@
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스품
-              </div>
-          </div>
-           <div id="report-content">리포트 로딩 중...</div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <!-- 리포트 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">기업 리포트</h3>
+                <!-- iframe으로 변환된 HTML 삽입 -->
+                 <iframe src="reports/셀바스헬스케어.html" 
+                 style="width: 100%; height: 800px; border: none;">
+                </iframe>
+            </div>
         </div>
     </div>
-    <script>
-    fetch('리포트.md')
-    .then(response => {
-        if (!response.ok) throw new Error('Markdown 파일을 불러올 수 없습니다.');
-        return response.text();
-    })
-    .then(markdown => {
-        document.getElementById('report-content').innerHTML = marked.parse(markdown);
-    })
-    .catch(err => {
-        document.getElementById('report-content').innerText = err.message;
-    });
-    </script>
 </body>
 </html>
