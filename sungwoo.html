@@ -308,11 +308,6 @@
         .neutral {
             color: #666;
         }
-        /* 동적 계산을 위한 스타일 */
-        .calculated-value {
-            font-weight: bold;
-        }
-        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
             gap: 12px;
@@ -353,7 +348,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         /* 섹션 박스 레이아웃 */
         .section-box {
             margin-top: 30px;
@@ -767,7 +761,7 @@
                         <table class="company-detail-table">
                             <tr>
                                 <th>기업명</th>
-                                <td>데브시스터즈</td>
+                                <td>성우하이텍</td>
                                 <th>대표자</th>
                                 <td>조길현</td>
                             </tr>
@@ -1975,48 +1969,35 @@
         font-style: italic;
     }
     </style>
-    <script>
-    // 경제지표 JSON 데이터
-    const economicData = {
-        "KOSPI": "2,697.67",
-        "KOSDAQ": "734.35",
-        "USD/KRW": "1,380.40",
-        "금시세(1g)": "144.4100"
-    };
-    // 데이터 로드 및 표시 함수
-    function loadEconomicData() {
-        try {
-            // USD/KRW 데이터 설정
-            const usdKrwElement = document.getElementById('usd-krw');
-            usdKrwElement.textContent = economicData['USD/KRW'];
-            usdKrwElement.classList.remove('loading');
-            // 금시세 데이터 설정
-            const goldPriceElement = document.getElementById('gold-price');
-            goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
-            goldPriceElement.classList.remove('loading');
-            // KOSPI 데이터 설정
-            const kospiElement = document.getElementById('kospi');
-            kospiElement.textContent = economicData['KOSPI'];
-             kospiElement.classList.remove('loading');
-            // KOSDAQ 데이터 설정
-            const kosdaqElement = document.getElementById('kosdaq');
-            kosdaqElement.textContent = economicData['KOSDAQ'];
-            kosdaqElement.classList.remove('loading');
-        } catch (error) {
-            console.error('경제지표 데이터 로드 중 오류 발생:', error);
-            // 오류 발생 시 기본값 표시
-            document.querySelectorAll('.loading').forEach(element => {
-                element.textContent = '데이터 없음';
-                element.classList.remove('loading');
-            });
-        }
-    }
-    // 페이지 로드 완료 후 데이터 로드
-    document.addEventListener('DOMContentLoaded', function() {
-        // 로딩 효과를 위해 약간의 지연 후 데이터 표시
-        setTimeout(loadEconomicData, 500);
-    });
-    </script>
+ <script>
+fetch("data/economic_index.json")
+  .then(response => response.json())
+  .then(data => {
+    // 값 삽입
+    document.getElementById("usd-krw").textContent = data["USD/KRW"];
+    document.getElementById("gold-price").textContent = data["금시세(1g)"];
+    document.getElementById("kospi").textContent = data["KOSPI"];
+    document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+
+    // 시간 포맷 가공
+    const updatedAt = new Date(data["crawled_at"]);
+    const formatted = `업데이트 : ${updatedAt.getMonth() + 1}월 ${updatedAt.getDate()}일 `
+                    + `${updatedAt.getHours()}시 ${updatedAt.getMinutes()}분 ${updatedAt.getSeconds()}초`;
+
+    // 업데이트 시간 표시할 위치에 넣기
+    const sectionBox = document.querySelector(".section-box");
+    const updateText = document.createElement("p");
+    updateText.textContent = formatted;
+    updateText.style.marginTop = "10px";
+    updateText.style.fontSize = "0.9em";
+    updateText.style.color = "#666";
+    sectionBox.appendChild(updateText);
+  })
+  .catch(error => {
+    console.error("경제지표 로딩 실패:", error);
+  });
+</script>
+
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
         <div class="company-info">
@@ -2033,12 +2014,17 @@
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
-                <!-- 연도 선택 탭 -->
-                 <div class="year-tabs">
-                    <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-                    <button onclick="showIndicators(event, '2023')">2023</button>
-                    <button onclick="showIndicators(event, '2022')">2022</button>
-                </div>
+                    <!-- ⬇️ 주가 정보 표시 영역 -->
+                    <div id="stock-price" style="margin-bottom: 10px; font-weight: bold; color: #333;">
+                        주가: 불러오는 중...
+                    </div>
+                    <!-- 연도 선택 탭 -->
+                    <div class="year-tabs">
+                        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+                        <button onclick="showIndicators(event, '2023')">2023</button>
+                        <button onclick="showIndicators(event, '2022')">2022</button>
+                    </div>
+
                 <!-- 연도별 투자지표 섹션 -->
                 <div id="indicators-2024" class="year-indicators active">
                     <div class="indicator-category">
@@ -2256,17 +2242,44 @@
         margin-bottom: 30px;
     }
     </style>
-    <script>
-    function showIndicators(event, year) {
-        const allSections = document.querySelectorAll('.year-indicators');
-        allSections.forEach(section => section.classList.remove('active'));
-        const selectedSection = document.getElementById('indicators-' + year);
-        if (selectedSection) selectedSection.classList.add('active');
-        const allButtons = document.querySelectorAll('.year-tabs button');
-        allButtons.forEach(btn => btn.classList.remove('active'));
-        event.currentTarget.classList.add('active');
-        }
-    </script>
+ <script>
+function showIndicators(event, year) {
+    const allSections = document.querySelectorAll('.year-indicators');
+    allSections.forEach(section => section.classList.remove('active'));
+    const selectedSection = document.getElementById('indicators-' + year);
+    if (selectedSection) selectedSection.classList.add('active');
+    const allButtons = document.querySelectorAll('.year-tabs button');
+    allButtons.forEach(btn => btn.classList.remove('active'));
+    event.currentTarget.classList.add('active');
+}
+
+// 현재 페이지 회사 이름에 맞게 바꿔주세요 (영문 키로)
+const companyKey = "sungwoo";  // 예: sungwoo, devsisters, selvashealthcare
+
+fetch("data/stock_prices.json") 
+    .then(response => response.json())
+    .then(data => {
+        const companyNameMap = {
+            "sungwoo": "성우하이텍",
+            "devsisters": "데브시스터즈",
+            "selvashealthcare": "셀바스헬스케어"
+        };
+        const korName = companyNameMap[companyKey];
+        const price = data[korName]?.price;
+        const updated = data["last_updated"] || "";
+
+        const stockText = price
+            ? `주가: ${Number(price).toLocaleString()}원 (${updated})`
+            : `주가: 정보 없음`;
+
+        document.getElementById("stock-price").innerText = stockText;
+    })
+    .catch(error => {
+        console.error("JSON 로드 실패:", error);
+        document.getElementById("stock-price").innerText = `주가: 로딩 실패`;
+    });
+</script>
+
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
