@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>셀바스헬스케어 리포트</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #e4e4e4, #ffffff);
+      display: flex;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      margin: 2em 1em;
+      height: calc(100vh - 4em);
+      box-sizing: border-box;
+      overflow-y: auto;
+      border-radius: 0.5px;
+      box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-section {
+      width: 100%;
+      padding: 1.5em 2em;
+      box-sizing: border-box;
+    }
+
+    .title-section {
+      background-color: #468ecd;
+      color: white;
+    }
+
+    .opinion-section {
+      background-color: #202fa1;
+      color: white;
+    }
+
+    .image-section h2 {
+      font-size: 24px;
+      color: #222;
+      margin-bottom: 1em;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .image-toggle {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .image-toggle[open] {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-toggle summary {
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #e0ecf8;
+      padding: 12px 16px;
+      border-bottom: 1px solid #ccc;
+      transition: background-color 0.2s ease;
+    }
+
+    .image-toggle summary:hover {
+      background-color: #d0def0;
+    }
+
+    .image-group {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: white;
+    }
+
+    .image-group img {
+      width: 100%;
+      max-width: 700px;
+      margin: 10px auto;
+      display: block;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-group img:hover {
+      transform: scale(1.05);
+    }
+
+    .editor-container {
+      width: 70%;
+      background-color: #fff;
+      margin: 2em 1em;
+      padding: 2em;
+      border-radius: 0.5px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      height: calc(100vh - 4em);
+      box-sizing: border-box;
+    }
+
+    .memo-editable {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: none;
+      background: transparent;
+      font-size: 1em;
+    }
+
+    h1 { font-size: 45px; margin-bottom: 0.5em; }
+    h2 { font-size: 32px; margin-bottom: 0.4em; }
+    h3 { font-size: 25px; margin-bottom: 0.3em; }
+
+    .editor-container p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 1em;
+      color: #333;
+    }
+
+    strong {
+      color: #66ff25;
+    }
+
+    strong, em, a, ul, li {
+      all: revert;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+      box-shadow: 0 2px 10px rgba(255,255,255,0.2);
+      animation: zoom 0.3s;
+    }
+
+    @keyframes zoom {
+      from {transform: scale(0.7)}
+      to {transform: scale(1)}
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 45px;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+
+  <div class="sidebar">
+    <div class="sidebar-section title-section">
+      <h1>셀바스헬스케어</h1>
+    </div>
+    <div class="sidebar-section opinion-section">
+      <h2>의견 없음</h2>
+    </div>
+
+    <div class="sidebar-section image-section">
+      <h2>지표별 분석 이미지</h2>
+      
+    </div>
+  </div>
+
+  <div class="editor-container">
+    <div id="editor" class="memo-editable"># 📊 셀바스헬스케어 증권 리포트
+
+## 1. 거시경제 분석
+주요 지표인 KOSPI와 KOSDAQ의 상관관계가 0.705로 나타났습니다. 이는 두 지수가 상당히 유사한 방향으로 움직이고 있음을 시사합니다. 이러한 상관관계는 투자자들이 시장의 전반적인 흐름에 대해 유사한 인식을 가지고 있음을 의미할 수 있습니다. 그러나, 이 상관관계가 셀바스헬스케어의 주가에 직접적인 영향을 미친다고 보기에는 무리가 있습니다. 따라서, 거시경제적 관점에서의 판단은 중립으로 유지됩니다. [중립]
+
+## 2. 산업 분석
+셀바스헬스케어가 속한 헬스케어, 바이오, 의료기기, 재활의료, 건강관리 산업의 평균 PER은 6.28이며, EPS는 최대 168.0입니다. 이는 해당 산업이 현재 저평가되어 있거나, 성장 가능성이 높다는 해석이 가능합니다. 그러나, 셀바스헬스케어의 PER과 EPS가 산업 평균과 비교했을 때 어떤 위치에 있는지를 고려해야 합니다. 현재 산업 지표만으로는 셀바스헬스케어의 경쟁력을 판단하기 어렵습니다. 따라서, 산업 분석의 판단은 중립으로 유지됩니다. [중립]
+
+## 3. 기업 분석
+셀바스헬스케어의 주요 재무 지표를 살펴보면, ROE는 4.94%, PER은 33.12, EPS는 122원입니다. 이는 기업의 수익성이 낮고, 주가가 고평가되어 있음을 나타냅니다. 특히 PER이 산업 평균보다 크게 높아, 투자자들이 기업의 미래 성장성에 대해 높은 기대를 가지고 있음을 시사하지만, 실제 수익성은 이를 뒷받침하지 못하고 있습니다. 또한, R&D 비중이 제공되지 않아 혁신을 통한 성장 가능성을 평가하기 어렵습니다. 따라서, 기업 분석의 판단은 부정적입니다. [부정]
+
+## 4. 감성 분석
+뉴스와 토론에서 긍정적인 감성이 우세하지만, 업종 뉴스에서는 중립적인 감성이 주를 이루고 있습니다. 이는 셀바스헬스케어에 대한 투자자들의 관심이 높고 긍정적임을 나타내지만, 업종 전반의 분위기는 중립적임을 시사합니다. 감성 분석 결과는 기업의 주가에 긍정적인 영향을 미칠 수 있으나, 이는 단기적인 요인에 불과할 수 있습니다. 따라서, 감성 분석의 판단은 중립으로 유지됩니다. [중립]
+
+## 5. 최종 의견
+- 경제: 중립
+- 산업: 중립
+- 기업: 부정
+
+📌 최종 판단: 매도
+
+셀바스헬스케어는 현재 재무 지표 상으로는 고평가되어 있으며, 수익성 측면에서 개선이 필요합니다. 감성 분석에서 긍정적인 요소가 있으나, 이는 장기적인 투자 판단에 큰 영향을 미치지 않을 수 있습니다. 따라서, 현재로서는 매도 의견을 제시합니다.</div>
+  </div>
+
+  <div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const editor = document.getElementById('editor');
+      const raw = editor.textContent;
+      editor.innerHTML = marked.parse(raw);
+
+      const modal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+      const closeBtn = document.getElementsByClassName("close")[0];
+
+      document.querySelectorAll(".popup-img").forEach(img => {
+        img.addEventListener("click", function (event) {
+          event.preventDefault();
+          modal.style.display = "block";
+          modalImg.src = this.src;
+        });
+      });
+
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      modal.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    });
+  </script>
+</body>
+</html>
