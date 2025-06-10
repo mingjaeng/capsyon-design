@@ -307,11 +307,9 @@
         .neutral {
             color: #666;
         }
-        /* 동적 계산을 위한 스타일 */
         .calculated-value {
             font-weight: bold;
         }
-        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
             gap: 12px;
@@ -352,8 +350,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
-        /* 섹션 박스 레이아웃 */
         .section-box {
             margin-top: 30px;
             padding: 30px;
@@ -485,7 +481,6 @@
         .company-detail-table tbody tr:nth-child(even) {
             background-color: #f8f9ff;
         }
-        /* 페이지 상세목차 */
         .page-container {
             display: none;
         }
@@ -648,30 +643,23 @@
         }
     </style>
     <script>
-        // 페이지 로드 후 실행되는 함수
         window.onload = function() {
             setupSubNavigation();
             setupTabs();
         };
-        // 서브 네비게이션 기능 설정
         function setupSubNavigation() {
             const subNavItems = document.querySelectorAll('.sub-nav-items li');
             subNavItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    // 현재 활성화된 메뉴 아이템 제거
                     const parentSubNav = this.closest('.sub-nav-items');
                     parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    // 클릭한 메뉴 아이템 활성화
                     this.classList.add('active');
-                    // 해당 서브페이지 표시
                     const subPageName = this.getAttribute('data-subpage');
                     if (subPageName) {
-                        // 모든 서브페이지 숨기기
                         const subPages = document.querySelectorAll('.sub-page');
                         subPages.forEach(subPage => {
                             subPage.classList.remove('active');
                         });
-                        // 선택한 서브페이지 표시
                         const targetSubPage = document.getElementById(subPageName);
                         if (targetSubPage) {
                             targetSubPage.classList.add('active');
@@ -680,25 +668,19 @@
                 });
             });
         }
-        // 탭 메뉴 설정
         function setupTabs() {
             const tabItems = document.querySelectorAll('.tab-item');
             tabItems.forEach(item => {
                 item.addEventListener('click', function() {
-                    // 현재 탭 메뉴에서 활성화된 탭 찾기
                     const parentTabMenu = this.closest('.tab-menu');
                     parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-                    // 클릭한 탭 활성화
                     this.classList.add('active');
-                    // 해당 탭 콘텐츠 표시
                     const targetId = this.getAttribute('data-target');
                     if (targetId) {
-                        // 같은 페이지 내의 모든 탭 콘텐츠 숨기기
                         const parentPage = this.closest('.sub-page');
                         parentPage.querySelectorAll('.tab-content').forEach(content => {
                             content.classList.remove('active');
                         });
-                        // 선택한 탭 콘텐츠 표시
                         const targetContent = document.getElementById(targetId);
                         if (targetContent) {
                             targetContent.classList.add('active');
@@ -1629,7 +1611,6 @@
             </div>
         </div>
     </div>
-    <!-- 탭 동작용 스크립트 -->
     <script>
     document.querySelectorAll('.tab-menu li').forEach(tab => {
         tab.addEventListener('click', function () {
@@ -1639,9 +1620,8 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(target).classList.add('active');
         });
-        });
+    });
     </script>
-    <!-- 재무제표 페이지 스타일 -->
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1966,44 +1946,35 @@
     }
     </style>
     <script>
-    // 경제지표 JSON 데이터
     const economicData = {
         "KOSPI": "2,697.67",
         "KOSDAQ": "734.35",
         "USD/KRW": "1,380.40",
         "금시세(1g)": "144.4100"
     };
-    // 데이터 로드 및 표시 함수
     function loadEconomicData() {
         try {
-            // USD/KRW 데이터 설정
             const usdKrwElement = document.getElementById('usd-krw');
             usdKrwElement.textContent = economicData['USD/KRW'];
             usdKrwElement.classList.remove('loading');
-            // 금시세 데이터 설정
             const goldPriceElement = document.getElementById('gold-price');
             goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
             goldPriceElement.classList.remove('loading');
-            // KOSPI 데이터 설정
             const kospiElement = document.getElementById('kospi');
             kospiElement.textContent = economicData['KOSPI'];
              kospiElement.classList.remove('loading');
-            // KOSDAQ 데이터 설정
             const kosdaqElement = document.getElementById('kosdaq');
             kosdaqElement.textContent = economicData['KOSDAQ'];
             kosdaqElement.classList.remove('loading');
         } catch (error) {
             console.error('경제지표 데이터 로드 중 오류 발생:', error);
-            // 오류 발생 시 기본값 표시
             document.querySelectorAll('.loading').forEach(element => {
                 element.textContent = '데이터 없음';
                 element.classList.remove('loading');
             });
         }
     }
-    // 페이지 로드 완료 후 데이터 로드
     document.addEventListener('DOMContentLoaded', function() {
-        // 로딩 효과를 위해 약간의 지연 후 데이터 표시
         setTimeout(loadEconomicData, 500);
     });
     </script>
@@ -2023,7 +1994,6 @@
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
-                <!-- 연도 선택 탭 -->
                  <div class="year-tabs">
                     <button onclick="showIndicators(event, '2024')" class="active">2024</button>
                     <button onclick="showIndicators(event, '2023')">2023</button>
@@ -2267,9 +2237,23 @@
                 </div>
                 <div>
                     KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스품
-                </div>
-            </div>
+              </div>
+          </div>
+           <div id="report-content">리포트 로딩 중...</div>
         </div>
     </div>
+    <script>
+    fetch('리포트.md')
+    .then(response => {
+        if (!response.ok) throw new Error('Markdown 파일을 불러올 수 없습니다.');
+        return response.text();
+    })
+    .then(markdown => {
+        document.getElementById('report-content').innerHTML = marked.parse(markdown);
+    })
+    .catch(err => {
+        document.getElementById('report-content').innerText = err.message;
+    });
+    </script>
 </body>
 </html>
