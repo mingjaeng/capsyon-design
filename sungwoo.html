@@ -125,6 +125,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+    
         .sub-nav-items {
             display: flex;
             max-width: 1200px;
@@ -751,12 +752,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">성우하이텍</span>
-                    <span class="company-code">015750</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <div class="section-box">
@@ -766,35 +767,36 @@
                         <table class="company-detail-table">
                             <tr>
                                 <th>기업명</th>
-                                <td>성우하이텍</td>
+                                <td>데브시스터즈</td>
                                 <th>대표자</th>
-                                <td>이명근,이문용,조성현(각자대표)</td>
+                                <td>조길현</td>
                             </tr>
                             <tr>
                                 <th>설립일</th>
-                                <td>1977/08/15</td>
+                                <td>2007/05/30</td>
                                 <th>상장일</th>
-                                <td>1995/11/04</td>
+                                <td>2014/10/06</td>
                             </tr>
                             <tr>
                                 <th>업종명</th>
-                                <td colspan="3">자동차 차체용 신품 부품 제조업</td>
+                                <td colspan="3">모바일 게임 소프트웨어 개발 및 공급업</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td colspan="3">부산시 기장군 정관면 농공길 2-9번지</td>
+                                <td colspan="3">서울시 강남구 도산대로 327 데브시스터즈(주)</td>
                             </tr>
                             <tr>
                                 <th>홈페이지</th>
-                                <td colspan="3"><a href="http://www.swhitech.com" target="_blank">http://www.swhitech.com</a></td>
+                                <td colspan="3"><a href="http://www.devsisters.com" target="_blank">http://www.devsisters.com</a></td>
                             </tr>
                         </table>
                     </div>
                     <div class="company-profile-section">
                         <h3>기업개요</h3>
-                <p>* 동사는 1977년 설립된 자동차부품 생산기업으로 현대차, 기아차, 한국GM 등 국내외 완성차 업체에 부품을 공급하고 있음.</p>
-                <p>* 1,900여건의 특허를 보유하며, 차체부품 시장에서 범퍼레일은 독점적 위치를, 대시로우와 사이드멤버를 포함한 매출은 20% 이상의 점유율을 보임.</p>
-                <p>* 알루미늄, CFRP 등 신소재를 활용한 차체 경량화 기술과 전기차 배터리시스템, 수소저장장치, 열화상 감지카메라, 라이다 등 신기술 개발에 주력하고 있음.</p>
+                        <p>동사는 2007년 설립되어 2014년 코스닥 상장한 모바일게임 개발 및 운영 전문 기업임.</p>
+                        <p>'쿠키런' IP 관련 사업과 벤처캐피탈 사업을 영위하며, 대표작으로 '쿠키런: 오븐브레이크', '쿠키런: 킹덤', '쿠키런: 마녀의 성', '쿠키런: 모험의 탑' 등을 보유함.</p>
+                        <p>PC/콘솔 플랫폼으로의 확장과 '쿠키런' IP를 활용한 다양한 사업을 통해 글로벌 영향력 확대 계획.</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -811,12 +813,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">성우하이텍</span>
-                    <span class="company-code">015750</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <!-- 재무제표 섹션 -->
@@ -1667,6 +1669,7 @@
         border-radius: 4px;
         margin-right: 15px;
     }
+    /* ▶ 탭 메뉴 스타일 */
     .tab-menu {
         display: flex;
         gap: 12px;
@@ -1691,6 +1694,7 @@
         color: #fff;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
+    /* ▶ 탭 콘텐츠 */
     .tab-content {
         display: none;
         margin-top: 10px;
@@ -1703,6 +1707,7 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
+    /* ▶ 섹션 박스 레이아웃 */
     .section-box {
         margin-top: 30px;
         padding: 30px;
@@ -1723,6 +1728,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    /* ▶ 재무표 영역 스타일 */
     .inancial-table-wrapper {
         margin-top: 20px;
         overflow-x: auto;
@@ -1758,16 +1764,19 @@
         transform: scale(1.01);
         transition: all 0.2s ease;
     }
+    /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
     .financial-table th:first-child,
     .financial-table td:first-child {
         width: 25%;
         text-align: left;
         padding-left: 20px;
     }
+    /* ▶ 연도 열: 동일 폭 */
     .financial-table th:nth-child(n+2):nth-child(-n+4),
     .financial-table td:nth-child(n+2):nth-child(-n+4) {
         width: 25%; 
     }
+    /* ▶ 계층 구조 들여쓰기 및 강조 */
     .financial-table td.depth-0 {
         font-weight: bold;
         background-color: #f0f4ff;
@@ -1783,18 +1792,19 @@
     .financial-table thead th:first-child {
         text-align: center;
     }
+
     </style>
     <!-- 경제지표 페이지 -->
     <div id="financial-ratios-page" class="sub-page">
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">성우하이텍</span>
-                    <span class="company-code">015750</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <div class="section-box">
@@ -2012,12 +2022,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">성우하이텍</span>
-                    <span class="company-code">015750</span>
+                    <span class="company-name">데브시스터즈</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
             </div>
             <!-- 투자지표 섹션 -->
@@ -2172,6 +2182,7 @@
         </div>
     </div>
     <style>
+    /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
         background: #fff;
@@ -2262,12 +2273,20 @@
             <div class="company-header">
                 <div>
                     <span class="company-name">성우하이텍</span>
-                    <span class="company-code">015750</span>
+                    <span class="company-code">194480</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
+                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
                 </div>
+            </div>
+            <!-- 리포트 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">기업 리포트</h3>
+                <!-- iframe으로 변환된 HTML 삽입 -->
+                 <iframe src="reports/성우하이텍.html" 
+                 style="width: 100%; height: 800px; border: none;">
+                </iframe>
             </div>
         </div>
     </div>
