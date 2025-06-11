@@ -746,12 +746,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">성우하이텍</span>
+                    <span class="company-code">015750</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
                 </div>
             </div>
             <div class="section-box">
@@ -763,33 +763,33 @@
                                 <th>기업명</th>
                                 <td>성우하이텍</td>
                                 <th>대표자</th>
-                                <td>조길현</td>
+                                <td>이명근,이문용,조성현(각자대표)</td>
                             </tr>
                             <tr>
                                 <th>설립일</th>
-                                <td>2007/05/30</td>
+                                <td>1977/08/15</td>
                                 <th>상장일</th>
-                                <td>2014/10/06</td>
+                                <td>1995/11/04</td>
                             </tr>
                             <tr>
                                 <th>업종명</th>
-                                <td colspan="3">모바일 게임 소프트웨어 개발 및 공급업</td>
+                                <td colspan="3">자동차 차체용 신품 부품 제조업</td>
                             </tr>
                             <tr>
                                 <th>주소</th>
-                                <td colspan="3">서울시 강남구 도산대로 327 데브시스터즈(주)</td>
+                                <td colspan="3">부산 기장군 정관읍 농공길 2-9</td>
                             </tr>
                             <tr>
                                 <th>홈페이지</th>
-                                <td colspan="3"><a href="http://www.devsisters.com" target="_blank">http://www.devsisters.com</a></td>
+                                <td colspan="3"><a href="http://www.swhitech.com" target="_blank">http://www.swhitech.com</a></td>
                             </tr>
                         </table>
                     </div>
                     <div class="company-profile-section">
-                        <h3>기업개요</h3>
-                        <p>동사는 2007년 설립되어 2014년 코스닥 상장한 모바일게임 개발 및 운영 전문 기업임.</p>
-                        <p>'쿠키런' IP 관련 사업과 벤처캐피탈 사업을 영위하며, 대표작으로 '쿠키런: 오븐브레이크', '쿠키런: 킹덤', '쿠키런: 마녀의 성', '쿠키런: 모험의 탑' 등을 보유함.</p>
-                        <p>PC/콘솔 플랫폼으로의 확장과 '쿠키런' IP를 활용한 다양한 사업을 통해 글로벌 영향력 확대 계획.</p>
+                        <h3>기업소개</h3>
+                        <p>- 동사는 1977년 설립된 자동차부품 생산업체로 현대차, 기아차, 한국GM과 해외 VW, BMW, GM 등에 부품을 공급하고 있음.</p>
+                        <p>- 범퍼레일, 대시로어, 사이드멤버 등 차체부품을 생산하며 차체부품시장의 20% 이상 점유율을 보유하고 있음.</p>
+                        <p>- 알루미늄, CFRP, 마그네슘 등 신소재를 활용한 차체 경량화 기술과 전기차 배터리시스템, 수소저장장치, 열화상 감지카메라 등 신기술 개발로 글로벌 기업으로 성장하고 있음.</p>
                     </div>
                 </div>
             </div>
@@ -807,12 +807,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">성우하이텍</span>
+                    <span class="company-code">015750</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
                 </div>
             </div>
             <!-- 재무제표 섹션 -->
@@ -1793,12 +1793,12 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">성우하이텍</span>
+                    <span class="company-code">015750</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
                 </div>
             </div>
             <div class="section-box">
@@ -1970,32 +1970,32 @@
     }
     </style>
  <script>
-fetch("data/economic_index.json")
+     document.addEventListener("DOMContentLoaded", function () {
+         fetch("data/economic_index.json")
   .then(response => response.json())
   .then(data => {
-    // 값 삽입
-    document.getElementById("usd-krw").textContent = data["USD/KRW"];
-    document.getElementById("gold-price").textContent = data["금시세(1g)"];
-    document.getElementById("kospi").textContent = data["KOSPI"];
-    document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+      // 지표 값 삽입
+      document.getElementById("usd-krw").textContent = data["USD/KRW"];
+      document.getElementById("gold-price").textContent = data["금시세(1g)"];
+      document.getElementById("kospi").textContent = data["KOSPI"];
+      document.getElementById("kosdaq").textContent = data["KOSDAQ"];
 
-    // 시간 포맷 가공
-    const updatedAt = new Date(data["crawled_at"]);
-    const formatted = `업데이트 : ${updatedAt.getMonth() + 1}월 ${updatedAt.getDate()}일 `
-                    + `${updatedAt.getHours()}시 ${updatedAt.getMinutes()}분 ${updatedAt.getSeconds()}초`;
-
-    // 업데이트 시간 표시할 위치에 넣기
-    const sectionBox = document.querySelector(".section-box");
-    const updateText = document.createElement("p");
-    updateText.textContent = formatted;
-    updateText.style.marginTop = "10px";
-    updateText.style.fontSize = "0.9em";
-    updateText.style.color = "#666";
-    sectionBox.appendChild(updateText);
-  })
-  .catch(error => {
-    console.error("경제지표 로딩 실패:", error);
-  });
+      // 업데이트 문구 생성
+      const updateText = document.createElement("p");
+      updateText.textContent = data["last_updated"];
+      updateText.style.margin = "6px 0 10px";
+      updateText.style.fontSize = "0.9em";
+      updateText.style.color = "#666";
+      
+      // 위치 지정: 경제지표 제목(h3) 바로 다음에 삽입
+      const sectionBox = document.querySelector(".section-box");
+      const title = sectionBox.querySelector(".section-title");
+      sectionBox.insertBefore(updateText, title.nextSibling);
+    })
+    .catch(error => {
+      console.error("경제지표 로딩 실패:", error);
+    });
+});
 </script>
 
     <!-- 투자지표 페이지 -->
@@ -2003,20 +2003,17 @@ fetch("data/economic_index.json")
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">성우하이텍</span>
+                    <span class="company-code">015750</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
                 </div>
             </div>
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
-                    <!-- ⬇️ 주가 정보 표시 영역 -->
-                    <div id="stock-price" style="margin-bottom: 10px; font-weight: bold; color: #333;">
-                        주가: 불러오는 중...
                     </div>
                     <!-- 연도 선택 탭 -->
                     <div class="year-tabs">
@@ -2066,8 +2063,8 @@ fetch("data/economic_index.json")
                             <tbody>
                                 <tr><td>EPS</td><td>2,327</td></tr>
                                 <tr><td>BPS</td><td>13,986</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PER</td><td>2.84배</td></tr>
+                                <tr><td>PBR</td><td>0.26배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2112,8 +2109,8 @@ fetch("data/economic_index.json")
                             <tbody>
                                 <tr><td>EPS</td><td>-4,162</td></tr>
                                 <tr><td>BPS</td><td>12,332</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PER</td><td>4.46배</td></tr>
+                                <tr><td>PBR</td><td>0.57배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2158,8 +2155,8 @@ fetch("data/economic_index.json")
                             <tbody>
                                 <tr><td>EPS</td><td>-566</td></tr>
                                 <tr><td>BPS</td><td>16,951</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PER</td><td>9.61배</td></tr>
+                                <tr><td>PBR</td><td>0.32배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2252,32 +2249,6 @@ function showIndicators(event, year) {
     allButtons.forEach(btn => btn.classList.remove('active'));
     event.currentTarget.classList.add('active');
 }
-
-// 현재 페이지 회사 이름에 맞게 바꿔주세요 (영문 키로)
-const companyKey = "sungwoo";  // 예: sungwoo, devsisters, selvashealthcare
-
-fetch("data/stock_prices.json") 
-    .then(response => response.json())
-    .then(data => {
-        const companyNameMap = {
-            "sungwoo": "성우하이텍",
-            "devsisters": "데브시스터즈",
-            "selvashealthcare": "셀바스헬스케어"
-        };
-        const korName = companyNameMap[companyKey];
-        const price = data[korName]?.price;
-        const updated = data["last_updated"] || "";
-
-        const stockText = price
-            ? `주가: ${Number(price).toLocaleString()}원 (${updated})`
-            : `주가: 정보 없음`;
-
-        document.getElementById("stock-price").innerText = stockText;
-    })
-    .catch(error => {
-        console.error("JSON 로드 실패:", error);
-        document.getElementById("stock-price").innerText = `주가: 로딩 실패`;
-    });
 </script>
 
     <!-- 리포트 페이지 -->
@@ -2286,11 +2257,11 @@ fetch("data/stock_prices.json")
             <div class="company-header">
                 <div>
                     <span class="company-name">성우하이텍</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-code">015750</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 운송장비·부품 | FICS 자동차부품
                 </div>
             </div>
             <!-- 리포트 섹션 -->
