@@ -1971,7 +1971,7 @@
     </style>
  <script>
      document.addEventListener("DOMContentLoaded", function () {
-         fetch("data/economic_index.json")
+         fetch("data/economic_index.json?nocache=" + new Date().getTime())
   .then(response => response.json())
   .then(data => {
       // 지표 값 삽입
