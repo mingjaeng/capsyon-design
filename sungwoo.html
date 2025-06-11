@@ -1988,7 +1988,7 @@
       updateText.style.color = "#666";
       
       // 위치 지정: 경제지표 제목(h3) 바로 다음에 삽입
-      const sectionBox = document.querySelector(".section-box");
+      const sectionBox = document.querySelector("#financial-ratios-page .section-box");
       const title = sectionBox.querySelector(".section-title");
       sectionBox.insertBefore(updateText, title.nextSibling);
     })
@@ -2268,8 +2268,10 @@ function showIndicators(event, year) {
             <div class="section-box">
                 <h3 class="section-title">기업 리포트</h3>
                 <!-- iframe으로 변환된 HTML 삽입 -->
-                 <iframe src="output/sungwoo_report.html" 
-                 style="width: 100%; height: 800px; border: none;">
+                <iframe src="output/sungwoo_report.html" 
+                    style="width: 100%; height: 800px; border: none; 
+                    transform: scale(0.8); 
+                    transform-origin: top left;">
                 </iframe>
             </div>
         </div>
