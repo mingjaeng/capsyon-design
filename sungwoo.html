@@ -5,27 +5,76 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
     <script>
-        const companyMap = {
-            "AP위성": "apsi.html",
-            "데브시스터즈": "devsisters.html",
-            "한선엔지니어링": "ehansun.html",
-            "고려제강": "kiswire.html",
-            "메카로": "mecaro.html",
-            "미래에셋증권": "miraeasset.html",
-            "폴라리스AI": "polarisai.html",
-            "로보로보": "roborobo.html",
-            "셀바스헬스케어": "selvashealthcare.html",
-            "성우하이텍": "sungwoo.html",
-        };
-        function goToCompanyPage() {
-            const input = document.getElementById("searchInput").value.trim();
-            if (companyMap[input]) {
-                window.location.href = companyMap[input];
-            } else {
-                alert("해당 기업 정보를 찾을 수 없습니다.");
-            }
-            return false;
+    const companyMap = {
+        "AP위성": "apsi.html",
+        "데브시스터즈": "devsisters.html",
+        "한선엔지니어링": "ehansun.html",
+         "고려제강": "kiswire.html",
+        "메카로": "mecaro.html",
+        "미래에셋증권": "miraeasset.html",
+        "폴라리스AI": "polarisai.html",
+        "로보로보": "roborobo.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "성우하이텍": "sungwoo.html",
+    };
+    function goToCompanyPage() {
+        const input = document.getElementById("searchInput").value.trim();
+        if (companyMap[input]) {
+            window.location.href = companyMap[input];
+        } else {
+            alert("해당 기업 정보를 찾을 수 없습니다.");
         }
+        return false;
+    }
+    // 페이지 로드 후 실행되는 함수
+    window.onload = function() {
+        setupSubNavigation();
+        setupTabs();
+    };
+    // 서브 네비게이션 기능 설정
+    function setupSubNavigation() {
+        const subNavItems = document.querySelectorAll('.sub-nav-items li');
+        subNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentSubNav = this.closest('.sub-nav-items');
+                parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                const subPageName = this.getAttribute('data-subpage');
+                if (subPageName) {
+                    const subPages = document.querySelectorAll('.sub-page');
+                    subPages.forEach(subPage => {
+                        subPage.classList.remove('active');
+                    });
+                    const targetSubPage = document.getElementById(subPageName);
+                    if (targetSubPage) {
+                        targetSubPage.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+    // 탭 메뉴 설정
+    function setupTabs() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        tabItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentTabMenu = this.closest('.tab-menu');
+                parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const parentPage = this.closest('.sub-page');
+                    parentPage.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
     </script>
     <style>
         * {
@@ -642,67 +691,6 @@
             font-style: italic;
         }
     </style>
-    <script>
-        // 페이지 로드 후 실행되는 함수
-        window.onload = function() {
-            setupSubNavigation();
-            setupTabs();
-        };
-        // 서브 네비게이션 기능 설정
-        function setupSubNavigation() {
-            const subNavItems = document.querySelectorAll('.sub-nav-items li');
-            subNavItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 활성화된 메뉴 아이템 제거
-                    const parentSubNav = this.closest('.sub-nav-items');
-                    parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    // 클릭한 메뉴 아이템 활성화
-                    this.classList.add('active');
-                    // 해당 서브페이지 표시
-                    const subPageName = this.getAttribute('data-subpage');
-                    if (subPageName) {
-                        // 모든 서브페이지 숨기기
-                        const subPages = document.querySelectorAll('.sub-page');
-                        subPages.forEach(subPage => {
-                            subPage.classList.remove('active');
-                        });
-                        // 선택한 서브페이지 표시
-                        const targetSubPage = document.getElementById(subPageName);
-                        if (targetSubPage) {
-                            targetSubPage.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-        // 탭 메뉴 설정
-        function setupTabs() {
-            const tabItems = document.querySelectorAll('.tab-item');
-            tabItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 탭 메뉴에서 활성화된 탭 찾기
-                    const parentTabMenu = this.closest('.tab-menu');
-                    parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-                    // 클릭한 탭 활성화
-                    this.classList.add('active');
-                    // 해당 탭 콘텐츠 표시
-                    const targetId = this.getAttribute('data-target');
-                    if (targetId) {
-                        // 같은 페이지 내의 모든 탭 콘텐츠 숨기기
-                        const parentPage = this.closest('.sub-page');
-                        parentPage.querySelectorAll('.tab-content').forEach(content => {
-                            content.classList.remove('active');
-                        });
-                        // 선택한 탭 콘텐츠 표시
-                        const targetContent = document.getElementById(targetId);
-                        if (targetContent) {
-                            targetContent.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-    </script>
 </head>
 <body>
     <div class="header">
@@ -759,6 +747,12 @@
                 <div class="company-profile active">
                     <div class="company-profile-section">
                         <table class="company-detail-table">
+                            <colgroup>
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                            </colgroup>
                             <tr>
                                 <th>기업명</th>
                                 <td>성우하이텍</td>
@@ -796,11 +790,16 @@
         </div>
     </div>
     <style>
-        .company-detail-table th,
-        .company-detail-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+    .company-detail-table th,
+    .company-detail-table td {
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+
+    .company-detail-table td[colspan] {
+        text-align: left;
+    }
     </style>
     <!-- 재무제표 페이지 -->
     <div id="financial-statements-page" class="sub-page">   
@@ -1625,7 +1624,6 @@
             </div>
         </div>
     </div>
-    <!-- 탭 동작용 스크립트 -->
     <script>
     document.querySelectorAll('.tab-menu li').forEach(tab => {
         tab.addEventListener('click', function () {
@@ -1637,7 +1635,6 @@
         });
         });
     </script>
-    <!-- 재무제표 페이지 스타일 -->
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1663,7 +1660,7 @@
         border-radius: 4px;
         margin-right: 15px;
     }
-    /* ▶ 탭 메뉴 스타일 */
+    /* 탭 메뉴 */
     .tab-menu {
         display: flex;
         gap: 12px;
@@ -1688,11 +1685,9 @@
         color: #fff;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
-    /* ▶ 탭 콘텐츠 */
     .tab-content {
         display: none;
         margin-top: 10px;
-        animation: fadeIn 0.3s ease;
     }
     .tab-content.active {
         display: block;
@@ -1701,7 +1696,7 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    /* ▶ 섹션 박스 레이아웃 */
+    /* 섹션 박스 */
     .section-box {
         margin-top: 30px;
         padding: 30px;
@@ -1722,7 +1717,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    /* ▶ 재무표 영역 스타일 */
+    /* 재무제표 영역 */
     .inancial-table-wrapper {
         margin-top: 20px;
         overflow-x: auto;
@@ -1758,19 +1753,16 @@
         transform: scale(1.01);
         transition: all 0.2s ease;
     }
-    /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
     .financial-table th:first-child,
     .financial-table td:first-child {
         width: 25%;
         text-align: left;
         padding-left: 20px;
     }
-    /* ▶ 연도 열: 동일 폭 */
     .financial-table th:nth-child(n+2):nth-child(-n+4),
     .financial-table td:nth-child(n+2):nth-child(-n+4) {
         width: 25%; 
     }
-    /* ▶ 계층 구조 들여쓰기 및 강조 */
     .financial-table td.depth-0 {
         font-weight: bold;
         background-color: #f0f4ff;
@@ -1786,7 +1778,6 @@
     .financial-table thead th:first-child {
         text-align: center;
     }
-
     </style>
     <!-- 경제지표 페이지 -->
     <div id="financial-ratios-page" class="sub-page">
@@ -1969,35 +1960,30 @@
         font-style: italic;
     }
     </style>
- <script>
-     document.addEventListener("DOMContentLoaded", function () {
-         fetch("data/economic_index.json?nocache=" + new Date().getTime())
-  .then(response => response.json())
-  .then(data => {
-      // 지표 값 삽입
-      document.getElementById("usd-krw").textContent = data["USD/KRW"];
-      document.getElementById("gold-price").textContent = data["금시세(1g)"];
-      document.getElementById("kospi").textContent = data["KOSPI"];
-      document.getElementById("kosdaq").textContent = data["KOSDAQ"];
-
-      // 업데이트 문구 생성
-      const updateText = document.createElement("p");
-      updateText.textContent = data["last_updated"];
-      updateText.style.margin = "6px 0 10px";
-      updateText.style.fontSize = "0.9em";
-      updateText.style.color = "#666";
-      
-      // 위치 지정: 경제지표 제목(h3) 바로 다음에 삽입
-      const sectionBox = document.querySelector("#financial-ratios-page .section-box");
-      const title = sectionBox.querySelector(".section-title");
-      sectionBox.insertBefore(updateText, title.nextSibling);
-    })
-    .catch(error => {
-      console.error("경제지표 로딩 실패:", error);
-    });
-});
-</script>
-
+    <script>
+    //외부 JSON 파일을 불러와서, 경제지표를 HTML에 동적으로 표시
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("data/economic_index.json?nocache=" + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("usd-krw").textContent = data["USD/KRW"];
+            document.getElementById("gold-price").textContent = data["금시세(1g)"];
+            document.getElementById("kospi").textContent = data["KOSPI"];
+            document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+            const updateText = document.createElement("p");
+            updateText.textContent = data["last_updated"];
+            updateText.style.margin = "6px 0 10px";
+            updateText.style.fontSize = "0.9em";
+            updateText.style.color = "#666";
+            const sectionBox = document.querySelector("#financial-ratios-page .section-box");
+            const title = sectionBox.querySelector(".section-title");
+            sectionBox.insertBefore(updateText, title.nextSibling);
+            })
+            .catch(error => {
+            console.error("경제지표 로딩 실패:", error);
+            });
+        });
+    </script>
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
         <div class="company-info">
@@ -2014,13 +2000,12 @@
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
-                    <!-- 연도 선택 탭 -->
-                    <div class="year-tabs">
-                        <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-                        <button onclick="showIndicators(event, '2023')">2023</button>
-                        <button onclick="showIndicators(event, '2022')">2022</button>
-                    </div>
-
+                <!-- 연도 선택 탭 -->
+                <div class="year-tabs">
+                    <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+                    <button onclick="showIndicators(event, '2023')">2023</button>
+                    <button onclick="showIndicators(event, '2022')">2022</button>
+                </div>
                 <!-- 연도별 투자지표 섹션 -->
                 <div id="indicators-2024" class="year-indicators active">
                     <div class="indicator-category">
@@ -2067,8 +2052,8 @@
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div id="indicators-2023" class="year-indicators">
+            </div>
+            <div id="indicators-2023" class="year-indicators">
                     <div class="indicator-category">
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
@@ -2164,7 +2149,6 @@
         </div>
     </div>
     <style>
-    /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
         background: #fff;
@@ -2238,18 +2222,18 @@
         margin-bottom: 30px;
     }
     </style>
- <script>
-function showIndicators(event, year) {
-    const allSections = document.querySelectorAll('.year-indicators');
-    allSections.forEach(section => section.classList.remove('active'));
-    const selectedSection = document.getElementById('indicators-' + year);
-    if (selectedSection) selectedSection.classList.add('active');
-    const allButtons = document.querySelectorAll('.year-tabs button');
-    allButtons.forEach(btn => btn.classList.remove('active'));
-    event.currentTarget.classList.add('active');
-}
-</script>
-
+    <script>
+    //연도별 투자지표를 전환
+    function showIndicators(event, year) {
+        const allSections = document.querySelectorAll('.year-indicators');
+        allSections.forEach(section => section.classList.remove('active'));
+        const selectedSection = document.getElementById('indicators-' + year);
+        if (selectedSection) selectedSection.classList.add('active');
+        const allButtons = document.querySelectorAll('.year-tabs button');
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        }
+    </script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
