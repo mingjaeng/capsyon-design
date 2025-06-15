@@ -9,7 +9,7 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
-      font-family: 'Malgun Gothic', sans-serif;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
     body {
       background-color: #f5f5f5;
@@ -19,31 +19,44 @@
       align-items: center;
       height: 100vh;
       text-align: center;
+      padding: 20px;
     }
     h1 {
       font-size: 36px;
       margin-bottom: 30px;
-      color: #e74c3c;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
     .search-bar {
       display: flex;
       justify-content: center;
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+      padding: 20px;
     }
     .search-bar input {
       padding: 10px 15px;
       font-size: 16px;
       width: 300px;
       border: 1px solid #ccc;
-      border-radius: 4px 0 0 4px;
+      border-radius: 8px 0 0 8px;
+      outline: none;
     }
     .search-bar button {
-      padding: 10px 15px;
+      padding: 10px 20px;
       font-size: 16px;
       border: none;
-      background-color: #e74c3c;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       color: white;
-      border-radius: 0 4px 4px 0;
+      border-radius: 0 8px 8px 0;
       cursor: pointer;
+      transition: background 0.3s ease;
+    }
+    .search-bar button:hover {
+      background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
     }
   </style>
 </head>
@@ -55,33 +68,33 @@
     <button type="submit">검색</button>
   </form>
 
-<script>
-  document.addEventListener("DOMContentLoaded", function () {
-    const companyMap = {
-      "AP위성": "apsi.html",
-      "한선엔지니어링": "ehansun.html",
-      "폴라리스AI": "polarisai.html",
-      "셀바스헬스케어": "selvashealthcare.html",
-      "미래에셋증권": "miraeasset.html",
-      "메카로": "mecaro.html",
-      "로보로보": "roborobo.html",
-      "성우하이텍": "sungwoo.html",
-      "고려제강": "kiswire.html",
-      "데브시스터즈": "devsisters.html"
-    };
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const companyMap = {
+        "AP위성": "apsi.html",
+        "한선엔지니어링": "ehansun.html",
+        "폴라리스AI": "polarisai.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "미래에셋증권": "miraeasset.html",
+        "메카로": "mecaro.html",
+        "로보로보": "roborobo.html",
+        "성우하이텍": "sungwoo.html",
+        "고려제강": "kiswire.html",
+        "데브시스터즈": "devsisters.html"
+      };
 
-    document.getElementById("searchForm").addEventListener("submit", function (e) {
-      e.preventDefault();
-      const keyword = document.getElementById("searchInput").value.trim();
+      document.getElementById("searchForm").addEventListener("submit", function (e) {
+        e.preventDefault();
+        const keyword = document.getElementById("searchInput").value.trim();
 
-      if (companyMap[keyword]) {
-        window.location.href = companyMap[keyword];
-      } else {
-        alert("검색 결과가 없습니다.");
-      }
+        if (companyMap[keyword]) {
+          window.location.href = companyMap[keyword];
+        } else {
+          alert("검색 결과가 없습니다.");
+        }
+      });
     });
-  });
-</script>
+  </script>
 
 </body>
 </html>
