@@ -1,31 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
     <script>
-        const companyMap = {
-            "AP위성": "apsi.html",
-            "데브시스터즈": "devsisters.html",
-            "한선엔지니어링": "ehansun.html",
-            "고려제강": "kiswire.html",
-            "메카로": "mecaro.html",
-            "미래에셋증권": "miraeasset.html",
-            "폴라리스AI": "polarisai.html",
-            "로보로보": "roborobo.html",
-            "셀바스헬스케어": "selvashealthcare.html",
-            "성우하이텍": "sungwoo.html",
-        };
-        function goToCompanyPage() {
-            const input = document.getElementById("searchInput").value.trim();
-            if (companyMap[input]) {
-                window.location.href = companyMap[input];
-            } else {
-                alert("해당 기업 정보를 찾을 수 없습니다.");
-            }
-            return false;
+    const companyMap = {
+        "AP위성": "apsi.html",
+        "데브시스터즈": "devsisters.html",
+        "한선엔지니어링": "ehansun.html",
+         "고려제강": "kiswire.html",
+        "메카로": "mecaro.html",
+        "미래에셋증권": "miraeasset.html",
+        "폴라리스AI": "polarisai.html",
+        "로보로보": "roborobo.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "성우하이텍": "sungwoo.html",
+    };
+    function goToCompanyPage() {
+        const input = document.getElementById("searchInput").value.trim();
+        if (companyMap[input]) {
+            window.location.href = companyMap[input];
+        } else {
+            alert("해당 기업 정보를 찾을 수 없습니다.");
         }
+        return false;
+    }
+    // 페이지 로드 후 실행되는 함수
+    window.onload = function() {
+        setupSubNavigation();
+        setupTabs();
+    };
+    // 서브 네비게이션 기능 설정
+    function setupSubNavigation() {
+        const subNavItems = document.querySelectorAll('.sub-nav-items li');
+        subNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentSubNav = this.closest('.sub-nav-items');
+                parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                const subPageName = this.getAttribute('data-subpage');
+                if (subPageName) {
+                    const subPages = document.querySelectorAll('.sub-page');
+                    subPages.forEach(subPage => {
+                        subPage.classList.remove('active');
+                    });
+                    const targetSubPage = document.getElementById(subPageName);
+                    if (targetSubPage) {
+                        targetSubPage.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+    // 탭 메뉴 설정
+    function setupTabs() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        tabItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentTabMenu = this.closest('.tab-menu');
+                parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const parentPage = this.closest('.sub-page');
+                    parentPage.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
     </script>
     <style>
         * {
@@ -308,11 +357,6 @@
         .neutral {
             color: #666;
         }
-        /* 동적 계산을 위한 스타일 */
-        .calculated-value {
-            font-weight: bold;
-        }
-        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
             gap: 12px;
@@ -353,7 +397,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         /* 섹션 박스 레이아웃 */
         .section-box {
             margin-top: 30px;
@@ -648,67 +691,6 @@
             font-style: italic;
         }
     </style>
-    <script>
-        // 페이지 로드 후 실행되는 함수
-        window.onload = function() {
-            setupSubNavigation();
-            setupTabs();
-        };
-        // 서브 네비게이션 기능 설정
-        function setupSubNavigation() {
-            const subNavItems = document.querySelectorAll('.sub-nav-items li');
-            subNavItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 활성화된 메뉴 아이템 제거
-                    const parentSubNav = this.closest('.sub-nav-items');
-                    parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    // 클릭한 메뉴 아이템 활성화
-                    this.classList.add('active');
-                    // 해당 서브페이지 표시
-                    const subPageName = this.getAttribute('data-subpage');
-                    if (subPageName) {
-                        // 모든 서브페이지 숨기기
-                        const subPages = document.querySelectorAll('.sub-page');
-                        subPages.forEach(subPage => {
-                            subPage.classList.remove('active');
-                        });
-                        // 선택한 서브페이지 표시
-                        const targetSubPage = document.getElementById(subPageName);
-                        if (targetSubPage) {
-                            targetSubPage.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-        // 탭 메뉴 설정
-        function setupTabs() {
-            const tabItems = document.querySelectorAll('.tab-item');
-            tabItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 탭 메뉴에서 활성화된 탭 찾기
-                    const parentTabMenu = this.closest('.tab-menu');
-                    parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-                    // 클릭한 탭 활성화
-                    this.classList.add('active');
-                    // 해당 탭 콘텐츠 표시
-                    const targetId = this.getAttribute('data-target');
-                    if (targetId) {
-                        // 같은 페이지 내의 모든 탭 콘텐츠 숨기기
-                        const parentPage = this.closest('.sub-page');
-                        parentPage.querySelectorAll('.tab-content').forEach(content => {
-                            content.classList.remove('active');
-                        });
-                        // 선택한 탭 콘텐츠 표시
-                        const targetContent = document.getElementById(targetId);
-                        if (targetContent) {
-                            targetContent.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-    </script>
 </head>
 <body>
     <div class="header">
@@ -765,6 +747,12 @@
                 <div class="company-profile active">
                     <div class="company-profile-section">
                         <table class="company-detail-table">
+                            <colgroup>
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                            </colgroup>
                             <tr>
                                 <th>기업명</th>
                                 <td>데브시스터즈</td>
@@ -792,21 +780,26 @@
                         </table>
                     </div>
                     <div class="company-profile-section">
-                        <h3>기업개요</h3>
-                        <p>동사는 2007년 설립되어 2014년 코스닥 상장한 모바일게임 개발 및 운영 전문 기업임.</p>
-                        <p>'쿠키런' IP 관련 사업과 벤처캐피탈 사업을 영위하며, 대표작으로 '쿠키런: 오븐브레이크', '쿠키런: 킹덤', '쿠키런: 마녀의 성', '쿠키런: 모험의 탑' 등을 보유함.</p>
-                        <p>PC/콘솔 플랫폼으로의 확장과 '쿠키런' IP를 활용한 다양한 사업을 통해 글로벌 영향력 확대 계획.</p>
+                        <h3>기업소개</h3>
+                        <p>- 동사는 2007년 설립 이후 게임 개발과 서비스 사업을 하고 있으며, 종속회사 데브시스터즈벤처스를 통해 벤처캐피탈 사업을 운영하고 있음.</p>
+                        <p>- 독자적 IP '쿠키런'을 기반으로 모바일게임에 집중하며 쿠키런, 라인쿠키런, 쿠키런: 오븐브레이크, 쿠키런: 킹덤 등 다양한 게임을 서비스하고 있음.</p>
+                        <p>- 다양한 장르로 IP를 확장하고 PC/콘솔 플랫폼 공략과 IP 사업을 통해 글로벌 영향력을 확대하고 있음.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <style>
-        .company-detail-table th,
-        .company-detail-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+    .company-detail-table th,
+    .company-detail-table td {
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+
+    .company-detail-table td[colspan] {
+        text-align: left;
+    }
     </style>
     <!-- 재무제표 페이지 -->
     <div id="financial-statements-page" class="sub-page">   
@@ -925,7 +918,7 @@
                                 <td>7,950,565,743</td>
                                 <td>13,307,854,894</td>
                                 <td>16,778,333,029</td>
-                            </tr>
+                            </tr>          
                             <tr><td class="depth-2">이연법인세자산</td>
                                 <td>4,513,651,873</td>
                                 <td>--</td>
@@ -935,7 +928,7 @@
                                 <td>2,078,219,355</td>
                                 <td>2,706,108,411</td>
                                 <td>205,293,543</td>
-                            </tr>              
+                            </tr>   
                             <tr><td class="depth-1">자산총계</td>
                                 <td>260,367,520,968</td>
                                 <td>239,751,806,880</td>
@@ -951,13 +944,8 @@
                                 <td>25,692,554,143</td>
                                 <td>20,192,475,037</td>
                             </tr>
-                            <tr><td class="depth-2">기타채무</td>
-                                <td>12,305,929,656</td>
-                                <td>8,884,776,387</td>
-                                <td>7,465,145,066</td>
-                            </tr>
                             <tr><td class="depth-2">기타 유동부채</td>
-                                <td>7,465,145,066</td>
+                                <td>6,945,555,361</td>
                                 <td>4,124,162,943</td>
                                 <td>6,815,328,442</td>
                             </tr>
@@ -1076,130 +1064,136 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr><td class="depth-0">영업수익</td>
-                                <td>236,186,554,886</td>
-                                <td>161,143,328,758</td>
-                                <td>214,423,954,452</td>
+                            <tr><td class="depth-0">수익(매출액)</td>
+                                <td>31,702,268,070</td>
+                                <td>29,812,771,015</td>
+                                <td>27,685,710,222</td>
                             </tr>
-                            <tr><td class="depth-0">영업비용</td>
-                                <td>209,001,458,165</td>
-                                <td>209,136,103,095</td>
-                                <td>234,334,817,884</td>
+                            <tr><td class="depth-0">매출원가</td>
+                                <td>15,140,825,503</td>
+                                <td>14,162,523,907</td>
+                                <td>13,567,288,844</td>
                             </tr>
-                            <tr><td class="depth-0">영업이익(손실)</td>
-                                <td>27,185,096,721</td>
-                                <td>47,992,774,337</td>
-                                <td>19,910,863,432</td>
+                            <tr><td class="depth-0">매출총이익</td>
+                                <td>16,561,442,567</td>
+                                <td>15,650,247,108</td>
+                                <td>14,118,421,378</td>
                             </tr>
-                            <tr><td class="depth-0">기타영업외수익</td>
-                                <td>817,637,961</td>
-                                <td>256,780,402</td>
-                                <td>415,027,918</td>
+                            <tr><td class="depth-0">판매비와관리비</td>
+                                <td>13,287,513,719</td>
+                                <td>12,304,367,389</td>
+                                <td>11,635,884,816</td>
                             </tr>
-                            <tr><td class="depth-0">기타영업외비용</td>
-                                <td>534,664,016</td>
-                                <td>1,236,608,135</td>
-                                <td>349,000,636</td>
+                            <tr><td class="depth-0">영업이익</td>
+                                <td>3,273,928,848</td>
+                                <td>3,345,879,719</td>
+                                <td>2,482,536,562</td>
                             </tr>
                             <tr><td class="depth-0">금융수익</td>
-                                <td>31,818,268,945</td>
-                                <td>34,754,166,207</td>
-                                <td>33,617,808,117</td>
+                                <td>2,316,840,428</td>
+                                <td>1,072,837,307</td>
+                                <td>1,454,515,123</td>
                             </tr>
                             <tr><td class="depth-0">금융비용</td>
-                                <td>31,249,395,386</td>
-                                <td>35,669,405,502</td>
-                                <td>23,125,583,053</td>
+                                <td>2,230,294,640</td>
+                                <td>540,217,178</td>
+                                <td>1,409,158,441</td>
                             </tr>
-                            <tr><td class="depth-0">지분법손익</td>
-                                <td>252,070,513</td>
-                                <td>343,212,120</td>
-                                <td>456,047,810</td>
+                            <tr><td class="depth-0">기타수익</td>
+                                <td>272,943,600</td>
+                                <td>250,717,208</td>
+                                <td>941,203,954</td>
                             </tr>
-                            <tr><td class="depth-0">법인세비용차감전순이익(손실)</td>
-                                <td>27,784,873,712</td>
-                                <td>49,544,629,245</td>
-                                <td>9,808,658,896</td>
+                            <tr><td class="depth-0">기타비용</td>
+                                <td>133,750,821</td>
+                                <td>271,194,180</td>
+                                <td>617,200,562</td>
+                            </tr>
+                            <tr><td class="depth-0">지분법관련이익(손실)</td>
+                                <td>200,825,783</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-0">법인세비용차감전순이익</td>
+                                <td>3,298,841,632</td>
+                                <td>3,858,022,876</td>
+                                <td>2,851,896,636</td>
                             </tr>
                             <tr><td class="depth-0">법인세비용(수익)</td>
-                                <td>486,457,216</td>
-                                <td>176,599,783</td>
-                                <td>3,115,546,020</td>
+                                <td>146,942,827</td>
+                                <td>1,311,767,664</td>
+                                <td>39,051,982</td>
                             </tr>
-                            <tr><td class="depth-0">당기순이익(손실)</td>
-                                <td>28,271,330,928</td>
-                                <td>49,721,229,028</td>
-                                <td>6,693,112,876</td>
+                            <tr><td class="depth-0">당기순이익</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
                             </tr>
                             <tr><td class="depth-0">기타포괄손익</td>
-                                <td>11,964,187,551</td>
-                                <td>3,283,605,203</td>
-                                <td>18,041,587,740</td>
+                                <td>256,123,312</td>
+                                <td>25,095,072</td>
+                                <td>1,890,241,889</td>
                             </tr>
-                            <tr><td class="depth-1">후속적으로 당기손익으로 재분류될 수 있는 항목</td>
-                                <td>324,214,341</td>
-                                <td>40,618,374</td>
-                                <td>18,149,849</td>
+                            <tr><td class="depth-1">당기손익으로 재분류되지 않는항목(세후기타포괄손익)</td>
+                                <td>--</td>
+                                <td>6,453,072</td>
+                                <td>1,830,227,651</td>
                             </tr>
-                            <tr><td class="depth-2">해외사업장환산손익</td>
-                                <td>324,214,341</td>
-                                <td>40,618,374</td>
-                                <td>18,149,849</td>
+                            <tr><td class="depth-2">재평가잉여금(유형자산)</td>
+                                <td>--</td>
+                                <td>6,453,072</td>
+                                <td>1,890,974,467</td>
                             </tr>
-                            <tr><td class="depth-1">후속적으로 당기손익으로 재분류될 수 없는 항목</td>
-                                <td>12,288,401,892</td>
-                                <td>3,324,223,577</td>
-                                <td>18,023,437,891</td>
-                            </tr>
-                            <tr><td class="depth-2">확정급여제도의 재측정요소</td>
-                                <td>729,927,315</td>
-                                <td>401,677,303</td>
-                                <td>165,616,768</td>
-                            </tr>
-                            <tr><td class="depth-2">기타포괄손익-공정가치금융자산평가손실</td>
-                                <td>11,558,474,577</td>
-                                <td>3,725,900,880</td>
-                                <td>17,856,547,948</td>
-                            </tr>
-                            <tr><td class="depth-2">지분법자본변동</td>
+                            <tr><td class="depth-2">기타포괄손익-공정가치 측정 금융자산 평가손익</td>
                                 <td>--</td>
                                 <td>--</td>
-                                <td>1,273,175</td>
+                                <td>60,746,816</td>
+                            </tr>
+                            <tr><td class="depth-1">당기손익으로 재분류될 수 있는 항목(세후기타포괄손익)</td>
+                                <td>256,123,312</td>
+                                <td>18,642,000</td>
+                                <td>60,014,238</td>
+                            </tr>
+                            <tr><td class="depth-2">해외사업장환산외환차이(세후기타포괄손익)/td>
+                                <td>256,123,312</td>
+                                <td>18,642,000</td>
+                                <td>60,014,238</td>
                             </tr>
                             <tr><td class="depth-0">총포괄손익</td>
-                                <td>16,307,143,377</td>
-                                <td>53,004,834,231</td>
-                                <td>11,348,474,864</td>
+                                <td>3,408,022,117</td>
+                                <td>5,194,885,612</td>
+                                <td>4,703,086,543</td>
                             </tr>
-                             <tr><td class="depth-0">당기순이익(손실)의 귀속</td>
+                            
+                            <tr><td class="depth-0">당기순이익(손실)의 귀속</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-1">지배기업의 소유주</td>
-                                <td>27,970,756,229</td>
-                                <td>49,596,264,298</td>
-                                <td>6,692,765,112</td>
+                            <tr><td class="depth-1">지배기업의 소유주에게 귀속되는 당기순이익(손실)</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
                             </tr>
-                            <tr><td class="depth-1">비지배지분</td>
-                                <td>300,574,699</td>
-                                <td>124,964,730</td>
-                                <td>347,764</td>
+                            <tr><td class="depth-1">비지배지분에 귀속되는 당기순이익(손실)</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
                             </tr>
                             <tr><td class="depth-0">포괄손익의 귀속</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-1">지배기업의 소유주</td>
-                                <td>16,024,673,061</td>
-                                <td>52,894,658,698</td>
-                                <td>11,348,822,628</td>
+                             <tr><td class="depth-1">포괄손익, 지배기업의 소유주에게 귀속되는 지분</td>
+                                <td>3,408,022,117</td>
+                                <td>5,194,885,612</td>
+                                <td>4,703,086,543</td>
                             </tr>
-                            <tr><td class="depth-1">비지배지분</td>
-                                <td>282,470,316</td>
-                                <td>110,175,533</td>
-                                <td>347,764</td>
+                            <tr><td class="depth-1">포괄손익, 비지배지분</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td></td>--</td>
                             </tr>
                             <tr><td class="depth-0">주당이익</td>
                                 <td>--</td>
@@ -1207,14 +1201,15 @@
                                 <td>--</td>
                             </tr>
                             <tr><td class="depth-1">기본주당이익(손실) (단위 : 원)</td>
-                                <td>2,595</td>
-                                <td>4,645</td>
-                                <td>632</td>
+                                <td>123</td>
+                                <td>215</td>
+                                <td>126</td>
                             </tr>
                             <tr><td class="depth-1">희석주당이익(손실) (단위 : 원)</td>
-                                <td>2,541</td>
-                                <td>4,645</td>
-                                <td>632</td>
+                                <td>122</td>
+                                <td>214</td>
+                                <td>94</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1231,407 +1226,206 @@
                         </thead>
                         <tbody>
                             <tr><td class="depth-0">영업활동현금흐름</td>
-                                <td>45,059,194,354</td>
-                                <td>26,105,115,048</td>
-                                <td>13,680,522,176</td>
+                                <td>4,499,635,393</td>
+                                <td>3,471,660,631</td>
+                                <td>50,805,068</td>
                             </tr>
                             <tr><td class="depth-1">당기순이익(손실)</td>
-                                <td>28,271,330,928</td>
-                                <td>49,721,229,028</td>
-                                <td>6,693,112,876</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
                             </tr>
-                            <tr><td class="depth-1">비현금항목조정등</td>
-                                <td>16,130,134,173</td>
-                                <td>22,311,762,704</td>
-                                <td>7,125,548,445</td>
+                            <tr><td class="depth-1">당기순이익조정을 위한 가감</td>
+                                <td>2,392,051,019</td>
+                                <td>284,399,934</td>
+                                <td>2,012,883,863</td>
                             </tr>
-                            <tr><td class="depth-2">이자수익</td>
-                                <td>2,612,847,384</td>
-                                <td>2,835,720,834</td>
-                                <td>2,304,636,164</td>
+                            <tr><td class="depth-1">영업활동으로 인한 자산 부채의 변동</td>
+                                <td>1,544,329,575</td>
+                                <td>1,886,281,443</td>
+                                <td>4,655,483,182</td>
                             </tr>
-                            <tr><td class="depth-2">배당수익</td>
-                                <td>226,096,594</td>
-                                <td>311,297,001</td>
+                            <tr><td class="depth-1">이자수취</td>
+                                <td>720,354,636</td>
+                                <td>161,635,982</td>
+                                <td>114,419,154</td>
+                            </tr>
+                            <tr><td class="depth-1">이자지급(영업)</td>
+                                <td>243,215,302</td>
+                                <td>257,884,382</td>
+                                <td>250,500,581</td>
+                            </tr>
+                            <tr><td class="depth-1">법인세환급(납부)</td>
+                                <td>22,875,810</td>
+                                <td>--</td>
+                                <td>16,641,160</td>
+                            </tr>
+                            <tr><td class="depth-0">투자활동현금흐름</td>
+                                <td>594,133,831</td>
+                                <td>13,970,668,084</td>
+                                <td>2,226,215,032</td>
+                            </tr>
+                             <tr><td class="depth-1">기타수취채권의 감소</td>
+                                <td>38,314,466</td>
+                                <td>102,283,320</td>
+                                <td>80,117,002</td>
+                            </tr>
+                            <tr><td class="depth-1">기타유동금융자산의 감소</td>
+                                <td>15,500,000,000</td>
+                                <td>7,185,783,307</td>
+                                <td>8,000,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">장기기타수취채권의 감소</td>
+                                <td>146,898,020</td>
+                                <td>52,000,000</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">이자비용</td>
-                                <td>1,393,609,680</td>
-                                <td>1,461,144,068</td>
-                                <td>1,201,562,831</td>
-                            </tr>
-                            <tr><td class="depth-2">법인세비용(수익)</td>
-                                <td>486,457,216</td>
-                                <td>176,599,783</td>
-                                <td>3,115,546,020</td>
-                            </tr>
-                            <tr><td class="depth-2">감가상각비</td>
-                                <td>3,927,438,740</td>
-                                <td>4,049,385,253</td>
-                                <td>3,319,761,252</td>
-                            </tr>
-                             <tr><td class="depth-2">무형자산상각비</td>
-                                <td>345,265,486</td>
-                                <td>430,694,817</td>
-                                <td>2,832,378,920</td>
-                            </tr>
-                            <tr><td class="depth-2">리스감가상각비</td>
-                                <td>5,651,931,160</td>
-                                <td>5,825,913,602</td>
-                                <td>5,027,476,015</td>
-                            </tr>
-                            <tr><td class="depth-2">무형자산처분손실</td>
-                                <td>146,686,571</td>
-                                <td>25,454,545</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-2">무형자산처분이익</td>
-                                <td>61,000,000</td>
+                            <tr><td class="depth-1">장기투자자산의 감소</td>
                                 <td>--</td>
                                 <td>--</td>
+                                <td>142,636,950</td>
                             </tr>
-                            <tr><td class="depth-2">무형자산손상차손</td>
+                            <tr><td class="depth-1">유형자산의 처분</td>
+                                <td>12,048,032</td>
+                                <td>10,362,500</td>
+                                <td>3,974,800</td>
+                            </tr>
+                            <tr><td class="depth-1">정부보조금의 자산취득</td>
                                 <td>--</td>
-                                <td>345,688,375</td>
-                                <td>13,000</td>
-                            </tr>
-                            <tr><td class="depth-2">재고자산평가손실</td>
-                                <td>11,696,674</td>
-                                <td>372,048,221</td>
-                                <td>674,951,472</td>
-                            </tr>
-                            <tr><td class="depth-2">퇴직급여</td>
-                                <td>3,736,645,256</td>
-                                <td>4,630,836,725</td>
-                                <td>4,160,828,687</td>
-                            </tr>
-                            <tr><td class="depth-2">당기손익인식금융자산평가이익</td>
-                                <td>14,340,880,113</td>
-                                <td>6,557,369,008</td>
-                                <td>26,985,609,483</td>
-                            </tr>
-                            <tr><td class="depth-2">당기손익인식금융자산평가손실</td>
-                                <td>19,822,574,124</td>
-                                <td>32,845,930,617</td>
-                                <td>2,164,450,325</td>
-                            </tr>
-                            <tr><td class="depth-2">당기손익인식금융자산처분이익</td>
-                                <td>5,165,526,372</td>
-                                <td>869,500</td>
+                                <td>5,370,454</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">당기손익인식금융자산처분손실</td>
-                                <td>607,525,360</td>
+                            <tr><td class="depth-1">매각예정자산의 처분</td>
+                                <td>--</td>
+                                <td>1,714,430,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">기타수취채권의 증가</td>
+                                <td>--</td>
+                                <td>30,000,000</td>
+                                <td>10,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">기타유동금융자산의 증가</td>
+                                <td>8,000,000,000</td>
+                                <td>17,022,857,600</td>
+                                <td>5,505,714,400</td>
+                            </tr>
+                            <tr><td class="depth-1">단기투자자산의 증가</td>
+                                <td>6,999,997,860</td>
+                                <td>1,728,240,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">장기기타수취채권의 증가</td>
+                                <td>210,252,530</td>
+                                <td>514,000,000</td>
+                                <td>98,440,531</td>
+                            </tr>
+                            <tr><td class="depth-1">장기금융상품의 증가</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>25,714,800</td>
+                            </tr>
+                            <tr><td class="depth-1">장기투자자산의 증가</td>
+                                <td>--</td>
+                                <td>3,376,900,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">공동기업투자의 취득</td>
+                                <td>344,250,000</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                             <tr><td class="depth-2">외화환산이익</td>
-                                <td>697,986,478</td>
-                                <td>6,588,112</td>
-                                <td>17,174,872</td>
+                            <tr><td class="depth-1">유형자산의 취득</td>
+                                <td>716,313,959</td>
+                                <td>359,635,065</td>
+                                <td>352,313,989</td>
                             </tr>
-                            <tr><td class="depth-2">외화환산손실</td>
-                                <td>9,231,370</td>
-                                <td>111,775,404</td>
-                                <td>385,455,993</td>
+                            <tr><td class="depth-1">무형자산의 취득</td>
+                                <td>20,580,000</td>
+                                <td>9,265,000</td>
+                                <td>8,330,000</td>
                             </tr>
-                            <tr><td class="depth-2">잡이익</td>
-                                <td>65,003,517</td>
-                                <td>23,513,510</td>
-                                <td>4,960,000</td>
+                            <tr><td class="depth-0">재무활동현금흐름</td>
+                                <td>687,852,864</td>
+                                <td>15,945,809,902</td>
+                                <td>7,826,715,396</td>
                             </tr>
-                            <tr><td class="depth-2">유형자산처분이익</td>
-                                <td>36,932,500</td>
-                                <td>11,053,474</td>
-                                <td>24,612,455</td>
-                            </tr>
-                            <tr><td class="depth-2">유형자산처분손실</td>
-                                <td>138,906,939</td>
-                                <td>238,463,193</td>
+                            <tr><td class="depth-1">유상증자</td>
+                                <td>--</td>
+                                <td>20,754,302,570</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">유형자산폐기손실</td>
-                                <td>6,207,336</td>
-                                <td>--</td>
-                                <td>150,059,653</td>
+                            <tr><td class="depth-1">단기차입금의 차입</td>
+                                <td>6,589,843,383</td>
+                                <td>1,205,194,664</td>
+                                <td>792,454,639</td>
                             </tr>
-                            <tr><td class="depth-2">리스해지이익</td>
-                                <td>20,007,064</td>
+                            <tr><td class="depth-1">정부보조금의 수령</td>
+                                <td>37,051,648</td>
+                                <td>50,473,551</td>
                                 <td>--</td>
-                                <td>99,920,870</td>
-                            </tr>
-                            <tr><td class="depth-2">리스해지손실</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>1,786,016</td>
-                            </tr>
-                            <tr><td class="depth-2">주식보상비용</td>
-                                <td>2,791,464,037</td>
-                                <td>5,463,479,607</td>
-                                <td>4,306,797,763</td>
                             </tr> 
-                            <tr><td class="depth-2">대손상각비</td>
-                                <td>245,489,200</td>
-                                <td>54,534,006</td>
-                                <td>10,250,000</td>
-                            </tr>
-                            <tr><td class="depth-2">종속기업/관계기업투자처분이익</td>
-                                <td>385,343,889</td>
+                            <tr><td class="depth-1">장기차입금의 차입</td>
                                 <td>--</td>
-                                <td>188,024,690</td>
-                            </tr>
-                            <tr><td class="depth-2">파생금융자산평가이익</td>
                                 <td>--</td>
-                                <td>1,242,513,957</td>
-                                <td>2,677,352,159</td>
+                                <td>245,000,000</td>
                             </tr>
-                            <tr><td class="depth-2">파생금융자산평가손실</td>
-                                <td>2,197,831,377</td>
+                            <tr><td class="depth-1">주식선택권의 행사</td>
+                                <td>199,920,000</td>
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">지분법손실</td>
-                                <td>252,070,513</td>
-                                <td>--</td>
-                                <td>456,047,810</td>
-                            </tr>
-                             <tr><td class="depth-2">지분법이익</td>
-                                <td>--</td>
-                                <td>343,212,120</td>
+                            <tr><td class="depth-1">단기차입금의 상환</td>
+                                <td>5,832,120,451</td>
+                                <td>1,157,204,462</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">기타금융수익</td>
+                            <tr><td class="depth-1">유동성장기차입금의 상환</td>
+                                <td>1,445,000,000</td>
+                                <td>3,900,000,000</td>
+                                <td>2,445,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">전환사채의 감소</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>6,060,857,040</td>
+                            </tr>
+                             <tr><td class="depth-1">유동리스부채의 지급</td>
+                                <td>237,547,444</td>
+                                <td>256,956,421</td>
+                                <td>253,312,995</td>
+                            </tr>
+                            <tr><td class="depth-1">장기차입금의 상환</td>
                                 <td>7,153,604,263</td>
                                 <td>22,388,047,996</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-2">기타금융비용</td>
-                                <td>6,097,245,740</td>
-                                <td>--</td>
-                                <td>17,851,565,421</td>
+                            <tr><td class="depth-0">현금및현금성자산에 대한 환율변동효과</td>
+                                <td>729,139,064</td>
+                                <td>27,670,670</td>
+                                <td>76,742,322</td>
                             </tr>
-                            <tr><td class="depth-1">순운전자본의 변동</td>
-                                <td>172,088,991</td>
-                                <td>6,378,977,408</td>
-                                <td>9,394,649,955</td>
-                            </tr>
-                            <tr><td class="depth-2">매출채권의 감소(증가)</td>
-                                <td>4,084,092,125</td>
-                                <td>1,155,633,941</td>
-                                <td>12,201,227,606</td>
-                            </tr>
-                            <tr><td class="depth-2">기타채권의 감소(증가)</td>
-                                <td>84,532,806</td>
-                                <td>19,150,364</td>
-                                <td>53,338,457</td>
-                            </tr>
-                            <tr><td class="depth-2">재고자산의 감소(증가)</td>
-                                <td>500,165,297</td>
-                                <td>564,969,094</td>
-                                <td>2,382,137,741</td>
-                            </tr>
-                            <tr><td class="depth-2">기타자산의 감소(증가)</td>
-                                <td>1,151,856,356</td>
-                                <td>292,040,746</td>
-                                <td>1,553,640,187
-                            </tr>
-                            <tr><td class="depth-2">기타채무의 감소(증가)</td>
-                                <td>3,460,404,860</td>
-                                <td>436,369,490</td>
-                                <td>10,905,122,092</td>
-                            </tr>    
-                            <tr><td class="depth-2">기타유동부채의 증가(감소)</td>
-                                <td>2,959,192,418</td>
-                                <td>2,354,034,501</td>
-                                <td>5,258,397,394</td>
-                            </tr> 
-                            <tr><td class="depth-2">순확정급여부채의 증가(감소)</td>
-                                <td>3,899,970,621</td>
-                                <td>7,433,087,190</td>
-                                <td>4,550,522,064</td>
-                            </tr>
-                            <tr><td class="depth-1">이자수취</td>
-                                <td>1,885,435,908</td>
-                                <td>2,607,707,770</td>
-                                <td>1,563,754,172</td>
-                            </tr>
-                            <tr><td class="depth-1">배당금수취(영업)</td>
-                                <td>226,096,594</td>
-                                <td>311,297,001</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">법인세환급(납부)</td>
-                                <td>1,625,892,240</td>
-                                <td>4,764,323,913</td>
-                                <td>6,282,061,962</td>
-                            </tr>
-                            <tr><td class="depth-0">투자활동현금흐름</td>
-                                <td>34,518,913,191</td>
-                                <td>6,977,542,425</td>
-                                <td>6,087,812,217</td>
-                            </tr>
-                            <tr><td class="depth-1">기타금융자산의 처분 및 취득</td>
-                                <td>42,897,135,983</td>
-                                <td>26,721,244,170</td>
-                                <td>22,141,513,365</td>
-                            </tr>
-                            <tr><td class="depth-1">유형자산의 처분</td>
-                                <td>194,472,728</td>
-                                <td>56,621,126</td>
-                                <td>23,046,433</td>
-                            </tr>
-                            <tr><td class="depth-1">유형자산의 취득</td>
-                                <td>883,246,830</td>
-                                <td>2,426,091,335</td>
-                                <td>7,202,663,215</td>
-                            </tr>
-                            <tr><td class="depth-1">무형자산의 처분</td>
-                                <td>2,044,181,819</td>
-                                <td>100,000,000</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">무형자산의 취득</td>
-                                <td>1,890,435,102</td>
-                                <td>194,972,790</td>
-                                <td>4,339,337,439</td>
-                            </tr>
-                            <tr><td class="depth-1">사용권자산의 처분</td>
-                                <td>19,807,000</td>
-                                <td>--</td>
-                                <td>--</td>
-                            </tr> 
-                            <tr><td class="depth-1">보증금의 감소</td>
-                                <td>1,508,720,761</td>
-                                <td>964,762,595</td>
-                                <td>1,324,094,530</td>
-                            </tr>
-                            <tr><td class="depth-1">보증금의 증가</td>
-                                <td>17,588,139</td>
-                                <td>694,147,830</td>
-                                <td>2,321,267,159</td>
-                            </tr>
-                            <tr><td class="depth-1">대여금의 감소</td>
-                                <td>607,595,270</td>
-                                <td>123,781,100</td>
-                                <td>468,583,310</td>
-                            </tr>
-                            <tr><td class="depth-1">대여금의 증가</td>
-                                <td>1,000,000,000</td>
-                                <td>--</td>
-                                <td>30,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">관계기업투자의 처분</td>
-                                <td>360,528,000</td>
-                                <td>830,000,000</td>
-                                <td>330,000,000</td>
-                            </tr>
-                             <tr><td class="depth-1">관계기업투자의 취득</td>
-                                <td>100,000,000</td>
-                                <td>300,000,000</td>
-                                <td>1,200,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">비유동당기손익-공정가치금융자산의 처분</td>
-                                <td>14,664,189,862</td>
-                                <td>869,500</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">비유동당기손익-공정가치금융자산의 취득</td>
-                                <td>7,161,002,577</td>
-                                <td>19,214,565,931</td>
-                                <td>17,505,888,562</td>
-                            </tr>
-                            <tr><td class="depth-1">기타포괄손익-공정가치금융자산의 처분</td>
-                                <td>--</td>
-                                <td>1,509,841,820</td>
-                                <td>1,924,106,520</td>
-                            </tr>
-                            <tr><td class="depth-1">기타포괄손익-공정가치금융자산의 취득</td>
-                                <td>--</td>
-                                <td>499,800,000</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">연결범위 변동으로 인한 현금유입</td>
-                                <td>31,000,000</td>
-                                <td>--</td>
-                                <td>300,000,000</td>
-                            </tr>
-                            <tr><td class="depth-0">재무활동현금흐름</td>
-                                <td>8,271,194,788</td>
-                                <td>5,675,114,677</td>
-                                <td>10,104,873,469</td>
-                            </tr>
-                            <tr><td class="depth-1">주식매수선택권 행사</td>
-                                <td>446,510,000</td>
-                                <td>697,783,000</td>
-                                <td>549,733,000</td>
-                            </tr>
-                            <tr><td class="depth-1">주식매수선택권의 중도청산</td>
-                                <td>--</td>
-                                <td>38,145,300</td>
-                                <td>--</td>
-                            </tr>    
-                            <tr><td class="depth-1">비지배지분(부채)의 증감</td>
-                                <td>45,500,000</td>
-                                <td>34,025,000</td>
-                                <td>5,177,988,621</td>
-                            </tr> 
-                            <tr><td class="depth-1">기타금융부채의 증가</td>
-                                <td>5,866,000,000</td>
-                                <td>11,933,000,000</td>
-                                <td>9,600,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">기타금융부채의 감소</td>
-                                <td>8,661,023,488</td>
-                                <td>919,255,814</td>
-                                <td>1,225,674,419</td>
-                            </tr>
-                            <tr><td class="depth-1">리스부채의 상환</td>
-                                <td>5,968,181,300</td>
-                                <td>6,032,292,209</td>
-                                <td>5,212,596,515</td>
-                            </tr>
-                            <tr><td class="depth-1">전환상환우선주의 발행</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>6,499,884,782</td>
-                            </tr>
-                            <tr><td class="depth-1">비지배지분의 감소</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>350,000</td>
-                            </tr>
-                            <tr><td class="depth-1">배당금지급</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>5,284,112,000</td>
-                            </tr>
-                            <tr><td class="depth-0">현금및현금성자산의증가(감소)</td>
-                                <td>2,269,086,375</td>
-                                <td>13,452,457,946</td>
-                                <td>9,663,460,924</td>
+                            <tr><td class="depth-0">현금및현금성자산의순증가(감소)</td>
+                                <td>3,946,787,762</td>
+                                <td>5,419,131,779</td>
+                                <td>5,472,952,974</td>
                             </tr>
                             <tr><td class="depth-0">기초현금및현금성자산</td>
-                                <td>8,229,623,340</td>
-                                <td>21,641,462,912</td>
-                                <td>31,286,773,987</td>
-                            </tr>    
-                            <tr><td class="depth-0">현금및현금성자산에 대한 환율변동효과</td>
-                                <td>336,097,437</td>
-                                <td>40,618,374</td>
-                                <td>18,149,849</td>
-                            </tr> 
+                                <td>9,818,361,847</td>
+                                <td>4,399,230,068</td>
+                                <td>9,872,183,042</td>
+                            </tr>
                             <tr><td class="depth-0">기말현금및현금성자산</td>
-                                <td>10,834,807,152</td>
-                                <td>8,229,623,340</td>
-                                <td>21,641,462,912</td>
-                            </tr>  
+                                <td>13,765,149,609</td>
+                                <td>9,818,361,847</td>
+                                <td>4,399,230,068</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 탭 동작용 스크립트 -->
     <script>
     document.querySelectorAll('.tab-menu li').forEach(tab => {
         tab.addEventListener('click', function () {
@@ -1643,7 +1437,6 @@
         });
         });
     </script>
-    <!-- 재무제표 페이지 스타일 -->
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1669,7 +1462,7 @@
         border-radius: 4px;
         margin-right: 15px;
     }
-    /* ▶ 탭 메뉴 스타일 */
+    /* 탭 메뉴 */
     .tab-menu {
         display: flex;
         gap: 12px;
@@ -1694,11 +1487,9 @@
         color: #fff;
         box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
     }
-    /* ▶ 탭 콘텐츠 */
     .tab-content {
         display: none;
         margin-top: 10px;
-        animation: fadeIn 0.3s ease;
     }
     .tab-content.active {
         display: block;
@@ -1707,7 +1498,7 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
-    /* ▶ 섹션 박스 레이아웃 */
+    /* 섹션 박스 */
     .section-box {
         margin-top: 30px;
         padding: 30px;
@@ -1728,7 +1519,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
-    /* ▶ 재무표 영역 스타일 */
+    /* 재무제표 영역 */
     .inancial-table-wrapper {
         margin-top: 20px;
         overflow-x: auto;
@@ -1764,19 +1555,16 @@
         transform: scale(1.01);
         transition: all 0.2s ease;
     }
-    /* ▶ 첫 번째 열: 항목명 정렬 및 폭 지정 */
     .financial-table th:first-child,
     .financial-table td:first-child {
         width: 25%;
         text-align: left;
         padding-left: 20px;
     }
-    /* ▶ 연도 열: 동일 폭 */
     .financial-table th:nth-child(n+2):nth-child(-n+4),
     .financial-table td:nth-child(n+2):nth-child(-n+4) {
         width: 25%; 
     }
-    /* ▶ 계층 구조 들여쓰기 및 강조 */
     .financial-table td.depth-0 {
         font-weight: bold;
         background-color: #f0f4ff;
@@ -1792,19 +1580,18 @@
     .financial-table thead th:first-child {
         text-align: center;
     }
-
     </style>
     <!-- 경제지표 페이지 -->
     <div id="financial-ratios-page" class="sub-page">
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
                 </div>
             </div>
             <div class="section-box">
@@ -1976,65 +1763,47 @@
     }
     </style>
     <script>
-    // 경제지표 JSON 데이터
-    const economicData = {
-        "KOSPI": "2,697.67",
-        "KOSDAQ": "734.35",
-        "USD/KRW": "1,380.40",
-        "금시세(1g)": "144.4100"
-    };
-    // 데이터 로드 및 표시 함수
-    function loadEconomicData() {
-        try {
-            // USD/KRW 데이터 설정
-            const usdKrwElement = document.getElementById('usd-krw');
-            usdKrwElement.textContent = economicData['USD/KRW'];
-            usdKrwElement.classList.remove('loading');
-            // 금시세 데이터 설정
-            const goldPriceElement = document.getElementById('gold-price');
-            goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
-            goldPriceElement.classList.remove('loading');
-            // KOSPI 데이터 설정
-            const kospiElement = document.getElementById('kospi');
-            kospiElement.textContent = economicData['KOSPI'];
-             kospiElement.classList.remove('loading');
-            // KOSDAQ 데이터 설정
-            const kosdaqElement = document.getElementById('kosdaq');
-            kosdaqElement.textContent = economicData['KOSDAQ'];
-            kosdaqElement.classList.remove('loading');
-        } catch (error) {
-            console.error('경제지표 데이터 로드 중 오류 발생:', error);
-            // 오류 발생 시 기본값 표시
-            document.querySelectorAll('.loading').forEach(element => {
-                element.textContent = '데이터 없음';
-                element.classList.remove('loading');
+    //외부 JSON 파일을 불러와서, 경제지표를 HTML에 동적으로 표시
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("data/economic_index.json?nocache=" + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("usd-krw").textContent = data["USD/KRW"];
+            document.getElementById("gold-price").textContent = data["금시세(1g)"];
+            document.getElementById("kospi").textContent = data["KOSPI"];
+            document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+            const updateText = document.createElement("p");
+            updateText.textContent = data["last_updated"];
+            updateText.style.margin = "6px 0 10px";
+            updateText.style.fontSize = "0.9em";
+            updateText.style.color = "#666";
+            const sectionBox = document.querySelector("#financial-ratios-page .section-box");
+            const title = sectionBox.querySelector(".section-title");
+            sectionBox.insertBefore(updateText, title.nextSibling);
+            })
+            .catch(error => {
+            console.error("경제지표 로딩 실패:", error);
             });
-        }
-    }
-    // 페이지 로드 완료 후 데이터 로드
-    document.addEventListener('DOMContentLoaded', function() {
-        // 로딩 효과를 위해 약간의 지연 후 데이터 표시
-        setTimeout(loadEconomicData, 500);
-    });
+        });
     </script>
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">데브시스터즈</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
                 </div>
             </div>
             <!-- 투자지표 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
                 <!-- 연도 선택 탭 -->
-                 <div class="year-tabs">
+                <div class="year-tabs">
                     <button onclick="showIndicators(event, '2024')" class="active">2024</button>
                     <button onclick="showIndicators(event, '2023')">2023</button>
                     <button onclick="showIndicators(event, '2022')">2022</button>
@@ -2045,10 +1814,10 @@
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>영업이익률</td><td>11.51%</td></tr>
-                                <tr><td>순이익률</td><td>11.97%</td></tr>
-                                <tr><td>ROE</td><td>19.72%</td></tr>
-                                <tr><td>ROA</td><td>11.31%</td></tr>
+                                <tr><td>영업이익률</td><td>10.33%</td></tr>
+                                <tr><td>순이익률</td><td>9.94%</td></tr>
+                                <tr><td>ROE</td><td>5.09%</td></tr>
+                                <tr><td>ROA</td><td>4.61%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2056,10 +1825,10 @@
                         <h4 class="indicator-title">🛡️ 안정성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>부채비율</td><td>68.91%</td></tr>
-                                <tr><td>이자보상배율</td><td>19.51%</td></tr>
-                                <tr><td>유동비율</td><td>345.26%</td></tr>
-                                <tr><td>당좌비율</td><td>116.00%</td></tr>
+                                <tr><td>부채비율</td><td>10.07%</td></tr>
+                                <tr><td>이자보상배율</td><td>13.86%</td></tr>
+                                <tr><td>유동비율</td><td>807.62%</td></tr>
+                                <tr><td>당좌비율</td><td>533.06%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2067,10 +1836,10 @@
                         <h4 class="indicator-title">🚀 성장성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>매출액 증가율</td><td>46.57%</td></tr>
-                                <tr><td>영업이익 증가율</td><td>156.64%</td></tr>
-                                <tr><td>순이익 증가율</td><td>156.86%</td></tr>
-                                <tr><td>총자산 증가율</td><td>8.60%</td></tr>
+                                <tr><td>매출액 증가율</td><td>6.34%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>-2.15%</td></tr>
+                                <tr><td>순이익 증가율</td><td>-39.03%</td></tr>
+                                <tr><td>총자산 증가율</td><td>5.31%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2078,23 +1847,23 @@
                         <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>EPS</td><td>2,327</td></tr>
-                                <tr><td>BPS</td><td>13,986</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>EPS</td><td>123</td></tr>
+                                <tr><td>BPS</td><td>2,481</td></tr>
+                                <tr><td>PER</td><td>33.09배</td></tr>
+                                <tr><td>PBR</td><td>1.63배</td></tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div id="indicators-2023" class="year-indicators">
+            </div>
+            <div id="indicators-2023" class="year-indicators">
                     <div class="indicator-category">
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>영업이익률</td><td>-29.78%</td></tr>
-                                <tr><td>순이익률</td><td>-30.86%</td></tr>
-                                <tr><td>ROE</td><td>-31.75%</td></tr>
-                                <tr><td>ROA</td><td>-18.41%</td></tr>
+                                <tr><td>영업이익률</td><td>11.22%</td></tr>
+                                <tr><td>순이익률</td><td>17.34%</td></tr>
+                                <tr><td>ROE</td><td>11.02%</td></tr>
+                                <tr><td>ROA</td><td>9.17%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2102,10 +1871,10 @@
                         <h4 class="indicator-title">🛡️ 안정성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>부채비율</td><td>78.18%</td></tr>
-                                <tr><td>이자보상배율</td><td>-32.85%</td></tr>
-                                <tr><td>유동비율</td><td>311.59%</td></tr>
-                                <tr><td>당좌비율</td><td>135.03%</td></tr>
+                                <tr><td>부채비율</td><td>10.95%</td></tr>
+                                <tr><td>이자보상배율</td><td>14.72%</td></tr>
+                                <tr><td>유동비율</td><td>664.30%</td></tr>
+                                <tr><td>당좌비율</td><td>469.13%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2113,10 +1882,10 @@
                         <h4 class="indicator-title">🚀 성장성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>매출액 증가율</td><td>-24.85%</td></tr>
-                                <tr><td>영업이익 증가율</td><td>-141.04%</td></tr>
-                                <tr><td>순이익 증가율</td><td>-642.87%</td></tr>
-                                <tr><td>총자산 증가율</td><td>-20.19%</td></tr>
+                                <tr><td>매출액 증가율</td><td>7.68%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>34.78%</td></tr>
+                                <tr><td>순이익 증가율</td><td>83.79%</td></tr>
+                                <tr><td>총자산 증가율</td><td>44.85%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2124,10 +1893,10 @@
                         <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>EPS</td><td>-4,162</td></tr>
-                                <tr><td>BPS</td><td>12,332</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>EPS</td><td>215</td></tr>
+                                <tr><td>BPS</td><td>2,342</td></tr>
+                                <tr><td>PER</td><td>31.77배</td></tr>
+                                <tr><td>PBR</td><td>2.92배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2137,10 +1906,10 @@
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>영업이익률</td><td>-9.29%</td></tr>
-                                <tr><td>순이익률</td><td>-3.12%</td></tr>
-                                <tr><td>ROE</td><td>-3.88%</td></tr>
-                                <tr><td>ROA</td><td>-2.33%</td></tr>
+                                <tr><td>영업이익률</td><td>8.97%</td></tr>
+                                <tr><td>순이익률</td><td>10.16%</td></tr>
+                                <tr><td>ROE</td><td>9.10%</td></tr>
+                                <tr><td>ROA</td><td>5.92%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2148,10 +1917,10 @@
                         <h4 class="indicator-title">🛡️ 안정성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>부채비율</td><td>65.76%</td></tr>
-                                <tr><td>이자보상배율</td><td>-16.57%</td></tr>
-                                <tr><td>유동비율</td><td>578.39%</td></tr>
-                                <tr><td>당좌비율</td><td>262.08%</td></tr>
+                                <tr><td>부채비율</td><td>36.36%</td></tr>
+                                <tr><td>이자보상배율</td><td>4.86%</td></tr>
+                                <tr><td>유동비율</td><td>265.40%</td></tr>
+                                <tr><td>당좌비율</td><td>144.17%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2159,10 +1928,10 @@
                         <h4 class="indicator-title">🚀 성장성 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>매출액 증가율</td><td>-41.94%</td></tr>
-                                <tr><td>영업이익 증가율</td><td>-135.14%</td></tr>
-                                <tr><td>순이익 증가율</td><td>-111.09%</td></tr>
-                                <tr><td>총자산 증가율</td><td>9.76%</td></tr>
+                                <tr><td>매출액 증가율</td><td>-4.83%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>-27.25%</td></tr>
+                                <tr><td>순이익 증가율</td><td>13.81%</td></tr>
+                                <tr><td>총자산 증가율</td><td>-6.02%</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2170,10 +1939,10 @@
                         <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
                         <table class="investment-table">
                             <tbody>
-                                <tr><td>EPS</td><td>-566</td></tr>
-                                <tr><td>BPS</td><td>16,951</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>EPS</td><td>125</td></tr>
+                                <tr><td>BPS</td><td>1,507</td></tr>
+                                <tr><td>PER</td><td>16.11배</td></tr>
+                                <tr><td>PBR</td><td>1.34배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2182,7 +1951,6 @@
         </div>
     </div>
     <style>
-    /* ▽ 공통 섹션 박스 & 타이틀 */
     .section-box {
         padding: 25px;
         background: #fff;
@@ -2257,6 +2025,7 @@
     }
     </style>
     <script>
+    //연도별 투자지표를 전환
     function showIndicators(event, year) {
         const allSections = document.querySelectorAll('.year-indicators');
         allSections.forEach(section => section.classList.remove('active'));
@@ -2272,20 +2041,20 @@
         <div class="company-info">
             <div class="company-header">
                 <div>
-                    <span class="company-name">성우하이텍</span>
-                    <span class="company-code">194480</span>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
                     <span>12월 결산</span>
                 </div>
                 <div>
-                    KOSDAQ 코스닥 IT 서비스 | FICS 게임 소프트웨어
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
                 </div>
             </div>
             <!-- 리포트 섹션 -->
             <div class="section-box">
                 <h3 class="section-title">기업 리포트</h3>
                 <!-- iframe으로 변환된 HTML 삽입 -->
-                 <iframe src="reports/데브시스터즈.html" 
-                 style="width: 100%; height: 800px; border: none;">
+                <iframe src="output/selvashealthcare_report.html" 
+                    style="width: 100%; height: 800px; border: none;">
                 </iframe>
             </div>
         </div>
