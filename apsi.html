@@ -1,31 +1,80 @@
 <!DOCTYPE html>
 <html lang="ko">
-<head>
+<head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>2더하기8은 12조</title>
     <script>
-        const companyMap = {
-            "AP위성": "apsi.html",
-            "데브시스터즈": "devsisters.html",
-            "한선엔지니어링": "ehansun.html",
-            "고려제강": "kiswire.html",
-            "메카로": "mecaro.html",
-            "미래에셋증권": "miraeasset.html",
-            "폴라리스AI": "polarisai.html",
-            "로보로보": "roborobo.html",
-            "셀바스헬스케어": "selvashealthcare.html",
-            "성우하이텍": "sungwoo.html",
-        };
-        function goToCompanyPage() {
-            const input = document.getElementById("searchInput").value.trim();
-            if (companyMap[input]) {
-                window.location.href = companyMap[input];
-            } else {
-                alert("해당 기업 정보를 찾을 수 없습니다.");
-            }
-            return false;
+    const companyMap = {
+        "AP위성": "apsi.html",
+        "데브시스터즈": "devsisters.html",
+        "한선엔지니어링": "ehansun.html",
+         "고려제강": "kiswire.html",
+        "메카로": "mecaro.html",
+        "미래에셋증권": "miraeasset.html",
+        "폴라리스AI": "polarisai.html",
+        "로보로보": "roborobo.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "성우하이텍": "sungwoo.html",
+    };
+    function goToCompanyPage() {
+        const input = document.getElementById("searchInput").value.trim();
+        if (companyMap[input]) {
+            window.location.href = companyMap[input];
+        } else {
+            alert("해당 기업 정보를 찾을 수 없습니다.");
         }
+        return false;
+    }
+    // 페이지 로드 후 실행되는 함수
+    window.onload = function() {
+        setupSubNavigation();
+        setupTabs();
+    };
+    // 서브 네비게이션 기능 설정
+    function setupSubNavigation() {
+        const subNavItems = document.querySelectorAll('.sub-nav-items li');
+        subNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentSubNav = this.closest('.sub-nav-items');
+                parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                const subPageName = this.getAttribute('data-subpage');
+                if (subPageName) {
+                    const subPages = document.querySelectorAll('.sub-page');
+                    subPages.forEach(subPage => {
+                        subPage.classList.remove('active');
+                    });
+                    const targetSubPage = document.getElementById(subPageName);
+                    if (targetSubPage) {
+                        targetSubPage.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+    // 탭 메뉴 설정
+    function setupTabs() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        tabItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentTabMenu = this.closest('.tab-menu');
+                parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const parentPage = this.closest('.sub-page');
+                    parentPage.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
     </script>
     <style>
         * {
@@ -125,6 +174,7 @@
             margin-left: auto;
             margin-right: auto;
         }
+    
         .sub-nav-items {
             display: flex;
             max-width: 1200px;
@@ -307,11 +357,6 @@
         .neutral {
             color: #666;
         }
-        /* 동적 계산을 위한 스타일 */
-        .calculated-value {
-            font-weight: bold;
-        }
-        /* 탭 메뉴 스타일 - 새로운 디자인과 통일 */
         .tab-menu {
             display: flex;
             gap: 12px;
@@ -352,7 +397,6 @@
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        
         /* 섹션 박스 레이아웃 */
         .section-box {
             margin-top: 30px;
@@ -647,67 +691,6 @@
             font-style: italic;
         }
     </style>
-    <script>
-        // 페이지 로드 후 실행되는 함수
-        window.onload = function() {
-            setupSubNavigation();
-            setupTabs();
-        };
-        // 서브 네비게이션 기능 설정
-        function setupSubNavigation() {
-            const subNavItems = document.querySelectorAll('.sub-nav-items li');
-            subNavItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 활성화된 메뉴 아이템 제거
-                    const parentSubNav = this.closest('.sub-nav-items');
-                    parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
-                    // 클릭한 메뉴 아이템 활성화
-                    this.classList.add('active');
-                    // 해당 서브페이지 표시
-                    const subPageName = this.getAttribute('data-subpage');
-                    if (subPageName) {
-                        // 모든 서브페이지 숨기기
-                        const subPages = document.querySelectorAll('.sub-page');
-                        subPages.forEach(subPage => {
-                            subPage.classList.remove('active');
-                        });
-                        // 선택한 서브페이지 표시
-                        const targetSubPage = document.getElementById(subPageName);
-                        if (targetSubPage) {
-                            targetSubPage.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-        // 탭 메뉴 설정
-        function setupTabs() {
-            const tabItems = document.querySelectorAll('.tab-item');
-            tabItems.forEach(item => {
-                item.addEventListener('click', function() {
-                    // 현재 탭 메뉴에서 활성화된 탭 찾기
-                    const parentTabMenu = this.closest('.tab-menu');
-                    parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
-                    // 클릭한 탭 활성화
-                    this.classList.add('active');
-                    // 해당 탭 콘텐츠 표시
-                    const targetId = this.getAttribute('data-target');
-                    if (targetId) {
-                        // 같은 페이지 내의 모든 탭 콘텐츠 숨기기
-                        const parentPage = this.closest('.sub-page');
-                        parentPage.querySelectorAll('.tab-content').forEach(content => {
-                            content.classList.remove('active');
-                        });
-                        // 선택한 탭 콘텐츠 표시
-                        const targetContent = document.getElementById(targetId);
-                        if (targetContent) {
-                            targetContent.classList.add('active');
-                        }
-                    }
-                });
-            });
-        }
-    </script>
 </head>
 <body>
     <div class="header">
@@ -764,6 +747,12 @@
                 <div class="company-profile active">
                     <div class="company-profile-section">
                         <table class="company-detail-table">
+                            <colgroup>
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                            </colgroup>
                             <tr>
                                 <th>기업명</th>
                                 <td>AP위성</td>
@@ -791,21 +780,26 @@
                         </table>
                     </div>
                     <div class="company-profile-section">
-                        <h3>기업개요</h3>
-                        <p>* 동사는 2011년 인공위성 및 관련부품, 위성통신단말기의 개발·제조를 목적으로 설립됨.</p>
-                        <p>* 위성통신단말기 개발·제조를 주요 사업으로 영위하며, UAE 두바이의 THURAYA를 주요 고객으로 유럽, 아프리카, 중동, 아시아 전역에 위성통신서비스를 제공함.</p>
-                        <p>* 위성 본체 체계, 탑재체 국산화, 시험용 EGSE 국산화, 위성 AIT 등 다양한 우주기술의 국산화를 위해 노력 중.</p>
+                        <h3>기업소개</h3>
+                        <p>- 동사는 2016년 코스닥 상장된 위성통신 단말기 및 위성 부분품 제조 기업임.</p>
+                        <p>- 위성통신 단말기와 인공위성 및 위성 부분품 개발 사업을 영위하며, UAE 두바이 THURAYA를 주요 고객으로 유럽, 아프리카, 중동, 아시아에 위성통신서비스를 제공하고 있음.</p>
+                        <p>- 우주항공분야에서 위성 본체 체계, 위성 탑재체, 위성시험용 EGSE, 위성 AIT 등 다양한 우주기술의 국산화를 위해 노력하고 있음.</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
     <style>
-        .company-detail-table th,
-        .company-detail-table td {
-            text-align: center;
-            vertical-align: middle;
-        }
+    .company-detail-table th,
+    .company-detail-table td {
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+
+    .company-detail-table td[colspan] {
+        text-align: left;
+    }
     </style>
     <!-- 재무제표 페이지 -->
     <div id="financial-statements-page" class="sub-page">   
@@ -924,7 +918,7 @@
                                 <td>7,950,565,743</td>
                                 <td>13,307,854,894</td>
                                 <td>16,778,333,029</td>
-                            </tr>
+                            </tr>          
                             <tr><td class="depth-2">이연법인세자산</td>
                                 <td>4,513,651,873</td>
                                 <td>--</td>
@@ -934,7 +928,7 @@
                                 <td>2,078,219,355</td>
                                 <td>2,706,108,411</td>
                                 <td>205,293,543</td>
-                            </tr>              
+                            </tr>   
                             <tr><td class="depth-1">자산총계</td>
                                 <td>260,367,520,968</td>
                                 <td>239,751,806,880</td>
@@ -950,13 +944,8 @@
                                 <td>25,692,554,143</td>
                                 <td>20,192,475,037</td>
                             </tr>
-                            <tr><td class="depth-2">기타채무</td>
-                                <td>12,305,929,656</td>
-                                <td>8,884,776,387</td>
-                                <td>7,465,145,066</td>
-                            </tr>
                             <tr><td class="depth-2">기타 유동부채</td>
-                                <td>7,465,145,066</td>
+                                <td>6,945,555,361</td>
                                 <td>4,124,162,943</td>
                                 <td>6,815,328,442</td>
                             </tr>
@@ -1170,7 +1159,7 @@
                                 <td>53,004,834,231</td>
                                 <td>11,348,474,864</td>
                             </tr>
-                             <tr><td class="depth-0">당기순이익(손실)의 귀속</td>
+                            <tr><td class="depth-0">당기순이익(손실)의 귀속</td>
                                 <td>--</td>
                                 <td>--</td>
                                 <td>--</td>
@@ -1190,7 +1179,7 @@
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-1">지배기업의 소유주</td>
+                             <tr><td class="depth-1">지배기업의 소유주</td>
                                 <td>16,024,673,061</td>
                                 <td>52,894,658,698</td>
                                 <td>11,348,822,628</td>
@@ -1214,6 +1203,7 @@
                                 <td>2,541</td>
                                 <td>4,645</td>
                                 <td>632</td>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
@@ -1324,7 +1314,7 @@
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                             <tr><td class="depth-2">외화환산이익</td>
+                            <tr><td class="depth-2">외화환산이익</td>
                                 <td>697,986,478</td>
                                 <td>6,588,112</td>
                                 <td>17,174,872</td>
@@ -1424,7 +1414,7 @@
                                 <td>19,150,364</td>
                                 <td>53,338,457</td>
                             </tr>
-                            <tr><td class="depth-2">재고자산의 감소(증가)</td>
+                            <tr><td class="depth-2">재고자산의 감소(증가)td>
                                 <td>500,165,297</td>
                                 <td>564,969,094</td>
                                 <td>2,382,137,741</td>
@@ -1432,18 +1422,18 @@
                             <tr><td class="depth-2">기타자산의 감소(증가)</td>
                                 <td>1,151,856,356</td>
                                 <td>292,040,746</td>
-                                <td>1,553,640,187
+                                <td>1,553,640,187</td>
                             </tr>
                             <tr><td class="depth-2">기타채무의 감소(증가)</td>
                                 <td>3,460,404,860</td>
                                 <td>436,369,490</td>
                                 <td>10,905,122,092</td>
-                            </tr>    
+                            </tr>
                             <tr><td class="depth-2">기타유동부채의 증가(감소)</td>
                                 <td>2,959,192,418</td>
                                 <td>2,354,034,501</td>
                                 <td>5,258,397,394</td>
-                            </tr> 
+                            </tr>
                             <tr><td class="depth-2">순확정급여부채의 증가(감소)</td>
                                 <td>3,899,970,621</td>
                                 <td>7,433,087,190</td>
@@ -1459,178 +1449,17 @@
                                 <td>311,297,001</td>
                                 <td>--</td>
                             </tr>
-                            <tr><td class="depth-1">법인세환급(납부)</td>
+                            <tr><td class="depth-1">법인세환급(납부)td>
                                 <td>1,625,892,240</td>
                                 <td>4,764,323,913</td>
                                 <td>6,282,061,962</td>
                             </tr>
-                            <tr><td class="depth-0">투자활동현금흐름</td>
-                                <td>34,518,913,191</td>
-                                <td>6,977,542,425</td>
-                                <td>6,087,812,217</td>
-                            </tr>
-                            <tr><td class="depth-1">기타금융자산의 처분 및 취득</td>
-                                <td>42,897,135,983</td>
-                                <td>26,721,244,170</td>
-                                <td>22,141,513,365</td>
-                            </tr>
-                            <tr><td class="depth-1">유형자산의 처분</td>
-                                <td>194,472,728</td>
-                                <td>56,621,126</td>
-                                <td>23,046,433</td>
-                            </tr>
-                            <tr><td class="depth-1">유형자산의 취득</td>
-                                <td>883,246,830</td>
-                                <td>2,426,091,335</td>
-                                <td>7,202,663,215</td>
-                            </tr>
-                            <tr><td class="depth-1">무형자산의 처분</td>
-                                <td>2,044,181,819</td>
-                                <td>100,000,000</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">무형자산의 취득</td>
-                                <td>1,890,435,102</td>
-                                <td>194,972,790</td>
-                                <td>4,339,337,439</td>
-                            </tr>
-                            <tr><td class="depth-1">사용권자산의 처분</td>
-                                <td>19,807,000</td>
-                                <td>--</td>
-                                <td>--</td>
-                            </tr> 
-                            <tr><td class="depth-1">보증금의 감소</td>
-                                <td>1,508,720,761</td>
-                                <td>964,762,595</td>
-                                <td>1,324,094,530</td>
-                            </tr>
-                            <tr><td class="depth-1">보증금의 증가</td>
-                                <td>17,588,139</td>
-                                <td>694,147,830</td>
-                                <td>2,321,267,159</td>
-                            </tr>
-                            <tr><td class="depth-1">대여금의 감소</td>
-                                <td>607,595,270</td>
-                                <td>123,781,100</td>
-                                <td>468,583,310</td>
-                            </tr>
-                            <tr><td class="depth-1">대여금의 증가</td>
-                                <td>1,000,000,000</td>
-                                <td>--</td>
-                                <td>30,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">관계기업투자의 처분</td>
-                                <td>360,528,000</td>
-                                <td>830,000,000</td>
-                                <td>330,000,000</td>
-                            </tr>
-                             <tr><td class="depth-1">관계기업투자의 취득</td>
-                                <td>100,000,000</td>
-                                <td>300,000,000</td>
-                                <td>1,200,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">비유동당기손익-공정가치금융자산의 처분</td>
-                                <td>14,664,189,862</td>
-                                <td>869,500</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">비유동당기손익-공정가치금융자산의 취득</td>
-                                <td>7,161,002,577</td>
-                                <td>19,214,565,931</td>
-                                <td>17,505,888,562</td>
-                            </tr>
-                            <tr><td class="depth-1">기타포괄손익-공정가치금융자산의 처분</td>
-                                <td>--</td>
-                                <td>1,509,841,820</td>
-                                <td>1,924,106,520</td>
-                            </tr>
-                            <tr><td class="depth-1">기타포괄손익-공정가치금융자산의 취득</td>
-                                <td>--</td>
-                                <td>499,800,000</td>
-                                <td>--</td>
-                            </tr>
-                            <tr><td class="depth-1">연결범위 변동으로 인한 현금유입</td>
-                                <td>31,000,000</td>
-                                <td>--</td>
-                                <td>300,000,000</td>
-                            </tr>
-                            <tr><td class="depth-0">재무활동현금흐름</td>
-                                <td>8,271,194,788</td>
-                                <td>5,675,114,677</td>
-                                <td>10,104,873,469</td>
-                            </tr>
-                            <tr><td class="depth-1">주식매수선택권 행사</td>
-                                <td>446,510,000</td>
-                                <td>697,783,000</td>
-                                <td>549,733,000</td>
-                            </tr>
-                            <tr><td class="depth-1">주식매수선택권의 중도청산</td>
-                                <td>--</td>
-                                <td>38,145,300</td>
-                                <td>--</td>
-                            </tr>    
-                            <tr><td class="depth-1">비지배지분(부채)의 증감</td>
-                                <td>45,500,000</td>
-                                <td>34,025,000</td>
-                                <td>5,177,988,621</td>
-                            </tr> 
-                            <tr><td class="depth-1">기타금융부채의 증가</td>
-                                <td>5,866,000,000</td>
-                                <td>11,933,000,000</td>
-                                <td>9,600,000,000</td>
-                            </tr>
-                            <tr><td class="depth-1">기타금융부채의 감소</td>
-                                <td>8,661,023,488</td>
-                                <td>919,255,814</td>
-                                <td>1,225,674,419</td>
-                            </tr>
-                            <tr><td class="depth-1">리스부채의 상환</td>
-                                <td>5,968,181,300</td>
-                                <td>6,032,292,209</td>
-                                <td>5,212,596,515</td>
-                            </tr>
-                            <tr><td class="depth-1">전환상환우선주의 발행</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>6,499,884,782</td>
-                            </tr>
-                            <tr><td class="depth-1">비지배지분의 감소</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>350,000</td>
-                            </tr>
-                            <tr><td class="depth-1">배당금지급</td>
-                                <td>--</td>
-                                <td>--</td>
-                                <td>5,284,112,000</td>
-                            </tr>
-                            <tr><td class="depth-0">현금및현금성자산의증가(감소)</td>
-                                <td>2,269,086,375</td>
-                                <td>13,452,457,946</td>
-                                <td>9,663,460,924</td>
-                            </tr>
-                            <tr><td class="depth-0">기초현금및현금성자산</td>
-                                <td>8,229,623,340</td>
-                                <td>21,641,462,912</td>
-                                <td>31,286,773,987</td>
-                            </tr>    
-                            <tr><td class="depth-0">현금및현금성자산에 대한 환율변동효과</td>
-                                <td>336,097,437</td>
-                                <td>40,618,374</td>
-                                <td>18,149,849</td>
-                            </tr> 
-                            <tr><td class="depth-0">기말현금및현금성자산</td>
-                                <td>10,834,807,152</td>
-                                <td>8,229,623,340</td>
-                                <td>21,641,462,912</td>
-                            </tr>  
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <!-- 탭 동작용 스크립트 -->
     <script>
     document.querySelectorAll('.tab-menu li').forEach(tab => {
         tab.addEventListener('click', function () {
@@ -1642,7 +1471,6 @@
         });
         });
     </script>
-    <!-- 재무제표 페이지 스타일 -->
     <style>
     body {
         font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -1668,6 +1496,7 @@
         border-radius: 4px;
         margin-right: 15px;
     }
+    /* 탭 메뉴 */
     .tab-menu {
         display: flex;
         gap: 12px;
@@ -1695,7 +1524,6 @@
     .tab-content {
         display: none;
         margin-top: 10px;
-        animation: fadeIn 0.3s ease;
     }
     .tab-content.active {
         display: block;
@@ -1704,6 +1532,7 @@
         from { opacity: 0; transform: translateY(10px); }
         to { opacity: 1; transform: translateY(0); }
     }
+    /* 섹션 박스 */
     .section-box {
         margin-top: 30px;
         padding: 30px;
@@ -1724,6 +1553,7 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    /* 재무제표 영역 */
     .inancial-table-wrapper {
         margin-top: 20px;
         overflow-x: auto;
@@ -1967,46 +1797,28 @@
     }
     </style>
     <script>
-    // 경제지표 JSON 데이터
-    const economicData = {
-        "KOSPI": "2,697.67",
-        "KOSDAQ": "734.35",
-        "USD/KRW": "1,380.40",
-        "금시세(1g)": "144.4100"
-    };
-    // 데이터 로드 및 표시 함수
-    function loadEconomicData() {
-        try {
-            // USD/KRW 데이터 설정
-            const usdKrwElement = document.getElementById('usd-krw');
-            usdKrwElement.textContent = economicData['USD/KRW'];
-            usdKrwElement.classList.remove('loading');
-            // 금시세 데이터 설정
-            const goldPriceElement = document.getElementById('gold-price');
-            goldPriceElement.textContent = economicData['금시세(1g)'] + '원';
-            goldPriceElement.classList.remove('loading');
-            // KOSPI 데이터 설정
-            const kospiElement = document.getElementById('kospi');
-            kospiElement.textContent = economicData['KOSPI'];
-             kospiElement.classList.remove('loading');
-            // KOSDAQ 데이터 설정
-            const kosdaqElement = document.getElementById('kosdaq');
-            kosdaqElement.textContent = economicData['KOSDAQ'];
-            kosdaqElement.classList.remove('loading');
-        } catch (error) {
-            console.error('경제지표 데이터 로드 중 오류 발생:', error);
-            // 오류 발생 시 기본값 표시
-            document.querySelectorAll('.loading').forEach(element => {
-                element.textContent = '데이터 없음';
-                element.classList.remove('loading');
+    //외부 JSON 파일을 불러와서, 경제지표를 HTML에 동적으로 표시
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("data/economic_index.json?nocache=" + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("usd-krw").textContent = data["USD/KRW"];
+            document.getElementById("gold-price").textContent = data["금시세(1g)"];
+            document.getElementById("kospi").textContent = data["KOSPI"];
+            document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+            const updateText = document.createElement("p");
+            updateText.textContent = data["last_updated"];
+            updateText.style.margin = "6px 0 10px";
+            updateText.style.fontSize = "0.9em";
+            updateText.style.color = "#666";
+            const sectionBox = document.querySelector("#financial-ratios-page .section-box");
+            const title = sectionBox.querySelector(".section-title");
+            sectionBox.insertBefore(updateText, title.nextSibling);
+            })
+            .catch(error => {
+            console.error("경제지표 로딩 실패:", error);
             });
-        }
-    }
-    // 페이지 로드 완료 후 데이터 로드
-    document.addEventListener('DOMContentLoaded', function() {
-        // 로딩 효과를 위해 약간의 지연 후 데이터 표시
-        setTimeout(loadEconomicData, 500);
-    });
+        });
     </script>
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
@@ -2025,7 +1837,7 @@
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
                 <!-- 연도 선택 탭 -->
-                 <div class="year-tabs">
+                <div class="year-tabs">
                     <button onclick="showIndicators(event, '2024')" class="active">2024</button>
                     <button onclick="showIndicators(event, '2023')">2023</button>
                     <button onclick="showIndicators(event, '2022')">2022</button>
@@ -2071,13 +1883,13 @@
                             <tbody>
                                 <tr><td>EPS</td><td>2,327</td></tr>
                                 <tr><td>BPS</td><td>13,986</td></tr>
-                                <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PER</td><td>11.90배</td></tr>
+                                <tr><td>PBR</td><td>1.98배</td></tr>
                             </tbody>
                         </table>
                     </div>
-                </div>
-                <div id="indicators-2023" class="year-indicators">
+            </div>
+            <div id="indicators-2023" class="year-indicators">
                     <div class="indicator-category">
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
@@ -2118,7 +1930,7 @@
                                 <tr><td>EPS</td><td>-4,162</td></tr>
                                 <tr><td>BPS</td><td>12,332</td></tr>
                                 <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PBR</td><td>3.93배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2164,7 +1976,7 @@
                                 <tr><td>EPS</td><td>-566</td></tr>
                                 <tr><td>BPS</td><td>16,951</td></tr>
                                 <tr><td>PER</td><td>--배</td></tr>
-                                <tr><td>PBR</td><td>--배</td></tr>
+                                <tr><td>PBR</td><td>3.30배</td></tr>
                             </tbody>
                         </table>
                     </div>
@@ -2247,6 +2059,7 @@
     }
     </style>
     <script>
+    //연도별 투자지표를 전환
     function showIndicators(event, year) {
         const allSections = document.querySelectorAll('.year-indicators');
         allSections.forEach(section => section.classList.remove('active'));
@@ -2269,6 +2082,14 @@
                 <div>
                     KOSDAQ 코스닥 전기·전자 | FICS 통신장비
                 </div>
+            </div>
+            <!-- 리포트 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">기업 리포트</h3>
+                <!-- iframe으로 변환된 HTML 삽입 -->
+                <iframe src="output/apsi_report.html" 
+                    style="width: 100%; height: 800px; border: none;">
+                </iframe>
             </div>
         </div>
     </div>
