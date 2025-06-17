@@ -30,12 +30,19 @@
       -webkit-text-fill-color: transparent;
     }
     .search-bar {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .search-bar form {
       display: flex;
       justify-content: center;
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       padding: 20px;
+      z-index: 1;
     }
     .search-bar input {
       padding: 10px 15px;
@@ -58,15 +65,38 @@
     .search-bar button:hover {
       background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
     }
+    .autocomplete-list {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      max-height: 150px;
+      overflow-y: auto;
+      background: white;
+      border: 1px solid #ccc;
+      border-top: none;
+      border-radius: 0 0 8px 8px;
+      z-index: 2;
+    }
+    .autocomplete-item {
+      padding: 10px;
+      cursor: pointer;
+    }
+    .autocomplete-item:hover {
+      background-color: #f0f0f0;
+    }
   </style>
 </head>
 <body>
 
   <h1>기업 검색</h1>
-  <form id="searchForm" class="search-bar">
-    <input type="text" id="searchInput" placeholder="기업명 입력" />
-    <button type="submit">검색</button>
-  </form>
+  <div class="search-bar">
+    <form id="searchForm">
+      <input type="text" id="searchInput" placeholder="기업명 입력" autocomplete="off" />
+      <button type="submit">검색</button>
+    </form>
+    <div id="autocompleteList" class="autocomplete-list"></div>
+  </div>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -83,14 +113,44 @@
         "데브시스터즈": "devsisters.html"
       };
 
+      const searchInput = document.getElementById("searchInput");
+      const autocompleteList = document.getElementById("autocompleteList");
+
+      searchInput.addEventListener("input", function () {
+        const value = this.value.trim();
+        autocompleteList.innerHTML = "";
+
+        if (value) {
+          const matches = Object.keys(companyMap).filter(name =>
+            name.includes(value)
+          );
+          matches.forEach(match => {
+            const item = document.createElement("div");
+            item.classList.add("autocomplete-item");
+            item.textContent = match;
+            item.addEventListener("click", function () {
+              searchInput.value = match;
+              autocompleteList.innerHTML = "";
+            });
+            autocompleteList.appendChild(item);
+          });
+        }
+      });
+
       document.getElementById("searchForm").addEventListener("submit", function (e) {
         e.preventDefault();
-        const keyword = document.getElementById("searchInput").value.trim();
-
+        const keyword = searchInput.value.trim();
         if (companyMap[keyword]) {
           window.location.href = companyMap[keyword];
         } else {
           alert("검색 결과가 없습니다.");
+        }
+      });
+
+      // 외부 클릭 시 자동완성 닫기
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-bar")) {
+          autocompleteList.innerHTML = "";
         }
       });
     });
