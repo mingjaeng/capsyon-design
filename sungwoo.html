@@ -690,6 +690,25 @@
             color: #999;
             font-style: italic;
         }
+        #autocomplete-list {
+            position: absolute;
+            background: white;
+            border: 1px solid #ccc;
+            border-top: none;
+            width: 200px;
+            max-height: 200px;
+            overflow-y: auto;
+            z-index: 1000;
+            border-radius: 0 0 8px 8px;
+        }
+        .autocomplete-item {
+            padding: 10px 10px 10px 15px;
+            cursor: pointer;
+            text-align: left;
+        }
+        .autocomplete-item:hover {
+            background-color: #f0f0f0;
+            }
     </style>
 </head>
 <body>
@@ -700,23 +719,84 @@
                     <span>2더하기8은</span> 12조
                 </a>
             </div>
-            <div class="search-bar">
-                <form onsubmit="return goToCompanyPage()" style="display: flex; align-items: center;">
-                    <input type="text" id="searchInput" placeholder="기업명 또는 기업코드 입력">
-                    <button type="submit">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
-                            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                        </svg>
-                    </button>
+            <div class="search-bar" id="search-bar" style="position: relative;">
+                <form onsubmit="return false;" style="display: flex; flex-direction: column; width: 100%;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="text" id="searchInput" placeholder="기업명 또는 기업코드 입력" 
+                        style="width: 200px; padding: 8px; font-size: 14px;" />
+                        <button type="submit" id="searchButton" style="margin-left: 5px; padding: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="autocomplete-list"
+                    style="position: absolute; top: 40px; left: 0; width: 200px;
+                    background: white; border: 1px solid #ccc; border-top: none;
+                    max-height: 200px; overflow-y: auto; z-index: 999;">
+                    </div>
                 </form>
             </div>
         </div>
     </div>
-    <div class="main-nav">
-        <ul class="nav-items">
-            <li data-page="company-info-page" class="active">기업정보</li>          
-        </ul>
-    </div> 
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const companyMap = {
+        "AP위성": "apsi.html",
+        "한선엔지니어링": "ehansun.html",
+        "폴라리스AI": "polarisai.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "미래에셋증권": "miraeasset.html",
+        "메카로": "mecaro.html",
+        "로보로보": "roborobo.html",
+        "성우하이텍": "sungwoo.html",
+        "고려제강": "kiswire.html",
+        "데브시스터즈": "devsisters.html"
+        };
+        const input = document.getElementById("searchInput");
+        const list = document.getElementById("autocomplete-list");
+        const button = document.getElementById("searchButton");
+        input.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+        list.innerHTML = "";
+        if (!value) return;
+        Object.keys(companyMap).forEach(company => {
+            if (company.toLowerCase().includes(value)) {
+            const item = document.createElement("div");
+            item.textContent = company;
+            item.style.padding = "10px 10px 10px 15px";
+            item.style.cursor = "pointer";
+            item.style.textAlign = "left";
+            item.style.color = "black";
+            item.addEventListener("click", function () {
+                input.value = company;
+                list.innerHTML = "";
+            });
+            item.addEventListener("mouseover", function () {
+                item.style.backgroundColor = "#f0f0f0";
+            });
+            item.addEventListener("mouseout", function () {
+                item.style.backgroundColor = "white";
+            });
+            list.appendChild(item);
+            }
+        });
+        });
+        document.addEventListener("click", function (e) {
+        if (!e.target.closest("#search-bar")) {
+            list.innerHTML = "";
+        }
+        });
+        button.addEventListener("click", function () {
+        const keyword = input.value.trim();
+        if (companyMap[keyword]) {
+            window.location.href = companyMap[keyword];
+        } else {
+            alert("검색 결과가 없습니다.");
+        }
+        });
+    });
+    </script>
     <!-- 기업정보 페이지-->
     <div id="company-info-page" class="page-container active">
         <div class="sub-nav">
@@ -1318,7 +1398,7 @@
                                 <td>--</td>
                                 <td>--</td>
                             </tr>
-                             <tr><td class="depth-2">외화환산이익</td>
+                            <tr><td class="depth-2">외화환산이익</td>
                                 <td>697,986,478</td>
                                 <td>6,588,112</td>
                                 <td>17,174,872</td>
