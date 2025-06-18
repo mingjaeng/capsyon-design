@@ -1,0 +1,2154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head> 
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2더하기8은 12조</title>
+    <script>
+    const companyMap = {
+        "AP위성": "apsi.html",
+        "데브시스터즈": "devsisters.html",
+        "한선엔지니어링": "ehansun.html",
+         "고려제강": "kiswire.html",
+        "메카로": "mecaro.html",
+        "미래에셋증권": "miraeasset.html",
+        "폴라리스AI": "polarisai.html",
+        "로보로보": "roborobo.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "성우하이텍": "sungwoo.html",
+    };
+    function goToCompanyPage() {
+        const input = document.getElementById("searchInput").value.trim();
+        if (companyMap[input]) {
+            window.location.href = companyMap[input];
+        } else {
+            alert("해당 기업 정보를 찾을 수 없습니다.");
+        }
+        return false;
+    }
+    // 페이지 로드 후 실행되는 함수
+    window.onload = function() {
+        setupSubNavigation();
+        setupTabs();
+    };
+    // 서브 네비게이션 기능 설정
+    function setupSubNavigation() {
+        const subNavItems = document.querySelectorAll('.sub-nav-items li');
+        subNavItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentSubNav = this.closest('.sub-nav-items');
+                parentSubNav.querySelectorAll('li').forEach(navItem => navItem.classList.remove('active'));
+                this.classList.add('active');
+                const subPageName = this.getAttribute('data-subpage');
+                if (subPageName) {
+                    const subPages = document.querySelectorAll('.sub-page');
+                    subPages.forEach(subPage => {
+                        subPage.classList.remove('active');
+                    });
+                    const targetSubPage = document.getElementById(subPageName);
+                    if (targetSubPage) {
+                        targetSubPage.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+    // 탭 메뉴 설정
+    function setupTabs() {
+        const tabItems = document.querySelectorAll('.tab-item');
+        tabItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const parentTabMenu = this.closest('.tab-menu');
+                parentTabMenu.querySelectorAll('.tab-item').forEach(tab => tab.classList.remove('active'));
+                this.classList.add('active');
+                const targetId = this.getAttribute('data-target');
+                if (targetId) {
+                    const parentPage = this.closest('.sub-page');
+                    parentPage.querySelectorAll('.tab-content').forEach(content => {
+                        content.classList.remove('active');
+                    });
+                    const targetContent = document.getElementById(targetId);
+                    if (targetContent) {
+                        targetContent.classList.add('active');
+                    }
+                }
+            });
+        });
+    }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .logo span:first-child {
+            color: #fff;
+        }
+        .search-bar {
+            display: flex;
+        }
+        .search-bar input {
+            padding: 8px 12px;
+            border: none;
+            border-radius: 8px 0 0 8px;
+            width: 300px;
+            font-size: 14px;
+        }
+        .search-bar button {
+            background: rgba(255,255,255,0.2);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 0 8px 8px 0;
+            color: white;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .search-bar button:hover {
+            background: rgba(255,255,255,0.3);
+        }
+        .main-nav {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .nav-items {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style-type: none;
+        }
+        .nav-items li {
+            padding: 15px 20px;
+            color: #333;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-radius: 8px;
+            margin: 5px;
+        }
+        .nav-items li:hover, .nav-items li.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .sub-nav {
+            background: #fff;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    
+        .sub-nav-items {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+            list-style-type: none;
+            padding: 10px 15px;
+            gap: 12px;
+        }
+        .sub-nav-items li {
+            padding: 8px 15px;
+            color: #333;
+            cursor: pointer;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+        .sub-nav-items li:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        .sub-nav-items li.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        .company-info {
+            max-width: 1200px;
+            margin: 20px auto;
+            background: #fff;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .company-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            border-bottom: none;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .company-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 15px;
+        }
+        .company-code {
+            background: rgba(255,255,255,0.2);
+            padding: 4px 8px;
+            border-radius: 4px;
+            margin-right: 15px;
+        }
+        .stats {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        .stat-box {
+            text-align: center;
+            flex: 1;
+            padding: 20px;
+            background: #f8f9ff;
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            transition: all 0.3s ease;
+        }
+        .stat-box:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .stat-label {
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 5px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .charts {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+        .chart {
+            flex: 1;
+            background: #f8f9ff;
+            border: 1px solid #e0e0e0;
+            height: 200px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .chart-title {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            font-size: 14px;
+            color: #666;
+            font-weight: 500;
+        }
+        .chart-value {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .chart-content {
+            height: 80%;
+            margin-top: 40px;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .chart-line {
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            top: 50%;
+            z-index: 2;
+        }
+        .chart-line.blue {
+            background: linear-gradient(135deg, #1976d2 0%, #42a5f5 100%);
+            top: 30%;
+        }
+        .detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .detail-table th, .detail-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: center;
+        }
+        .detail-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .detail-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .detail-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        .positive {
+            color: #d32f2f;
+            font-weight: 600;
+        }
+        .negative {
+            color: #1976d2;
+            font-weight: 600;
+        }
+        .neutral {
+            color: #666;
+        }
+        .tab-menu {
+            display: flex;
+            gap: 12px;
+            margin: 16px 0;
+            padding: 0;
+            list-style: none;
+            background: none;
+            border-bottom: none;
+        }
+        .tab-item {
+            padding: 12px 20px;
+            background: #f1f1f1;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            border-bottom: none;
+        }
+        .tab-item:hover {
+            background: #e0e0e0;
+            transform: translateY(-2px);
+        }
+        .tab-item.active {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            border-bottom: none;
+        }
+        .tab-content {
+            display: none;
+            margin-top: 10px;
+            animation: fadeIn 0.3s ease;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* 섹션 박스 레이아웃 */
+        .section-box {
+            margin-top: 30px;
+            padding: 30px;
+            background: #fff;
+            border: 1px solid #ddd;
+            border-radius: 15px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .section-title {
+            font-size: 26px;
+            font-weight: 700;
+            margin-bottom: 25px;
+            color: #333;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        /* 재무제표 상세목차 */
+        .financial-statement {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .financial-statement th, .financial-statement td {
+            border: 1px solid #e0e0e0;
+            padding: 12px 15px;
+        }
+        .financial-statement th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-align: left;
+            font-weight: 600;
+        }
+        .financial-statement thead th {
+            text-align: center;
+            font-weight: bold;
+        }
+        .financial-statement tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .financial-statement tbody tr:hover {
+            background-color: #e8f0fe;
+            transition: all 0.2s ease;
+        }
+        .financial-statement .category {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            font-weight: bold;
+        }
+        .financial-statement .subcategory {
+            padding-left: 20px;
+        }
+        .financial-statement .item {
+            padding-left: 35px;
+        }
+        .year-selector {
+            margin-bottom: 15px;
+            text-align: right;
+        }
+        .year-selector select {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .statement-type {
+            margin-bottom: 15px;
+        }
+        .statement-type select {
+            padding: 8px 12px;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .unit-info {
+            text-align: right;
+            color: #666;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+        /* 기업정보 상세목차 */
+        .company-profile {
+            display: none;
+            padding: 20px;
+        }
+        .company-profile.active {
+            display: block;
+        }
+        .company-profile-header {
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid #667eea;
+        }
+        .company-profile-section {
+            margin-bottom: 30px;
+        }
+        .company-profile-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 18px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .company-detail-table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .company-detail-table th, .company-detail-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+        }
+        .company-detail-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            width: 150px;
+            text-align: left;
+            font-weight: 600;
+        }
+        .company-detail-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        /* 페이지 상세목차 */
+        .page-container {
+            display: none;
+        }
+        .page-container.active {
+            display: block;
+        }
+        /* 경제지표 상세목차 */
+        .economic-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+            margin-top: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .economic-table th,
+        .economic-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: center;
+        }
+        .economic-table thead {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+        }
+        .economic-table thead th {
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        .economic-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .economic-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transform: scale(1.01);
+            transition: all 0.2s ease;
+        }
+        .economic-table th:first-child,
+        .economic-table td:first-child {
+            width: 40%;
+            text-align: left;
+            padding-left: 20px;
+            font-weight: 500;
+        }
+        .economic-table th:nth-child(2),
+        .economic-table td:nth-child(2) {
+            width: 60%;
+            font-weight: 600;
+        }
+        .ratio-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .ratio-table th, .ratio-table td {
+            border: 1px solid #e0e0e0;
+            padding: 15px;
+            text-align: center;
+        }
+        .ratio-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            font-weight: 600;
+        }
+        .ratio-table tbody tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        .ratio-table tbody tr:hover {
+            background-color: #e8f0fe;
+            transition: all 0.2s ease;
+        }
+        .ratio-table .ratio-category {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.2), rgba(118, 75, 162, 0.2));
+            font-weight: bold;
+            text-align: left;
+        }
+        /* 투자지표 상세목차 */
+        .investment-indicators {
+            margin-top: 20px;
+        }
+        .indicator-chart {
+            width: 100%;
+            height: 300px;
+            background: #f8f9ff;
+            border: 1px solid #e0e0e0;
+            margin-bottom: 30px;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+        }
+        .indicator-chart-title {
+            padding: 15px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        .indicator-chart-content {
+            height: 250px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #999;
+        }
+        /* 리포트 상세목차 */
+        .report-list {
+            margin-top: 20px;
+        }
+        .report-item {
+            border-bottom: 1px solid #e0e0e0;
+            padding: 20px;
+            background: #f8f9ff;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+        }
+        .report-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        }
+        .report-title {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .report-metadata {
+            display: flex;
+            font-size: 13px;
+            color: #666;
+        }
+        .report-metadata span {
+            margin-right: 15px;
+        }
+        .report-summary {
+            margin-top: 10px;
+            font-size: 14px;
+            color: #333;
+            line-height: 1.5;
+        }
+        /* 서브 페이지 스타일 */
+        .sub-page {
+            display: none;
+        }
+        .sub-page.active {
+            display: block;
+        }
+        /* 로딩 상태 */
+        .loading {
+            color: #999;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <div class="logo">
+                <a href="index.html" style="text-decoration: none; color: inherit;">
+                    <span>2더하기8은</span> 12조
+                </a>
+            </div>
+            <div class="search-bar" id="search-bar" style="position: relative;">
+                <form onsubmit="return false;" style="display: flex; flex-direction: column; width: 100%;">
+                    <div style="display: flex; align-items: center;">
+                        <input type="text" id="searchInput" placeholder="기업명 또는 기업코드 입력" 
+                        style="width: 200px; padding: 8px; font-size: 14px;" />
+                        <button type="submit" id="searchButton" style="margin-left: 5px; padding: 8px;">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"viewBox="0 0 16 16">
+                                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                            </svg>
+                        </button>
+                    </div>
+                    <div id="autocomplete-list"
+                    style="position: absolute; top: 40px; left: 0; width: 200px;
+                    background: white; border: 1px solid #ccc; border-top: none;
+                    max-height: 200px; overflow-y: auto; z-index: 999;">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const companyMap = {
+        "AP위성": "apsi.html",
+        "한선엔지니어링": "ehansun.html",
+        "폴라리스AI": "polarisai.html",
+        "셀바스헬스케어": "selvashealthcare.html",
+        "미래에셋증권": "miraeasset.html",
+        "메카로": "mecaro.html",
+        "로보로보": "roborobo.html",
+        "성우하이텍": "sungwoo.html",
+        "고려제강": "kiswire.html",
+        "데브시스터즈": "devsisters.html"
+        };
+        const input = document.getElementById("searchInput");
+        const list = document.getElementById("autocomplete-list");
+        const button = document.getElementById("searchButton");
+        input.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+        list.innerHTML = "";
+        if (!value) return;
+        Object.keys(companyMap).forEach(company => {
+            if (company.toLowerCase().includes(value)) {
+            const item = document.createElement("div");
+            item.textContent = company;
+            item.style.padding = "10px 10px 10px 15px";
+            item.style.cursor = "pointer";
+            item.style.textAlign = "left";
+            item.style.color = "black";
+            item.addEventListener("click", function () {
+                input.value = company;
+                list.innerHTML = "";
+            });
+            item.addEventListener("mouseover", function () {
+                item.style.backgroundColor = "#f0f0f0";
+            });
+            item.addEventListener("mouseout", function () {
+                item.style.backgroundColor = "white";
+            });
+            list.appendChild(item);
+            }
+        });
+        });
+        document.addEventListener("click", function (e) {
+        if (!e.target.closest("#search-bar")) {
+            list.innerHTML = "";
+        }
+        });
+        button.addEventListener("click", function () {
+        const keyword = input.value.trim();
+        if (companyMap[keyword]) {
+            window.location.href = companyMap[keyword];
+        } else {
+            alert("검색 결과가 없습니다.");
+        }
+        });
+    });
+    </script>
+    <!-- 기업정보 페이지-->
+    <div id="company-info-page" class="page-container active">
+        <div class="sub-nav">
+            <ul class="sub-nav-items">
+                <li data-subpage="company-overview-page" class="active">기업개요</li>
+                <li data-subpage="financial-statements-page">재무제표</li>
+                <li data-subpage="financial-ratios-page">경제지표</li>
+                <li data-subpage="investment-indicators-page">투자지표</li>
+                <li data-subpage="reports-page">리포트</li>
+            </ul>
+        </div>
+    </div>
+    <!-- 기업개요 페이지 -->
+    <div id="company-overview-page" class="sub-page active">
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <div class="section-box">
+                <h3 class="section-title">기업개요</h3>
+                <div class="company-profile active">
+                    <div class="company-profile-section">
+                        <table class="company-detail-table">
+                            <colgroup>
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                                <col style="width: 15%;">
+                                <col style="width: 35%;">
+                            </colgroup>
+                            <tr>
+                                <th>기업명</th>
+                                <td>셀바스헬스케어</td>
+                                <th>대표자</th>
+                                <td>유병탁</td>
+                            </tr>
+                            <tr>
+                                <th>설립일</th>
+                                <td>2014/10/02</td>
+                                <th>상장일</th>
+                                <td>2014/12/17</td>
+                            </tr>
+                            <tr>
+                                <th>업종명</th>
+                                <td colspan="3">그 외 기타 의료용 기기 제조업</td>
+                            </tr>
+                            <tr>
+                                <th>주소</th>
+                                <td colspan="3">대전시 유성구 신성로 155 (신성동, 셀바스헬스케어)</td>
+                            </tr>
+                            <tr>
+                                <th>홈페이지</th>
+                                <td colspan="3"><a href="http://www.selvashealthcare.com" target="_blank">http://www.selvashealthcare.com</a></td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="company-profile-section">
+                        <h3>기업소개</h3>
+                        <p>- 동사는 1999년 의료진단기기와 시각보조공학기기 제품 개발 및 판매를 위해 설립되어 미국, 중국에 법인을 운영하고 있음.</p>
+                        <p>- 체성분분석기, 전자동혈압계를 생산하는 의료진단기기 '아큐닉'과 점자정보단말기, 독서확대기를 생산하는 보조공학기기 '힘스'를 운영 중임.</p>
+                        <p>- 30년간 축적한 의료기기 및 시각보조공학 기술력을 기반으로 국내외 유통망 확보를 위해 직판 및 대리점망을 구축하고 있음.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+    .company-detail-table th,
+    .company-detail-table td {
+        text-align: left;
+        vertical-align: middle;
+        padding-left: 10px;
+    }
+
+    .company-detail-table td[colspan] {
+        text-align: left;
+    }
+    </style>
+    <!-- 재무제표 페이지 -->
+    <div id="financial-statements-page" class="sub-page">   
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <!-- 재무제표 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">재무제표</h3>
+                <ul class="tab-menu">
+                    <li class="active" data-tab="balance-sheet">연결재무상태표</li>
+                    <li data-tab="income-statement">연결포괄손익계산서</li>
+                    <li data-tab="cash-flow">연결현금흐름표</li>
+                </ul>
+                <!-- 연결재무상태표 -->
+                <div class="tab-content active" id="balance-sheet">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>2024</th>
+                                <th>2023</th>
+                                <th>2022</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="depth-0">자산</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">유동자산</td>
+                                <td>43,967,657,569</td>
+                                <td>40,780,612,212</td>
+                                <td>21,684,980,619</td>
+                            </tr>
+                            <tr><td class="depth-2">현금및현금성자산</td>
+                                <td>13,765,149,609</td>
+                                <td>9,818,361,847</td>
+                                <td>4,399,230,068</td>
+                            </tr>
+                            <tr><td class="depth-2">매출채권</td>
+                                <td>8,231,415,247</td>
+                                <td>4,771,097,701</td>
+                                <td>3,688,914,907</td>
+                            </tr>
+                            <tr><td class="depth-2">기타수취채권</td>
+                                <td>1,152,167,993</td>
+                                <td>997,136,363</td>
+                                <td>793,292,260</td>
+                            </tr>
+                            <tr><td class="depth-2">기타유동금융자산</td>
+                                <td>5,000,000,000</td>
+                                <td>12,500,000,000</td>
+                                <td>2,662,246,826</td>
+                            </tr>
+                            <tr><td class="depth-2">단기투자자산</td>
+                                <td>7,323,432,728</td>
+                                <td>1,961,548,706</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-2">재고자산</td>
+                                <td>7,587,870,059</td>
+                                <td>9,960,354,559</td>
+                                <td>8,896,922,681</td>
+                            </tr>
+                             <tr><td class="depth-2">계약자산</td>
+                                <td>36,162,000</td>
+                                <td>59,440,909</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-2">당기법인세자산</td>
+                                <td>111,295,020</td>
+                                <td>22,875,810</td>
+                                <td>18,067,730</td>
+                            </tr>
+                            <tr><td class="depth-2">기타유동자산</td>
+                                <td>760,164,913</td>
+                                <td>689,796,317</td>
+                                <td>1,226,306,147</td>
+                            </tr>
+                            <tr><td class="depth-1">매각예정자산</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>1,856,691,360</td>
+                            </tr>
+                            <tr><td class="depth-1">비유동자산</td>
+                                <td>26,255,687,994</td>
+                                <td>25,899,611,805</td>
+                                <td>22,492,138,437</td>
+                            </tr>
+                            <tr><td class="depth-2">장기기타수취채권</td>
+                                <td>898,357,969</td>
+                                <td>1,015,132,861</td>
+                                <td>641,245,157</td>
+                            </tr>
+                            <tr><td class="depth-2">장기투자자산</td>
+                                <td>3,376,900,000</td>
+                                <td>3,376,900,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-2">공동기업투자</td>
+                                <td>143,424,217</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-2">투자부동산</td>
+                                <td>2,705,718,433</td>
+                                <td>2,740,314,697</td>
+                                <td>2,774,910,961</td>
+                            </tr>
+                            <tr><td class="depth-2">유형자산</td>
+                                <td>15,756,356,180</td>
+                                <td>15,564,618,867</td>
+                                <td>15,700,232,324</td>
+                            </tr>
+                            <tr><td class="depth-2">사용권자산</td>
+                                <td>706,713,939</td>
+                                <td>362,985,330</td>
+                                <td>316,879,887</td>
+                            </tr>
+                            <tr><td class="depth-2">무형자산</td>
+                                <td>2,668,217,256</td>
+                                <td>2,839,660,050</td>
+                                <td>3,058,870,108</td>
+                            </tr>            
+                            <tr><td class="depth-1">자산총계</td>
+                                <td>70,223,345,563</td>
+                                <td>66,680,224,017</td>
+                                <td>46,033,810,416</td>
+                            </tr>
+                            <tr><td class="depth-0">부채</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">유동부채</td>
+                                <td>5,444,114,925</td>
+                                <td>6,138,838,840</td>
+                                <td>8,870,328,449</td>
+                            </tr>
+                            <tr><td class="depth-2">매입채무</td>
+                                <td>248,332,590</td>
+                                <td>336,688,585</td>
+                                <td>246,458,294</td>
+                            </tr>
+                            <tr><td class="depth-2">기타지급채무</td>
+                                <td>1,839,533,462</td>
+                                <td>1,942,163,687</td>
+                                <td>1,469,172,815</td>
+                            </tr>
+                            <tr><td class="depth-2">단기차입금</td>
+                                <td>1,652,245,012</td>
+                                <td>833,186,474</td>
+                                <td>787,911,603</td>
+                            </tr>
+                            <tr><td class="depth-2">유동성장기차입금</td>
+                                <td>600,000,000</td>
+                                <td>2,045,000,000</td>
+                                <td>5,200,000,000</td>
+                            </tr>
+                            <tr><td class="depth-2">기타 유동부채</td>
+                                <td>153,487,189</td>
+                                <td>269,797,985</td>
+                                <td>183,086,602</td>
+                            </tr>
+                            <tr><td class="depth-2">계약부채</td>
+                                <td>309,263,974</td>
+                                <td>133,226,171</td>
+                                <td>223,544,820</td>
+                            </tr>
+                            <tr><td class="depth-2">환불부채</td>
+                                <td>4,856,971</td>
+                                <td>5,611,020</td>
+                                <td>41,914,933</td>
+                            </tr>
+                            <tr><td class="depth-2">유동 리스부채</td>
+                                <td>199,256,442</td>
+                                <td>202,979,311</td>
+                                <td>199,986,373</td>
+                            </tr>
+                            <tr><td class="depth-2">유동충당부채</td>
+                                <td>437,139,285</td>
+                                <td>370,185,607</td>
+                                <td>518,253,009</td>
+                            </tr>
+                            <tr><td class="depth-1">비유동부채</td>
+                                <td>978,609,115</td>
+                                <td>444,448,531</td>
+                                <td>3,404,023,599</td>
+                            </tr>
+                            <tr><td class="depth-2">장기기타지급채무</td>
+                                <td>63,925,199</td>
+                                <td>76,873,551</td>
+                                <td>50,000,000</td>
+                            </tr>
+                            <tr><td class="depth-2">장기차입금</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>1,495,000,000</td>
+                            </tr>
+                            <tr><td class="depth-2">비유동 리스부채</td>
+                                <td>544,675,371</td>
+                                <td>158,115,451</td>
+                                <td>150,040,649</td>
+                            </tr>
+                            <tr><td class="depth-2">기타 비유동 부채</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>245,843,862</td>
+                            </tr> 
+                            <tr><td class="depth-2">장기계약부채</td>
+                                <td>57,481,204</td>
+                                <td>43,635,127</td>
+                                <td>34,520,517</td>
+                            </tr>
+                            <tr><td class="depth-2">비유동충당부채</td>
+                                <td>55,186,679</td>
+                                <td>55,426,567</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-2">이연법인세부채</td>
+                                <td>257,340,662</td>
+                                <td>110,397,835</td>
+                                <td>1,428,618,571</td>
+                            </tr>
+                            <tr><td class="depth-1">부채총계</td>
+                                <td>6,422,724,040</td>
+                                <td>6,583,287,371</td>
+                                <td>12,274,352,048</td>
+                            </tr>
+                            <tr><td class="depth-0">자본</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">지배기업의 소유주에게 귀속되는 자본</td>
+                                <td>63,800,621,523</td>
+                                <td>60,096,936,646</td>
+                                <td>33,759,458,368</td>
+                            </tr>
+                            <tr><td class="depth-2">자본금</td>
+                                <td>12,870,282,000</td>
+                                <td>12,840,282,000</td>
+                                <td>10,840,282,000</td>
+                            </tr>
+                            <tr><td class="depth-2">주식발행초과금</td>
+                                <td>50,498,083,281</td>
+                                <td>50,211,516,681</td>
+                                <td>31,457,214,111</td>
+                            </tr>
+                            <tr><td class="depth-2">기타자본구성요소</td>
+                                <td>6,392,116,331</td>
+                                <td>6,156,896,859</td>
+                                <td>6,019,910,268</td>
+                            </tr>
+                            <tr><td class="depth-2">이익잉여금(결손금)</td>
+                                <td>5,959,860,089</td>
+                                <td>9,111,758,894</td>
+                                <td>14,557,948,011</td>
+                            </tr>
+                            <tr><td class="depth-1">자본총계</td>
+                                <td>63,800,621,523</td>
+                                <td>60,096,936,646</td>
+                                <td>33,759,458,368</td>
+                            </tr>
+                            <tr><td class="depth-0">자본과부채총계</td>
+                                <td>70,223,345,563</td>
+                                <td>66,680,224,017</td>
+                                <td>46,033,810,416</td>
+                            </tr>               
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 연결포괄손익계산서 -->
+                <div class="tab-content" id="income-statement">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>2024</th>
+                                <th>2023</th>
+                                <th>2022</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="depth-0">수익(매출액)</td>
+                                <td>31,702,268,070</td>
+                                <td>29,812,771,015</td>
+                                <td>27,685,710,222</td>
+                            </tr>
+                            <tr><td class="depth-0">매출원가</td>
+                                <td>15,140,825,503</td>
+                                <td>14,162,523,907</td>
+                                <td>13,567,288,844</td>
+                            </tr>
+                            <tr><td class="depth-0">매출총이익</td>
+                                <td>16,561,442,567</td>
+                                <td>15,650,247,108</td>
+                                <td>14,118,421,378</td>
+                            </tr>
+                            <tr><td class="depth-0">판매비와관리비</td>
+                                <td>13,287,513,719</td>
+                                <td>12,304,367,389</td>
+                                <td>11,635,884,816</td>
+                            </tr>
+                            <tr><td class="depth-0">영업이익</td>
+                                <td>3,273,928,848</td>
+                                <td>3,345,879,719</td>
+                                <td>2,482,536,562</td>
+                            </tr>
+                            <tr><td class="depth-0">금융수익</td>
+                                <td>2,316,840,428</td>
+                                <td>1,072,837,307</td>
+                                <td>1,454,515,123</td>
+                            </tr>
+                            <tr><td class="depth-0">금융비용</td>
+                                <td>2,230,294,640</td>
+                                <td>540,217,178</td>
+                                <td>1,409,158,441</td>
+                            </tr>
+                            <tr><td class="depth-0">기타수익</td>
+                                <td>272,943,600</td>
+                                <td>250,717,208</td>
+                                <td>941,203,954</td>
+                            </tr>
+                            <tr><td class="depth-0">기타비용</td>
+                                <td>133,750,821</td>
+                                <td>271,194,180</td>
+                                <td>617,200,562</td>
+                            </tr>
+                            <tr><td class="depth-0">지분법관련이익(손실)</td>
+                                <td>200,825,783</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-0">법인세비용차감전순이익</td>
+                                <td>3,298,841,632</td>
+                                <td>3,858,022,876</td>
+                                <td>2,851,896,636</td>
+                            </tr>
+                            <tr><td class="depth-0">법인세비용(수익)</td>
+                                <td>146,942,827</td>
+                                <td>1,311,767,664</td>
+                                <td>39,051,982</td>
+                            </tr>
+                            <tr><td class="depth-0">당기순이익</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
+                            </tr>
+                            <tr><td class="depth-0">기타포괄손익</td>
+                                <td>256,123,312</td>
+                                <td>25,095,072</td>
+                                <td>1,890,241,889</td>
+                            </tr>
+                            <tr><td class="depth-1">당기손익으로 재분류되지 않는항목(세후기타포괄손익)</td>
+                                <td>--</td>
+                                <td>6,453,072</td>
+                                <td>1,830,227,651</td>
+                            </tr>
+                            <tr><td class="depth-2">재평가잉여금(유형자산)</td>
+                                <td>--</td>
+                                <td>6,453,072</td>
+                                <td>1,890,974,467</td>
+                            </tr>
+                            <tr><td class="depth-2">기타포괄손익-공정가치 측정 금융자산 평가손익</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>60,746,816</td>
+                            </tr>
+                            <tr><td class="depth-1">당기손익으로 재분류될 수 있는 항목(세후기타포괄손익)</td>
+                                <td>256,123,312</td>
+                                <td>18,642,000</td>
+                                <td>60,014,238</td>
+                            </tr>
+                            <tr><td class="depth-2">해외사업장환산외환차이(세후기타포괄손익)/td>
+                                <td>256,123,312</td>
+                                <td>18,642,000</td>
+                                <td>60,014,238</td>
+                            </tr>
+                            <tr><td class="depth-0">총포괄손익</td>
+                                <td>3,408,022,117</td>
+                                <td>5,194,885,612</td>
+                                <td>4,703,086,543</td>
+                            </tr>
+                            
+                            <tr><td class="depth-0">당기순이익(손실)의 귀속</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">지배기업의 소유주에게 귀속되는 당기순이익(손실)</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
+                            </tr>
+                            <tr><td class="depth-1">비지배지분에 귀속되는 당기순이익(손실)</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-0">포괄손익의 귀속</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                             <tr><td class="depth-1">포괄손익, 지배기업의 소유주에게 귀속되는 지분</td>
+                                <td>3,408,022,117</td>
+                                <td>5,194,885,612</td>
+                                <td>4,703,086,543</td>
+                            </tr>
+                            <tr><td class="depth-1">포괄손익, 비지배지분</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td></td>--</td>
+                            </tr>
+                            <tr><td class="depth-0">주당이익</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">기본주당이익(손실) (단위 : 원)</td>
+                                <td>123</td>
+                                <td>215</td>
+                                <td>126</td>
+                            </tr>
+                            <tr><td class="depth-1">희석주당이익(손실) (단위 : 원)</td>
+                                <td>122</td>
+                                <td>214</td>
+                                <td>94</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- 연결현금흐름표 -->
+                <div class="tab-content" id="cash-flow">
+                    <table class="financial-table">
+                        <thead>
+                            <tr>
+                                <th>항목</th>
+                                <th>2024</th>
+                                <th>2023</th>
+                                <th>2022</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td class="depth-0">영업활동현금흐름</td>
+                                <td>4,499,635,393</td>
+                                <td>3,471,660,631</td>
+                                <td>50,805,068</td>
+                            </tr>
+                            <tr><td class="depth-1">당기순이익(손실)</td>
+                                <td>3,151,898,805</td>
+                                <td>5,169,790,540</td>
+                                <td>2,812,844,654</td>
+                            </tr>
+                            <tr><td class="depth-1">당기순이익조정을 위한 가감</td>
+                                <td>2,392,051,019</td>
+                                <td>284,399,934</td>
+                                <td>2,012,883,863</td>
+                            </tr>
+                            <tr><td class="depth-1">영업활동으로 인한 자산 부채의 변동</td>
+                                <td>1,544,329,575</td>
+                                <td>1,886,281,443</td>
+                                <td>4,655,483,182</td>
+                            </tr>
+                            <tr><td class="depth-1">이자수취</td>
+                                <td>720,354,636</td>
+                                <td>161,635,982</td>
+                                <td>114,419,154</td>
+                            </tr>
+                            <tr><td class="depth-1">이자지급(영업)</td>
+                                <td>243,215,302</td>
+                                <td>257,884,382</td>
+                                <td>250,500,581</td>
+                            </tr>
+                            <tr><td class="depth-1">법인세환급(납부)</td>
+                                <td>22,875,810</td>
+                                <td>--</td>
+                                <td>16,641,160</td>
+                            </tr>
+                            <tr><td class="depth-0">투자활동현금흐름</td>
+                                <td>594,133,831</td>
+                                <td>13,970,668,084</td>
+                                <td>2,226,215,032</td>
+                            </tr>
+                             <tr><td class="depth-1">기타수취채권의 감소</td>
+                                <td>38,314,466</td>
+                                <td>102,283,320</td>
+                                <td>80,117,002</td>
+                            </tr>
+                            <tr><td class="depth-1">기타유동금융자산의 감소</td>
+                                <td>15,500,000,000</td>
+                                <td>7,185,783,307</td>
+                                <td>8,000,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">장기기타수취채권의 감소</td>
+                                <td>146,898,020</td>
+                                <td>52,000,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">장기투자자산의 감소</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>142,636,950</td>
+                            </tr>
+                            <tr><td class="depth-1">유형자산의 처분</td>
+                                <td>12,048,032</td>
+                                <td>10,362,500</td>
+                                <td>3,974,800</td>
+                            </tr>
+                            <tr><td class="depth-1">정부보조금의 자산취득</td>
+                                <td>--</td>
+                                <td>5,370,454</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">매각예정자산의 처분</td>
+                                <td>--</td>
+                                <td>1,714,430,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">기타수취채권의 증가</td>
+                                <td>--</td>
+                                <td>30,000,000</td>
+                                <td>10,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">기타유동금융자산의 증가</td>
+                                <td>8,000,000,000</td>
+                                <td>17,022,857,600</td>
+                                <td>5,505,714,400</td>
+                            </tr>
+                            <tr><td class="depth-1">단기투자자산의 증가</td>
+                                <td>6,999,997,860</td>
+                                <td>1,728,240,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">장기기타수취채권의 증가</td>
+                                <td>210,252,530</td>
+                                <td>514,000,000</td>
+                                <td>98,440,531</td>
+                            </tr>
+                            <tr><td class="depth-1">장기금융상품의 증가</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>25,714,800</td>
+                            </tr>
+                            <tr><td class="depth-1">장기투자자산의 증가</td>
+                                <td>--</td>
+                                <td>3,376,900,000</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">공동기업투자의 취득</td>
+                                <td>344,250,000</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">유형자산의 취득</td>
+                                <td>716,313,959</td>
+                                <td>359,635,065</td>
+                                <td>352,313,989</td>
+                            </tr>
+                            <tr><td class="depth-1">무형자산의 취득</td>
+                                <td>20,580,000</td>
+                                <td>9,265,000</td>
+                                <td>8,330,000</td>
+                            </tr>
+                            <tr><td class="depth-0">재무활동현금흐름</td>
+                                <td>687,852,864</td>
+                                <td>15,945,809,902</td>
+                                <td>7,826,715,396</td>
+                            </tr>
+                            <tr><td class="depth-1">유상증자</td>
+                                <td>--</td>
+                                <td>20,754,302,570</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">단기차입금의 차입</td>
+                                <td>6,589,843,383</td>
+                                <td>1,205,194,664</td>
+                                <td>792,454,639</td>
+                            </tr>
+                            <tr><td class="depth-1">정부보조금의 수령</td>
+                                <td>37,051,648</td>
+                                <td>50,473,551</td>
+                                <td>--</td>
+                            </tr> 
+                            <tr><td class="depth-1">장기차입금의 차입</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>245,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">주식선택권의 행사</td>
+                                <td>199,920,000</td>
+                                <td>--</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">단기차입금의 상환</td>
+                                <td>5,832,120,451</td>
+                                <td>1,157,204,462</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-1">유동성장기차입금의 상환</td>
+                                <td>1,445,000,000</td>
+                                <td>3,900,000,000</td>
+                                <td>2,445,000,000</td>
+                            </tr>
+                            <tr><td class="depth-1">전환사채의 감소</td>
+                                <td>--</td>
+                                <td>--</td>
+                                <td>6,060,857,040</td>
+                            </tr>
+                             <tr><td class="depth-1">유동리스부채의 지급</td>
+                                <td>237,547,444</td>
+                                <td>256,956,421</td>
+                                <td>253,312,995</td>
+                            </tr>
+                            <tr><td class="depth-1">장기차입금의 상환</td>
+                                <td>7,153,604,263</td>
+                                <td>22,388,047,996</td>
+                                <td>--</td>
+                            </tr>
+                            <tr><td class="depth-0">현금및현금성자산에 대한 환율변동효과</td>
+                                <td>729,139,064</td>
+                                <td>27,670,670</td>
+                                <td>76,742,322</td>
+                            </tr>
+                            <tr><td class="depth-0">현금및현금성자산의순증가(감소)</td>
+                                <td>3,946,787,762</td>
+                                <td>5,419,131,779</td>
+                                <td>5,472,952,974</td>
+                            </tr>
+                            <tr><td class="depth-0">기초현금및현금성자산</td>
+                                <td>9,818,361,847</td>
+                                <td>4,399,230,068</td>
+                                <td>9,872,183,042</td>
+                            </tr>
+                            <tr><td class="depth-0">기말현금및현금성자산</td>
+                                <td>13,765,149,609</td>
+                                <td>9,818,361,847</td>
+                                <td>4,399,230,068</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+    document.querySelectorAll('.tab-menu li').forEach(tab => {
+        tab.addEventListener('click', function () {
+            document.querySelectorAll('.tab-menu li').forEach(li => li.classList.remove('active'));
+            this.classList.add('active');
+            const target = this.getAttribute('data-tab');
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            document.getElementById(target).classList.add('active');
+        });
+        });
+    </script>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+    .company-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .company-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+    .company-code {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin-right: 15px;
+    }
+    /* 탭 메뉴 */
+    .tab-menu {
+        display: flex;
+        gap: 12px;
+        margin: 16px 0;
+        padding: 0;
+        list-style: none;
+    }
+    .tab-menu li {
+        padding: 12px 20px;
+        background: #f1f1f1;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .tab-menu li:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+    }
+    .tab-menu li.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .tab-content {
+        display: none;
+        margin-top: 10px;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    /* 섹션 박스 */
+    .section-box {
+        margin-top: 30px;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #333;
+        border-bottom: 3px solid linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding-bottom: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    /* 재무제표 영역 */
+    .inancial-table-wrapper {
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+    .financial-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    .financial-table th,
+    .financial-table td {
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        text-align: center;
+    }
+    .financial-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .financial-table thead th {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .financial-table tbody tr:nth-child(even) {
+        background-color: #f8f9ff;
+    }
+    .financial-table tbody tr:hover {
+        background-color: #e8f0fe;
+        transform: scale(1.01);
+        transition: all 0.2s ease;
+    }
+    .financial-table th:first-child,
+    .financial-table td:first-child {
+        width: 25%;
+        text-align: left;
+        padding-left: 20px;
+    }
+    .financial-table th:nth-child(n+2):nth-child(-n+4),
+    .financial-table td:nth-child(n+2):nth-child(-n+4) {
+        width: 25%; 
+    }
+    .financial-table td.depth-0 {
+        font-weight: bold;
+        background-color: #f0f4ff;
+    }
+    .financial-table td.depth-1 {
+        padding-left: 35px;
+        font-weight: 500;
+    }
+    .financial-table td.depth-2 {
+        padding-left: 50px;
+        color: #555;
+    }
+    .financial-table thead th:first-child {
+        text-align: center;
+    }
+    </style>
+    <!-- 경제지표 페이지 -->
+    <div id="financial-ratios-page" class="sub-page">
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <div class="section-box">
+                <h3 class="section-title">경제지표</h3>
+                <table class="economic-table">
+                    <thead>
+                        <tr>
+                            <th>항목</th>
+                            <th>현재</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>환율 (USD/KRW)</td>
+                            <td id="usd-krw">--</td>
+                        </tr>
+                        <tr>
+                            <td>금시세 (1g)</td>
+                            <td id="gold-price">--</td>
+                        </tr>
+                        <tr>
+                            <td>KOSPI</td>
+                            <td id="kospi">--</td>
+                        </tr>
+                        <tr>
+                             <td>KOSDAQ</td>
+                            <td id="kosdaq">--</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <style>
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 20px;
+        background-color: #f5f5f5;
+    }
+    .company-header {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 20px;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
+    .company-name {
+        font-size: 24px;
+        font-weight: bold;
+        margin-right: 15px;
+    }
+    .company-code {
+        background: rgba(255,255,255,0.2);
+        padding: 4px 8px;
+        border-radius: 4px;
+        margin-right: 15px;
+    }
+    .tab-menu {
+        display: flex;
+        gap: 12px;
+        margin: 16px 0;
+        padding: 0;
+        list-style: none;
+    }
+    .tab-menu li {
+        padding: 12px 20px;
+        background: #f1f1f1;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    .tab-menu li:hover {
+        background: #e0e0e0;
+        transform: translateY(-2px);
+    }
+    .tab-menu li.active {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: #fff;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    .tab-content {
+        display: none;
+        margin-top: 10px;
+        animation: fadeIn 0.3s ease;
+    }
+    .tab-content.active {
+        display: block;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .section-box {
+        margin-top: 30px;
+        padding: 30px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+    }
+    .section-title {
+        font-size: 26px;
+        font-weight: 700;
+        margin-bottom: 25px;
+        color: #333;
+        border-bottom: 3px solid #667eea;
+        padding-bottom: 10px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .economic-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        margin-top: 10px;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 3px 15px rgba(0,0,0,0.1);
+    }
+    .economic-table th,
+    .economic-table td {
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        text-align: center;
+    }
+    .economic-table thead {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+    .economic-table thead th {
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+    .economic-table tbody tr:nth-child(even) {
+        background-color: #f8f9ff;
+    }
+    .economic-table tbody tr:hover {
+        background-color: #e8f0fe;
+        transform: scale(1.01);
+        transition: all 0.2s ease;
+    }
+    .economic-table th:first-child,
+    .economic-table td:first-child, 
+    .economic-table th:nth-child(2),
+    .economic-table td:nth-child(2) {
+        width: 50%;
+        text-align: center; 
+        padding-left: 0; 
+        font-weight: 500;
+    }
+    .positive {
+        color: #d32f2f;
+        font-weight: 600;
+    }
+    .negative {
+        color: #1976d2;
+        font-weight: 600;
+    }
+    .neutral {
+        color: #666;
+    }
+    .loading {
+        color: #999;
+        font-style: italic;
+    }
+    </style>
+    <script>
+    //외부 JSON 파일을 불러와서, 경제지표를 HTML에 동적으로 표시
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch("data/economic_index.json?nocache=" + new Date().getTime())
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("usd-krw").textContent = data["USD/KRW"];
+            document.getElementById("gold-price").textContent = data["금시세(1g)"];
+            document.getElementById("kospi").textContent = data["KOSPI"];
+            document.getElementById("kosdaq").textContent = data["KOSDAQ"];
+            const updateText = document.createElement("p");
+            updateText.textContent = data["last_updated"];
+            updateText.style.margin = "6px 0 10px";
+            updateText.style.fontSize = "0.9em";
+            updateText.style.color = "#666";
+            const sectionBox = document.querySelector("#financial-ratios-page .section-box");
+            const title = sectionBox.querySelector(".section-title");
+            sectionBox.insertBefore(updateText, title.nextSibling);
+            })
+            .catch(error => {
+            console.error("경제지표 로딩 실패:", error);
+            });
+        });
+    </script>
+    <!-- 투자지표 페이지 -->
+    <div id="investment-indicators-page" class="sub-page">
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <!-- 투자지표 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">투자지표</h3>
+                <!-- 연도 선택 탭 -->
+                <div class="year-tabs">
+                    <button onclick="showIndicators(event, '2024')" class="active">2024</button>
+                    <button onclick="showIndicators(event, '2023')">2023</button>
+                    <button onclick="showIndicators(event, '2022')">2022</button>
+                </div>
+                <!-- 연도별 투자지표 섹션 -->
+                <div id="indicators-2024" class="year-indicators active">
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>영업이익률</td><td>10.33%</td></tr>
+                                <tr><td>순이익률</td><td>9.94%</td></tr>
+                                <tr><td>ROE</td><td>5.09%</td></tr>
+                                <tr><td>ROA</td><td>4.61%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>부채비율</td><td>10.07%</td></tr>
+                                <tr><td>이자보상배율</td><td>13.86%</td></tr>
+                                <tr><td>유동비율</td><td>807.62%</td></tr>
+                                <tr><td>당좌비율</td><td>533.06%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>매출액 증가율</td><td>6.34%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>-2.15%</td></tr>
+                                <tr><td>순이익 증가율</td><td>-39.03%</td></tr>
+                                <tr><td>총자산 증가율</td><td>5.31%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>EPS</td><td>123</td></tr>
+                                <tr><td>BPS</td><td>2,481</td></tr>
+                                <tr><td>PER</td><td>33.09배</td></tr>
+                                <tr><td>PBR</td><td>1.63배</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+            </div>
+            <div id="indicators-2023" class="year-indicators">
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>영업이익률</td><td>11.22%</td></tr>
+                                <tr><td>순이익률</td><td>17.34%</td></tr>
+                                <tr><td>ROE</td><td>11.02%</td></tr>
+                                <tr><td>ROA</td><td>9.17%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>부채비율</td><td>10.95%</td></tr>
+                                <tr><td>이자보상배율</td><td>14.72%</td></tr>
+                                <tr><td>유동비율</td><td>664.30%</td></tr>
+                                <tr><td>당좌비율</td><td>469.13%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>매출액 증가율</td><td>7.68%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>34.78%</td></tr>
+                                <tr><td>순이익 증가율</td><td>83.79%</td></tr>
+                                <tr><td>총자산 증가율</td><td>44.85%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>EPS</td><td>215</td></tr>
+                                <tr><td>BPS</td><td>2,342</td></tr>
+                                <tr><td>PER</td><td>31.77배</td></tr>
+                                <tr><td>PBR</td><td>2.92배</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div id="indicators-2022" class="year-indicators">
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">📈 수익성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>영업이익률</td><td>8.97%</td></tr>
+                                <tr><td>순이익률</td><td>10.16%</td></tr>
+                                <tr><td>ROE</td><td>9.10%</td></tr>
+                                <tr><td>ROA</td><td>5.92%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🛡️ 안정성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>부채비율</td><td>36.36%</td></tr>
+                                <tr><td>이자보상배율</td><td>4.86%</td></tr>
+                                <tr><td>유동비율</td><td>265.40%</td></tr>
+                                <tr><td>당좌비율</td><td>144.17%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">🚀 성장성 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>매출액 증가율</td><td>-4.83%</td></tr>
+                                <tr><td>영업이익 증가율</td><td>-27.25%</td></tr>
+                                <tr><td>순이익 증가율</td><td>13.81%</td></tr>
+                                <tr><td>총자산 증가율</td><td>-6.02%</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="indicator-category">
+                        <h4 class="indicator-title">💹 투자/가치평가 지표</h4>
+                        <table class="investment-table">
+                            <tbody>
+                                <tr><td>EPS</td><td>125</td></tr>
+                                <tr><td>BPS</td><td>1,507</td></tr>
+                                <tr><td>PER</td><td>16.11배</td></tr>
+                                <tr><td>PBR</td><td>1.34배</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <style>
+    .section-box {
+        padding: 25px;
+        background: #fff;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+        margin-top: 30px;          
+    }
+    .section-title {
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: #333;
+        border-bottom: 2px solid #eee;
+        padding-bottom: 6px;
+    }
+    .year-tabs {
+        margin-bottom: 15px;
+    }
+    .year-tabs button {
+        margin-right: 8px;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        background: #f2f2f2;
+        cursor: pointer;
+        border-radius: 5px;
+    }
+    .year-tabs button.active {
+        background-color: #007bff;
+        color: #fff;
+        border-color: #007bff;
+    }
+    .year-indicators { 
+        display: none; 
+    }
+    .year-indicators.active { 
+        display: block; 
+    }
+    .investment-table-wrapper {     
+        margin-top: 20px;
+        overflow-x: auto;
+    }
+    .investment-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+        table-layout: fixed;         
+    }
+    .investment-table th,
+    .investment-table td {
+        border: 1px solid #ddd;
+        padding: 10px;
+        text-align: center;
+    }
+    .investment-table thead {
+        background-color: #f8f8f8;
+    }
+    .investment-table tbody tr:nth-child(even) {
+        background-color: #fafafa;
+    }
+    .investment-table tbody tr:hover {
+        background-color: #f1f1f1;
+    }
+    .investment-table th:nth-child(1),
+    .investment-table td:nth-child(1),
+    .investment-table th:nth-child(2),
+    .investment-table td:nth-child(2) {
+        width: 50%;
+    }
+    .investment-table {
+        margin-bottom: 30px;
+    }
+    </style>
+    <script>
+    //연도별 투자지표를 전환
+    function showIndicators(event, year) {
+        const allSections = document.querySelectorAll('.year-indicators');
+        allSections.forEach(section => section.classList.remove('active'));
+        const selectedSection = document.getElementById('indicators-' + year);
+        if (selectedSection) selectedSection.classList.add('active');
+        const allButtons = document.querySelectorAll('.year-tabs button');
+        allButtons.forEach(btn => btn.classList.remove('active'));
+        event.currentTarget.classList.add('active');
+        }
+    </script>
+    <!-- 리포트 페이지 -->
+    <div id="reports-page" class="sub-page">
+        <div class="company-info">
+            <div class="company-header">
+                <div>
+                    <span class="company-name">셀바스헬스케어</span>
+                    <span class="company-code">208370</span>
+                    <span>12월 결산</span>
+                </div>
+                <div>
+                    KOSDAQ 코스닥 의료·정밀기기 | FICS 의료 장비 및 서비스
+                </div>
+            </div>
+            <!-- 리포트 섹션 -->
+            <div class="section-box">
+                <h3 class="section-title">기업 리포트</h3>
+                <!-- iframe으로 변환된 HTML 삽입 -->
+                <iframe src="output/selvashealthcare_report.html" 
+                    style="width: 100%; height: 800px; border: none;">
+                </iframe>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
