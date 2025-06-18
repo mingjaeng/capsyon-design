@@ -30,19 +30,14 @@
       -webkit-text-fill-color: transparent;
     }
     .search-bar {
-      position: relative;
       display: flex;
       flex-direction: column;
       align-items: center;
-    }
-    .search-bar form {
-      display: flex;
-      justify-content: center;
       background: #fff;
       border-radius: 10px;
       box-shadow: 0 5px 20px rgba(0,0,0,0.1);
       padding: 20px;
-      z-index: 1;
+      position: relative;
     }
     .search-bar input {
       padding: 10px 15px;
@@ -65,44 +60,43 @@
     .search-bar button:hover {
       background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%);
     }
-
-    /* ✅ 자동완성 스타일 수정 (왼쪽 정렬) */
-    .autocomplete-list {
+    #autocomplete-list {
       position: absolute;
-      top: calc(100% + 2px);
-      left: 0;
-      width: 300px; /* 입력창 너비와 동일하게 설정 */
-      background: white;
+      top: 65px;
+      width: 300px;
+      background-color: white;
       border: 1px solid #ccc;
       border-top: none;
-      border-radius: 0 0 8px 8px;
-      z-index: 2;
-      text-align: left;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-      max-height: 150px;
+      max-height: 200px;
       overflow-y: auto;
+      z-index: 999;
+      border-radius: 0 0 8px 8px;
     }
-
     .autocomplete-item {
-      padding: 10px 15px;
+      padding: 10px;
       cursor: pointer;
     }
-
     .autocomplete-item:hover {
       background-color: #f0f0f0;
     }
+    .autocomplete-item {
+      padding: 10px;
+      cursor: pointer;
+      text-align: left; /* ✅ 왼쪽 정렬 */
+    }
+  
   </style>
 </head>
 <body>
 
   <h1>기업 검색</h1>
-  <div class="search-bar">
-    <form id="searchForm">
-      <input type="text" id="searchInput" placeholder="기업명 입력" autocomplete="off" />
+  <form id="searchForm" class="search-bar" autocomplete="off">
+    <div style="display: flex;">
+      <input type="text" id="searchInput" placeholder="기업명 입력" />
       <button type="submit">검색</button>
-    </form>
-    <div id="autocompleteList" class="autocomplete-list"></div>
-  </div>
+    </div>
+    <div id="autocomplete-list"></div>
+  </form>
 
   <script>
     document.addEventListener("DOMContentLoaded", function () {
@@ -119,44 +113,42 @@
         "데브시스터즈": "devsisters.html"
       };
 
-      const searchInput = document.getElementById("searchInput");
-      const autocompleteList = document.getElementById("autocompleteList");
+      const input = document.getElementById("searchInput");
+      const list = document.getElementById("autocomplete-list");
 
-      searchInput.addEventListener("input", function () {
-        const value = this.value.trim();
-        autocompleteList.innerHTML = "";
+      input.addEventListener("input", function () {
+        const value = this.value.toLowerCase();
+        list.innerHTML = "";
 
-        if (value) {
-          const matches = Object.keys(companyMap).filter(name =>
-            name.includes(value)
-          );
-          matches.forEach(match => {
+        if (!value) return;
+
+        Object.keys(companyMap).forEach(company => {
+          if (company.toLowerCase().includes(value)) {
             const item = document.createElement("div");
             item.classList.add("autocomplete-item");
-            item.textContent = match;
+            item.textContent = company;
             item.addEventListener("click", function () {
-              searchInput.value = match;
-              autocompleteList.innerHTML = "";
+              input.value = company;
+              list.innerHTML = "";
             });
-            autocompleteList.appendChild(item);
-          });
+            list.appendChild(item);
+          }
+        });
+      });
+
+      document.addEventListener("click", function (e) {
+        if (!e.target.closest(".search-bar")) {
+          list.innerHTML = "";
         }
       });
 
       document.getElementById("searchForm").addEventListener("submit", function (e) {
         e.preventDefault();
-        const keyword = searchInput.value.trim();
+        const keyword = input.value.trim();
         if (companyMap[keyword]) {
           window.location.href = companyMap[keyword];
         } else {
           alert("검색 결과가 없습니다.");
-        }
-      });
-
-      // 외부 클릭 시 자동완성 닫기
-      document.addEventListener("click", function (e) {
-        if (!e.target.closest(".search-bar")) {
-          autocompleteList.innerHTML = "";
         }
       });
     });
