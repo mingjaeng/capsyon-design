@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>고려제강 리포트</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      background: linear-gradient(to bottom right, #e4e4e4, #ffffff);
+      display: flex;
+      font-family: 'Segoe UI', sans-serif;
+    }
+
+    .sidebar {
+      display: flex;
+      flex-direction: column;
+      width: 25%;
+      margin: 2em 1em;
+      height: calc(100vh - 4em);
+      box-sizing: border-box;
+      overflow-y: auto;
+      border-radius: 0.5px;
+      box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .sidebar-section {
+      width: 100%;
+      padding: 1.5em 2em;
+      box-sizing: border-box;
+    }
+
+    .title-section {
+      background-color: #468ecd;
+      color: white;
+    }
+
+    .opinion-section {
+      background-color: #202fa1;
+      color: white;
+    }
+
+    .image-section h2 {
+      font-size: 24px;
+      color: #222;
+      margin-bottom: 1em;
+      border-bottom: 2px solid #ccc;
+      padding-bottom: 5px;
+    }
+
+    .image-toggle {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+      margin-bottom: 10px;
+      background-color: #f9f9f9;
+      overflow: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .image-toggle[open] {
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .image-toggle summary {
+      font-weight: bold;
+      font-size: 18px;
+      cursor: pointer;
+      background-color: #e0ecf8;
+      padding: 12px 16px;
+      border-bottom: 1px solid #ccc;
+      transition: background-color 0.2s ease;
+    }
+
+    .image-toggle summary:hover {
+      background-color: #d0def0;
+    }
+
+    .image-group {
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background-color: white;
+    }
+
+    .image-group img {
+      width: 100%;
+      max-width: 700px;
+      margin: 10px auto;
+      display: block;
+      object-fit: contain;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+      border-radius: 8px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .image-group img:hover {
+      transform: scale(1.05);
+    }
+
+    .editor-container {
+      width: 70%;
+      background-color: #fff;
+      margin: 2em 1em;
+      padding: 2em;
+      border-radius: 0.5px;
+      box-shadow: 2px 2px 12px rgba(0,0,0,0.1);
+      overflow-y: auto;
+      height: calc(100vh - 4em);
+      box-sizing: border-box;
+    }
+
+    .memo-editable {
+      width: 100%;
+      height: 100%;
+      outline: none;
+      border: none;
+      background: transparent;
+      font-size: 1em;
+    }
+
+    h1 { font-size: 45px; margin-bottom: 0.5em; }
+    h2 { font-size: 32px; margin-bottom: 0.4em; }
+    h3 { font-size: 25px; margin-bottom: 0.3em; }
+
+    .editor-container p {
+      font-size: 20px;
+      line-height: 1.6;
+      margin-bottom: 1em;
+      color: #333;
+    }
+
+    strong {
+      color: #66ff25;
+    }
+
+    strong, em, a, ul, li {
+      all: revert;
+    }
+
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 100;
+      padding-top: 60px;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0,0,0,0.8);
+    }
+
+    .modal-content {
+      margin: auto;
+      display: block;
+      max-width: 80%;
+      max-height: 80%;
+      box-shadow: 0 2px 10px rgba(255,255,255,0.2);
+      animation: zoom 0.3s;
+    }
+
+    @keyframes zoom {
+      from {transform: scale(0.7)}
+      to {transform: scale(1)}
+    }
+
+    .close {
+      position: absolute;
+      top: 30px;
+      right: 45px;
+      color: #ffffff;
+      font-size: 40px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="sidebar">
+    <div class="sidebar-section opinion-section">
+      <h2>보유</h2>
+    </div>
+
+    <div class="sidebar-section image-section">
+      <h2>지표별 분석 이미지</h2>
+      
+        <details class="image-toggle">
+          <summary>성장성</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/성장성/고려제강_매출액 성장률.png" alt="../img/고려제강/성장성/고려제강_매출액 성장률.png" class="popup-img">
+            
+              <img src="../img/고려제강/성장성/고려제강_순이익 성장률.png" alt="../img/고려제강/성장성/고려제강_순이익 성장률.png" class="popup-img">
+            
+              <img src="../img/고려제강/성장성/고려제강_영업이익 성장률.png" alt="../img/고려제강/성장성/고려제강_영업이익 성장률.png" class="popup-img">
+            
+              <img src="../img/고려제강/성장성/고려제강_총자산 성장률.png" alt="../img/고려제강/성장성/고려제강_총자산 성장률.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+        <details class="image-toggle">
+          <summary>수익성</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/수익성/고려제강_ROA.png" alt="../img/고려제강/수익성/고려제강_ROA.png" class="popup-img">
+            
+              <img src="../img/고려제강/수익성/고려제강_ROE.png" alt="../img/고려제강/수익성/고려제강_ROE.png" class="popup-img">
+            
+              <img src="../img/고려제강/수익성/고려제강_순이익률.png" alt="../img/고려제강/수익성/고려제강_순이익률.png" class="popup-img">
+            
+              <img src="../img/고려제강/수익성/고려제강_영업이익률.png" alt="../img/고려제강/수익성/고려제강_영업이익률.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+        <details class="image-toggle">
+          <summary>안정성</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/안정성/고려제강_부채비율.png" alt="../img/고려제강/안정성/고려제강_부채비율.png" class="popup-img">
+            
+              <img src="../img/고려제강/안정성/고려제강_유동비율.png" alt="../img/고려제강/안정성/고려제강_유동비율.png" class="popup-img">
+            
+              <img src="../img/고려제강/안정성/고려제강_이자보상배율.png" alt="../img/고려제강/안정성/고려제강_이자보상배율.png" class="popup-img">
+            
+              <img src="../img/고려제강/안정성/고려제강_자기자본비율.png" alt="../img/고려제강/안정성/고려제강_자기자본비율.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+        <details class="image-toggle">
+          <summary>시장가치</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/시장가치/고려제강_EV_EBITDA.png" alt="../img/고려제강/시장가치/고려제강_EV_EBITDA.png" class="popup-img">
+            
+              <img src="../img/고려제강/시장가치/고려제강_PBR.png" alt="../img/고려제강/시장가치/고려제강_PBR.png" class="popup-img">
+            
+              <img src="../img/고려제강/시장가치/고려제강_PCR.png" alt="../img/고려제강/시장가치/고려제강_PCR.png" class="popup-img">
+            
+              <img src="../img/고려제강/시장가치/고려제강_PER.png" alt="../img/고려제강/시장가치/고려제강_PER.png" class="popup-img">
+            
+              <img src="../img/고려제강/시장가치/고려제강_PSR.png" alt="../img/고려제강/시장가치/고려제강_PSR.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+        <details class="image-toggle">
+          <summary>활동성</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/활동성/고려제강_매입채무회전율.png" alt="../img/고려제강/활동성/고려제강_매입채무회전율.png" class="popup-img">
+            
+              <img src="../img/고려제강/활동성/고려제강_매출채권회전율.png" alt="../img/고려제강/활동성/고려제강_매출채권회전율.png" class="popup-img">
+            
+              <img src="../img/고려제강/활동성/고려제강_자기자본회전율.png" alt="../img/고려제강/활동성/고려제강_자기자본회전율.png" class="popup-img">
+            
+              <img src="../img/고려제강/활동성/고려제강_재고자산회전율.png" alt="../img/고려제강/활동성/고려제강_재고자산회전율.png" class="popup-img">
+            
+              <img src="../img/고려제강/활동성/고려제강_총자산회전율.png" alt="../img/고려제강/활동성/고려제강_총자산회전율.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+        <details class="image-toggle">
+          <summary>거시경제지표</summary>
+          <div class="image-group">
+            
+              <img src="../img/고려제강/거시경제지표/산점도_고려제강vsWTI.png" alt="../img/고려제강/거시경제지표/산점도_고려제강vsWTI.png" class="popup-img">
+            
+              <img src="../img/고려제강/거시경제지표/산점도_고려제강vs금리.png" alt="../img/고려제강/거시경제지표/산점도_고려제강vs금리.png" class="popup-img">
+            
+              <img src="../img/고려제강/거시경제지표/산점도_고려제강vs외국인순매수.png" alt="../img/고려제강/거시경제지표/산점도_고려제강vs외국인순매수.png" class="popup-img">
+            
+              <img src="../img/고려제강/거시경제지표/산점도_고려제강vs코스피.png" alt="../img/고려제강/거시경제지표/산점도_고려제강vs코스피.png" class="popup-img">
+            
+              <img src="../img/고려제강/거시경제지표/산점도_고려제강vs환율.png" alt="../img/고려제강/거시경제지표/산점도_고려제강vs환율.png" class="popup-img">
+            
+          </div>
+        </details>
+      
+    </div>
+  </div>
+
+  <div class="editor-container">
+    <div id="editor" class="memo-editable"># 고려제강 리포트
+## "성장과 도전의 교차로: 고려제강의 미래를 조망하다"
+
+## 1. 거시경제 분석:
+거시경제 지표 분석 결과, KOSPI/KOSDAQ 지수와의 상관관계가 0.6060으로 유의미한 상관성을 보였습니다(p_value=0.0000). 이는 고려제강의 주가가 국내 주식시장 전반의 흐름에 영향을 받을 가능성이 높음을 시사합니다. 반면, WTI유가, 국고채10년, USD/KRW, 외국인매매와는 유의미한 상관관계가 발견되지 않았습니다. 이는 해당 지표들이 고려제강의 주가에 직접적인 영향을 미치지 않을 가능성을 나타냅니다. 전반적으로, 국내 주식시장 흐름에 주목할 필요가 있으며, 이는 긍정적인 신호로 해석할 수 있습니다. [긍정]
+
+## 2. 산업분석:
+산업 분석을 통해 고려제강이 속한 산업의 전반적인 지표를 살펴보면, PER이 2025년 5월 기준 3.60으로 나타나며, 이는 업종 평균 대비 낮은 수준으로 평가됩니다. 이는 상대적으로 저평가된 상태로 볼 수 있습니다. 그러나 산업 감성 분석에서는 부정적 의견이 긍정적 의견보다 많아, 시장의 전반적인 심리가 부정적임을 시사합니다. 이러한 점을 고려할 때, 산업 내에서의 경쟁력은 있지만, 시장 심리의 부정적 영향이 우려됩니다. [중립]
+
+## 3. 기업분석:
+고려제강의 펀더멘탈 지표를 살펴보면, 2025년 5월 기준 PER이 13.71로 급등하였으며, 이는 고평가 위험을 내포할 수 있습니다. 그러나 BPS와 PBR은 안정적인 수준을 유지하고 있습니다. 시가총액은 4727억 원으로, 최근 거래량과 거래대금이 안정적으로 유지되고 있습니다. 기업 감성 분석에서는 긍정적 의견이 부정적 의견보다 많아, 시장에서의 긍정적 평가가 우세함을 알 수 있습니다. 최근 키스트론의 성공적인 상장과 매출 성장세는 긍정적인 요소로 작용할 수 있습니다. [긍정]
+
+## 4. 최종 종합 판단
+고려제강은 국내 주식시장 흐름에 민감하게 반응할 가능성이 있으며, 산업 내에서는 저평가된 상태로 보입니다. 그러나 시장 심리의 부정적 영향과 기업의 고평가 위험이 존재합니다. 최근 계열사 키스트론의 성공적인 상장과 매출 성장세는 긍정적 요인으로 작용할 수 있습니다. 이러한 요소들을 종합적으로 고려할 때, 투자자에게는 "보유" 의견을 제시합니다. 이는 매수 40%, 보유 50%, 매도 10%의 비율로 판단됩니다.</div>
+  </div>
+
+  <div id="imgModal" class="modal">
+    <span class="close">&times;</span>
+    <img class="modal-content" id="modalImg">
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const editor = document.getElementById('editor');
+      const raw = editor.textContent;
+      editor.innerHTML = marked.parse(raw);
+
+      const modal = document.getElementById("imgModal");
+      const modalImg = document.getElementById("modalImg");
+      const closeBtn = document.getElementsByClassName("close")[0];
+
+      document.querySelectorAll(".popup-img").forEach(img => {
+        img.addEventListener("click", function (event) {
+          event.preventDefault();
+          modal.style.display = "block";
+          modalImg.src = this.src;
+        });
+      });
+
+      closeBtn.onclick = function () {
+        modal.style.display = "none";
+      };
+
+      modal.onclick = function (event) {
+        if (event.target === modal) {
+          modal.style.display = "none";
+        }
+      };
+    });
+  </script>
+</body>
+</html>
