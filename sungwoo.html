@@ -6,14 +6,10 @@
     <title>2더하기8은 12조</title>
     <script>
     const companyMap = {
-        "AP위성": "apsi.html",
         "데브시스터즈": "devsisters.html",
         "한선엔지니어링": "ehansun.html",
-         "고려제강": "kiswire.html",
+        "고려제강": "kiswire.html",
         "메카로": "mecaro.html",
-        "미래에셋증권": "miraeasset.html",
-        "폴라리스AI": "polarisai.html",
-        "로보로보": "roborobo.html",
         "셀바스헬스케어": "selvashealthcare.html",
         "성우하이텍": "sungwoo.html",
     };
@@ -174,7 +170,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-    
         .sub-nav-items {
             display: flex;
             max-width: 1200px;
@@ -742,13 +737,9 @@
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const companyMap = {
-        "AP위성": "apsi.html",
         "한선엔지니어링": "ehansun.html",
-        "폴라리스AI": "polarisai.html",
         "셀바스헬스케어": "selvashealthcare.html",
-        "미래에셋증권": "miraeasset.html",
         "메카로": "mecaro.html",
-        "로보로보": "roborobo.html",
         "성우하이텍": "sungwoo.html",
         "고려제강": "kiswire.html",
         "데브시스터즈": "devsisters.html"
@@ -876,7 +867,6 @@
         vertical-align: middle;
         padding-left: 10px;
     }
-
     .company-detail-table td[colspan] {
         text-align: left;
     }
@@ -1468,7 +1458,7 @@
                                 <td>--</td>
                                 <td>456,047,810</td>
                             </tr>
-                             <tr><td class="depth-2">지분법이익</td>
+                            <tr><td class="depth-2">지분법이익</td>
                                 <td>--</td>
                                 <td>343,212,120</td>
                                 <td>--</td>
@@ -1713,7 +1703,7 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(target).classList.add('active');
         });
-        });
+    });
     </script>
     <style>
     body {
@@ -2058,11 +2048,11 @@
             const sectionBox = document.querySelector("#financial-ratios-page .section-box");
             const title = sectionBox.querySelector(".section-title");
             sectionBox.insertBefore(updateText, title.nextSibling);
-            })
-            .catch(error => {
-            console.error("경제지표 로딩 실패:", error);
-            });
+        })
+        .catch(error => {
+        console.error("경제지표 로딩 실패:", error);
         });
+    });
     </script>
     <!-- 투자지표 페이지 -->
     <div id="investment-indicators-page" class="sub-page">
@@ -2366,8 +2356,7 @@
             });
         });
     });
-</script>
-
+    </script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
         <div class="company-info">
