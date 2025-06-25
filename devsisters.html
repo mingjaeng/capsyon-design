@@ -1894,11 +1894,11 @@
             <div class="section-box">
                 <h3 class="section-title">투자지표</h3>
                 <!-- 연도 선택 탭 -->
-                <div class="year-tabs">
-                    <button onclick="showIndicators(event, '2024')" class="active">2024</button>
-                    <button onclick="showIndicators(event, '2023')">2023</button>
-                    <button onclick="showIndicators(event, '2022')">2022</button>
-                </div>
+                <ul class="tab-menu top-tab-menu year-tab-menu">
+                    <li class="active" onclick="showIndicators(event, '2024')">2024</li>
+                    <li onclick="showIndicators(event, '2023')">2023</li>
+                    <li onclick="showIndicators(event, '2022')">2022</li>
+                </ul>
                 <!-- 연도별 투자지표 섹션 -->
                 <div id="indicators-2024" class="year-indicators active">
                     <div class="indicator-category">
@@ -2114,18 +2114,71 @@
     .investment-table {
         margin-bottom: 30px;
     }
+    .negative-value {
+    color: red;
+    font-weight: bold;
+    }
+    .tab-menu {
+        display: flex;
+        gap: 10px;
+        margin-top: 10px;
+        padding: 0;
+        list-style: none;
+    }
+
+    .tab-menu li {
+        padding: 8px 16px;
+        border-radius: 5px;
+        background-color: #e0e0e0;
+        color: #333;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+    .tab-menu li:hover {
+        background-color: #d0d0d0;
+    }
+
+    .tab-menu li.active {
+        background-color: #007bff;
+        color: white;
+        font-weight: bold;
+    }
+
     </style>
     <script>
-    //연도별 투자지표를 전환
+    // 연도별 투자지표를 전환
     function showIndicators(event, year) {
+        // 모든 투자지표 섹션 숨기기
         const allSections = document.querySelectorAll('.year-indicators');
         allSections.forEach(section => section.classList.remove('active'));
+
+        // 선택한 연도 섹션 보이기
         const selectedSection = document.getElementById('indicators-' + year);
         if (selectedSection) selectedSection.classList.add('active');
-        const allButtons = document.querySelectorAll('.year-tabs button');
-        allButtons.forEach(btn => btn.classList.remove('active'));
+
+        // 모든 탭 버튼에서 active 제거
+        const allTabs = document.querySelectorAll('.year-tab-menu li');
+        allTabs.forEach(tab => tab.classList.remove('active'));
+
+        // 클릭한 탭에 active 추가
         event.currentTarget.classList.add('active');
-        }
+    }
+
+    // 음수값에 빨간색 스타일 적용
+    document.addEventListener("DOMContentLoaded", function () {
+        const tables = document.querySelectorAll(".investment-table");
+        tables.forEach(table => {
+            const tds = table.querySelectorAll("td:nth-child(2)"); // 값이 있는 두 번째 열
+            tds.forEach(td => {
+                const text = td.textContent.trim().replace(/,/g, '').replace(/배|%/g, '');
+                const value = parseFloat(text);
+                if (!isNaN(value) && value < 0) {
+                    td.classList.add("negative-value");
+                }
+            });
+        });
+    });
     </script>
     <!-- 리포트 페이지 -->
     <div id="reports-page" class="sub-page">
