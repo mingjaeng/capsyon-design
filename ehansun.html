@@ -170,7 +170,6 @@
             margin-left: auto;
             margin-right: auto;
         }
-    
         .sub-nav-items {
             display: flex;
             max-width: 1200px;
@@ -719,41 +718,37 @@
     <script>
     document.addEventListener("DOMContentLoaded", function () {
         const companyMap = {
-        "AP위성": "apsi.html",
-        "한선엔지니어링": "ehansun.html",
-        "폴라리스AI": "polarisai.html",
-        "셀바스헬스케어": "selvashealthcare.html",
-        "미래에셋증권": "miraeasset.html",
-        "메카로": "mecaro.html",
-        "로보로보": "roborobo.html",
-        "성우하이텍": "sungwoo.html",
-        "고려제강": "kiswire.html",
-        "데브시스터즈": "devsisters.html"
-        };
+            "한선엔지니어링": "ehansun.html",
+            "셀바스헬스케어": "selvashealthcare.html",
+            "메카로": "mecaro.html",
+            "성우하이텍": "sungwoo.html"
+            "고려제강": "kiswire.html",
+            "데브시스터즈": "devsisters.html"
+    };
         const input = document.getElementById("searchInput");
         const list = document.getElementById("autocomplete-list");
         const button = document.getElementById("searchButton");
         input.addEventListener("input", function () {
         const value = this.value.toLowerCase();
         list.innerHTML = "";
-        if (!value) return;
-        Object.keys(companyMap).forEach(company => {
-            if (company.toLowerCase().includes(value)) {
-            const item = document.createElement("div");
-            item.textContent = company;
-            item.style.padding = "10px 10px 10px 15px";
-            item.style.cursor = "pointer";
-            item.style.textAlign = "left";
-            item.style.color = "black";
-            item.addEventListener("click", function () {
-                input.value = company;
-                list.innerHTML = "";
-            });
-            item.addEventListener("mouseover", function () {
-                item.style.backgroundColor = "#f0f0f0";
-            });
-            item.addEventListener("mouseout", function () {
-                item.style.backgroundColor = "white";
+            if (!value) return;
+            Object.keys(companyMap).forEach(company => {
+                if (company.toLowerCase().includes(value)) {
+                    const item = document.createElement("div");
+                    item.textContent = company
+                        item.style.padding = "10px 10px 10px 15px";
+                    item.style.cursor = "pointer";
+                    item.style.textAlign = "left";
+                    item.style.color = "black";
+                    item.addEventListener("click", function () {
+                        input.value = company;
+                        list.innerHTML = "";
+                    });
+                    item.addEventListener("mouseover", function () {
+                        item.style.backgroundColor = "#f0f0f0";
+                    })
+                        item.addEventListener("mouseout", function () {
+                            item.style.backgroundColor = "white";
             });
             list.appendChild(item);
             }
@@ -1500,7 +1495,7 @@
             document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
             document.getElementById(target).classList.add('active');
         });
-        });
+    });
     </script>
     <style>
     body {
@@ -1879,6 +1874,7 @@
                         <h4 class="indicator-title">📈 수익성 지표</h4>
                         <table class="investment-table">
                             <tbody>
+                                <tr><td>매출총이익률</td><td>20.06%</td></tr>
                                 <tr><td>영업이익률</td><td>10.14%</td></tr>
                                 <tr><td>순이익률</td><td>8.57%</td></tr>
                                 <tr><td>ROE</td><td>7.30%</td></tr>
